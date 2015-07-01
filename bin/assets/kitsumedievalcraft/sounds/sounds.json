@@ -1,0 +1,8 @@
+{
+  "woodshieldbash": {"category": "neutral", "sounds": [{"name": "woodshieldbash", "stream": false}]},
+  "longbowRelease": {"category": "neutral", "sounds": [{"name": "longbowRelease", "stream": false}]},
+  "tautBow": {"category": "neutral", "sounds": [{"name": "tautBow", "stream": false}]},
+  "anvilhammer": {"category": "neutral", "sounds": [{"name": "anvilhammer", "stream": false}]},
+  "ironShieldBash": {"category": "neutral", "sounds": [{"name": "ironShieldBash", "stream": false}]}
+  }
+
