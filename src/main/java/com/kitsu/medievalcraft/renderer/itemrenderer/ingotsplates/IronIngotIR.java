@@ -15,6 +15,8 @@ public class IronIngotIR implements IItemRenderer {
 	
 	public static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/IronIngotBlock.obj");
 	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/IronIngotBlock.png");
+	public static final ResourceLocation TEXTURE1 = new ResourceLocation("kitsumedievalcraft:models/HotIronIngotBlock.png");
+	private ResourceLocation loc;
 	
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL_CRUCIBLE);
 	
@@ -40,8 +42,7 @@ public class IronIngotIR implements IItemRenderer {
 	}
 	
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
-			ItemRendererHelper helper) {
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,ItemRendererHelper helper) {
 		
 		switch(type) {
 		case EQUIPPED: {
@@ -74,7 +75,13 @@ public class IronIngotIR implements IItemRenderer {
 			GL11.glRotated(-20, 1, 0, 0);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
 			GL11.glTranslatef(0.0F, 0.0F, 1.15F);
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
 			GL11.glPopMatrix();
 		} break;
@@ -87,20 +94,38 @@ public class IronIngotIR implements IItemRenderer {
 			GL11.glRotated(30, 0, 0, 1);
 			GL11.glScalef(f, f, f);
 			GL11.glTranslatef(-0.2F, 1.0F, 1.15F);
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
 			GL11.glPopMatrix();
 		} break;
 		case INVENTORY: {
 			GL11.glPushMatrix();
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
 			GL11.glPopMatrix();
 		} break;
 		case ENTITY: {
 			GL11.glPushMatrix();
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
 			GL11.glPopMatrix();
 		} break;

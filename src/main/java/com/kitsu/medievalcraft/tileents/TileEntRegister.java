@@ -23,6 +23,7 @@ import com.kitsu.medievalcraft.tileents.machine.TileEntityShelfFour;
 import com.kitsu.medievalcraft.tileents.machine.TileEntitySolidFilter;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityTestForge;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityWaterFilter;
+import com.kitsu.medievalcraft.tileents.machine.TileForge;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -49,6 +50,7 @@ public class TileEntRegister {
         GameRegistry.registerTileEntity(TileEntitySmallBarrel.class, "SmallBarrel");
         GameRegistry.registerTileEntity(TileEntityShelfFour.class, "ShelfFour");
         GameRegistry.registerTileEntity(TileEntityFirebox.class, "Firebox");
+        GameRegistry.registerTileEntity(TileForge.class, "Forge");
 
         GameRegistry.registerTileEntity(TileCrucibleIronOre.class, "CrucibleIronOre");
         GameRegistry.registerTileEntity(TileCrucibleWootz.class, "CrucibleWootz");

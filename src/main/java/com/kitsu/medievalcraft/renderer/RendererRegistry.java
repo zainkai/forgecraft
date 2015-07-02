@@ -27,6 +27,7 @@ import com.kitsu.medievalcraft.renderer.blocks.ingot.MyEmeraldRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.ingot.RedstoneIngotRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.FireboxRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.ForgeAnvilRenderer;
+import com.kitsu.medievalcraft.renderer.blocks.machine.ForgeRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.FourShelfRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.SolidFilterRender;
 import com.kitsu.medievalcraft.renderer.blocks.machine.WaterFilterRenderer;
@@ -83,6 +84,7 @@ import com.kitsu.medievalcraft.tileents.machine.TileEntityFirebox;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityShelfFour;
 import com.kitsu.medievalcraft.tileents.machine.TileEntitySolidFilter;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityWaterFilter;
+import com.kitsu.medievalcraft.tileents.machine.TileForge;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 
@@ -151,6 +153,8 @@ public class RendererRegistry {
        	ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallBarrel.class, new SmallBarrelRender());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShelfFour.class, new FourShelfRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFirebox.class, new FireboxRenderer());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFirebox.class, new FireboxRenderer());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileForge.class, new ForgeRenderer());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleLapis.class, new LapisCrucibleRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleIronOre.class, new IronOreCrucibleRenderer());

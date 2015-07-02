@@ -22,6 +22,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
 
+import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.block.crucible.CrucibleBase;
 import com.kitsu.medievalcraft.block.ingots.IngotBase;
 import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleBase;
@@ -206,20 +207,8 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 		int y = this.yCoord;
 		int z = this.zCoord;
 		if(!world.isRemote){
-			if(world.getBlock(x, y+1, z).equals(Blocks.air)||this.getStackInSlot(0)==null){
-				this.isOn = false;
-			}
-			if((this.getStackInSlot(0)==null)&&(world.getBlock(x, y+1, z).equals(Blocks.fire))){
-				world.setBlock(x, y+1, z, Blocks.air, 0, 2);
-				this.isOn=false;
-			}
-			if(this.isOn==true && world.getBlock(x, y+1, z).equals(Blocks.air)){
-				world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
-			}
-			if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
-				this.isOn = true;
-			}
 
+			fireboxMaint(world, x, y, z);
 			fireboxFuelDec(world, x, y, z, this.getStackInSlot(0), this.ticks);
 			isFurnace(world, x, y, z);
 			isCrucible(world, x, y, z);
@@ -228,7 +217,22 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 		if (worldObj.isRemote) return;
 	}
 	
-	public void fireboxFuelDec(World world, int x, int y, int z, ItemStack stack, int time){
+	private void fireboxMaint(World world, int x, int y, int z){
+		if(world.getBlock(x, y+1, z).equals(Blocks.air)||this.getStackInSlot(0)==null){
+			this.isOn = false;
+		}
+		if((this.getStackInSlot(0)==null)&&(world.getBlock(x, y+1, z).equals(Blocks.fire))){
+			world.setBlock(x, y+1, z, Blocks.air, 0, 2);
+			this.isOn=false;
+		}
+		if(this.isOn==true && world.getBlock(x, y+1, z).equals(Blocks.air)){
+			world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
+		}
+		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
+			this.isOn = true;
+		}
+	}
+	private void fireboxFuelDec(World world, int x, int y, int z, ItemStack stack, int time){
 		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
 			if(stack!=null){
 				if(isItemFuel(stack)==true){
@@ -244,7 +248,7 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 			}
 		}
 	}
-	public static double fuelMulti(int i, ItemStack stack){
+	private static double fuelMulti(int i, ItemStack stack){
 		if(stack!=null){
 			if(stack.stackSize<=15){
 				return 0.25;

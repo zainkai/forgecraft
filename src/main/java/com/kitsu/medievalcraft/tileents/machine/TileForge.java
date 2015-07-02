@@ -1,38 +1,25 @@
 package com.kitsu.medievalcraft.tileents.machine;
 
-import com.kitsu.medievalcraft.block.crucible.CrucibleBase;
-import com.kitsu.medievalcraft.block.ingots.IngotBase;
-import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleBase;
-import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFurnace;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
+
+import com.kitsu.medievalcraft.block.ModBlocks;
 
 public class TileForge extends TileEntity implements IInventory{
 	private String tileForgeName;
 	private ItemStack[] inv;
 	private NBTTagCompound tag = new NBTTagCompound();
 	public int heat;
+	public boolean isCoal;
 
 	public TileForge(){
 		this.inv = new ItemStack[1];
@@ -121,7 +108,7 @@ public class TileForge extends TileEntity implements IInventory{
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 64;
+		return 1;
 	}
 
 	@Override
@@ -160,7 +147,7 @@ public class TileForge extends TileEntity implements IInventory{
 		}
 		//this.stack0 = tagCompound.getString("stack0");
 		this.heat = tag.getInteger("HEAT");
-		//this.isOn = tag.getBoolean("ISON");
+		this.isCoal = tag.getBoolean("ISCOAL");
 
 	}
 
@@ -180,7 +167,7 @@ public class TileForge extends TileEntity implements IInventory{
 		}
 		tagCompound.setTag("Inventory", itemList);
 		tag.setInteger("HEAT", this.heat);
-		//tag.setBoolean("ISON", this.isOn);
+		tag.setBoolean("ISCOAL", this.isCoal);
 	}
 	@Override
 	public Packet getDescriptionPacket() {
@@ -203,6 +190,13 @@ public class TileForge extends TileEntity implements IInventory{
 		int y = this.yCoord;
 		int z = this.zCoord;
 		if(!world.isRemote){
+			if(!world.isRemote){
+				if(this.getStackInSlot(0)!=null){
+					System.out.println(this.getStackInSlot(0).getItemDamage());
+					ItemStack c = new ItemStack(this.getStackInSlot(0).getItem(),1,1);
+					this.setInventorySlotContents(0, c);
+				}
+			}
 			/*if(world.getBlock(x, y+1, z).equals(Blocks.air)||this.getStackInSlot(0)==null){
 				this.isOn = false;
 			}
@@ -216,7 +210,7 @@ public class TileForge extends TileEntity implements IInventory{
 			if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
 				this.isOn = true;
 			}
-*/
+			 */
 			//fireboxFuelDec(world, x, y, z, this.getStackInSlot(0), this.ticks);
 			//isFurnace(world, x, y, z);
 			//isCrucible(world, x, y, z);

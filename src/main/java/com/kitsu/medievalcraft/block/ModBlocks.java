@@ -30,6 +30,7 @@ import com.kitsu.medievalcraft.block.ingots.LapisIngot;
 import com.kitsu.medievalcraft.block.ingots.RedstoneIngot;
 import com.kitsu.medievalcraft.block.ingots.RefinedIron;
 import com.kitsu.medievalcraft.block.machines.Firebox;
+import com.kitsu.medievalcraft.block.machines.Forge;
 import com.kitsu.medievalcraft.block.machines.ForgeAnvil;
 import com.kitsu.medievalcraft.block.machines.SolidFilter;
 import com.kitsu.medievalcraft.block.machines.TestForge;
@@ -113,6 +114,7 @@ public class ModBlocks {
 	public static Block shelfFour;
 	public static Block firebox;
 	public static Block solidFilter;
+	public static Block forge;
 	
 	//GEMS
 	public static Block myDiamond, myEmerald;
@@ -178,7 +180,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(solidFilter = new SolidFilter("solidFilter", Material.wood), "solidFilter");
 		GameRegistry.registerBlock(shelfFour = new ShelfFour("shelfFour", Material.wood), "shelfFour");
 		GameRegistry.registerBlock(firebox = new Firebox("firebox", Material.rock), "firebox");
-		
+		GameRegistry.registerBlock(forge = new Forge("forge", Material.rock), "forge");
 		
 		/*GameRegistry.registerBlock(myIronIngot = new MyIronIngot("myIronIngot", Material.iron), "myIronIngot");
 		GameRegistry.registerBlock(damascusIngot = new DamascusIngot("damascusIngot", Material.iron), "damascusIngot");

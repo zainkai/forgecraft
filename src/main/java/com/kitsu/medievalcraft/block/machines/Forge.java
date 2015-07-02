@@ -1,52 +1,36 @@
 package com.kitsu.medievalcraft.block.machines;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.block.ModBlocks;
-import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.RenderId;
-import com.kitsu.medievalcraft.tileents.machine.TileEntityFirebox;
 import com.kitsu.medievalcraft.tileents.machine.TileForge;
 import com.kitsu.medievalcraft.util.CustomTab;
+import com.kitsu.medievalcraft.util.TileForgePlaceables;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Forge extends BlockContainer{
+public class Forge extends BlockContainer implements TileForgePlaceables{
 
 	private final Random random = new Random();
-/*
- * 
- * 
- * [Chimney]
- * [ Forge ]
- * [Firebox]
- * 
- * 
- * */
+	
+	
 	public Forge(String unlocalizedName, Material material) {
 		super(material.rock);
 		this.setBlockName(unlocalizedName);
@@ -61,6 +45,7 @@ public class Forge extends BlockContainer{
 		// xmax, ymax, zmax)
 		this.setBlockBounds(0.0F, 0.00F, 0.0F,
 							1.0F, 0.5F, 1.0F);
+
 		
 	}
 	@Override
@@ -74,30 +59,58 @@ public class Forge extends BlockContainer{
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
-		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
-	        int l;
-	        float f;
-	        float f1;
-	        float f2;
-            for (l = 0; l < 3; ++l)
-            {
-                f = (float)(x+0.25) + (rand.nextFloat()/2);
-                f1 = (float)y + rand.nextFloat() * 0.4F + 0.2F;
-                f2 = (float)(z+0.25) + (rand.nextFloat()/2);
-                world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-            }
-		}
+		
 
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack p_149689_6_) {
+		if(!world.isRemote){
+			world.setBlockMetadataWithNotify(x, y, z, (MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3), 2);
+		}
+		world.markBlockForUpdate(x, y, z);
+	}
+	
+	private boolean shouldPlace(ItemStack stack, EntityPlayer player){
+		for(int i=0; i<placeMe.size();i++){
+			if(player.inventory.getCurrentItem().getItem()==placeMe.get(i).getItem()){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int q, float a, float b, float c) {
 
 		TileForge tileEnt = (TileForge) world.getTileEntity(x, y, z);
 
-		//System.out.println("");
 		if(!world.isRemote){
+			if(player.inventory.getCurrentItem()!=null){
+				if (tileEnt.getStackInSlot(0)==null){
+					if(player.inventory.getCurrentItem().getItem()==placeMe.get(0).getItem()||
+							player.inventory.getCurrentItem().getItem()==placeMe.get(1).getItem()||
+							player.inventory.getCurrentItem().getItem()==placeMe.get(2).getItem()||
+							player.inventory.getCurrentItem().getItem()==placeMe.get(3).getItem()||
+							player.inventory.getCurrentItem().getItem()==placeMe.get(4).getItem()){
+						
+						tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
+						player.inventory.decrStackSize(player.inventory.currentItem, 1);
+					}
+				}
+				return true;
+			}
+			if (!player.isSneaking()) {
+				if((player.inventory.getCurrentItem()==null)){
+					if(tileEnt.getStackInSlot(0)!=null){
+						ItemStack pStack = tileEnt.getStackInSlot(0).copy();
+						pStack.stackSize = 1;
+						world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, pStack));
+						tileEnt.decrStackSize(0, 1);
+					}
+				}
+				return true;
+			}
+			
 		/*	if(player.inventory.getCurrentItem()!=null){
 				if (tileEnt.getStackInSlot(0)==null){
 					tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
