@@ -54,8 +54,8 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 			this.entCoal.hoverStart = 0.0F;
 			RenderItem.renderInFrame = true;
 			GL11.glScalef(0.5f, 0.5f, 0.5f);
-			GL11.glRotatef(90, 1, 0, 0);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.55D, 1.3D, -0.79D, 0.0F, 0.0F);
+			
+			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.0D, 1.0D, -0.5D, 0.0F, 0.0F);
 			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.15D, 1.3D, -0.79D, 0.0F, 0.0F);
 			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.75D, 1.3D, -0.79D, 0.0F, 0.0F);
 			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.35D, 1.3D, -0.79D, 0.0F, 0.0F);
@@ -85,7 +85,7 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 			RenderItem.renderInFrame = true;
 			GL11.glScalef(1.0f, 1.0f, 1.0f);
 			GL11.glRotatef(10, 0, 1, 0);
-			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.4D, 0.325D, 0.6D, 0.0F, 0.0F);
+			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.4D, 0.3D, 0.6D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
 		}
@@ -101,7 +101,7 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		//GL11.glRotatef(15F, 0F, 1F, 0F);
 		float scale = 0.50f;
-		GL11.glScalef(scale, scale, scale);
+		GL11.glScalef(scale, 1f, scale);
 		GL11.glTranslatef(1.0F, 0.2F, 1.0F);
 		int dir = world.getBlockMetadata(i, j, k);
 		if(dir == 1){

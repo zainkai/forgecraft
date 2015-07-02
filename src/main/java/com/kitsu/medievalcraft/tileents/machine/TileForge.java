@@ -191,11 +191,7 @@ public class TileForge extends TileEntity implements IInventory{
 		int z = this.zCoord;
 		if(!world.isRemote){
 			if(!world.isRemote){
-				if(this.getStackInSlot(0)!=null){
-					System.out.println(this.getStackInSlot(0).getItemDamage());
-					ItemStack c = new ItemStack(this.getStackInSlot(0).getItem(),1,1);
-					this.setInventorySlotContents(0, c);
-				}
+	
 			}
 			/*if(world.getBlock(x, y+1, z).equals(Blocks.air)||this.getStackInSlot(0)==null){
 				this.isOn = false;

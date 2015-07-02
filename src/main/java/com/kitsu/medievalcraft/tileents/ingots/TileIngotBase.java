@@ -35,12 +35,14 @@ public class TileIngotBase extends TileEntity {
 		if(!world.isRemote){
 			if(this.heatTicks<=0){
 				world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+				this.hot=true;
+				this.heatTicks=100;
 			}
 			if(this.coolTicks<=0){
 				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 			}
 			coolDown(world, x, y, z);
-			//System.out.println(this.hot);
+			//System.out.println(this.heatTicks);
 		}
 
 	}

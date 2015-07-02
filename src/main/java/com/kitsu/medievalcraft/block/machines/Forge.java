@@ -35,7 +35,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 		super(material.rock);
 		this.setBlockName(unlocalizedName);
 		this.setBlockTextureName(Main.MODID + ":" + unlocalizedName);
-		this.setCreativeTab(CustomTab.MedievalCraftTab);
+		//this.setCreativeTab(CustomTab.MedievalCraftTab);
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
 		this.setHarvestLevel("pickaxe", 1, 0);
@@ -92,8 +92,8 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 							player.inventory.getCurrentItem().getItem()==placeMe.get(2).getItem()||
 							player.inventory.getCurrentItem().getItem()==placeMe.get(3).getItem()||
 							player.inventory.getCurrentItem().getItem()==placeMe.get(4).getItem()){
-						
-						tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
+						ItemStack tempStack = new ItemStack(player.inventory.getCurrentItem().getItem(), 1);
+						tileEnt.setInventorySlotContents(0, tempStack);
 						player.inventory.decrStackSize(player.inventory.currentItem, 1);
 					}
 				}

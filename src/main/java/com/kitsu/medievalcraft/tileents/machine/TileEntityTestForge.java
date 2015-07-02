@@ -1,7 +1,5 @@
 package com.kitsu.medievalcraft.tileents.machine;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +21,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.kitsu.medievalcraft.block.ModBlocks;
+import com.kitsu.medievalcraft.block.ingots.IngotBase;
 import com.kitsu.medievalcraft.crafting.TestForgeCrafting;
+import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -151,31 +151,16 @@ public class TileEntityTestForge extends TileEntity implements IInventory {
 		Block fire = world.getBlock(x, y-1, z);
 		TileEntityTestForge tileEnt = (TileEntityTestForge) world.getTileEntity(x, y, z);
 		if(!world.isRemote){
-
-			if(fire.equals(Blocks.fire)){
-				if(checkBlock.equals(Blocks.snow) || checkBlock.equals(Blocks.snow_layer)){
-					world.setBlock(x, y+1, z, Blocks.air, 0, 2);
-					this.worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", 0.2F, 0.4F);
-				}
-				if(checkBlock.equals(Blocks.ice) || checkBlock.equals(Blocks.packed_ice)){
-					world.setBlock(x, y+1, z, Blocks.water, 0, 2);
-					this.worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", 0.2F, 0.4F);
-				}
-
-				if((checkBlock.equals(getBlock(checkBlock))) && (isItemFuel(tileEnt.getStackInSlot(0))) && (isAir.equals(Blocks.air)) && (fire.equals(Blocks.fire))){
-					Random rand = new Random();
-					if ((rand.nextInt(20) == 0)){
-						world.setBlock(x, y+3, z, ModBlocks.blockSmoke, 0, 2);
+			if(fire==ModBlocks.firebox){
+				TileEntityFirebox box = (TileEntityFirebox) world.getTileEntity(x, y-1, z);
+				if(checkBlock instanceof IngotBase && box.isOn==true && isItemFuel(this.getStackInSlot(0))==true){
+					TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y+1, z);
+					System.out.println(tile.hot);
+					System.out.println(tile.heatTicks);
+					if(tile.hot==false){
+						tile.heatTicks--;
 					}
-					ticks++;
-	
-					//System.out.println(tag.getInteger("TICKS") + ":" + tag.getInteger("FUELTICKS"));
-					if(ticks == getCookTime(ticks)){
-						world.setBlock(x, y+1, z, TestForgeCrafting.blockToCook.get(type), 0, 2);
-						ticks=0;
-					}
-
-				} 
+				}
 			}
 		}
 	}
@@ -189,7 +174,7 @@ public class TileEntityTestForge extends TileEntity implements IInventory {
 					fuelTicks++;
 					
 					//System.out.println(fuelTicks + " " + getItemBurnTime(tileEnt.getStackInSlot(0)));
-					if(fuelTicks >= getItemBurnTime(tileEnt.getStackInSlot(0))){
+					if(fuelTicks >= 2*getItemBurnTime(tileEnt.getStackInSlot(0))){
 						fuelTicks = 0;
 						
 						if (tileEnt.getStackInSlot(0).stackSize == 1){
