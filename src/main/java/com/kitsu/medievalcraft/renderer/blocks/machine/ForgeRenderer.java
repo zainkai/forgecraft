@@ -28,10 +28,8 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 
 	private final Random rand = new Random();
 	private double r = rand.nextDouble();
-	//public ModelFirebox model;
 	EntityItem entItem = null;
 	EntityItem entCoal = null;
-	//boolean slotStatus;
 	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/SingleForge.obj");
 	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/SingleForge.png");
 
@@ -45,9 +43,6 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		GL11.glTranslatef((float) x, (float) y, (float) z);
 
 		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forge);
-
-
-		//}
 
 		if(tileEntity.getStackInSlot(0) != null){
 			entItem = new EntityItem(tileEntity.getWorldObj(), x, y, z, tileEntity.getStackInSlot(0));
@@ -70,28 +65,21 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 
 	public void renderBlock(TileForge tl, World world, int i, int j,int k, Block block) {
 		GL11.glPushMatrix();
-		//GL11.glRotatef(15F, 0F, 1F, 0F);
 		float scale = 0.50f;
 		GL11.glScalef(scale, scale, scale);
 		GL11.glTranslatef(1.0F, 1.0F, 1.0F);
 		int dir = world.getBlockMetadata(i, j, k);
 		if(dir == 0){
-			//GL11.glTranslatef(-1F, 0F, 1F);
 			GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 1){
-			//GL11.glTranslatef(-1F, 0F, 1F);
-			//GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 2){
-			//GL11.glTranslatef(-2F, 0F, 0F);
 			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 3){
-			//GL11.glTranslatef(-1F, 0F, -1F);
 			GL11.glRotated(180F, 0.0, 1.0F, 0.0F);
 		}
-		//
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(TEXTURE);
 
 		this.model.renderAll();

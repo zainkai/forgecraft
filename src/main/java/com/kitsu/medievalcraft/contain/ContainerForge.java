@@ -29,7 +29,7 @@ public class ContainerForge extends Container {
                }
         }*/
        addSlotToContainer(new Slot(tileEnt, 0, 80, 34));
-       addSlotToContainer(new Slot(tileEnt, 1, 81, 34));
+       addSlotToContainer(new Slot(tileEnt, 0, 81, 34));
         //commonly used vanilla code that adds the player's inventory
         bindPlayerInventory(inventoryPlayer);
     }

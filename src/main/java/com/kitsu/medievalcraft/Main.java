@@ -19,6 +19,8 @@ import com.kitsu.medievalcraft.packethandle.curedLeather.MsgHandleCuredLeatherZ;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgPacketCuredLeatherX;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgPacketCuredLeatherY;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgPacketCuredLeatherZ;
+import com.kitsu.medievalcraft.packethandle.forge.MsgHandleForge;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForge;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandle;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocY;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocZ;
@@ -82,6 +84,7 @@ public class Main {
 		sNet.registerMessage(MsgHandleCuredLeatherY.class, MsgPacketCuredLeatherY.class, 7, Side.SERVER);
 		sNet.registerMessage(MsgHandleCuredLeatherZ.class, MsgPacketCuredLeatherZ.class, 8, Side.SERVER);
 		sNet.registerMessage(MsgHandleShelfCase.class, MsgPacketShelfCase.class, 9, Side.SERVER);
+		sNet.registerMessage(MsgHandleForge.class, MsgPacketForge.class, 10, Side.SERVER);
 		CustomTab.MedievalTab();
 		ModBlocks.init();
 		ModItems.init();

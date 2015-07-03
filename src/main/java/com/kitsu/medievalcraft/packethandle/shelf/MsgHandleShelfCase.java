@@ -12,15 +12,7 @@ public class MsgHandleShelfCase implements IMessageHandler<MsgPacketShelfCase, I
 
 	@Override
 	public IMessage onMessage(MsgPacketShelfCase message, MessageContext ctx) {
-
-		//HotIronBlock.locX = message.locx;
-		//HotIronPlate.locX = message.locx;
 		ShelfFour.caseType = message.caseType;
-		//ItemRendererLongbow.tick = message.lTick;
-		
-		//System.out.println(message.lTick);
-		//ctx.getClientHandler().addToSendQueue(new MsgPacket(message.useme));
-		
 		return null;
 	}
 }

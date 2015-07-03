@@ -20,6 +20,7 @@ public class TileForge extends TileEntity implements IInventory{
 	private NBTTagCompound tag = new NBTTagCompound();
 	public int heat;
 	public boolean isOn;
+	public boolean grate;
 
 	public TileForge(){
 		this.inv = new ItemStack[2];
@@ -146,8 +147,9 @@ public class TileForge extends TileEntity implements IInventory{
 			this.tileForgeName = tagCompound.getString("CustomName");
 		}
 		//this.stack0 = tagCompound.getString("stack0");
-		this.heat = tag.getInteger("HEAT");
-		this.isOn = tag.getBoolean("ISCOAL");
+		this.heat  = tag.getInteger("HEAT");
+		this.isOn  = tag.getBoolean("ISCOAL");
+		this.grate = tag.getBoolean("GRATE");
 
 	}
 
@@ -168,6 +170,8 @@ public class TileForge extends TileEntity implements IInventory{
 		tagCompound.setTag("Inventory", itemList);
 		tag.setInteger("HEAT", this.heat);
 		tag.setBoolean("ISCOAL", this.isOn);
+		tag.setBoolean("GRATE", this.grate);
+		
 	}
 	@Override
 	public Packet getDescriptionPacket() {

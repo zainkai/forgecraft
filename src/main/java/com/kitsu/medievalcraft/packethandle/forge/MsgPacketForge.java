@@ -1,15 +1,15 @@
-package com.kitsu.medievalcraft.packethandle.shelf;
+package com.kitsu.medievalcraft.packethandle.forge;
 
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public class MsgPacketShelfCase implements IMessage {
+public class MsgPacketForge implements IMessage {
 
 	public int caseType;
 
-	public MsgPacketShelfCase() {}
+	public MsgPacketForge() {}
 
-	public MsgPacketShelfCase(int x){
+	public MsgPacketForge(int x){
 		this.caseType = x;
 	}
 	
