@@ -32,8 +32,8 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 	EntityItem entItem = null;
 	EntityItem entCoal = null;
 	//boolean slotStatus;
-	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/Forge.obj");
-	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/Forge.png");
+	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/SingleForge.obj");
+	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/SingleForge.png");
 
 	IModelCustom model = AdvancedModelLoader.loadModel(MODEL);
 
@@ -45,36 +45,7 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		GL11.glTranslatef((float) x, (float) y, (float) z);
 
 		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forge);
-		//System.out.println(tileEntity.isCoal);
-		//if(tileEntity.isCoal==true){
-			//System.out.println("Renderer me plz");
-			ItemStack c = new ItemStack(Items.coal, 1 , 1);
-			entCoal = new EntityItem(tileEntity.getWorldObj(), x, y, z, c);
-			GL11.glPushMatrix();
-			this.entCoal.hoverStart = 0.0F;
-			RenderItem.renderInFrame = true;
-			GL11.glScalef(0.5f, 0.5f, 0.5f);
-			
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.0D, 1.0D, -0.5D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.15D, 1.3D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.75D, 1.3D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.35D, 1.3D, -0.79D, 0.0F, 0.0F);
-			
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.35D, 1.0D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.95D, 1.0D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.55D, 1.0D, -0.79D, 0.0F, 0.0F);
-			
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.55D, 0.7D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.15D, 0.7D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.75D, 0.7D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.35D, 0.7D, -0.79D, 0.0F, 0.0F);
-			
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 1.35D, 0.4D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.95D, 0.4D, -0.79D, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entCoal, 0.55D, 0.4D, -0.79D, 0.0F, 0.0F);
-			
-			RenderItem.renderInFrame = false;
-			GL11.glPopMatrix();
+
 
 		//}
 
@@ -84,8 +55,8 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 			this.entItem.hoverStart = 0.0F;
 			RenderItem.renderInFrame = true;
 			GL11.glScalef(1.0f, 1.0f, 1.0f);
-			GL11.glRotatef(10, 0, 1, 0);
-			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.4D, 0.3D, 0.6D, 0.0F, 0.0F);
+			//GL11.glRotatef(10, 0, 1, 0);
+			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.55D, 0.25D, 0.5D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
 		}
@@ -101,20 +72,24 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		//GL11.glRotatef(15F, 0F, 1F, 0F);
 		float scale = 0.50f;
-		GL11.glScalef(scale, 1f, scale);
-		GL11.glTranslatef(1.0F, 0.2F, 1.0F);
+		GL11.glScalef(scale, scale, scale);
+		GL11.glTranslatef(1.0F, 1.0F, 1.0F);
 		int dir = world.getBlockMetadata(i, j, k);
+		if(dir == 0){
+			//GL11.glTranslatef(-1F, 0F, 1F);
+			GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
+		}
 		if(dir == 1){
 			//GL11.glTranslatef(-1F, 0F, 1F);
-			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
+			//GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 2){
 			//GL11.glTranslatef(-2F, 0F, 0F);
-			GL11.glRotated(-180F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 3){
 			//GL11.glTranslatef(-1F, 0F, -1F);
-			GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(180F, 0.0, 1.0F, 0.0F);
 		}
 		//
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(TEXTURE);

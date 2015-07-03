@@ -19,10 +19,10 @@ public class TileForge extends TileEntity implements IInventory{
 	private ItemStack[] inv;
 	private NBTTagCompound tag = new NBTTagCompound();
 	public int heat;
-	public boolean isCoal;
+	public boolean isOn;
 
 	public TileForge(){
-		this.inv = new ItemStack[1];
+		this.inv = new ItemStack[2];
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class TileForge extends TileEntity implements IInventory{
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 1;
+		return 64;
 	}
 
 	@Override
@@ -147,7 +147,7 @@ public class TileForge extends TileEntity implements IInventory{
 		}
 		//this.stack0 = tagCompound.getString("stack0");
 		this.heat = tag.getInteger("HEAT");
-		this.isCoal = tag.getBoolean("ISCOAL");
+		this.isOn = tag.getBoolean("ISCOAL");
 
 	}
 
@@ -167,7 +167,7 @@ public class TileForge extends TileEntity implements IInventory{
 		}
 		tagCompound.setTag("Inventory", itemList);
 		tag.setInteger("HEAT", this.heat);
-		tag.setBoolean("ISCOAL", this.isCoal);
+		tag.setBoolean("ISCOAL", this.isOn);
 	}
 	@Override
 	public Packet getDescriptionPacket() {

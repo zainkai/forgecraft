@@ -42,15 +42,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Firebox extends BlockContainer{
 
 	private final Random random = new Random();
-/*
- * 
- * 
- * [Chimney]
- * [ Forge ]
- * [Firebox]
- * 
- * 
- * */
+	/*
+	 * 
+	 * 
+	 * [Chimney]
+	 * [ Forge ]
+	 * [Firebox]
+	 * 
+	 * 
+	 * */
 	public Firebox(String unlocalizedName, Material material) {
 		super(material.rock);
 		this.setBlockName(unlocalizedName);
@@ -64,68 +64,67 @@ public class Firebox extends BlockContainer{
 		//(xmin, ymin, zmin, 
 		// xmax, ymax, zmax)
 		this.setBlockBounds(0.0F, 0.00F, 0.0F,
-							1.0F, 0.98F, 1.0F);
-		
+				1.0F, 0.98F, 1.0F);
+
 	}
 	@Override
-    public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face)
-    {
-        return true;
-    }
-	
+	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+	{
+		return true;
+	}
+
 	@Override
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side) {
-        if (this == ModBlocks.firebox && side == UP)
-        {
-            return true;
-        }
-        return true;
+		if (this == ModBlocks.firebox && side == UP)
+		{
+			return true;
+		}
+		return true;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
 		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
-	        int l;
-	        float f;
-	        float f1;
-	        float f2;
-            for (l = 0; l < 3; ++l)
-            {
-                f = (float)(x+0.25) + (rand.nextFloat()/2);
-                f1 = (float)y + rand.nextFloat() * 0.4F + 0.2F;
-                f2 = (float)(z+0.25) + (rand.nextFloat()/2);
-                world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-            }
+			int l;
+			float f;
+			float f1;
+			float f2;
+			for (l = 0; l < 3; ++l)
+			{
+				f = (float)(x+0.25) + (rand.nextFloat()/2);
+				f1 = (float)y + rand.nextFloat() * 0.4F + 0.2F;
+				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
+				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+			}
 		}
 
 	}
-
+//PACKETHANDLE FOR C 
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int q, float a, float b, float c) {
 
 		TileEntityFirebox tileEnt = (TileEntityFirebox) world.getTileEntity(x, y, z);
 
 		//System.out.println("");
 		if(!world.isRemote){
-			
+
 			if(player.inventory.getCurrentItem()!=null){
 				if((player.inventory.getCurrentItem().getItem()==Item.getItemFromBlock(Blocks.torch))||
-					(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
-					(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
+						(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
+						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
 					tileEnt.isOn=true;
 					if(world.getBlock(x, y, z).equals(Blocks.air)){
 						world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
 					}
-					
+
 					System.out.println(tileEnt.isOn);
 				}
 			}
-			
 			if(player.inventory.getCurrentItem()!=null){
 				if (tileEnt.getStackInSlot(0)==null){
 					tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
@@ -137,11 +136,11 @@ public class Firebox extends BlockContainer{
 						ItemStack sStack = tileEnt.getStackInSlot(0).copy();
 						ItemStack sStackTemp = tileEnt.getStackInSlot(0).copy();
 						if(tileEnt.getStackInSlot(0).stackSize < 64){
-						sStackTemp.stackSize++;
-						if ((sStack.getItem().equals(pStack.getItem())) && (sStack.getItemDamage() == pStack.getItemDamage())  ){
-							tileEnt.setInventorySlotContents(0, sStackTemp);
-							player.inventory.decrStackSize(player.inventory.currentItem, 1);
-						}
+							sStackTemp.stackSize++;
+							if ((sStack.getItem().equals(pStack.getItem())) && (sStack.getItemDamage() == pStack.getItemDamage())  ){
+								tileEnt.setInventorySlotContents(0, sStackTemp);
+								player.inventory.decrStackSize(player.inventory.currentItem, 1);
+							}
 						}
 					}
 				}
@@ -167,7 +166,7 @@ public class Firebox extends BlockContainer{
 			}
 
 			//tileEnt.markDirty();
-		
+
 		}
 
 		tileEnt.markForUpdate();
@@ -175,21 +174,21 @@ public class Firebox extends BlockContainer{
 		//System.out.println(player.inventory.getCurrentItem());
 		return true;
 	}
-	
+
 	/*public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
-		
+
 		if(!world.isRemote){
 			if(player.inventory.getCurrentItem()!= null){
 				if(player.inventory.getCurrentItem().equals(ModItems.fireBow)||player.inventory.getCurrentItem().equals(Items.flint_and_steel)){
 					TileEntityFirebox tileEnt = (TileEntityFirebox) world.getTileEntity(x, y, z);
 					tileEnt.isOn = true;
-					
+
 				}
 			}
 		}
-		
+
 	}*/
-	
+
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		TileEntityFirebox tileEnt = (TileEntityFirebox) world.getTileEntity(x, y, z);
 
@@ -271,6 +270,10 @@ public class Firebox extends BlockContainer{
 		if (item == Items.blaze_rod) return 2400;
 		return GameRegistry.getFuelValue(p_145952_0_);
 	}
+	public static boolean isItemFuel(ItemStack stack)
+	{
+		return getItemBurnTime(stack) > 0;
+	}
 	@Override
 	public int getRenderType() {
 		return RenderId.fireboxID;
@@ -283,8 +286,5 @@ public class Firebox extends BlockContainer{
 	public boolean isOpaqueCube() {
 		return false;
 	}
-	public static boolean isItemFuel(ItemStack stack)
-	{
-		return getItemBurnTime(stack) > 0;
-	}
+
 }

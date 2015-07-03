@@ -1106,7 +1106,7 @@ public class ShelfFour extends BlockContainer{
 
 		if(!world.isRemote){
 			world.setBlockMetadataWithNotify(x, y, z, (MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3), 2);
-
+			
 		}
 		world.markBlockForUpdate(x, y, z);
 

@@ -1,4 +1,4 @@
-# Blender MTL File: 'SandFilter.blend'
+# Blender MTL File: 'SingleForge.blend'
 # Material Count: 1
 
 newmtl Material
@@ -9,4 +9,4 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/kitsu/Development/Blends/SandFilter.png
+map_Kd SingleForge.png
