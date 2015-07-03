@@ -26,10 +26,8 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class ForgeRenderer extends TileEntitySpecialRenderer {
 
-	private final Random rand = new Random();
-	private double r = rand.nextDouble();
 	EntityItem entItem = null;
-	EntityItem entCoal = null;
+	EntityItem entItem1 = null;
 	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/SingleForge.obj");
 	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/SingleForge.png");
 
@@ -44,6 +42,31 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 
 		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forge);
 
+		if(tileEntity.getStackInSlot(1) != null){
+			entItem1 = new EntityItem(tileEntity.getWorldObj(), x, y, z, tileEntity.getStackInSlot(1));
+			GL11.glPushMatrix();
+			this.entItem1.hoverStart = 0.0F;
+			RenderItem.renderInFrame = true;
+			GL11.glScalef(0.5f, 0.1f, 0.5f);
+			GL11.glRotatef(90, 1, 0, 0);
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 1.0D, 0.8D, -10.0D, 0.0F, 0.0F);
+			
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 1.25D, 1.0D, -10.0D, 0.0F, 0.0F);
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 1.25D, 0.5D, -10.0D, 0.0F, 0.0F);
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 0.7D, 0.6D, -10.0D, 0.0F, 0.0F);
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 0.7D, 1.0D, -10.0D, 0.0F, 0.0F);
+			
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 1.5D, 0.75D, -10.0D, 0.0F, 0.0F);
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 1.0D, 1.2D, -10.0D, 0.0F, 0.0F);
+			RenderManager.instance.renderEntityWithPosYaw(entItem1, 0.98D, 0.35D, -10.0D, 0.0F, 0.0F);
+			//RenderManager.instance.renderEntityWithPosYaw(entItem1, 0.5D, 0.7D, -10.0D, 0.0F, 0.0F);
+			
+			RenderItem.renderInFrame = false;
+			GL11.glPopMatrix();
+			tileEntity.markForUpdate();
+			tileEntity.markDirty();
+		}
+		
 		if(tileEntity.getStackInSlot(0) != null){
 			entItem = new EntityItem(tileEntity.getWorldObj(), x, y, z, tileEntity.getStackInSlot(0));
 			GL11.glPushMatrix();
@@ -54,10 +77,13 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.55D, 0.25D, 0.5D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
+			tileEntity.markForUpdate();
+			tileEntity.markDirty();
 		}
 
-		tileEntity.markForUpdate();
-		tileEntity.markDirty();
+
+		//tileEntity.markForUpdate();
+		//tileEntity.markDirty();
 
 		GL11.glPopMatrix();
 
@@ -69,16 +95,17 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		GL11.glScalef(scale, scale, scale);
 		GL11.glTranslatef(1.0F, 1.0F, 1.0F);
 		int dir = world.getBlockMetadata(i, j, k);
-		if(dir == 0){
-			GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
+		//System.out.println(dir);
+		if(dir == 4){
+			GL11.glRotated(-180F, 0.0, 1.0F, 0.0F);
 		}
-		if(dir == 1){
+		if(dir == 5){
 		}
 		if(dir == 2){
-			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 3){
-			GL11.glRotated(180F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
 		}
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(TEXTURE);
 

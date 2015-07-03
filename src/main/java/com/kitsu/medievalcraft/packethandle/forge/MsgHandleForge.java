@@ -12,7 +12,7 @@ public class MsgHandleForge implements IMessageHandler<MsgPacketForge, IMessage>
 
 	@Override
 	public IMessage onMessage(MsgPacketForge message, MessageContext ctx) {
-		Forge.c = message.caseType;
+		Forge.sideMeta = message.caseType;
 		return null;
 	}
 }

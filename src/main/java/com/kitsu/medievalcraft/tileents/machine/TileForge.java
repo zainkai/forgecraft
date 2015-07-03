@@ -1,7 +1,6 @@
 package com.kitsu.medievalcraft.tileents.machine;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,7 +11,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.kitsu.medievalcraft.block.ModBlocks;
+import com.kitsu.medievalcraft.block.ingots.IngotBase;
+import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 
 public class TileForge extends TileEntity implements IInventory{
 	private String tileForgeName;
@@ -193,10 +193,7 @@ public class TileForge extends TileEntity implements IInventory{
 		int x = this.xCoord;
 		int y = this.yCoord;
 		int z = this.zCoord;
-		if(!world.isRemote){
-			if(!world.isRemote){
-	
-			}
+		heatIngot(world, x, y, z);
 			/*if(world.getBlock(x, y+1, z).equals(Blocks.air)||this.getStackInSlot(0)==null){
 				this.isOn = false;
 			}
@@ -215,8 +212,21 @@ public class TileForge extends TileEntity implements IInventory{
 			//isFurnace(world, x, y, z);
 			//isCrucible(world, x, y, z);
 			//isIngot(world, x, y, z);
-		}
+		
 		if (worldObj.isRemote) return;
+	}
+	
+	private void heatIngot(World world, int x, int y, int z){
+		if(!world.isRemote){
+			if(world.getBlock(x, y+1, z) instanceof IngotBase){
+				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y+1, z);
+				if(tile.hot==false){
+					tile.heatTicks--;
+					System.out.println(tile.hot);
+					System.out.println(tile.heatTicks);
+				}
+			}
+		}
 	}
 
 }

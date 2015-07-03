@@ -49,7 +49,7 @@ public class TileIngotBase extends TileEntity {
 	
 	private void coolDown(World world, int x, int y, int z){
 		if(!world.isRemote){
-			if((world.getBlock(x, y-1, z)!=ModBlocks.firebox)&&(this.hot==true)){
+			if((world.getBlock(x, y-1, z)!=ModBlocks.forge)&&(this.hot==true)){
 				coolTicks--;
 				if(coolTicks <= 0){
 					this.hot=false;

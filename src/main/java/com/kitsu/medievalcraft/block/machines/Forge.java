@@ -42,8 +42,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Forge extends BlockContainer implements TileForgePlaceables{
 
 	private final Random random = new Random();
-	private int sideMeta;
-	public static int c;
+	public static int sideMeta;
+	private int c;
 
 	public Forge(String unlocalizedName, Material material) {
 		super(material.rock);
@@ -74,12 +74,33 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 		super.randomDisplayTick(world, x, y, z, random);
 	}
 
+	public static int determineOrientation(World p_150071_0_, int p_150071_1_, int p_150071_2_, int p_150071_3_, EntityLivingBase p_150071_4_)
+	{
+		if (MathHelper.abs((float)p_150071_4_.posX - (float)p_150071_1_) < 2.0F && MathHelper.abs((float)p_150071_4_.posZ - (float)p_150071_3_) < 2.0F)
+		{
+			double d0 = p_150071_4_.posY + 1.82D - (double)p_150071_4_.yOffset;
+
+			if (d0 - (double)p_150071_2_ > 2.0D)
+			{
+				return 1;
+			}
+
+			if ((double)p_150071_2_ - d0 > 0.0D)
+			{
+				return 0;
+			}
+		}
+
+		int l = MathHelper.floor_double((double)(p_150071_4_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		return l == 0 ? 2 : (l == 1 ? 5 : (l == 2 ? 3 : (l == 3 ? 4 : 0)));
+	}
+
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack p_149689_6_) {
-		if(!world.isRemote){
-			world.setBlockMetadataWithNotify(x, y, z, (MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3), 2);
-			System.out.println(world.getBlockMetadata(x, y, z));
-		}
+		int l = determineOrientation(world, x, y, z, player);
+		world.setBlockMetadataWithNotify(x, y, z, l, 2);
+		System.out.println(world.getBlockMetadata(x, y, z));
+
 		world.markBlockForUpdate(x, y, z);
 	}
 
@@ -98,35 +119,22 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 		if(world.isRemote){
 			MovingObjectPosition mop = Minecraft.getMinecraft().renderViewEntity.rayTrace(5, 1.0F);
 			c = (int)mop.sideHit;
-			
 			Main.sNet.sendToServer(new MsgPacketForge((int) c));
-			System.out.println("Client");
-			System.out.println(c);
-			System.out.println(world.getBlockMetadata(x, y, z));
-
 		}
 		if(!world.isRemote){
-			System.out.println("Server");
-			System.out.println(c);
-			System.out.println(world.getBlockMetadata(x, y, z));
 			if(player.inventory.getCurrentItem()!=null){
 				if((player.inventory.getCurrentItem().getItem()==Item.getItemFromBlock(Blocks.torch))||
 						(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
 					tileEnt.isOn=true;
+					System.out.println(tileEnt.isOn);
 				}
 			}
 
-			if(c==1){
+			if(sideMeta==1){
 				if(player.inventory.getCurrentItem()!=null){
 					if(player.inventory.getCurrentItem().getItem()==Items.coal){
-						if(tileEnt.getStackInSlot(1)==null){
-							if(player.inventory.getCurrentItem()!=null){
-								tileEnt.setInventorySlotContents(1, player.inventory.getCurrentItem());
-								player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-							}
-						}
 						if(tileEnt.getStackInSlot(1)!=null){
 							ItemStack pStack = player.inventory.getCurrentItem().copy();
 							ItemStack sStack = tileEnt.getStackInSlot(1).copy();
@@ -138,6 +146,10 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 									player.inventory.decrStackSize(player.inventory.currentItem, 1);
 								}
 							}
+						}
+						if(tileEnt.getStackInSlot(1)==null){
+							tileEnt.setInventorySlotContents(1, player.inventory.getCurrentItem());
+							player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 						}
 					}
 					return true;
@@ -161,7 +173,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 					return true;
 				}
 			}
-			if(c!=0 && c!=1){
+			if(sideMeta == world.getBlockMetadata(x, y, z)){
 				if(player.inventory.getCurrentItem()!=null){
 					if(tileEnt.getStackInSlot(0)==null){
 						System.out.println();
