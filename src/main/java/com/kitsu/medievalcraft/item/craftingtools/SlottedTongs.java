@@ -1,22 +1,21 @@
 package com.kitsu.medievalcraft.item.craftingtools;
 
-import java.util.Random;
-
-import com.kitsu.medievalcraft.Main;
-import com.kitsu.medievalcraft.block.crucible.CrucibleBase;
-import com.kitsu.medievalcraft.item.TongsDamageTable;
-import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleBase;
-import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleIronOre;
-import com.kitsu.medievalcraft.util.CustomTab;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import com.kitsu.medievalcraft.Main;
+import com.kitsu.medievalcraft.block.crucible.CrucibleBase;
+import com.kitsu.medievalcraft.block.ingots.IngotBase;
+import com.kitsu.medievalcraft.item.TongsDamageTable;
+import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleBase;
+import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
+import com.kitsu.medievalcraft.util.CustomTab;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SlottedTongs extends Item {
 
@@ -43,9 +42,16 @@ public class SlottedTongs extends Item {
 					if(stack.getItemDamage()!=0){
 						if(world.getBlock(x, y+1, z).equals(Blocks.air)){
 							world.setBlock(x, y+1, z, TongsDamageTable.blockToGet.get(stack.getItemDamage()), 0, 2);
-							TileCrucibleBase tile = (TileCrucibleBase) world.getTileEntity(x, y+1, z);
-							tile.hot=true;
-							stack.setItemDamage(0);
+							if(world.getBlock(x, y+1, z) instanceof CrucibleBase){
+								TileCrucibleBase tile = (TileCrucibleBase) world.getTileEntity(x, y+1, z);
+								tile.hot=true;
+								stack.setItemDamage(0);
+							}
+							if(world.getBlock(x, y+1, z) instanceof IngotBase){
+								TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y+1, z);
+								tile.hot=true;
+								stack.setItemDamage(0);
+							}
 						}
 					}
 				}
@@ -58,9 +64,14 @@ public class SlottedTongs extends Item {
 					world.setBlock(x, y, z, Blocks.air, 0, 2);
 				}
 			}
-		}
-		if(world.isRemote){
-			//System.out.println(stack.getItemDamage());
+			if((world.getBlock(x, y, z) instanceof IngotBase) && (player.isSneaking())){
+				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
+				Block tempBlock = world.getBlock(x, y, z);
+				if(tile.hot==true){
+					this.setDamage(stack, TongsDamageTable.blockToStore.get(tempBlock));
+					world.setBlock(x, y, z, Blocks.air, 0, 2);
+				}
+			}
 		}
 		
 		return true;

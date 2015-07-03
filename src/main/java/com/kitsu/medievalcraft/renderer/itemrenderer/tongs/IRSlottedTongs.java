@@ -22,10 +22,13 @@ public class IRSlottedTongs implements IItemRenderer {
 
 	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/CrucibleModel.obj");
 	public static final ResourceLocation CRUCIBLETEXT = new ResourceLocation("kitsumedievalcraft:models/HotCrucible.png");
-	
+
 	public static final ResourceLocation MODEL_INGOT = new ResourceLocation("kitsumedievalcraft:models/IronIngotBlock.obj");
-	public static final ResourceLocation INGOT_TEXTURE = new ResourceLocation("kitsumedievalcraft:models/MyLapisBlock.png");
-	
+	public static final ResourceLocation LAPIS = new ResourceLocation("kitsumedievalcraft:models/MyHotLapisBlock.png");
+	public static final ResourceLocation REDSTONE = new ResourceLocation("kitsumedievalcraft:models/MyHotRedstoneBlock.png");
+	public static final ResourceLocation DAMASCUS = new ResourceLocation("kitsumedievalcraft:models/HotDamascusIngot.png");
+	public static final ResourceLocation REFINEDIRON = new ResourceLocation("kitsumedievalcraft:models/HotIronIngotBlock.png");
+	public static final ResourceLocation IRON_PLATE = new ResourceLocation("kitsumedievalcraft:models/HotIronPlate.png");
 
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL_TONGS);
 	public IModelCustom modeltc = AdvancedModelLoader.loadModel(MODEL_TONGS_CRUCIBLE);
@@ -98,7 +101,7 @@ public class IRSlottedTongs implements IItemRenderer {
 			if((stack.getItemDamage()==1)||(stack.getItemDamage()==2)||(stack.getItemDamage()==3)||(stack.getItemDamage()==4)||(stack.getItemDamage()==5)){
 				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 				modeltc.renderAll();
-				
+
 				GL11.glPushMatrix();
 				float scale1 = 0.6F;
 				GL11.glScalef(scale1, scale1, scale1);
@@ -108,8 +111,11 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelC.renderAll();
 				GL11.glPopMatrix();
 			}
-			
-			if(stack.getItemDamage()==6){
+
+			if(stack.getItemDamage()==6||
+					stack.getItemDamage()==7||
+					stack.getItemDamage()==8||
+					stack.getItemDamage()==9){
 				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_INGOT);
 				modelti.renderAll();
 				GL11.glPushMatrix();
@@ -117,11 +123,14 @@ public class IRSlottedTongs implements IItemRenderer {
 				GL11.glScalef(scale1, scale1, scale1);
 				GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
 				GL11.glTranslatef(4.7F, 0.15F, 0.0F);
-				Minecraft.getMinecraft().renderEngine.bindTexture(INGOT_TEXTURE);
+				if(stack.getItemDamage()==6){Minecraft.getMinecraft().renderEngine.bindTexture(LAPIS);}
+				if(stack.getItemDamage()==7){Minecraft.getMinecraft().renderEngine.bindTexture(REDSTONE);}
+				if(stack.getItemDamage()==8){Minecraft.getMinecraft().renderEngine.bindTexture(DAMASCUS);}
+				if(stack.getItemDamage()==9){Minecraft.getMinecraft().renderEngine.bindTexture(REFINEDIRON);}
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
-			
+
 			GL11.glPopMatrix();
 
 		} break;
@@ -150,19 +159,25 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelC.renderAll();
 				GL11.glPopMatrix();
 			}
-			
-			if(stack.getItemDamage()==6){
+
+			if(stack.getItemDamage()==6||
+					stack.getItemDamage()==7||
+					stack.getItemDamage()==8||
+					stack.getItemDamage()==9){
 				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_INGOT);
 				modelti.renderAll();
 				GL11.glPushMatrix();
 				float scale = 1.1F;
 				GL11.glScalef(scale, scale, scale);
 				GL11.glTranslatef(4.7F, 0.15F, 0.0F);
-				Minecraft.getMinecraft().renderEngine.bindTexture(INGOT_TEXTURE);
+				if(stack.getItemDamage()==6){Minecraft.getMinecraft().renderEngine.bindTexture(LAPIS);}
+				if(stack.getItemDamage()==7){Minecraft.getMinecraft().renderEngine.bindTexture(REDSTONE);}
+				if(stack.getItemDamage()==8){Minecraft.getMinecraft().renderEngine.bindTexture(DAMASCUS);}
+				if(stack.getItemDamage()==9){Minecraft.getMinecraft().renderEngine.bindTexture(REFINEDIRON);}
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
-			
+
 			GL11.glPopMatrix();
 
 		} break;
@@ -193,19 +208,25 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelC.renderAll();
 				GL11.glPopMatrix();
 			}
-			
-			if(stack.getItemDamage()==6){
+
+			if(stack.getItemDamage()==6||
+					stack.getItemDamage()==7||
+					stack.getItemDamage()==8||
+					stack.getItemDamage()==9){
 				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_INGOT);
 				modelti.renderAll();
 				GL11.glPushMatrix();
 				float scale = 0.6F;
 				GL11.glScalef(scale, scale, scale);
 				GL11.glTranslatef(8.6F, 0.15F, 0.0F);	
-				Minecraft.getMinecraft().renderEngine.bindTexture(INGOT_TEXTURE);
+				if(stack.getItemDamage()==6){Minecraft.getMinecraft().renderEngine.bindTexture(LAPIS);}
+				if(stack.getItemDamage()==7){Minecraft.getMinecraft().renderEngine.bindTexture(REDSTONE);}
+				if(stack.getItemDamage()==8){Minecraft.getMinecraft().renderEngine.bindTexture(DAMASCUS);}
+				if(stack.getItemDamage()==9){Minecraft.getMinecraft().renderEngine.bindTexture(REFINEDIRON);}
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
-			
+
 			GL11.glPopMatrix();
 		} break;
 
@@ -229,25 +250,31 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelC.renderAll();
 				GL11.glPopMatrix();
 			}
-			if((stack.getItemDamage()==6)){
+			/*if((stack.getItemDamage()==6)){
 				float scale = 1.1F;
 				GL11.glScalef(scale, scale, scale);
 				GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
 				GL11.glTranslatef(4.7F, 0.15F, 0.0F);
-				Minecraft.getMinecraft().renderEngine.bindTexture(INGOT_TEXTURE);
+				Minecraft.getMinecraft().renderEngine.bindTexture(LAPIS);
 				modelingot.renderAll();
 				GL11.glPopMatrix();
-			}
-			if(stack.getItemDamage()==6){
+			}*/
+			if(stack.getItemDamage()==6||
+					stack.getItemDamage()==7||
+					stack.getItemDamage()==8||
+					stack.getItemDamage()==9){
 				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_INGOT);
 				modelti.renderAll();
-				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
-				model.renderAll();
+				//Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+				//model.renderAll();
 				GL11.glPushMatrix();
 				float scale = 0.6F;
 				GL11.glScalef(scale, scale, scale);
 				GL11.glTranslatef(8.6F, 0.15F, 0.0F);
-				Minecraft.getMinecraft().renderEngine.bindTexture(INGOT_TEXTURE);
+				if(stack.getItemDamage()==6){Minecraft.getMinecraft().renderEngine.bindTexture(LAPIS);}
+				if(stack.getItemDamage()==7){Minecraft.getMinecraft().renderEngine.bindTexture(REDSTONE);}
+				if(stack.getItemDamage()==8){Minecraft.getMinecraft().renderEngine.bindTexture(DAMASCUS);}
+				if(stack.getItemDamage()==9){Minecraft.getMinecraft().renderEngine.bindTexture(REFINEDIRON);}
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
