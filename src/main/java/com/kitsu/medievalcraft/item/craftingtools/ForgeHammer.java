@@ -23,9 +23,9 @@ import com.kitsu.medievalcraft.crafting.TestForgeCrafting;
 import com.kitsu.medievalcraft.item.forms.clay.ClayForms;
 import com.kitsu.medievalcraft.item.forms.iron.IronForms;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacket;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocX;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocY;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocZ;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocX;
 import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 import com.kitsu.medievalcraft.tileents.ingots.TileIronPlate;
 import com.kitsu.medievalcraft.tileents.ingots.TileMyIronIngot;
@@ -108,7 +108,7 @@ public class ForgeHammer extends Item implements IronFormNames{
 					}
 				}
 			}
-			if((tileEnt.getStackInSlot(0).getItem() instanceof ClayForms)&&(tile.hot==true)){
+			if((tileEnt.getStackInSlot(0).getItem() instanceof ClayForms)&&(tile.hot==true)&&(block!=ModBlocks.ironPlate)){
 				p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 				Main.sNet.sendToAll(new MsgPacket(true));
 				Main.sNet.sendToAll(new MsgPacketLocX(x));

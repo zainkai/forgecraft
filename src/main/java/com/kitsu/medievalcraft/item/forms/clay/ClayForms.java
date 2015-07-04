@@ -18,5 +18,6 @@ public abstract class ClayForms extends Item {
 		setHasSubtypes(false);
 		item = this;
 		GameRegistry.registerItem(this, name);
+		
 	}
 }
