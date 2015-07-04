@@ -9,7 +9,7 @@ public class TileMyIronIngot extends TileIngotBase{
 		this.hits = 0;
 		this.hot = false;
 		
-		this.heatTicks = 450;
+		this.heatTicks = 300;
 	}
 
 }

@@ -20,6 +20,19 @@ import com.kitsu.medievalcraft.item.craftingtools.WorkBlade;
 import com.kitsu.medievalcraft.item.craftingtools.filters.CoarseFilter;
 import com.kitsu.medievalcraft.item.craftingtools.filters.FineFilter;
 import com.kitsu.medievalcraft.item.craftingtools.filters.MediumFilter;
+import com.kitsu.medievalcraft.item.forms.clay.CClayAxeForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayBattleAxeForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayDaggerForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayHoeForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayLongswordForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayMaceHeadForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayPickaxeForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayRingForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClaySawBladeForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClaySharpTipForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClayShortSwordForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClaySpadeForm;
+import com.kitsu.medievalcraft.item.forms.clay.CClaySpearTipForm;
 import com.kitsu.medievalcraft.item.forms.iron.IronAxeForm;
 import com.kitsu.medievalcraft.item.forms.iron.IronBattleAxeForm;
 import com.kitsu.medievalcraft.item.forms.iron.IronDaggerForm;
@@ -497,53 +510,20 @@ public final class ModItems {
 		
 		
 		//-----------------------COOKED CLAY FORMS-----------------------//
-		cookedpickaxeClayForm = new Item().setUnlocalizedName("cookedpickaxeClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedpickaxeClayForm");
-		GameRegistry.registerItem(cookedpickaxeClayForm, "cookedpickaxeClayForm");
-		
-		cookedspadeHeadClayForm = new Item().setUnlocalizedName("cookedspadeHeadClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedspadeHeadClayForm");
-		GameRegistry.registerItem(cookedspadeHeadClayForm, "cookedspadeHeadClayForm");
-		
-		cookedhoeHeadClayForm = new Item().setUnlocalizedName("cookedhoeHeadClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedhoeHeadClayForm");
-		GameRegistry.registerItem(cookedhoeHeadClayForm, "cookedhoeHeadClayForm");
-		
-		cookedaxeHeadClayForm = new Item().setUnlocalizedName("cookedaxeHeadClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedaxeHeadClayForm");
-		GameRegistry.registerItem(cookedaxeHeadClayForm, "cookedaxeHeadClayForm");
-		
-		cookedlongswordClayForm = new Item().setUnlocalizedName("cookedlongswordClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedlongswordClayForm");
-		GameRegistry.registerItem(cookedlongswordClayForm, "cookedlongswordClayForm");
-		
-		cookedshortswordClayForm = new Item().setUnlocalizedName("cookedshortswordClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedshortswordClayForm");
-		GameRegistry.registerItem(cookedshortswordClayForm, "cookedshortswordClayForm");
-		
-		cookeddaggerClayForm = new Item().setUnlocalizedName("cookeddaggerClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookeddaggerClayForm");
-		GameRegistry.registerItem(cookeddaggerClayForm, "cookeddaggerClayForm");
-		
-		//cookedhalberdClayForm = new Item().setUnlocalizedName("cookedhalberdClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedhalberdClayForm");
-		//GameRegistry.registerItem(cookedhalberdClayForm, "cookedhalberdClayForm");
-		
-		cookedspeartipClayForm = new Item().setUnlocalizedName("cookedspeartipClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedspeartipClayForm");
-		GameRegistry.registerItem(cookedspeartipClayForm, "cookedspeartipClayForm");
-		
-		cookedmaceheadClayForm = new Item().setUnlocalizedName("cookedmaceheadClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedmaceheadClayForm");
-		GameRegistry.registerItem(cookedmaceheadClayForm, "cookedmaceheadClayForm");
-		
-		cookedsharptipClayForm = new Item().setUnlocalizedName("cookedsharptipClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedsharptipClayForm");
-		GameRegistry.registerItem(cookedsharptipClayForm, "cookedsharptipClayForm");
-		
-		cookedbattleaxeClayForm = new Item().setUnlocalizedName("cookedbattleaxeClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedbattleaxeClayForm");
-		GameRegistry.registerItem(cookedbattleaxeClayForm, "cookedbattleaxeClayForm");
-		
-		cookedringClayForm = new Item().setUnlocalizedName("cookedringClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedringClayForm");
-		GameRegistry.registerItem(cookedringClayForm, "cookedringClayForm");
-		
-		//cookedplateClayForm = new Item().setUnlocalizedName("cookedplateClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedplateClayForm");
-		//GameRegistry.registerItem(cookedplateClayForm, "cookedplateClayForm");
-		
-		cookedsawbladeClayForm = new Item().setUnlocalizedName("cookedsawbladeClayForm").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "cookedsawbladeClayForm");
-		GameRegistry.registerItem(cookedsawbladeClayForm, "cookedsawbladeClayForm");
-		
-		
-		
+		cookedpickaxeClayForm = new CClayPickaxeForm("cookedpickaxeClayForm", cookedpickaxeClayForm);
+		cookedspadeHeadClayForm = new CClaySpadeForm("cookedspadeHeadClayForm", cookedspadeHeadClayForm);
+		cookedhoeHeadClayForm = new CClayHoeForm("cookedhoeHeadClayForm", cookedhoeHeadClayForm);
+		cookedaxeHeadClayForm = new CClayAxeForm("cookedaxeHeadClayForm", cookedaxeHeadClayForm);
+		cookedlongswordClayForm = new CClayLongswordForm("cookedlongswordClayForm", cookedlongswordClayForm);
+		cookedshortswordClayForm = new CClayShortSwordForm("cookedshortswordClayForm", cookedshortswordClayForm);
+		cookeddaggerClayForm = new CClayDaggerForm("cookeddaggerClayForm", cookeddaggerClayForm);
+		cookedspeartipClayForm = new CClaySpearTipForm("cookedspeartipClayForm", cookedspeartipClayForm);
+		cookedmaceheadClayForm = new CClayMaceHeadForm("cookedmaceheadClayForm", cookedmaceheadClayForm);
+		cookedsharptipClayForm = new CClaySharpTipForm("cookedsharptipClayForm", cookedsharptipClayForm);
+		cookedbattleaxeClayForm = new CClayBattleAxeForm("cookedbattleaxeClayForm", cookedbattleaxeClayForm);
+		cookedringClayForm = new CClayRingForm("cookedringClayForm", cookedringClayForm);
+		cookedsawbladeClayForm = new CClaySawBladeForm("cookedsawbladeClayForm", cookedsawbladeClayForm);
+
 		//-----------------------IRON PARTS-----------------------//
 		ironpickaxeHead = new Item().setUnlocalizedName("ironpickaxeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironpickaxeHead").setMaxStackSize(1);
 		GameRegistry.registerItem(ironpickaxeHead, "ironpickaxeHead");
@@ -793,6 +773,4 @@ public final class ModItems {
 		GameRegistry.registerItem(customHandleIronLumberAxe = new CustomHandleIronLumberAxe("customHandleIronLumberAxe", customIronToolRodNormal), "customHandleIronLumberAxe");
 		GameRegistry.registerItem(customHandleStrongIronLumberAxe = new CustomHandleStrongIronLumberAxe("customHandleStrongIronLumberAxe", customIronToolRodStrong), "customHandleStrongIronLumberAxe");
 	}
-
-	
 }

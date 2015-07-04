@@ -24,11 +24,11 @@ import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForge;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandle;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocY;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocZ;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandlelTicks;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocX;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacket;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocY;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocZ;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketlTicks;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocX;
 import com.kitsu.medievalcraft.packethandle.sandFilterRender.MsgHandleSandFilterRender;
 import com.kitsu.medievalcraft.packethandle.sandFilterRender.MsgPacketSandFilterRender;
 import com.kitsu.medievalcraft.packethandle.shelf.MsgHandleShelfCase;
@@ -76,7 +76,7 @@ public class Main {
 
 		sNet = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		sNet.registerMessage(MsgHandle.class, MsgPacket.class, 1, Side.CLIENT);
-		sNet.registerMessage(MsgHandlelTicks.class, MsgPacketlTicks.class, 2, Side.CLIENT);
+		sNet.registerMessage(MsgHandleLocX.class, MsgPacketLocX.class, 2, Side.CLIENT);
 		sNet.registerMessage(MsgHandleLocY.class, MsgPacketLocY.class, 3, Side.CLIENT);
 		sNet.registerMessage(MsgHandleLocZ.class, MsgPacketLocZ.class, 4, Side.CLIENT);
 		sNet.registerMessage(MsgHandleSandFilterRender.class, MsgPacketSandFilterRender.class, 5, Side.CLIENT);

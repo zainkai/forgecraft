@@ -20,7 +20,13 @@ import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.block.ingots.IngotBase;
 import com.kitsu.medievalcraft.crafting.ForgeAnvilCrafting;
 import com.kitsu.medievalcraft.crafting.TestForgeCrafting;
+import com.kitsu.medievalcraft.item.forms.clay.ClayForms;
 import com.kitsu.medievalcraft.item.forms.iron.IronForms;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacket;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocY;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocZ;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocX;
+import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 import com.kitsu.medievalcraft.tileents.ingots.TileIronPlate;
 import com.kitsu.medievalcraft.tileents.ingots.TileMyIronIngot;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityAnvilForge;
@@ -79,21 +85,53 @@ public class ForgeHammer extends Item implements IronFormNames{
 			tilePlate = (TileIronPlate) world.getTileEntity(x, y, z);
 		}
 
-		if((block instanceof IngotBase)&&(blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)){
+		if((block instanceof IngotBase)&&(blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)&&(block!=ModBlocks.ironPlate)){
 			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
-			if(tileEnt.getStackInSlot(0).getItem() instanceof IronForms){
-				if(){
-					
+			TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
+			if((tileEnt.getStackInSlot(0).getItem() instanceof IronForms)&&(tile.hot==true)){
+				p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+				Main.sNet.sendToAll(new MsgPacket(true));
+				Main.sNet.sendToAll(new MsgPacketLocX(x));
+				Main.sNet.sendToAll(new MsgPacketLocY(y));
+				Main.sNet.sendToAll(new MsgPacketLocZ(z));
+				tile.hits++;
+				if(tile.hits >= 3 + rand.nextInt(3)){
+					world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, forms.get(tileEnt.getStackInSlot(0).getItem())));
+					stack.damageItem(1, p);
+					world.setBlock(x, y, z, Blocks.air, 0, 2);
+					if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
+						if(tileEnt.getStackInSlot(0).getItemDamage() == tileEnt.getStackInSlot(0).getMaxDamage()-1){
+							tileEnt.decrStackSize(0, 1);
+						}
+						else {tileEnt.getStackInSlot(0).setItemDamage(tileEnt.getStackInSlot(0).getItemDamage()+1);
+						}
+					}
 				}
 			}
-		}
+			if((tileEnt.getStackInSlot(0).getItem() instanceof ClayForms)&&(tile.hot==true)){
+				p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+				Main.sNet.sendToAll(new MsgPacket(true));
+				Main.sNet.sendToAll(new MsgPacketLocX(x));
+				Main.sNet.sendToAll(new MsgPacketLocY(y));
+				Main.sNet.sendToAll(new MsgPacketLocZ(z));
+				tile.hits++;
+				if(tile.hits >= 3 + rand.nextInt(3)){
+					world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsClay.get(tileEnt.getStackInSlot(0).getItem())));
+					stack.damageItem(1, p);
+					world.setBlock(x, y, z, Blocks.air, 0, 2);
+					tileEnt.decrStackSize(0, 1);
+					tile.markForUpdate();
+					}
+				}
+			}
 		
-		
-		
-		
+			
+
+
+
 		/*if((block == blockToRun(block)) && (blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)){
 			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
-			
+
 			if((tileEnt.getStackInSlot(0) == null) && (blockKey == 0)){
 				if (rand.nextInt(2) == 0 ) {
 					tileRefIngot.hits++;
@@ -171,7 +209,7 @@ public class ForgeHammer extends Item implements IronFormNames{
 					Main.sNet.sendToAll(new MsgPacketlTicks(x));
 					Main.sNet.sendToAll(new MsgPacketLocY(y));
 					Main.sNet.sendToAll(new MsgPacketLocZ(z));
-					
+
 					if (rand.nextInt(2) == 0 ) {
 						tilePlate.hits++;
 					}
@@ -251,7 +289,7 @@ public class ForgeHammer extends Item implements IronFormNames{
 				}
 			}
 		}
-		*/
+		 */
 
 	}
 	/*

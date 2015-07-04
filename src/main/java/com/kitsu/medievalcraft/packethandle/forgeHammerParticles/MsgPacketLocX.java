@@ -3,13 +3,13 @@ package com.kitsu.medievalcraft.packethandle.forgeHammerParticles;
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public class MsgPacketlTicks implements IMessage {
+public class MsgPacketLocX implements IMessage {
 
 	public int locx;
 
-	public MsgPacketlTicks() {}
+	public MsgPacketLocX() {}
 
-	public MsgPacketlTicks(int x){
+	public MsgPacketLocX(int x){
 		this.locx = x;
 	}
 

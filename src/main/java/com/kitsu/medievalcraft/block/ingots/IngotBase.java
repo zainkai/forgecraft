@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -11,8 +12,15 @@ import net.minecraft.world.World;
 import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.util.CustomTab;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public abstract class IngotBase extends BlockContainer {
 
+	private final Random random = new Random();
+	public static boolean makeParts;
+	public static int locX, locY, locZ;
+	
 	public IngotBase(String unlocalizedName, Material material) {
 		super(material);
 		this.setBlockName(unlocalizedName);
@@ -43,8 +51,21 @@ public abstract class IngotBase extends BlockContainer {
     {
         return 1;
     }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+	{
+		super.randomDisplayTick(world, x, y, z, random);
+		if(makeParts == true){
+			parts(world, locX, locY, locZ);
+			makeParts = false;
+		}
+		
 
-	private void makeParts(World world, int x, int y, int z){
+	}
+
+	private void parts(World world, int x, int y, int z){
 
 		world.spawnParticle("lava", x+0.5D, y+0.5D, z+0.5D, 0, 0, 0);
 		world.spawnParticle("lava", x+0.5D, y+0.5D, z+0.5D, 0, 0, 0);

@@ -1,15 +1,17 @@
 package com.kitsu.medievalcraft.packethandle.forgeHammerParticles;
 
+import com.kitsu.medievalcraft.block.ingots.IngotBase;
+
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MsgHandlelTicks implements IMessageHandler<MsgPacketlTicks, IMessage>{
+public class MsgHandleLocX implements IMessageHandler<MsgPacketLocX, IMessage>{
 
 	@Override
-	public IMessage onMessage(MsgPacketlTicks message, MessageContext ctx) {
+	public IMessage onMessage(MsgPacketLocX message, MessageContext ctx) {
 
-		//HotIronBlock.locX = message.locx;
+		IngotBase.locX = message.locx;
 		//HotIronPlate.locX = message.locx;
 		//ItemRendererLongbow.tick = message.lTick;
 		

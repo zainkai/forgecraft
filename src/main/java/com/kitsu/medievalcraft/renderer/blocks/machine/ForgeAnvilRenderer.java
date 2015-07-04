@@ -42,6 +42,7 @@ public class ForgeAnvilRenderer extends TileEntitySpecialRenderer {
 			RenderManager.instance.renderEntityWithPosYaw(this.entItem, 0.48D, 0.25D, -1.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
+			tileEntity.markForUpdate();
 		}
 		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forgeAnvil);
 		GL11.glPopMatrix();

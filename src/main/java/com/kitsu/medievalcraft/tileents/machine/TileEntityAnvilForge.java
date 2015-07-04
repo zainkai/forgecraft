@@ -43,6 +43,7 @@ public class TileEntityAnvilForge extends TileEntity implements IInventory {
 			this.inv[p_70304_1_] = null;
 			return itemstack;
 		}
+		this.markForUpdate();
 		return null;
 	}
 
@@ -55,6 +56,7 @@ public class TileEntityAnvilForge extends TileEntity implements IInventory {
 		{
 			stack.stackSize = this.getInventoryStackLimit();
 		}
+		this.markForUpdate();
 		this.markDirty();
 	}
 
@@ -70,7 +72,7 @@ public class TileEntityAnvilForge extends TileEntity implements IInventory {
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 64;
+		return 1;
 	}
 	
 	@Override
@@ -147,9 +149,10 @@ public class TileEntityAnvilForge extends TileEntity implements IInventory {
 			{
 				this.inv[p_70298_1_] = null;
 			}
-
+			this.markForUpdate();
 			return itemstack;
 		}
+		this.markForUpdate();
 		return null;
 	}
 	
