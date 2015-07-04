@@ -17,28 +17,28 @@ import net.minecraft.world.World;
 
 import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.block.ModBlocks;
+import com.kitsu.medievalcraft.block.ingots.IngotBase;
 import com.kitsu.medievalcraft.crafting.ForgeAnvilCrafting;
 import com.kitsu.medievalcraft.crafting.TestForgeCrafting;
-import com.kitsu.medievalcraft.item.ModItems;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacket;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocY;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocZ;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketlTicks;
+import com.kitsu.medievalcraft.item.forms.iron.IronForms;
+import com.kitsu.medievalcraft.tileents.ingots.TileIronPlate;
+import com.kitsu.medievalcraft.tileents.ingots.TileMyIronIngot;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityAnvilForge;
 import com.kitsu.medievalcraft.util.CustomTab;
+import com.kitsu.medievalcraft.util.IronFormNames;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
 
-public class ForgeHammer extends Item {
+public class ForgeHammer extends Item implements IronFormNames{
 
 	private String name = "forgeHammer";
 	private Item item;
 	//private Block test;
 	private int hit, key, blockKey, keys;
 	public static boolean forgeHammerLeftClick;
-	//TileEntityHotIronIngotBlock tileBlock;
-	//TileEntityHotIronPlate tilePlate;
+	TileMyIronIngot tileRefIngot;
+	TileIronPlate tilePlate;
 	Random rand;
 
 	public ForgeHammer() {
@@ -72,18 +72,31 @@ public class ForgeHammer extends Item {
 
 	private void onClick(Block block, Block blockSub, World world, int x, int y, int z, EntityPlayer p, ItemStack stack, Random rand){
 
-		if(block == ModBlocks.hotIronBlock){
-			tileBlock = (TileEntityHotIronIngotBlock) world.getTileEntity(x, y, z);
+		if(block == ModBlocks.refinedIron){
+			tileRefIngot = (TileMyIronIngot) world.getTileEntity(x, y, z);
 		}
-		if(block == ModBlocks.hotIronPlate){
-			tilePlate = (TileEntityHotIronPlate) world.getTileEntity(x, y, z);
+		if(block == ModBlocks.ironPlate){
+			tilePlate = (TileIronPlate) world.getTileEntity(x, y, z);
 		}
-		if((block == blockToRun(block)) && (blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)){
-			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
 
+		if((block instanceof IngotBase)&&(blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)){
+			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
+			if(tileEnt.getStackInSlot(0).getItem() instanceof IronForms){
+				if(){
+					
+				}
+			}
+		}
+		
+		
+		
+		
+		/*if((block == blockToRun(block)) && (blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)){
+			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
+			
 			if((tileEnt.getStackInSlot(0) == null) && (blockKey == 0)){
 				if (rand.nextInt(2) == 0 ) {
-					tileBlock.hits++;
+					tileRefIngot.hits++;
 				}
 				p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 				Main.sNet.sendToAll(new MsgPacket(true));
@@ -91,8 +104,8 @@ public class ForgeHammer extends Item {
 				Main.sNet.sendToAll(new MsgPacketLocY(y));
 				Main.sNet.sendToAll(new MsgPacketLocZ(z));
 
-				if(tileBlock.hits >= 4){
-					tileBlock.hits = 0;
+				if(tileRefIngot.hits >= 4){
+					tileRefIngot.hits = 0;
 					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 					Main.sNet.sendToAll(new MsgPacket(true));
 					Main.sNet.sendToAll(new MsgPacketlTicks(x));
@@ -105,7 +118,7 @@ public class ForgeHammer extends Item {
 			if((tileEnt.getStackInSlot(0) != null)){
 				if((tileEnt.getStackInSlot(0).getItem() == Items.flower_pot) && (blockKey == 0)){
 					if (rand.nextInt(2) == 0 ) {
-						tileBlock.hits++;
+						tileRefIngot.hits++;
 					}
 					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 					Main.sNet.sendToAll(new MsgPacket(true));
@@ -113,8 +126,8 @@ public class ForgeHammer extends Item {
 					Main.sNet.sendToAll(new MsgPacketLocY(y));
 					Main.sNet.sendToAll(new MsgPacketLocZ(z));
 
-					if(tileBlock.hits >= 4){
-						tileBlock.hits = 0;
+					if(tileRefIngot.hits >= 4){key
+						tileRefIngot.hits = 0;
 						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 						Main.sNet.sendToAll(new MsgPacket(true));
 						Main.sNet.sendToAll(new MsgPacketlTicks(x));
@@ -142,11 +155,11 @@ public class ForgeHammer extends Item {
 						Main.sNet.sendToAll(new MsgPacketLocZ(z));
 						stack.damageItem(1, p);
 						if (rand.nextInt(2) == 0 ) {
-							tileBlock.hits++;
+							tileRefIngot.hits++;
 						}
 					}
-					if(tileBlock.hits >= 4){
-						tileBlock.hits=0;
+					if(tileRefIngot.hits >= 4){
+						tileRefIngot.hits=0;
 						checkItem.setDamage(tileEnt.getStackInSlot(0), 0);
 						world.setBlock(x, y, z, Blocks.air, 0, 2);
 					}
@@ -158,7 +171,7 @@ public class ForgeHammer extends Item {
 					Main.sNet.sendToAll(new MsgPacketlTicks(x));
 					Main.sNet.sendToAll(new MsgPacketLocY(y));
 					Main.sNet.sendToAll(new MsgPacketLocZ(z));
-					tilePlate.hitGood=true;
+					
 					if (rand.nextInt(2) == 0 ) {
 						tilePlate.hits++;
 					}
@@ -174,7 +187,7 @@ public class ForgeHammer extends Item {
 				if((checkItem == getItem(checkItem)) || (checkItem == getItem3(checkItem)) || (checkItem == getItem2(checkItem).getItem())){
 					if (rand.nextInt(2) == 0 ) {
 						if(blockKey == 0){
-							tileBlock.hits++;
+							tileRefIngot.hits++;
 						}
 						if(blockKey == 3){
 							tilePlate.hits++;
@@ -188,8 +201,8 @@ public class ForgeHammer extends Item {
 
 					if((blockKey == 0) && (checkItem == getItem(checkItem))){
 
-						if(tileBlock.hits >= 4){
-							tileBlock.hits=0;
+						if(tileRefIngot.hits >= 4){
+							tileRefIngot.hits=0;
 							giveItem(key, world, x, y, z, p);
 							stack.damageItem(1, p);
 							if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
@@ -204,8 +217,8 @@ public class ForgeHammer extends Item {
 					}
 
 					if((blockKey == 0) && (checkItem == getItem3(checkItem))){
-						if(tileBlock.hits >= 4){
-							tileBlock.hits=0;
+						if(tileRefIngot.hits >= 4){
+							tileRefIngot.hits=0;
 							giveItem(key, world, x, y, z, p);
 							stack.damageItem(1, p);
 							if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
@@ -238,6 +251,7 @@ public class ForgeHammer extends Item {
 				}
 			}
 		}
+		*/
 
 	}
 	/*
@@ -248,15 +262,9 @@ public class ForgeHammer extends Item {
 
 	public void giveItem(int a, World world, int x, int y, int z, EntityPlayer p){
 		if(blockKey == 0){
-			//Item item = ForgeAnvilCrafting.itemToGive.get(key);
-			//ItemStack stack = ForgeAnvilCrafting.itemToGive.get(key);
-
-			//world.spawnParticle("lava", x, y, z, 0.0F, 0.0F, 0.0F);
 			world.setBlock(x, y, z, Blocks.air, 0, 2);
 			p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 			world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, ForgeAnvilCrafting.itemToGive.get(key)));
-			//stack.stackTagCompound = new NBTTagCompound();
-			//stack.stackTagCompound.setInteger("UPGRADES", 0);
 		}
 		if(blockKey == 3){
 			Item item = ForgeAnvilCrafting.itemToCheck.get(key);

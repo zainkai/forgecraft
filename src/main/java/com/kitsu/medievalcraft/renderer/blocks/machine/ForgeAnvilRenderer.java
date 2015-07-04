@@ -22,7 +22,6 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class ForgeAnvilRenderer extends TileEntitySpecialRenderer {
 
-	ItemStack stack;
 	EntityItem entItem = null;
 
 	private static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/ForgeAnvil.obj");
@@ -32,20 +31,10 @@ public class ForgeAnvilRenderer extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float scale) {
 		TileEntityAnvilForge tileEntity = (TileEntityAnvilForge)tile;
-		if(tileEntity.getStackInSlot(0)!=null){
-			stack = tileEntity.getStackInSlot(0);
-		}
-		if(tileEntity.getStackInSlot(0)==null){
-			stack = null;
-		}
-
 		GL11.glPushMatrix();
-
 		GL11.glTranslatef((float) x, (float) y, (float) z);
-
-		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forgeAnvil);
-		if(stack != null){
-			entItem = new EntityItem(tileEntity.getWorldObj(), x, y, z, stack);
+		if(tileEntity.getStackInSlot(0)!=null){
+			entItem = new EntityItem(tileEntity.getWorldObj(), x, y, z, tileEntity.getStackInSlot(0));
 			GL11.glPushMatrix();
 			this.entItem.hoverStart = 0.0F;
 			RenderItem.renderInFrame = true;
@@ -54,11 +43,11 @@ public class ForgeAnvilRenderer extends TileEntitySpecialRenderer {
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
 		}
+		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forgeAnvil);
 		GL11.glPopMatrix();
-
 	}
 
-	@SuppressWarnings({ "cast"})
+
 	public void renderBlock(TileEntityAnvilForge tl, World world, int i, int j,int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;
 		// This will make your block brightness dependent from surroundings

@@ -238,7 +238,6 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 				if(isItemFuel(stack)==true){
 					this.ticks++;
 					double burnTime = (this.getItemBurnTime(stack)+((fuelMulti(stack.stackSize, stack)*this.getItemBurnTime(stack))));
-					//System.out.println(this.ticks+" "+ burnTime+" "+this.getStackInSlot(0).stackSize);
 					if(time >= burnTime){
 						decrStackSize(0, 1);
 						this.ticks=0;
@@ -264,7 +263,6 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 			}
 		}
 		return 0.0d;
-
 	}
 	public static int getItemBurnTime(ItemStack p_145952_0_)
 	{

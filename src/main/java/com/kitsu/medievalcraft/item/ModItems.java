@@ -743,28 +743,26 @@ public final class ModItems {
 		GameRegistry.registerItem(charcoalFilter, "charcoalFilter");
 		
 		rawCuredLeather = new RawCuredLeather();
-		//ironShield = new ItemIronShield();
 		fireBow = new FireBow();
 		leatherShears = new LeatherShears();
 		ironSaw = new IronSaw();
 		flintSaw = new FlintSaw();
 		
-		ironPickaxeForm = new IronPickaxeForm();
-		ironSpadForm = new IronSpadeForm();
-		ironHoeForm = new IronHoeForm();
-		ironAxeForm = new IronAxeForm();
-		ironLongswordForm = new IronLongswordForm();
-		ironShortSwordForm = new IronShortSwordForm();
-		ironDaggerForm = new IronDaggerForm();
-		ironHandleForm = new IronHandleForm();
-		ironSpearTipForm = new IronSpearTipForm();
-		ironMaceHeadForm = new IronMaceHeadForm();
-		ironBattleAxeForm = new IronBattleAxeForm();
-		ironSawBladeForm = new IronSawBladeForm();
-		ironSharpTipForm = new IronSharpTipForm();
-		ironRingForm = new IronRingForm();
+		ironAxeForm = new IronAxeForm("ironAxeForm", ironAxeForm);
+		ironBattleAxeForm = new IronBattleAxeForm("ironBattleAxeForm", ironBattleAxeForm);
+		ironDaggerForm = new IronDaggerForm("ironDaggerForm", ironDaggerForm);
+		ironHandleForm = new IronHandleForm("ironHandleForm", ironHandleForm);
+		ironHoeForm = new IronHoeForm("ironHoeForm", ironHoeForm);
+		ironLongswordForm = new IronLongswordForm("ironLongswordForm", ironLongswordForm);
+		ironMaceHeadForm = new IronMaceHeadForm("ironMaceHeadForm", ironMaceHeadForm);
+		ironPickaxeForm = new IronPickaxeForm("ironPickaxeForm", ironPickaxeForm);
+		ironRingForm = new IronRingForm("ironRingForm", ironRingForm);
+		ironSawBladeForm = new IronSawBladeForm("ironSawBladeForm", ironSawBladeForm);
+		ironSharpTipForm = new IronSharpTipForm("ironSharpTipForm", ironSharpTipForm);
+		ironShortSwordForm = new IronShortSwordForm("ironShortSwordForm", ironShortSwordForm);
+		ironSpadForm = new IronSpadeForm("ironSpadeForm", ironSpadForm);
+		ironSpearTipForm = new IronSpearTipForm("ironSpearTipForm", ironSpearTipForm);
 		//clayFormBook = new ItemClayFormBook();
-
 		
 		//-----------------------MATERIALS REGISTERY-----------------------//
 		

@@ -5,48 +5,13 @@ import net.minecraft.item.ItemStack;
 
 import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.util.CustomTab;
+import com.kitsu.medievalcraft.item.ModItems;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class IronAxeForm extends Item {
-	private String name = "ironAxeForm";
-	private Item item;
-	
-public IronAxeForm() {
-		
-		setMaxStackSize(1);
-		setUnlocalizedName(name);
-		setCreativeTab(CustomTab.MedievalCraftTab);
-		setTextureName(Main.MODID + ":" + name);
-		setMaxDamage(64);
-		setNoRepair();
-		
-		item = this;
-		
-		GameRegistry.registerItem(this, name);
-		
-		
+public class IronAxeForm extends IronForms {
+
+	public IronAxeForm(String name, Item item) {
+		super(name, item);
 	}
-	
-    @Override
-    public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemstack) {
-
-        return false;
-
-    }
-    
-    @Override
-    public Item getContainerItem()
-    {
-        item.setDamage(new ItemStack(item), +1);
-        //itemStack.setItemDamage(itemStack.getItemDamage() + 1);
-        return item;
-    }
-
-    public boolean getIsRepairable(ItemStack p_82789_1_, ItemStack p_82789_2_)
-    {
-        return false;
-    }
-
-	
 }

@@ -30,6 +30,9 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 	EntityItem entItem1 = null;
 	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/SingleForge.obj");
 	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/SingleForge.png");
+	public static final ResourceLocation TEXTURE1 = new ResourceLocation("kitsumedievalcraft:models/SingleForgeBurning.png");
+	public static final ResourceLocation TEXTURE2 = new ResourceLocation("kitsumedievalcraft:models/SingleForgeOn.png");
+	private ResourceLocation loc;
 
 	IModelCustom model = AdvancedModelLoader.loadModel(MODEL);
 
@@ -37,10 +40,9 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float scale) {
 		TileForge tileEntity = (TileForge)tile;
 		GL11.glPushMatrix();
-
 		GL11.glTranslatef((float) x, (float) y, (float) z);
 
-		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forge);
+		
 
 		if(tileEntity.getStackInSlot(1) != null){
 			entItem1 = new EntityItem(tileEntity.getWorldObj(), x, y, z, tileEntity.getStackInSlot(1));
@@ -80,11 +82,20 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 			tileEntity.markForUpdate();
 			tileEntity.markDirty();
 		}
+		/*if(tileEntity.isOn==false && tileEntity.isBurning==false){
+			loc = TEXTURE;
+		}
+		if(tileEntity.isOn==false && tileEntity.isBurning==true){
+			loc = TEXTURE1;
+		}*/
+
+		if(loc == null){
+			loc = TEXTURE;
+		}
 
 
-		//tileEntity.markForUpdate();
-		//tileEntity.markDirty();
-
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(loc);
+		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forge);
 		GL11.glPopMatrix();
 
 	}
@@ -107,7 +118,7 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		if(dir == 3){
 			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
 		}
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(TEXTURE);
+		
 
 		this.model.renderAll();
 		GL11.glPopMatrix();

@@ -93,7 +93,7 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ItemStack(Items.chainmail_boots), new Object[] {"   ", "x x", "x x", 'x', ModItems.ironRingMesh});
 		//Character.valueOf('x'), new ItemStack(ModItems.forgeHammer, 1, OreDictionary.WILDCARD_VALUE)
 		GameRegistry.addRecipe(new ItemStack(Items.saddle), new Object[]{"WWW", "i i", "x x", 'W', ModItems.wovenLeather, 'i', ModItems.leatherStrap, 'x', ModItems.ironRing});
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.shitblock), new Object[]{"xx", "xx", 'x', ModItems.itemShit});
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.shitblock), new Object[]{"xxx", "xxx","xxx", 'x', ModItems.itemShit});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.eggWashedWall, 5), new Object[]{"xyx", "yxy","xyx", 'y', Items.egg, 'x', Blocks.stone});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.eggWashedBrick, 5), new Object[]{"xyx", "yxy","xyx", 'y', Items.egg, 'x', ModBlocks.eggWashedWall});
 		GameRegistry.addRecipe(new ItemStack(ModItems.woodenPlate), new Object[]{" x ", "xxx", " x ", 'x', Blocks.wooden_slab});

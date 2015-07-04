@@ -8,8 +8,8 @@ public class TileLapisIngot extends TileIngotBase{
 		super(nameCustom);
 		this.hits = 0;
 		this.hot = false;
-		this.coolTicks = 100;
-		this.heatTicks = 100;
+		this.coolTicks = 300;
+		this.heatTicks = 600;
 	}
 
 }

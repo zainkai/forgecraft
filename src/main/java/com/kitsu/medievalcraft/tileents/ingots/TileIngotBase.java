@@ -1,8 +1,5 @@
 package com.kitsu.medievalcraft.tileents.ingots;
 
-import com.kitsu.medievalcraft.block.ModBlocks;
-
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -10,11 +7,15 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class TileIngotBase extends TileEntity {
+import com.kitsu.medievalcraft.block.ModBlocks;
+import com.kitsu.medievalcraft.tileents.machine.TileEntityAnvilForge;
+import com.kitsu.medievalcraft.util.IronFormNames;
+
+public class TileIngotBase extends TileEntity implements IronFormNames{
 	
 	private String specName;
 	public int hits = 0;
-	public int coolTicks = 100;
+	public int coolTicks = 250;
 	public int heatTicks = 100;
 	public boolean hot;
 
@@ -41,8 +42,8 @@ public class TileIngotBase extends TileEntity {
 			if(this.coolTicks<=0){
 				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 			}
-			coolDown(world, x, y, z);
-			//System.out.println(this.heatTicks);
+			coolDown(world,x,y,z);
+			//makeItem(world,x,y,z);
 		}
 
 	}
@@ -61,7 +62,24 @@ public class TileIngotBase extends TileEntity {
 			}
 		}
 	}
-
+	
+	/*
+	private void makeItem(World world, int x, int y, int z){
+		if(this.hits==0 && this.hot==true && world.getBlock(x, y-1, z).equals(ModBlocks.forgeAnvil)){
+			TileEntityAnvilForge tile = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
+			if(tile.getStackInSlot(0)!=null){
+				
+				
+				
+				System.out.println(forms.get(tile.getStackInSlot(0).getItem().getUnlocalizedName()));
+				if(tile.getStackInSlot(0).equals(forms.get(tile.getStackInSlot(0).getItem().getUnlocalizedName()))){
+					System.out.println("Logic is Working");
+				}
+			}
+		}
+	}
+	*/
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{

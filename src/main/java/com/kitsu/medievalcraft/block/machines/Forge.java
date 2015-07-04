@@ -79,16 +79,8 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 		if (MathHelper.abs((float)p_150071_4_.posX - (float)p_150071_1_) < 2.0F && MathHelper.abs((float)p_150071_4_.posZ - (float)p_150071_3_) < 2.0F)
 		{
 			double d0 = p_150071_4_.posY + 1.82D - (double)p_150071_4_.yOffset;
-
-			if (d0 - (double)p_150071_2_ > 2.0D)
-			{
-				return 1;
-			}
-
-			if ((double)p_150071_2_ - d0 > 0.0D)
-			{
-				return 0;
-			}
+			if (d0 - (double)p_150071_2_ > 2.0D){return 1;}
+			if ((double)p_150071_2_ - d0 > 0.0D) {return 0;}
 		}
 
 		int l = MathHelper.floor_double((double)(p_150071_4_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
@@ -99,8 +91,6 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack p_149689_6_) {
 		int l = determineOrientation(world, x, y, z, player);
 		world.setBlockMetadataWithNotify(x, y, z, l, 2);
-		System.out.println(world.getBlockMetadata(x, y, z));
-
 		world.markBlockForUpdate(x, y, z);
 	}
 
@@ -127,8 +117,10 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 						(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
-					tileEnt.isOn=true;
-					System.out.println(tileEnt.isOn);
+					tileEnt.isBurning=true;
+					if(tileEnt.getStackInSlot(1)!=null){
+						tileEnt.isOn=true;
+					}
 				}
 			}
 
