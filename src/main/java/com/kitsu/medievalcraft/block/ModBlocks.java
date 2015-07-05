@@ -25,6 +25,8 @@ import com.kitsu.medievalcraft.block.fluid.BlockSlackedLime;
 import com.kitsu.medievalcraft.block.fluid.BlockSmoke;
 import com.kitsu.medievalcraft.block.fluid.BlockTannin;
 import com.kitsu.medievalcraft.block.ingots.DamascusIngot;
+import com.kitsu.medievalcraft.block.ingots.Diamond;
+import com.kitsu.medievalcraft.block.ingots.Emerald;
 import com.kitsu.medievalcraft.block.ingots.IronPlate;
 import com.kitsu.medievalcraft.block.ingots.LapisIngot;
 import com.kitsu.medievalcraft.block.ingots.RedstoneIngot;
@@ -243,5 +245,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(redstoneIngot = new RedstoneIngot("redstoneIngot", Material.rock), "redstoneIngot");
 		GameRegistry.registerBlock(lapisIngot = new LapisIngot("lapisIngot", Material.rock), "lapisIngot");
 		
+		GameRegistry.registerBlock(myDiamond = new Diamond("myDiamond", Material.glass), "myDiamond");
+		GameRegistry.registerBlock(myEmerald = new Emerald("myEmerald", Material.glass), "myEmerald");
 	}
 }

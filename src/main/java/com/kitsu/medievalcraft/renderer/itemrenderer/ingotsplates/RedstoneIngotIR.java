@@ -4,15 +4,19 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
-public class IRRefinedIngot implements IItemRenderer {
+public class RedstoneIngotIR implements IItemRenderer {
 	
 	public static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/IronIngotBlock.obj");
-	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/IronIngotBlock.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/MyRedstoneBlock.png");
+	public static final ResourceLocation TEXTURE1 = new ResourceLocation("kitsumedievalcraft:models/MyHotRedstoneBlock.png");
+	private ResourceLocation loc;
 	
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL_CRUCIBLE);
 	
@@ -38,8 +42,7 @@ public class IRRefinedIngot implements IItemRenderer {
 	}
 	
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
-			ItemRendererHelper helper) {
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,ItemRendererHelper helper) {
 		
 		switch(type) {
 		case EQUIPPED: {
@@ -67,23 +70,19 @@ public class IRRefinedIngot implements IItemRenderer {
 		switch(type) {
 		
 		case EQUIPPED: {
-			
 			GL11.glPushMatrix();
 			GL11.glRotated(90, 0, 1.0, 0);
 			GL11.glRotated(-20, 1, 0, 0);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
-			
-			
-			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-			//GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
-			//GL11.glRotatef(10F, 1.0F, 0.0F, 0.0F);
-			//GL11.glRotated(90, 1.0, 0.0, 0.0);
-
 			GL11.glTranslatef(0.0F, 0.0F, 1.15F);
-		
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
-
 			GL11.glPopMatrix();
 		} break;
 		
@@ -94,55 +93,42 @@ public class IRRefinedIngot implements IItemRenderer {
 			GL11.glRotated(-20, 1, 0, 0);
 			GL11.glRotated(30, 0, 0, 1);
 			GL11.glScalef(f, f, f);
-			
-			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-
-			//GL11.glRotatef(90F, 1.0F, 0.0F, 0.0F);
-
-
 			GL11.glTranslatef(-0.2F, 1.0F, 1.15F);
-		
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
-
 			GL11.glPopMatrix();
-			
 		} break;
-		
 		case INVENTORY: {
 			GL11.glPushMatrix();
-			
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			//GL11.glScalef(8.0F, 8.0F, 8.0F);
-			
-			//GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
-			
-			//GL11.glTranslatef(1.0F, 0.0F, -1.0F);
-		
-			
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
-		  
 			GL11.glPopMatrix();
-
 		} break;
-		
 		case ENTITY: {
 			GL11.glPushMatrix();
-			//GL11.glScalef(1.75F, 1.75F, 1.75F);
-			
-			
-			
-
-			//GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-		
-			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			if(item.getItemDamage()==0){
+				loc=TEXTURE;
+			}
+			if(item.getItemDamage()==1){
+				loc=TEXTURE1;
+			}
+			Minecraft.getMinecraft().renderEngine.bindTexture(loc);
 			model.renderAll();
-
 			GL11.glPopMatrix();
-
 		} break;
-
 		default: 
 			break;
 		}

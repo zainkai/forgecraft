@@ -13,16 +13,6 @@ public class LapisIngot extends IngotBase {
 
 	public LapisIngot(String unlocalizedName, Material material) {
 		super(unlocalizedName, material);
-		this.setBlockTextureName(Main.MODID + ":" + unlocalizedName);
-		this.setCreativeTab(CustomTab.MedievalCraftTab);
-		this.setHardness(1.0F);
-		this.setResistance(1.0F);
-		this.setHarvestLevel("pickaxe", 0);
-		this.setStepSound(soundTypeMetal);
-		//xmin, ymin, zmin, 
-		//xmax, ymax, zmax
-		this.setBlockBounds(0.17F, 0.0F,  0.315F, 
-				            0.8F, 0.15F, 0.725F);
 	}
 	
 	@Override

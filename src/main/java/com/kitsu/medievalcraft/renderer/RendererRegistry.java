@@ -40,8 +40,11 @@ import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.IRTanninCru
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.IRWaterCrucible;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.ItemRendererECCrucible;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.ItemRendererSECrucible;
+import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.DamascusIngotIR;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.IronIngotIR;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.IronPlateIR;
+import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.LapisIngotIR;
+import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.RedstoneIngotIR;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRBarrelLid;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRFirebox;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRForgeAnvil;
@@ -110,6 +113,7 @@ public class RendererRegistry {
     	MinecraftForgeClient.registerItemRenderer(ModItems.itemModelArrow, new ItemRendererModelArrow());
     	MinecraftForgeClient.registerItemRenderer(ModItems.itemIronTippedModelArrow, new ItemRendererITModelArrow());
     	
+    	
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.emptySoftCrucible), new ItemRendererSECrucible());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.emptyCookedCrucible), new ItemRendererECCrucible());
 
@@ -133,7 +137,10 @@ public class RendererRegistry {
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucibleRedstone), new IRCrucible());
     	
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.refinedIron), new IronIngotIR());
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.damascus), new DamascusIngotIR());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironPlate), new IronPlateIR());
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.lapisIngot), new LapisIngotIR());
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.redstoneIngot), new RedstoneIngotIR());
 
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoftEmptyCrucible.class, new SECrucibleRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEmptyCookedCrucible.class, new ECCrucibleRenderer());

@@ -14,12 +14,6 @@ public class IronPlate extends IngotBase {
 
 	public IronPlate(String unlocalizedName, Material material) {
 		super(unlocalizedName, material);
-		this.setBlockTextureName(Main.MODID + ":" + unlocalizedName);
-		this.setCreativeTab(CustomTab.MedievalCraftTab);
-		this.setHardness(1.0F);
-		this.setResistance(1.0F);
-		this.setHarvestLevel("pickaxe", 0);
-		this.setStepSound(soundTypeMetal);
 		//xmin, ymin, zmin, 
 		//xmax, ymax, zmax
 		this.setBlockBounds(0.3F, 0.0F,  0.3F, 

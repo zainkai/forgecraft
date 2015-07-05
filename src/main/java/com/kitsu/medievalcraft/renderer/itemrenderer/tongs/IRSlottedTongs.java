@@ -29,12 +29,17 @@ public class IRSlottedTongs implements IItemRenderer {
 	public static final ResourceLocation DAMASCUS = new ResourceLocation("kitsumedievalcraft:models/HotDamascusIngot.png");
 	public static final ResourceLocation REFINEDIRON = new ResourceLocation("kitsumedievalcraft:models/HotIronIngotBlock.png");
 	public static final ResourceLocation IRON_PLATE = new ResourceLocation("kitsumedievalcraft:models/HotIronPlate.png");
+	
+	public static final ResourceLocation MODEL_PLATE = new ResourceLocation("kitsumedievalcraft:models/IronPlate.obj");
+	public static final ResourceLocation PLATE_TEXTURE = new ResourceLocation("kitsumedievalcraft:models/IronPlate.png");
+	public static final ResourceLocation HOTPLATE_TEXTURE = new ResourceLocation("kitsumedievalcraft:models/HotIronPlate.png");
 
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL_TONGS);
 	public IModelCustom modeltc = AdvancedModelLoader.loadModel(MODEL_TONGS_CRUCIBLE);
 	public IModelCustom modelti = AdvancedModelLoader.loadModel(MODEL_TONGS_INGOT);
 	public IModelCustom modelC = AdvancedModelLoader.loadModel(MODEL);
 	public IModelCustom modelingot = AdvancedModelLoader.loadModel(MODEL_INGOT);
+	public IModelCustom modelPlate = AdvancedModelLoader.loadModel(MODEL_PLATE);
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -99,7 +104,7 @@ public class IRSlottedTongs implements IItemRenderer {
 			}
 			//Crucible Renderer
 			if((stack.getItemDamage()==1)||(stack.getItemDamage()==2)||(stack.getItemDamage()==3)||(stack.getItemDamage()==4)||(stack.getItemDamage()==5)){
-				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
 				modeltc.renderAll();
 
 				GL11.glPushMatrix();
@@ -130,6 +135,19 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
+			
+			if((stack.getItemDamage()==10)){
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
+				modeltc.renderAll();
+				GL11.glPushMatrix();
+				float scale1 = 0.6F;
+				GL11.glScalef(scale1, 3.0f, scale1);
+				GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
+				GL11.glTranslatef(8.6F, 0.0F, 0.0F);
+				Minecraft.getMinecraft().renderEngine.bindTexture(HOTPLATE_TEXTURE);
+				modelPlate.renderAll();
+				GL11.glPopMatrix();
+			}
 
 			GL11.glPopMatrix();
 
@@ -149,7 +167,7 @@ public class IRSlottedTongs implements IItemRenderer {
 			}
 			//Crucible Renderer
 			if((stack.getItemDamage()==1)||(stack.getItemDamage()==2)||(stack.getItemDamage()==3)||(stack.getItemDamage()==4)||(stack.getItemDamage()==5)){
-				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
 				modeltc.renderAll();
 				GL11.glPushMatrix();
 				float scale = 0.6F;
@@ -177,6 +195,18 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
+			
+			if((stack.getItemDamage()==10)){
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
+				modeltc.renderAll();
+				GL11.glPushMatrix();
+				float scale = 0.6F;
+				GL11.glScalef(scale, 3.0f, scale);
+				GL11.glTranslatef(8.6F, 0.0F, 0.0F);
+				Minecraft.getMinecraft().renderEngine.bindTexture(HOTPLATE_TEXTURE);
+				modelPlate.renderAll();
+				GL11.glPopMatrix();
+			}
 
 			GL11.glPopMatrix();
 
@@ -198,7 +228,7 @@ public class IRSlottedTongs implements IItemRenderer {
 
 			//Crucible Renderer
 			if((stack.getItemDamage()==1)||(stack.getItemDamage()==2)||(stack.getItemDamage()==3)||(stack.getItemDamage()==4)||(stack.getItemDamage()==5)){
-				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
 				modeltc.renderAll();
 				GL11.glPushMatrix();
 				float scale = 0.5F;
@@ -226,6 +256,18 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
+			
+			if((stack.getItemDamage()==10)){
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
+				modeltc.renderAll();
+				GL11.glPushMatrix();
+				float scale = 0.6F;
+				GL11.glScalef(scale, 3.0f, scale);
+				GL11.glTranslatef(8.6F, 0.0F, 0.0F);
+				Minecraft.getMinecraft().renderEngine.bindTexture(HOTPLATE_TEXTURE);
+				modelPlate.renderAll();
+				GL11.glPopMatrix();
+			}
 
 			GL11.glPopMatrix();
 		} break;
@@ -240,7 +282,7 @@ public class IRSlottedTongs implements IItemRenderer {
 			}
 			//Crucible Renderer
 			if((stack.getItemDamage()==1)||(stack.getItemDamage()==2)||(stack.getItemDamage()==3)||(stack.getItemDamage()==4)||(stack.getItemDamage()==5)){
-				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
 				modeltc.renderAll();
 				GL11.glPushMatrix();
 				float scale = 0.55F;
@@ -250,15 +292,7 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelC.renderAll();
 				GL11.glPopMatrix();
 			}
-			/*if((stack.getItemDamage()==6)){
-				float scale = 1.1F;
-				GL11.glScalef(scale, scale, scale);
-				GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
-				GL11.glTranslatef(4.7F, 0.15F, 0.0F);
-				Minecraft.getMinecraft().renderEngine.bindTexture(LAPIS);
-				modelingot.renderAll();
-				GL11.glPopMatrix();
-			}*/
+
 			if(stack.getItemDamage()==6||
 					stack.getItemDamage()==7||
 					stack.getItemDamage()==8||
@@ -278,6 +312,18 @@ public class IRSlottedTongs implements IItemRenderer {
 				modelingot.renderAll();
 				GL11.glPopMatrix();
 			}
+			if((stack.getItemDamage()==10)){
+				Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_CRUCIBLE);
+				modeltc.renderAll();
+				GL11.glPushMatrix();
+				float scale = 0.6F;
+				GL11.glScalef(scale, 3.0f, scale);
+				GL11.glTranslatef(8.6F, 0.0F, 0.0F);
+				Minecraft.getMinecraft().renderEngine.bindTexture(HOTPLATE_TEXTURE);
+				modelPlate.renderAll();
+				GL11.glPopMatrix();
+			}
+			
 			GL11.glPopMatrix();
 		} break;
 

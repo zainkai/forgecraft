@@ -73,7 +73,6 @@ public class SlottedTongs extends Item {
 				}
 			}
 		}
-		
 		return true;
 	}
 	

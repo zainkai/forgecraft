@@ -400,15 +400,14 @@ public void splitLogEvent(PlayerInteractEvent event){
 		if(!event.entity.worldObj.isRemote){
 			if (event.entity instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) event.entity;
-				//Block test = event.world.getBlock(event.x, event.y, event.z);
-				//Block isEmpty = event.world.getBlock(event.x, event.y + 1, event.z);
 				ItemStack itemStack = new ItemStack(Items.diamond);
 				if(player.isSneaking()){
 					if((player.inventory.getCurrentItem() != null)) {
 						if((player.inventory.getCurrentItem().getItem().equals(Items.diamond))){
-							if((event.action == event.action.RIGHT_CLICK_BLOCK ) ) { //&& (test == ModBlocks.testForge) && (isEmpty == Blocks.air)
+							if((event.action == event.action.RIGHT_CLICK_BLOCK )){
 								if(event.world.getBlock(event.x, event.y + 1, event.z).equals(Blocks.air)){
 									event.world.setBlock(event.x, event.y + 1, event.z, ModBlocks.myDiamond, 0, 2);
+									//event.world.setBlock(event.x, event.y+1, event.z, Blocks.bedrock);
 									player.inventory.consumeInventoryItem(Items.diamond);
 								}
 							}
