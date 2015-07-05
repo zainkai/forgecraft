@@ -8,19 +8,19 @@ import net.minecraft.item.Item;
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.item.ModItems;
 
-public class InlayTables {
+public interface InlayTables {
 
-	public static final Hashtable<Integer, Block> upgrade = new Hashtable <Integer, Block>(){{
+	public static Hashtable<Integer, Block> upgrade = new Hashtable <Integer, Block>(){{
 
 		put(0, ModBlocks.myDiamond);
 		put(1, ModBlocks.myEmerald);
-		//put(2, ModBlocks.hotLapisIngot);
-		//put(3, ModBlocks.hotRedstoneIngot);
+		put(2, ModBlocks.lapisIngot);
+		put(3, ModBlocks.redstoneIngot);
 		//put(3, ModItems.battleAxe);
 
 	}};
 
-	public static final Hashtable<Integer, Item> zeroUpgrade = new Hashtable <Integer, Item>(){{
+	public static Hashtable<Integer, Item> zeroUpgrade = new Hashtable <Integer, Item>(){{
 
 		put(0,  ModItems.ironpickaxeHead);
 		put(1,  ModItems.ironspadeHead);
@@ -40,7 +40,7 @@ public class InlayTables {
 
 	}};
 
-	public static final Hashtable<Integer, Item> oneUpgrade = new Hashtable <Integer, Item>(){{
+	public static Hashtable<Integer, Item> oneUpgrade = new Hashtable <Integer, Item>(){{
 
 		put(0,  ModItems.unbreakingOneHead);
 		put(1,  ModItems.unbreakingOneSpade);
@@ -59,7 +59,7 @@ public class InlayTables {
 
 	}};
 	
-	public static final Hashtable<Integer, Item> twoUpgrade = new Hashtable <Integer, Item>(){{
+	public static Hashtable<Integer, Item> twoUpgrade = new Hashtable <Integer, Item>(){{
 
 		put(0,  ModItems.unbreakingTwoHead);
 		put(1,  ModItems.unbreakingTwoSpade);
@@ -78,7 +78,7 @@ public class InlayTables {
 
 	}};
 	
-	public static final Hashtable<Integer, Item> multiUpgrade = new Hashtable <Integer, Item>(){{
+	public static Hashtable<Integer, Item> multiUpgrade = new Hashtable <Integer, Item>(){{
 
 		put(0,  ModItems.unbreakingOneEfficOneHead);
 		put(1,  ModItems.unbreakingOneEfficOneSpade);
@@ -97,7 +97,7 @@ public class InlayTables {
 
 	}};
 	
-	public static final Hashtable<Integer, Item> silkTouch = new Hashtable <Integer, Item>(){{
+	public static Hashtable<Integer, Item> silkTouch = new Hashtable <Integer, Item>(){{
 
 		put(0,  ModItems.silkTouchIronHead);
 		put(1,  ModItems.silkTouchIronSpade);
@@ -107,7 +107,7 @@ public class InlayTables {
 	}};
 
 
-	public static final Hashtable<Integer, String> enchantType = new Hashtable <Integer, String>(){{
+	public static Hashtable<Integer, String> enchantType = new Hashtable <Integer, String>(){{
 
 		put(0, "unbreaking");
 		put(1, "fortune");

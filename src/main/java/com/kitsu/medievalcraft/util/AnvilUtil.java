@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.item.ModItems;
 
-public interface IronFormNames {
+public interface AnvilUtil {
 
-	static final Hashtable<Item, ItemStack> forms = new Hashtable <Item, ItemStack>(){{
+	static final Hashtable<Item, ItemStack> formsIron = new Hashtable <Item, ItemStack>(){{
 
 		put(ModItems.ironAxeForm, new ItemStack(ModItems.ironaxeHead, 1));
 		put(ModItems.ironBattleAxeForm, new ItemStack(ModItems.ironbattleaxeHead, 1));
@@ -26,6 +26,25 @@ public interface IronFormNames {
 		put(ModItems.ironShortSwordForm, new ItemStack(ModItems.ironshortswordBlade, 2));
 		put(ModItems.ironSpadForm, new ItemStack(ModItems.ironspadeHead, 1));
 		put(ModItems.ironSpearTipForm, new ItemStack(ModItems.ironspearTip, 1));
+		
+	}};
+	
+	static final Hashtable<Item, ItemStack> makeForms = new Hashtable <Item, ItemStack>(){{
+
+		put(ModItems.ironaxeHead, new ItemStack(ModItems.ironAxeForm, 1));
+		put(ModItems.ironbattleaxeHead, new ItemStack(ModItems.ironBattleAxeForm, 1));
+		put(ModItems.irondaggerBlade, new ItemStack(ModItems.ironDaggerForm, 1));
+		put(ModItems.woodentoolHandle, new ItemStack(ModItems.ironHandleForm, 1));
+		put(ModItems.ironhoeHead, new ItemStack(ModItems.ironHoeForm, 1));
+		put(ModItems.ironlongswordBlade, new ItemStack(ModItems.ironLongswordForm, 1));
+		put(ModItems.ironmaceHead, new ItemStack(ModItems.ironMaceHeadForm, 1));
+		put(ModItems.ironpickaxeHead, new ItemStack(ModItems.ironPickaxeForm, 1));
+		put(ModItems.ironRing, new ItemStack(ModItems.ironRingForm, 1));
+		put(ModItems.ironsawBlade, new ItemStack(ModItems.ironSawBladeForm, 1));
+		put(ModItems.ironsharpTip, new ItemStack(ModItems.ironSharpTipForm, 1));
+		put(ModItems.ironshortswordBlade, new ItemStack(ModItems.ironShortSwordForm, 1));
+		put(ModItems.ironspadeHead, new ItemStack(ModItems.ironSpadForm, 1));
+		put(ModItems.ironspearTip, new ItemStack(ModItems.ironSpearTipForm, 1));
 		
 	}};
 	
@@ -47,5 +66,7 @@ public interface IronFormNames {
 		put(ModItems.cookedspeartipClayForm, new ItemStack(ModItems.ironspearTip, 1));
 		
 	}};
+	
+
 	
 }

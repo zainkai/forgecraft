@@ -30,13 +30,13 @@ import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 import com.kitsu.medievalcraft.tileents.ingots.TileIronPlate;
 import com.kitsu.medievalcraft.tileents.ingots.TileMyIronIngot;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityAnvilForge;
+import com.kitsu.medievalcraft.util.AnvilUtil;
 import com.kitsu.medievalcraft.util.CustomTab;
-import com.kitsu.medievalcraft.util.IronFormNames;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
 
-public class ForgeHammer extends Item implements IronFormNames{
+public class ForgeHammer extends Item implements AnvilUtil{
 
 	private String name = "forgeHammer";
 	private Item item;
@@ -84,213 +84,127 @@ public class ForgeHammer extends Item implements IronFormNames{
 		if(block == ModBlocks.ironPlate){
 			tilePlate = (TileIronPlate) world.getTileEntity(x, y, z);
 		}
-
-		if((block instanceof IngotBase)&&(blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)&&(block!=ModBlocks.ironPlate)){
+		if((blockSub == ModBlocks.forgeAnvil)&&(p.isSwingInProgress == false)){
 			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
-			TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
-			if((tileEnt.getStackInSlot(0).getItem() instanceof IronForms)&&(tile.hot==true)){
-				p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-				Main.sNet.sendToAll(new MsgPacket(true));
-				Main.sNet.sendToAll(new MsgPacketLocX(x));
-				Main.sNet.sendToAll(new MsgPacketLocY(y));
-				Main.sNet.sendToAll(new MsgPacketLocZ(z));
-				tile.hits++;
-				if(tile.hits >= 3 + rand.nextInt(3)){
-					world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, forms.get(tileEnt.getStackInSlot(0).getItem())));
+			if((block instanceof IngotBase)&&(block==ModBlocks.refinedIron)){
+				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
+
+				if(tileEnt.getStackInSlot(0)==null){
+					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+					Main.sNet.sendToAll(new MsgPacket(true));
+					Main.sNet.sendToAll(new MsgPacketLocX(x));
+					Main.sNet.sendToAll(new MsgPacketLocY(y));
+					Main.sNet.sendToAll(new MsgPacketLocZ(z));
+					tile.hits++;
 					stack.damageItem(1, p);
-					world.setBlock(x, y, z, Blocks.air, 0, 2);
-					if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
-						if(tileEnt.getStackInSlot(0).getItemDamage() == tileEnt.getStackInSlot(0).getMaxDamage()-1){
+					if(tile.hits >= 4 + rand.nextInt(3)){
+						world.setBlock(x, y, z, ModBlocks.ironPlate, 0, 2);
+					}
+				}
+
+				if((tileEnt.getStackInSlot(0).getItem().equals(Items.flower_pot))||tileEnt.getStackInSlot(0).getItem().equals(Items.bucket)){
+					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+					Main.sNet.sendToAll(new MsgPacket(true));
+					Main.sNet.sendToAll(new MsgPacketLocX(x));
+					Main.sNet.sendToAll(new MsgPacketLocY(y));
+					Main.sNet.sendToAll(new MsgPacketLocZ(z));
+					tile.hits++;
+					stack.damageItem(1, p);
+					if(tile.hits >= 4 + rand.nextInt(3)){
+						world.setBlock(x, y, z, Blocks.air, 0, 2);
+
+						if(tileEnt.getStackInSlot(0).getItem().equals(Items.flower_pot)){
 							tileEnt.decrStackSize(0, 1);
 						}
-						else {tileEnt.getStackInSlot(0).setItemDamage(tileEnt.getStackInSlot(0).getItemDamage()+1);
-						}
+						world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, new ItemStack(Items.bucket, 1)));
 					}
 				}
-			}
-			if((tileEnt.getStackInSlot(0).getItem() instanceof ClayForms)&&(tile.hot==true)&&(block!=ModBlocks.ironPlate)){
-				p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-				Main.sNet.sendToAll(new MsgPacket(true));
-				Main.sNet.sendToAll(new MsgPacketLocX(x));
-				Main.sNet.sendToAll(new MsgPacketLocY(y));
-				Main.sNet.sendToAll(new MsgPacketLocZ(z));
-				tile.hits++;
-				if(tile.hits >= 3 + rand.nextInt(3)){
-					world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsClay.get(tileEnt.getStackInSlot(0).getItem())));
-					stack.damageItem(1, p);
-					world.setBlock(x, y, z, Blocks.air, 0, 2);
-					tileEnt.decrStackSize(0, 1);
-					tile.markForUpdate();
-					}
-				}
-			}
-		
-			
 
-
-
-		/*if((block == blockToRun(block)) && (blockSub == ModBlocks.forgeAnvil) && (p.isSwingInProgress == false)){
-			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
-
-			if((tileEnt.getStackInSlot(0) == null) && (blockKey == 0)){
-				if (rand.nextInt(2) == 0 ) {
-					tileRefIngot.hits++;
-				}
-				p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-				Main.sNet.sendToAll(new MsgPacket(true));
-				Main.sNet.sendToAll(new MsgPacketlTicks(x));
-				Main.sNet.sendToAll(new MsgPacketLocY(y));
-				Main.sNet.sendToAll(new MsgPacketLocZ(z));
-
-				if(tileRefIngot.hits >= 4){
-					tileRefIngot.hits = 0;
-					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-					Main.sNet.sendToAll(new MsgPacket(true));
-					Main.sNet.sendToAll(new MsgPacketlTicks(x));
-					Main.sNet.sendToAll(new MsgPacketLocY(y));
-					Main.sNet.sendToAll(new MsgPacketLocZ(z));
-					world.setBlock(x, y, z, ModBlocks.ironPlate, 0, 2);
-					stack.damageItem(1, p);
-				}
-			}
-			if((tileEnt.getStackInSlot(0) != null)){
-				if((tileEnt.getStackInSlot(0).getItem() == Items.flower_pot) && (blockKey == 0)){
-					if (rand.nextInt(2) == 0 ) {
-						tileRefIngot.hits++;
-					}
-					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-					Main.sNet.sendToAll(new MsgPacket(true));
-					Main.sNet.sendToAll(new MsgPacketlTicks(x));
-					Main.sNet.sendToAll(new MsgPacketLocY(y));
-					Main.sNet.sendToAll(new MsgPacketLocZ(z));
-
-					if(tileRefIngot.hits >= 4){key
-						tileRefIngot.hits = 0;
+				//IRON FORMS
+				if(tileEnt.getStackInSlot(0)!=null){
+					if((tileEnt.getStackInSlot(0).getItem() instanceof IronForms)&&(tile.hot==true)){
 						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 						Main.sNet.sendToAll(new MsgPacket(true));
-						Main.sNet.sendToAll(new MsgPacketlTicks(x));
+						Main.sNet.sendToAll(new MsgPacketLocX(x));
 						Main.sNet.sendToAll(new MsgPacketLocY(y));
 						Main.sNet.sendToAll(new MsgPacketLocZ(z));
-						world.setBlock(x, y, z, Blocks.air, 0, 2);
-						tileEnt.decrStackSize(0, 1);
-						ItemStack bucket = new ItemStack(Items.bucket);
-						world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, bucket));
+						tile.hits++;
 						stack.damageItem(1, p);
-					}
-				}
-			}
-
-			if(tileEnt.getStackInSlot(0) != null){
-				Item checkItem = tileEnt.getStackInSlot(0).getItem();
-				String displayName = tileEnt.getStackInSlot(0).getDisplayName();
-
-				if(displayName.equals(getTool(tileEnt.getStackInSlot(0)))){
-					if(tileEnt.getStackInSlot(0).isItemDamaged() == true){
-						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-						Main.sNet.sendToAll(new MsgPacket(true));
-						Main.sNet.sendToAll(new MsgPacketlTicks(x));
-						Main.sNet.sendToAll(new MsgPacketLocY(y));
-						Main.sNet.sendToAll(new MsgPacketLocZ(z));
-						stack.damageItem(1, p);
-						if (rand.nextInt(2) == 0 ) {
-							tileRefIngot.hits++;
-						}
-					}
-					if(tileRefIngot.hits >= 4){
-						tileRefIngot.hits=0;
-						checkItem.setDamage(tileEnt.getStackInSlot(0), 0);
-						world.setBlock(x, y, z, Blocks.air, 0, 2);
-					}
-				}
-
-				if((blockKey == 3) && tileEnt.getStackInSlot(0).getItem().equals(ModItems.woodentoolHandle)){
-					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-					Main.sNet.sendToAll(new MsgPacket(true));
-					Main.sNet.sendToAll(new MsgPacketlTicks(x));
-					Main.sNet.sendToAll(new MsgPacketLocY(y));
-					Main.sNet.sendToAll(new MsgPacketLocZ(z));
-
-					if (rand.nextInt(2) == 0 ) {
-						tilePlate.hits++;
-					}
-					if(tilePlate.hits >= 4){
-						tilePlate.hits=0;
-						tileEnt.decrStackSize(0, 1);
-						world.setBlock(x, y, z, Blocks.air, 0, 2);
-						ItemStack ironForm = new ItemStack(ModItems.ironHandleForm);
-						world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, ironForm));
-					}
-				}
-
-				if((checkItem == getItem(checkItem)) || (checkItem == getItem3(checkItem)) || (checkItem == getItem2(checkItem).getItem())){
-					if (rand.nextInt(2) == 0 ) {
-						if(blockKey == 0){
-							tileRefIngot.hits++;
-						}
-						if(blockKey == 3){
-							tilePlate.hits++;
-						}
-					}
-					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-					Main.sNet.sendToAll(new MsgPacket(true));
-					Main.sNet.sendToAll(new MsgPacketlTicks(x));
-					Main.sNet.sendToAll(new MsgPacketLocY(y));
-					Main.sNet.sendToAll(new MsgPacketLocZ(z));
-
-					if((blockKey == 0) && (checkItem == getItem(checkItem))){
-
-						if(tileRefIngot.hits >= 4){
-							tileRefIngot.hits=0;
-							giveItem(key, world, x, y, z, p);
-							stack.damageItem(1, p);
+						if(tile.hits >= 4 + rand.nextInt(3)){
+							world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsIron.get(tileEnt.getStackInSlot(0).getItem())));
+							world.setBlock(x, y, z, Blocks.air, 0, 2);
 							if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
 								if(tileEnt.getStackInSlot(0).getItemDamage() == tileEnt.getStackInSlot(0).getMaxDamage()-1){
-									tileEnt.decrStackSize(0, 1);
-								} else {tileEnt.getStackInSlot(0).setItemDamage(tileEnt.getStackInSlot(0).getItemDamage()+1);}
-							}
-							if((tileEnt.getStackInSlot(0).getItem() == getItem3(checkItem))){
-								tileEnt.decrStackSize(0, 1);
-							}
-						}
-					}
-
-					if((blockKey == 0) && (checkItem == getItem3(checkItem))){
-						if(tileRefIngot.hits >= 4){
-							tileRefIngot.hits=0;
-							giveItem(key, world, x, y, z, p);
-							stack.damageItem(1, p);
-							if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
-								if(tileEnt.getStackInSlot(0).getItemDamage() == tileEnt.getStackInSlot(0).getMaxDamage()-1){
-									tileEnt.decrStackSize(0, 1);
-								} else {tileEnt.getStackInSlot(0).setItemDamage(tileEnt.getStackInSlot(0).getItemDamage()+1);} 
-							}
-							if((tileEnt.getStackInSlot(0).getItem() == getItem3(checkItem))){
-								tileEnt.decrStackSize(0, 1);
-							}
-						}
-					}
-					if(blockKey == 3){
-						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-						Main.sNet.sendToAll(new MsgPacket(true));
-						Main.sNet.sendToAll(new MsgPacketlTicks(x));
-						Main.sNet.sendToAll(new MsgPacketLocY(y));
-						Main.sNet.sendToAll(new MsgPacketLocZ(z));
-						if((checkItem == getItem2(checkItem).getItem())){
-							if(tilePlate.hits >= 3){
-								tilePlate.hits=0;
-								giveItem(key, world, x, y, z, p);
-								stack.damageItem(1, p);
-								if(tileEnt.getStackInSlot(0).getItem() == getItem2(checkItem).getItem()){
 									tileEnt.decrStackSize(0, 1);
 								}
+								else {tileEnt.getStackInSlot(0).setItemDamage(tileEnt.getStackInSlot(0).getItemDamage()+1);
+								}
+							}
+						}
+					}
+					//CLAY FORMS
+					if((tileEnt.getStackInSlot(0).getItem() instanceof ClayForms)&&(tile.hot==true)){
+						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+						Main.sNet.sendToAll(new MsgPacket(true));
+						Main.sNet.sendToAll(new MsgPacketLocX(x));
+						Main.sNet.sendToAll(new MsgPacketLocY(y));
+						Main.sNet.sendToAll(new MsgPacketLocZ(z));
+						tile.hits++;
+						stack.damageItem(1, p);
+						if(tile.hits >= 4 + rand.nextInt(3)){
+							world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsClay.get(tileEnt.getStackInSlot(0).getItem())));
+							world.setBlock(x, y, z, Blocks.air, 0, 2);
+							tileEnt.decrStackSize(0, 1);
+							tile.markForUpdate();
+						}
+					}
+				}
+			}
+
+			if((block instanceof IngotBase)){
+				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
+				//REPAIR TOOLS
+				Item checkItem = tileEnt.getStackInSlot(0).getItem();
+				String displayName = tileEnt.getStackInSlot(0).getDisplayName();
+				if(tileEnt.getStackInSlot(0) != null){
+					if(displayName.equals(getTool(tileEnt.getStackInSlot(0)))&&(tile.hot == true)&&(block==ModBlocks.refinedIron)){
+						if(tileEnt.getStackInSlot(0).isItemDamaged() == true){
+							p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+							Main.sNet.sendToAll(new MsgPacket(true));
+							Main.sNet.sendToAll(new MsgPacketLocX(x));
+							Main.sNet.sendToAll(new MsgPacketLocY(y));
+							Main.sNet.sendToAll(new MsgPacketLocZ(z));
+							stack.damageItem(1, p);
+							tile.hits++;
+							if(tile.hits >= 4 + rand.nextInt(3)){
+								checkItem.setDamage(tileEnt.getStackInSlot(0), 0);
+								world.setBlock(x, y, z, Blocks.air, 0, 2);
+							}
+						}
+					}
+				}
+				//MAKE FORMS
+				if(tileEnt.getStackInSlot(0)!= null){
+					if((makeForms.containsKey(tileEnt.getStackInSlot(0).getItem())==true)){
+						if((tile.hot == true)&&(block==ModBlocks.ironPlate)){
+							p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+							Main.sNet.sendToAll(new MsgPacket(true));
+							Main.sNet.sendToAll(new MsgPacketLocX(x));
+							Main.sNet.sendToAll(new MsgPacketLocY(y));
+							Main.sNet.sendToAll(new MsgPacketLocZ(z));
+							stack.damageItem(1, p);
+							tile.hits++;
+							if(tile.hits >= 4 + rand.nextInt(3)){
+								world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, makeForms.get(tileEnt.getStackInSlot(0).getItem())));
+								world.setBlock(x, y, z, Blocks.air, 0, 2);
+								tileEnt.decrStackSize(0, 1);
+								tile.markForUpdate();
 							}
 						}
 					}
 				}
 			}
 		}
-		 */
-
 	}
 	/*
 	 * 		ItemStack gladius0 = new ItemStack(ModItems.gladius);

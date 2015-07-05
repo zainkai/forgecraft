@@ -405,9 +405,8 @@ public void splitLogEvent(PlayerInteractEvent event){
 				ItemStack itemStack = new ItemStack(Items.diamond);
 				if(player.isSneaking()){
 					if((player.inventory.getCurrentItem() != null)) {
-						if((player.inventory.getCurrentItem().isItemEqual(itemStack))){
+						if((player.inventory.getCurrentItem().getItem().equals(Items.diamond))){
 							if((event.action == event.action.RIGHT_CLICK_BLOCK ) ) { //&& (test == ModBlocks.testForge) && (isEmpty == Blocks.air)
-
 								if(event.world.getBlock(event.x, event.y + 1, event.z).equals(Blocks.air)){
 									event.world.setBlock(event.x, event.y + 1, event.z, ModBlocks.myDiamond, 0, 2);
 									player.inventory.consumeInventoryItem(Items.diamond);

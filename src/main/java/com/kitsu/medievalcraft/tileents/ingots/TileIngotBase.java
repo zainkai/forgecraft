@@ -9,9 +9,9 @@ import net.minecraft.world.World;
 
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityAnvilForge;
-import com.kitsu.medievalcraft.util.IronFormNames;
+import com.kitsu.medievalcraft.util.AnvilUtil;
 
-public class TileIngotBase extends TileEntity implements IronFormNames{
+public class TileIngotBase extends TileEntity implements AnvilUtil{
 	
 	private String specName;
 	public int hits = 0;
