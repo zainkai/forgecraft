@@ -38,13 +38,12 @@ public class FireBow extends Item {
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_){
-
-		if(rand.nextInt(5) == 0){
-			world.setBlock(x, y + 1, z , Blocks.fire);
-			//item.setDamage(new ItemStack(item), +1);
-			stack.damageItem(1, player);
+		if(!world.isRemote){
+			if(rand.nextInt(5) == 0){
+				world.setBlock(x, y + 1, z , Blocks.fire);
+				stack.damageItem(1, player);
+			}
 		}
-
 		return true;
 	}
 

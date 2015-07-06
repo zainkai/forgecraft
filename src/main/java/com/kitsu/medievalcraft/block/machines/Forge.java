@@ -26,11 +26,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.kitsu.medievalcraft.Main;
-import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.item.ModItems;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketBurning;
 import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForge;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeX;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeY;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeZ;
 import com.kitsu.medievalcraft.packethandle.forge.MsgPacketOn;
-import com.kitsu.medievalcraft.packethandle.shelf.MsgPacketShelfCase;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.tileents.machine.TileForge;
 import com.kitsu.medievalcraft.util.CustomTab;
@@ -43,8 +45,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Forge extends BlockContainer implements TileForgePlaceables{
 
 	private final Random random = new Random();
-	public static int sideMeta;
-	public static boolean furnaceParts;
+	public static int sideMeta, locX, locY, locZ;
+	public static boolean furnaceParts, coalParts;
 	private int c;
 
 	public Forge(String unlocalizedName, Material material) {
@@ -59,7 +61,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 		//this.isFlammable(world, x, y, z, face);
 		//(xmin, ymin, zmin, 
 		// xmax, ymax, zmax)
-		this.setBlockBounds(0.0F, 0.00F, 0.0F,
+		this.setBlockBounds(0.0F, 0.0F, 0.0F,
 				1.0F, 1.0F, 1.0F);
 
 	}
@@ -74,21 +76,44 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
-		if(furnaceParts == true){
-			int l;
-			float f;
-			float f1;
-			float f2;
-			for (l = 0; l < 3; ++l)
-			{
-				f = (float)(x+0.25) + (rand.nextFloat()/2);
-				f1 = (float)y + rand.nextFloat() * 0.4F + 0.3F;
-				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
-				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-				//world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-			}
+		if(this.furnaceParts==true){
+			world.spawnParticle("fire", (double)locX, (double)locY+1f, (double)locZ, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("flame", (double)locX, (double)locY+1f, (double)locZ, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("smoke", (double)locX, (double)locY+1f, (double)locZ, 0.0D, 0.0D, 0.0D);
 		}
+		//if(x==locX&&y==locY&&z==locZ){
+			/*if(this.furnaceParts == true){
+				int l;
+				float f;
+				float f1;
+				float f2;
+				for (l = 0; l < 3; ++l)
+				{
+					f = (float)(locX+0.25) + (rand.nextFloat()/2);
+					f1 = (float)locY + rand.nextFloat() * 0.4F + 0.3F;
+					f2 = (float)(locZ+0.25) + (rand.nextFloat()/2);
+					world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+					//world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				}
+			}
+			if(this.coalParts == true){
+				int l;
+				float f;
+				float f1;
+				float f2;
+				for (l = 0; l < 3; ++l)
+				{
+					f = (float)(locX+0.25) + (rand.nextFloat()/2);
+					//f1 = (float)y + rand.nextFloat() * 0.4F + 0.3F;
+					f1 = locY;
+					f2 = (float)(locZ+0.25) + (rand.nextFloat()/2);
+					world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+					//world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				}
+			}*/
+		//}
 	}
 
 	public static int determineOrientation(World p_150071_0_, int p_150071_1_, int p_150071_2_, int p_150071_3_, EntityLivingBase p_150071_4_)
@@ -136,8 +161,12 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 						){
 					tileEnt.isBurning=true;
 					Main.sNet.sendToAll(new MsgPacketOn(tileEnt.isBurning));
+					Main.sNet.sendToAll(new MsgPacketForgeX(tileEnt.xCoord));
+					Main.sNet.sendToAll(new MsgPacketForgeY(tileEnt.yCoord));
+					Main.sNet.sendToAll(new MsgPacketForgeZ(tileEnt.zCoord));
 					if(tileEnt.getStackInSlot(1)!=null){
 						tileEnt.isOn=true;
+						Main.sNet.sendToAll(new MsgPacketBurning(tileEnt.isOn));
 					}
 				}
 			}

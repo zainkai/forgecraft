@@ -19,8 +19,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public final class ModCrafting {
 
-
-
 	public static final Hashtable<Integer, Item> pickheads = new Hashtable <Integer, Item>(){{
 
 		put(0, ModItems.unbreakingOneHead);

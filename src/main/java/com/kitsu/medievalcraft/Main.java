@@ -19,18 +19,26 @@ import com.kitsu.medievalcraft.packethandle.curedLeather.MsgHandleCuredLeatherZ;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgPacketCuredLeatherX;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgPacketCuredLeatherY;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgPacketCuredLeatherZ;
+import com.kitsu.medievalcraft.packethandle.forge.MsgHandleBurning;
 import com.kitsu.medievalcraft.packethandle.forge.MsgHandleForge;
+import com.kitsu.medievalcraft.packethandle.forge.MsgHandleForgeX;
+import com.kitsu.medievalcraft.packethandle.forge.MsgHandleForgeY;
+import com.kitsu.medievalcraft.packethandle.forge.MsgHandleForgeZ;
 import com.kitsu.medievalcraft.packethandle.forge.MsgHandleOn;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketBurning;
 import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForge;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeX;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeY;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeZ;
 import com.kitsu.medievalcraft.packethandle.forge.MsgPacketOn;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandle;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocX;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocY;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocZ;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgHandleLocX;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacket;
+import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocX;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocY;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocZ;
-import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacketLocX;
 import com.kitsu.medievalcraft.packethandle.sandFilterRender.MsgHandleSandFilterRender;
 import com.kitsu.medievalcraft.packethandle.sandFilterRender.MsgPacketSandFilterRender;
 import com.kitsu.medievalcraft.packethandle.shelf.MsgHandleShelfCase;
@@ -88,6 +96,10 @@ public class Main {
 		sNet.registerMessage(MsgHandleShelfCase.class, MsgPacketShelfCase.class, 9, Side.SERVER);
 		sNet.registerMessage(MsgHandleForge.class, MsgPacketForge.class, 10, Side.SERVER);
 		sNet.registerMessage(MsgHandleOn.class, MsgPacketOn.class, 11, Side.CLIENT);
+		sNet.registerMessage(MsgHandleBurning.class, MsgPacketBurning.class, 12, Side.CLIENT);
+		sNet.registerMessage(MsgHandleForgeX.class, MsgPacketForgeX.class, 13, Side.CLIENT);
+		sNet.registerMessage(MsgHandleForgeY.class, MsgPacketForgeY.class, 14, Side.CLIENT);
+		sNet.registerMessage(MsgHandleForgeZ.class, MsgPacketForgeZ.class, 15, Side.CLIENT);
 		CustomTab.MedievalTab();
 		ModBlocks.init();
 		ModItems.init();
@@ -95,9 +107,6 @@ public class Main {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 	}
 
-	/**
-	 * Do your mod setup. Build whatever data structures you care about. Register recipes.
-	 */
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
 		

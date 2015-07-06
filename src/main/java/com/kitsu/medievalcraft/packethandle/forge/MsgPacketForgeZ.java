@@ -3,24 +3,26 @@ package com.kitsu.medievalcraft.packethandle.forge;
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public class MsgPacketBurning implements IMessage {
+public class MsgPacketForgeZ implements IMessage {
 
-	public boolean packetOn;
+	public int locz;
 
-	public MsgPacketBurning() {}
+	public MsgPacketForgeZ() {}
 
-	public MsgPacketBurning(boolean x){
-		this.packetOn = x;
+	public MsgPacketForgeZ(int z){
+		this.locz = z;
 	}
-	
+
+
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		this.packetOn = buf.readBoolean();
+
+		this.locz = buf.readInt();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeBoolean(this.packetOn);
+		buf.writeInt(this.locz);
 	}
 
 }
