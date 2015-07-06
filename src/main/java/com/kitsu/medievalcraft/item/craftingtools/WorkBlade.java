@@ -41,15 +41,6 @@ public class WorkBlade extends Item {
 		GameRegistry.registerItem(this, name);
 	}
 
-	@Override
-	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
-		stack.stackTagCompound = new NBTTagCompound();
-		stack.stackTagCompound.setInteger("X", 1);
-		stack.stackTagCompound.setInteger("Y", 1);
-		stack.stackTagCompound.setInteger("Z", 1);
-		stack.stackTagCompound.setInteger("BARKHITS", 0);
-	}
-
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_){
 
 		if(!world.isRemote){
@@ -60,110 +51,79 @@ public class WorkBlade extends Item {
 	}
 
 	private void getBark(World world, int x, int y, int z, EntityPlayer player, ItemStack stack){
-		//if(player.isSwingInProgress == false){
-		if(world.getBlock(x, y, z).getUnlocalizedName().equals("tile.log")){
-			//System.out.println(stack.stackTagCompound.getInteger("BARKHITS"));
-			//System.out.println(stack.stackTagCompound.getInteger("X"));
-			//System.out.println(stack.stackTagCompound.getInteger("Y"));
-			//System.out.println(stack.stackTagCompound.getInteger("Z"));
-			//System.out.println(world.getBlockMetadata(x, y, z));
-			
-			if((stack.stackTagCompound.getInteger("BARKHITS") == 0) || (stack.stackTagCompound.getInteger("X") != x) || (stack.stackTagCompound.getInteger("Y") != y) || (stack.stackTagCompound.getInteger("Z") != z)){
-				stack.stackTagCompound.setInteger("X", x);
-				stack.stackTagCompound.setInteger("Y", y);
-				stack.stackTagCompound.setInteger("Z", z);
-				stack.stackTagCompound.setInteger("BARKHITS", 1);
-				player.worldObj.playSoundAtEntity(player, Main.MODID + ":scrapes1", 0.33F, 1.0F);
-				//System.out.println("lvl2");
-			}
-			if(stack.stackTagCompound.getInteger("BARKHITS") > 0){
-				if((stack.stackTagCompound.getInteger("X") == x) && (stack.stackTagCompound.getInteger("Y") == y) && (stack.stackTagCompound.getInteger("Z") == z)){
-					player.worldObj.playSoundAtEntity(player, Main.MODID + ":scrapes1", 0.33F, 1.0F);
-					if (world.rand.nextInt(2) == 0 ) {
-						stack.stackTagCompound.setInteger("BARKHITS", stack.stackTagCompound.getInteger("BARKHITS") + 1);
-						stack.stackTagCompound.setInteger("X", x);
-						stack.stackTagCompound.setInteger("Y", y);
-						stack.stackTagCompound.setInteger("Z", z);
-						stack.damageItem(1, player);
-						//System.out.println("lvl3");
+		if(player.isSwingInProgress == false){
+			if(world.getBlock(x, y, z).getUnlocalizedName().equals("tile.log")){
+				player.worldObj.playSoundAtEntity(player, Main.MODID + ":scrapes1", 0.25F, 1.8F);
+				if(world.rand.nextInt(8)==1){
+					if(world.getBlock(x, y, z).equals(Blocks.log)){
+						//System.out.println("lvl5");
+						int woodMeta = world.getBlockMetadata(x, y, z);
+						if(woodMeta == 0){
+							world.setBlock(x, y, z, ModBlocks.cleanOak, 0, 2);
+						}
+						if(woodMeta == 4){
+							world.setBlock(x, y, z, ModBlocks.cleanOak, 4, 2);
+						}
+						if(woodMeta == 8){
+							world.setBlock(x, y, z, ModBlocks.cleanOak, 8, 2);
+						}
+						if(woodMeta == 1){
+							world.setBlock(x, y, z, ModBlocks.cleanSpruce, 0, 2);
+						}
+						if(woodMeta == 5){
+							world.setBlock(x, y, z, ModBlocks.cleanSpruce, 4, 2);
+						}
+						if(woodMeta == 9){
+							world.setBlock(x, y, z, ModBlocks.cleanSpruce, 8, 2);
+						}
+						if(woodMeta == 2){
+							world.setBlock(x, y, z, ModBlocks.cleanBirch, 0, 2);
+						}
+						if(woodMeta == 6){
+							world.setBlock(x, y, z, ModBlocks.cleanBirch, 4, 2);
+						}
+						if(woodMeta == 10){
+							world.setBlock(x, y, z, ModBlocks.cleanBirch, 8, 2);
+						}
+						if(woodMeta == 3){
+							world.setBlock(x, y, z, ModBlocks.cleanJungle, 0, 2);
+						}
+						if(woodMeta == 7){
+							world.setBlock(x, y, z, ModBlocks.cleanJungle, 4, 2);
+						}
+						if(woodMeta == 11){
+							world.setBlock(x, y, z, ModBlocks.cleanJungle, 8, 2);
+						}
 					}
-				}
-			}
-			if(stack.stackTagCompound.getInteger("BARKHITS") >= 6 + world.rand.nextInt(4)){
-				stack.stackTagCompound.setInteger("BARKHITS", 0);
-				stack.stackTagCompound.setInteger("X", 0);
-				stack.stackTagCompound.setInteger("Y", 0);
-				stack.stackTagCompound.setInteger("Z", 0);
-				//System.out.println("lvl4");
-				
-				if(world.getBlock(x, y, z).equals(Blocks.log)){
-					//System.out.println("lvl5");
-					int woodMeta = world.getBlockMetadata(x, y, z);
-					if(woodMeta == 0){
-						world.setBlock(x, y, z, ModBlocks.cleanOak, 0, 2);
+					if(world.getBlock(x, y, z).equals(Blocks.log2)){
+						//System.out.println("lvl6");
+						int woodMeta = world.getBlockMetadata(x, y, z);
+						if(woodMeta == 0){
+							world.setBlock(x, y, z, ModBlocks.cleanAcacia, 0, 2);
+						}
+						if(woodMeta == 4){
+							world.setBlock(x, y, z, ModBlocks.cleanAcacia, 4, 2);
+						}
+						if(woodMeta == 8){
+							world.setBlock(x, y, z, ModBlocks.cleanAcacia, 8, 2);
+						}
+						if(woodMeta == 1){
+							world.setBlock(x, y, z, ModBlocks.cleanDarkOak, 0, 2);
+						}
+						if(woodMeta == 5){
+							world.setBlock(x, y, z, ModBlocks.cleanDarkOak, 4, 2);
+						}
+						if(woodMeta == 9){
+							world.setBlock(x, y, z, ModBlocks.cleanDarkOak, 8, 2);
+						}
 					}
-					if(woodMeta == 4){
-						world.setBlock(x, y, z, ModBlocks.cleanOak, 4, 2);
-					}
-					if(woodMeta == 8){
-						world.setBlock(x, y, z, ModBlocks.cleanOak, 8, 2);
-					}
-					if(woodMeta == 1){
-						world.setBlock(x, y, z, ModBlocks.cleanSpruce, 0, 2);
-					}
-					if(woodMeta == 5){
-						world.setBlock(x, y, z, ModBlocks.cleanSpruce, 4, 2);
-					}
-					if(woodMeta == 9){
-						world.setBlock(x, y, z, ModBlocks.cleanSpruce, 8, 2);
-					}
-					if(woodMeta == 2){
-						world.setBlock(x, y, z, ModBlocks.cleanBirch, 0, 2);
-					}
-					if(woodMeta == 6){
-						world.setBlock(x, y, z, ModBlocks.cleanBirch, 4, 2);
-					}
-					if(woodMeta == 10){
-						world.setBlock(x, y, z, ModBlocks.cleanBirch, 8, 2);
-					}
-					if(woodMeta == 3){
-						world.setBlock(x, y, z, ModBlocks.cleanJungle, 0, 2);
-					}
-					if(woodMeta == 7){
-						world.setBlock(x, y, z, ModBlocks.cleanJungle, 4, 2);
-					}
-					if(woodMeta == 11){
-						world.setBlock(x, y, z, ModBlocks.cleanJungle, 8, 2);
-					}
-				}
-				if(world.getBlock(x, y, z).equals(Blocks.log2)){
-					//System.out.println("lvl6");
-					int woodMeta = world.getBlockMetadata(x, y, z);
-					if(woodMeta == 0){
-						world.setBlock(x, y, z, ModBlocks.cleanAcacia, 0, 2);
-					}
-					if(woodMeta == 4){
-						world.setBlock(x, y, z, ModBlocks.cleanAcacia, 4, 2);
-					}
-					if(woodMeta == 8){
-						world.setBlock(x, y, z, ModBlocks.cleanAcacia, 8, 2);
-					}
-					if(woodMeta == 1){
-						world.setBlock(x, y, z, ModBlocks.cleanDarkOak, 0, 2);
-					}
-					if(woodMeta == 5){
-						world.setBlock(x, y, z, ModBlocks.cleanDarkOak, 4, 2);
-					}
-					if(woodMeta == 9){
-						world.setBlock(x, y, z, ModBlocks.cleanDarkOak, 8, 2);
-					}
-				}
 
-				world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(ModItems.itemBark, 5 + world.rand.nextInt(4), 0)));
+					world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(ModItems.itemBark, 5 + world.rand.nextInt(4), 0)));
+				}
 			}
 		}
 	}
-	
+
 	private void makeLonbow(World world, int x, int y, int z, EntityPlayer player, ItemStack stack){
 		if(!world.isRemote){
 			if((world.getBlock(x, y, z).equals(ModBlocks.jungleSplitLog))&&world.getBlock(x, y-1, z).equals(ModBlocks.jungleSplitLog)){

@@ -20,7 +20,9 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.block.ingots.IngotBase;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketOn;
 import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -223,8 +225,6 @@ public class TileForge extends TileEntity implements IInventory{
 				if(this.isOn==true){
 					if(tile.hot==false){
 						tile.heatTicks--;
-						//System.out.println(tile.hot);
-						//System.out.println(tile.heatTicks);
 					}
 				}
 			}
@@ -332,6 +332,7 @@ public class TileForge extends TileEntity implements IInventory{
 		if(this.getStackInSlot(0)==null){
 			this.isOn = false;
 			this.isBurning = false;
+			Main.sNet.sendToAll(new MsgPacketOn(this.isBurning));
 		}
 		if(this.getStackInSlot(1)==null){
 			this.isOn = false;

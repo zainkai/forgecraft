@@ -45,6 +45,7 @@ import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.IronIngotIR;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.IronPlateIR;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.LapisIngotIR;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ingotsplates.RedstoneIngotIR;
+import com.kitsu.medievalcraft.renderer.itemrenderer.machines.ForgeIR;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRBarrelLid;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRFirebox;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRForgeAnvil;
@@ -129,6 +130,7 @@ public class RendererRegistry {
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.smallBarrelLid), new IRBarrelLid());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.shelfFour), new IRShelfFour());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.firebox), new IRFirebox());
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.forge), new ForgeIR());
     	
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucibleIronOre), new IRCrucible());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucibleIronIngot), new IRCrucible());
@@ -167,7 +169,6 @@ public class RendererRegistry {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleIronOre.class, new IronOreCrucibleRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleWootz.class, new WootzCrucibleRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleRedstone.class, new RedstoneCrucibleRenderer());
-    	
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileMyIronIngot.class, new IronIngotRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileDamascus.class, new DamascusIngotRenderer());

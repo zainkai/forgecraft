@@ -109,7 +109,7 @@ public class ModBlocks {
 	
 	//MACHINES
 	public static Block formtable;
-	public static Block newForge;
+	//public static Block newForge;
 	public static Block testForge;
 	public static Block forgeAnvil;
 	public static Block waterFilter;

@@ -29,6 +29,7 @@ import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForge;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketOn;
 import com.kitsu.medievalcraft.packethandle.shelf.MsgPacketShelfCase;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.tileents.machine.TileForge;
@@ -43,6 +44,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 
 	private final Random random = new Random();
 	public static int sideMeta;
+	public static boolean furnaceParts;
 	private int c;
 
 	public Forge(String unlocalizedName, Material material) {
@@ -72,6 +74,21 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
+		if(furnaceParts == true){
+			int l;
+			float f;
+			float f1;
+			float f2;
+			for (l = 0; l < 3; ++l)
+			{
+				f = (float)(x+0.25) + (rand.nextFloat()/2);
+				f1 = (float)y + rand.nextFloat() * 0.4F + 0.3F;
+				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
+				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				//world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+			}
+		}
 	}
 
 	public static int determineOrientation(World p_150071_0_, int p_150071_1_, int p_150071_2_, int p_150071_3_, EntityLivingBase p_150071_4_)
@@ -118,6 +135,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
 					tileEnt.isBurning=true;
+					Main.sNet.sendToAll(new MsgPacketOn(tileEnt.isBurning));
 					if(tileEnt.getStackInSlot(1)!=null){
 						tileEnt.isOn=true;
 					}

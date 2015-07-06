@@ -40,6 +40,7 @@ public class OakSplitLog extends BlockRotatedPillar {
 		this.setHardness(3.0F);
 		this.setResistance(3.0F);
 		this.setStepSound(Block.soundTypeWood);
+		this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
 	}
 
 	@SideOnly(Side.CLIENT)

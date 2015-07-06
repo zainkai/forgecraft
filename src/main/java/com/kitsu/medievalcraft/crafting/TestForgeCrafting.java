@@ -24,9 +24,9 @@ public class TestForgeCrafting {
 		
 	}};
 	
-	public static final Hashtable<Integer, Integer> cookTable= new Hashtable <Integer, Integer>(){{
+	/*public static final Hashtable<Integer, Integer> cookTable= new Hashtable <Integer, Integer>(){{
 
-		/*put(0, 300);
+		put(0, 300);
 		put(1, 1000);
 		put(2, 200);
 		put(3, 250);
@@ -36,22 +36,22 @@ public class TestForgeCrafting {
 		put(7, 900);
 		put(8, 400);
 		put(9, 400);
-		put(10, 900);*/
-	}};
+		put(10, 900);
+	}};*/
 	
 	public static final Hashtable<Integer, Block> blockToCook = new Hashtable <Integer, Block>(){{
 
-		/*put(0, ModBlocks.hotIronBlock);
-		put(1, ModBlocks.hotCrucibleIron);
-		put(2, ModBlocks.emptyCookedCrucible);
-		put(3, ModBlocks.hotIronPlate);
-		put(4, ModBlocks.hotCrucibleIron);
-		put(5, ModBlocks.hotCrucibleDamascus);
-		put(6, ModBlocks.hotDamascusIngot);
-		put(7, ModBlocks.hotLapisCrucible);
-		put(8, ModBlocks.hotLapisIngot);
-		put(9, ModBlocks.hotRedstoneIngot);
-		put(10, ModBlocks.hotRedstoneCrucible);*/
+		put(0, ModBlocks.refinedIron);
+		//put(1, ModBlocks.crucibleIronOre);
+		//put(2, ModBlocks.emptyCookedCrucible);
+		put(3, ModBlocks.ironPlate);
+		//put(4, ModBlocks.hotCrucibleIron);
+		//put(5, ModBlocks.hotCrucibleDamascus);
+		put(6, ModBlocks.damascus);
+		//put(7, ModBlocks.hotLapisCrucible);
+		//put(8, ModBlocks.hotLapisIngot);
+		//put(9, ModBlocks.hotRedstoneIngot);
+		//put(10, ModBlocks.hotRedstoneCrucible);
 		
 	}};
 	

@@ -77,7 +77,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 	}
 
 	private void onClick(Block block, Block blockSub, World world, int x, int y, int z, EntityPlayer p, ItemStack stack, Random rand){
-
+		System.out.println("Layer 1");
 		if(block == ModBlocks.refinedIron){
 			tileRefIngot = (TileMyIronIngot) world.getTileEntity(x, y, z);
 		}
@@ -85,6 +85,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 			tilePlate = (TileIronPlate) world.getTileEntity(x, y, z);
 		}
 		if((blockSub == ModBlocks.forgeAnvil)&&(p.isSwingInProgress == false)){
+			
 			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
 			if((block instanceof IngotBase)&&(block==ModBlocks.refinedIron)){
 				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
@@ -123,6 +124,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 				//IRON FORMS
 				if(tileEnt.getStackInSlot(0)!=null){
 					if((tileEnt.getStackInSlot(0).getItem() instanceof IronForms)&&(tile.hot==true)){
+						System.out.println("working");
 						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 						Main.sNet.sendToAll(new MsgPacket(true));
 						Main.sNet.sendToAll(new MsgPacketLocX(x));
@@ -269,6 +271,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 		Block block = world.getBlock(x, y, z);
 		Block anvil = world.getBlock(x, y-1, z);
 		if(!world.isRemote){
+			System.out.println("Item Use");
 			onClick(block, anvil, world, x, y, z, player, stack, world.rand);	
 		}
 		return true;

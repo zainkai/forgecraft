@@ -42,15 +42,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Firebox extends BlockContainer{
 
 	private final Random random = new Random();
-	/*
-	 * 
-	 * 
-	 * [Chimney]
-	 * [ Forge ]
-	 * [Firebox]
-	 * 
-	 * 
-	 * */
+
 	public Firebox(String unlocalizedName, Material material) {
 		super(material.rock);
 		this.setBlockName(unlocalizedName);

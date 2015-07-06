@@ -174,9 +174,9 @@ public final class ModCrafting {
 				{"ccc", "bbb", "bbb",
 			'c', Blocks.crafting_table,
 			'b', Blocks.brick_block});
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.testForge), new Object []
-				{"xxx", "x x", "xxx",
-			'x', Blocks.stonebrick});
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.forge), new Object []
+				{"xax", "xsx", "xxx",
+			'x', Blocks.stonebrick, 'a', Blocks.stone_slab, 's', ModBlocks.firebox});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.solidFilter), new Object[]
 				{"xyx", "y y", "xyx", 
 			'x', ModItems.splitBoard, 

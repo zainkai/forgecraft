@@ -136,14 +136,14 @@ public class TileEntityTestForge extends TileEntity implements IInventory {
 		}
 		return TestForgeCrafting.blockToCheck.get(type);
 	}
-	private int getCookTime(int a){
+	/*private int getCookTime(int a){
 		for(int i = 0; i < TestForgeCrafting.cookTable.size(); i++){
 			if(a == TestForgeCrafting.cookTable.get(i)){
 				cookKey = i;
 			}
 		}
 		return TestForgeCrafting.cookTable.get(cookKey);
-	}
+	}*/
 
 	private void cook(World world, int x, int y, int z){
 		Block isAir = world.getBlock(x, y+2, z);

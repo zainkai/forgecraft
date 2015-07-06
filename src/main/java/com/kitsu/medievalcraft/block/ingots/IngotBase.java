@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.kitsu.medievalcraft.Main;
+import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.util.CustomTab;
 
 import cpw.mods.fml.relauncher.Side;
@@ -22,7 +23,7 @@ public abstract class IngotBase extends BlockContainer {
 	private final Random random = new Random();
 	public static boolean makeParts;
 	public static int locX, locY, locZ;
-	
+
 	public IngotBase(String unlocalizedName, Material material) {
 		super(material);
 		this.setBlockName(unlocalizedName);
@@ -35,9 +36,9 @@ public abstract class IngotBase extends BlockContainer {
 		//xmin, ymin, zmin, 
 		//xmax, ymax, zmax
 		this.setBlockBounds(0.25F, 0.0F,  0.35F, 
-							0.75F , 0.15F, 0.7F);
+				0.75F , 0.15F, 0.7F);
 	}
-	
+
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune) {
 		return Item.getItemFromBlock(this);
@@ -46,13 +47,13 @@ public abstract class IngotBase extends BlockContainer {
 	public TileEntity createNewTileEntity(World world, int i) {
 		return null;
 	}
-	
+
 	@Override
-    public int quantityDropped(Random p_149745_1_)
-    {
-        return 1;
-    }
-	
+	public int quantityDropped(Random p_149745_1_)
+	{
+		return 1;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
@@ -63,27 +64,31 @@ public abstract class IngotBase extends BlockContainer {
 			makeParts = false;
 		}
 	}
-	
+
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_){
-		int a = player.inventory.currentItem;
-		if(player.inventory.getStackInSlot(a)!=null){
-			if(player.inventory.getStackInSlot(a).getItem()==Item.getItemFromBlock(this)){
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int aa, float bb, float cc, float ff){
+		if(player.inventory.getCurrentItem().getItem()!=ModItems.forgeHammer){
+			int a = player.inventory.currentItem;
+			if(player.inventory.getStackInSlot(a)!=null){
+				if(player.inventory.getStackInSlot(a).getItem()==Item.getItemFromBlock(this)){
+					ItemStack jar = new ItemStack(this);
+					player.inventory.addItemStackToInventory(jar);
+					if(!world.isRemote){
+						world.setBlock(x, y, z, Blocks.air, 0, 2);
+					}
+				}
+				return true;
+			}
+			if(player.inventory.getStackInSlot(a)==null){
 				ItemStack jar = new ItemStack(this);
-				player.inventory.addItemStackToInventory(jar);
+				player.inventory.setInventorySlotContents(a, jar);
 				if(!world.isRemote){
 					world.setBlock(x, y, z, Blocks.air, 0, 2);
 				}
+				return true;
 			}
 		}
-		if(player.inventory.getStackInSlot(a)==null){
-			ItemStack jar = new ItemStack(this);
-			player.inventory.setInventorySlotContents(a, jar);
-			if(!world.isRemote){
-				world.setBlock(x, y, z, Blocks.air, 0, 2);
-			}
-		}
-		return true;
+		return false;
 	}
 
 	private void parts(World world, int x, int y, int z){
@@ -97,7 +102,7 @@ public abstract class IngotBase extends BlockContainer {
 		world.spawnParticle("lava", x+0.5D, y+0.5D, z+0.5D, 0, 0, 0);
 		world.spawnParticle("lava", x+0.5D, y+0.5D, z+0.5D, 0, 0, 0);
 	}
-	
+
 	@Override
 	public int getRenderType() {
 		return 0;

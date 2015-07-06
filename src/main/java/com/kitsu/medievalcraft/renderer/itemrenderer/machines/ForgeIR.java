@@ -1,18 +1,20 @@
-package com.kitsu.medievalcraft.renderer.itemrenderer.crucibles;
+package com.kitsu.medievalcraft.renderer.itemrenderer.machines;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
-public class ItemRendererHICrucible implements IItemRenderer{
+public class ForgeIR implements IItemRenderer {
 	
-	public static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/CrucibleModel.obj");
-	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/HotCrucible.png");
+	public static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/SingleForge.obj");
+	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/SingleForge.png");
 	
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL_CRUCIBLE);
 	
@@ -69,14 +71,11 @@ public class ItemRendererHICrucible implements IItemRenderer{
 		case EQUIPPED: {
 			
 			GL11.glPushMatrix();
-			float scale = 0.45F;
+			float scale = 0.5F;
+			GL11.glRotatef(22F, 0.0F, 0.0F, 1.0F);
+			//GL11.glRotatef(0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(scale, scale, scale);
-			
-			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-			GL11.glRotatef(25F, 0.0F, 0.0F, 1.0F);
-			GL11.glRotatef(60F, 0.0F, 1.0F, 0.0F);
-
-			GL11.glTranslatef(0.2F, -2.9F, 2.1F);
+			GL11.glTranslatef(2.25F, -0.75F, 0.0F);
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
@@ -85,15 +84,12 @@ public class ItemRendererHICrucible implements IItemRenderer{
 		} break;
 		
 		case EQUIPPED_FIRST_PERSON: {
-			float f = 0.4F;
+			float f = 0.8F;
 			GL11.glPushMatrix();
 			GL11.glScalef(f, f, f);
-			
-			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-
-			GL11.glRotatef(-45F, 0.0F, 1.0F, 0.0F);
-
-			GL11.glTranslatef(1.5F, 0.0F, 0.0F);
+			GL11.glRotatef(-135F, 0.0F, 1.0F, 0.0F);
+			//GL11.glRotatef(-45F, 0.0F, 1.0F, 0.0F);
+			GL11.glTranslatef(1.0F, 0.5F, -0.4F);
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
@@ -108,11 +104,7 @@ public class ItemRendererHICrucible implements IItemRenderer{
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			float scale = 0.5F;
 			GL11.glScalef(scale, scale, scale);
-			
-			//GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
-			
-			GL11.glTranslatef(0.0F, -1.1F, 0.0F);
-		
+			GL11.glTranslatef(0.0F, 0.0F, 0.0F);
 			
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
@@ -124,11 +116,7 @@ public class ItemRendererHICrucible implements IItemRenderer{
 		case ENTITY: {
 			GL11.glPushMatrix();
 			//GL11.glScalef(1.75F, 1.75F, 1.75F);
-			
-			
-			
-
-			//GL11.glTranslatef(0.0F, 0.0F, 0.0F);
+			GL11.glTranslatef(0.0F, 0.5F, 0.0F);
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
