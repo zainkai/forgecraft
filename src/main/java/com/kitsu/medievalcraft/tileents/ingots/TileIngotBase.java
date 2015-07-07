@@ -12,21 +12,23 @@ import com.kitsu.medievalcraft.tileents.machine.TileEntityAnvilForge;
 import com.kitsu.medievalcraft.util.AnvilUtil;
 
 public class TileIngotBase extends TileEntity implements AnvilUtil{
-	
+
 	private String specName;
 	public int hits = 0;
+	protected int heatBase = 300;
 	public int coolTicks = 250;
-	public int heatTicks = 100;
+	public int heatTicks = 300;
+	protected int coolBase = 250;
 	public boolean hot;
 
 	public TileIngotBase(String name){
 		specName = name;
 	}
-	
+
 	public void markForUpdate(){
 		worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 	}
-	
+
 	@Override
 	public void updateEntity() {
 		World world = this.getWorldObj();
@@ -34,10 +36,11 @@ public class TileIngotBase extends TileEntity implements AnvilUtil{
 		int y = this.yCoord;
 		int z = this.zCoord;
 		if(!world.isRemote){
+			System.out.println(this.heatTicks);
 			if(this.heatTicks<=0){
 				world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 				this.hot=true;
-				this.heatTicks=100;
+				//this.heatTicks=100;
 			}
 			if(this.coolTicks<=0){
 				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
@@ -47,30 +50,33 @@ public class TileIngotBase extends TileEntity implements AnvilUtil{
 		}
 
 	}
-	
+
 	private void coolDown(World world, int x, int y, int z){
 		if(!world.isRemote){
-			if((world.getBlock(x, y-1, z)!=ModBlocks.forge)&&(this.hot==true)){
-				coolTicks--;
-				if(coolTicks <= 0){
-					this.hot=false;
-					this.coolTicks=100;
-					this.heatTicks=100;
-					this.markForUpdate();
-					this.markDirty();
+			if(this.hot==true){
+				if(world.getBlockMetadata(x, y-1, z)<8){
+					coolTicks--;
+					if(coolTicks <= 0){
+						world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+						this.hot=false;
+						this.coolTicks=coolBase;
+						this.heatTicks=heatBase;
+						this.markForUpdate();
+						this.markDirty();
+					}
 				}
 			}
 		}
 	}
-	
+
 	/*
 	private void makeItem(World world, int x, int y, int z){
 		if(this.hits==0 && this.hot==true && world.getBlock(x, y-1, z).equals(ModBlocks.forgeAnvil)){
 			TileEntityAnvilForge tile = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
 			if(tile.getStackInSlot(0)!=null){
-				
-				
-				
+
+
+
 				System.out.println(forms.get(tile.getStackInSlot(0).getItem().getUnlocalizedName()));
 				if(tile.getStackInSlot(0).equals(forms.get(tile.getStackInSlot(0).getItem().getUnlocalizedName()))){
 					System.out.println("Logic is Working");
@@ -78,8 +84,8 @@ public class TileIngotBase extends TileEntity implements AnvilUtil{
 			}
 		}
 	}
-	*/
-	
+	 */
+
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{

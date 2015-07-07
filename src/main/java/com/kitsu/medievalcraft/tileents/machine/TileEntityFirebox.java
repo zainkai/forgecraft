@@ -24,9 +24,9 @@ import net.minecraft.world.World;
 
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.block.crucible.CrucibleBase;
-import com.kitsu.medievalcraft.block.ingots.IngotBase;
 import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleBase;
-import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
+import com.kitsu.medievalcraft.tileents.crucible.empty.TileEntityFilledWaterCrucible;
+import com.kitsu.medievalcraft.tileents.crucible.empty.TileEntitySoftEmptyCrucible;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -212,25 +212,24 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 			fireboxFuelDec(world, x, y, z, this.getStackInSlot(0), this.ticks);
 			isFurnace(world, x, y, z);
 			isCrucible(world, x, y, z);
-			isIngot(world, x, y, z);
+			//isIngot(world, x, y, z);
 		}
 		if (worldObj.isRemote) return;
 	}
 	
 	private void fireboxMaint(World world, int x, int y, int z){
-		if(world.getBlock(x, y+1, z).equals(Blocks.air)||this.getStackInSlot(0)==null){
-			this.isOn = false;
-		}
-		if((this.getStackInSlot(0)==null)&&(world.getBlock(x, y+1, z).equals(Blocks.fire))){
+		if(world.getBlockMetadata(x, y, z)==0&&world.getBlock(x, y+1, z).equals(Blocks.fire)){
 			world.setBlock(x, y+1, z, Blocks.air, 0, 2);
-			this.isOn=false;
 		}
-		if(this.isOn==true && world.getBlock(x, y+1, z).equals(Blocks.air)){
+		if((this.getStackInSlot(0)==null)){
+			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+		}
+		if(world.getBlockMetadata(x, y, z)==1 && world.getBlock(x, y+1, z).equals(Blocks.air)){
 			world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
 		}
-		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
-			this.isOn = true;
-		}
+		/*if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
+			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+		}*/
 	}
 	private void fireboxFuelDec(World world, int x, int y, int z, ItemStack stack, int time){
 		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
@@ -332,7 +331,7 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 	public void isCrucible(World world, int x, int y, int z){
 		if(world.getBlock(x, y+1, z) instanceof CrucibleBase){
 			TileCrucibleBase tile = (TileCrucibleBase) world.getTileEntity(x, y+1, z);
-			if(tile.hot == false && tile.cooked == false && this.isOn == true){
+			if(tile.hot == false && tile.cooked == false && world.getBlockMetadata(x, y, z)==1){
 				tile.heatTicks--;
 				if(tile.heatTicks<=0){
 					tile.hot=true;
@@ -341,20 +340,26 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 				}
 			}
 		}
-	}
-	public void isIngot(World world, int x, int y, int z){
-		if(world.getBlock(x, y+1, z) instanceof IngotBase){
-			TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y+1, z);
-			if(tile.hot == false && this.isOn == true){
-				tile.heatTicks--;
-				if(tile.heatTicks<=0){
-					tile.hot=true;
-					tile.markForUpdate();
-					tile.markDirty();
+		if(world.getBlock(x, y+1, z).equals(ModBlocks.emptySoftCrucible)){
+			TileEntitySoftEmptyCrucible tile = (TileEntitySoftEmptyCrucible) world.getTileEntity(x, y+1, z);
+			if(world.getBlockMetadata(x, y, z)==1){
+				tile.cookTime--;
+				if(tile.cookTime<=0){
+					world.setBlock(x, y+1, z, tile.cookBlock, 0, 2);
+				}
+			}
+		}
+		if(world.getBlock(x, y+1, z).equals(ModBlocks.filledWaterCrucible)){
+			TileEntityFilledWaterCrucible tile = (TileEntityFilledWaterCrucible) world.getTileEntity(x, y+1, z);
+			if(world.getBlockMetadata(x, y, z)==1){
+				tile.cookTime--;
+				if(tile.cookTime<=0){
+					world.setBlock(x, y+1, z, tile.cookBlock, 0, 2);
 				}
 			}
 		}
 	}
+
 
 }
 

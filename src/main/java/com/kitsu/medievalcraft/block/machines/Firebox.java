@@ -79,7 +79,7 @@ public class Firebox extends BlockContainer{
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
-		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
+		if(world.getBlockMetadata(x, y, z)==1){
 			int l;
 			float f;
 			float f1;
@@ -87,7 +87,7 @@ public class Firebox extends BlockContainer{
 			for (l = 0; l < 3; ++l)
 			{
 				f = (float)(x+0.25) + (rand.nextFloat()/2);
-				f1 = (float)y + rand.nextFloat() * 0.4F + 0.2F;
+				f1 = (float)y+0.3f + rand.nextFloat() * 0.4F;
 				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
 				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
 				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
@@ -100,21 +100,17 @@ public class Firebox extends BlockContainer{
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int q, float a, float b, float c) {
 
 		TileEntityFirebox tileEnt = (TileEntityFirebox) world.getTileEntity(x, y, z);
-
-		//System.out.println("");
 		if(!world.isRemote){
-
 			if(player.inventory.getCurrentItem()!=null){
 				if((player.inventory.getCurrentItem().getItem()==Item.getItemFromBlock(Blocks.torch))||
 						(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
-					tileEnt.isOn=true;
+					world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+					player.inventory.getCurrentItem().damageItem(1, player);
 					if(world.getBlock(x, y, z).equals(Blocks.air)){
 						world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
 					}
-
-					System.out.println(tileEnt.isOn);
 				}
 			}
 			if(player.inventory.getCurrentItem()!=null){
@@ -156,30 +152,18 @@ public class Firebox extends BlockContainer{
 				}
 				return true;
 			}
-
-			//tileEnt.markDirty();
-
 		}
-
 		tileEnt.markForUpdate();
 		tileEnt.markDirty();
-		//System.out.println(player.inventory.getCurrentItem());
 		return true;
 	}
 
-	/*public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack p_149689_6_) {
+		world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 
-		if(!world.isRemote){
-			if(player.inventory.getCurrentItem()!= null){
-				if(player.inventory.getCurrentItem().equals(ModItems.fireBow)||player.inventory.getCurrentItem().equals(Items.flint_and_steel)){
-					TileEntityFirebox tileEnt = (TileEntityFirebox) world.getTileEntity(x, y, z);
-					tileEnt.isOn = true;
-
-				}
-			}
-		}
-
-	}*/
+		world.markBlockForUpdate(x, y, z);
+	}
 
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		TileEntityFirebox tileEnt = (TileEntityFirebox) world.getTileEntity(x, y, z);

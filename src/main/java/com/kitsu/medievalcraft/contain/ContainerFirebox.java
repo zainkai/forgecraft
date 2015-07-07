@@ -11,74 +11,51 @@ import com.kitsu.medievalcraft.tileents.machine.TileEntityFirebox;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityShelfFour;
 
 public class ContainerFirebox extends Container {
-	
+
 	protected TileEntityFirebox tileEnt;
 
-    @Override
-    public boolean canInteractWith(EntityPlayer player) {
-            return tileEnt.isUseableByPlayer(player);
-    }
-    
-    public ContainerFirebox (InventoryPlayer inventoryPlayer, TileEntityFirebox te){
-        tileEnt = te;
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return tileEnt.isUseableByPlayer(player);
+	}
 
-        //the Slot constructor takes the IInventory and the slot number in that it binds to
-        //and the x-y coordinates it resides on-screen
-       /* for (int i = 0; i < 2; i++) {
-                for (int j = 0; j < 2; j++) {
-                        addSlotToContainer(new Slot(tileEnt, j + i * 3, 62 + j * 18, 17 + i * 18));
-               }
-        }*/
-       addSlotToContainer(new Slot(tileEnt, 0, 80, 34));
+	public ContainerFirebox (InventoryPlayer inventoryPlayer, TileEntityFirebox te){
+		tileEnt = te;
+		addSlotToContainer(new Slot(tileEnt, 0, 80, 34));
+		bindPlayerInventory(inventoryPlayer);
+	}
+	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 9; j++) {
+				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9,
+						8 + j * 18, 84 + i * 18));
+			}
+		}
+		for (int i = 0; i < 9; i++) {
+			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+		}
+	}
 
-        //commonly used vanilla code that adds the player's inventory
-        bindPlayerInventory(inventoryPlayer);
-    }
-
-    protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
-        for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 9; j++) {
-                        addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9,
-                                        8 + j * 18, 84 + i * 18));
-                }
-        }
-
-        for (int i = 0; i < 9; i++) {
-                addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
-        }
-    }
-    
-    @Override
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-
-		//null checks and checks if the item can be stacked (maxStackSize > 1)
 		if (slotObject != null && slotObject.getHasStack()) {
 			ItemStack stackInSlot = slotObject.getStack();
 			stack = stackInSlot.copy();
-
-			//merges the item into player inventory since its in the tileEntity
 			if (slot < 9) {
 				if (!this.mergeItemStack(stackInSlot, 9, this.inventorySlots.size(), true)) {
 					return null;
 				}
 			}
-			//places it into the tileEntity is possible since its in the player inventory
 			else if (!this.mergeItemStack(stackInSlot, 0, 9, false)) {
 				return null;
 			}
-
 			if (stackInSlot.stackSize == 0) {
 				slotObject.putStack((ItemStack)null);
 			} else {
 				slotObject.onSlotChanged();
 			}
-
-			/*if (stackInSlot.stackSize == stack.stackSize) {
-				return null;
-			}*/
-			//slotObject.onPickupFromSlot(player, stackInSlot);
 		}
 		return stack;
 	}

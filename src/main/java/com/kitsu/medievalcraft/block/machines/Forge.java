@@ -27,18 +27,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.item.ModItems;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketBurning;
 import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForge;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeX;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeY;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeZ;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketOn;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.tileents.machine.TileForge;
 import com.kitsu.medievalcraft.util.CustomTab;
 import com.kitsu.medievalcraft.util.TileForgePlaceables;
 
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -46,8 +40,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Forge extends BlockContainer implements TileForgePlaceables{
 
 	private final Random random = new Random();
-	public static int sideMeta, locX, locY, locZ;
-	public static boolean furnaceParts, coalParts;
+	public static int sideMeta;
 	private int c;
 
 	public Forge(String unlocalizedName, Material material) {
@@ -142,7 +135,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 		}
 		l=l-2;
 		world.setBlockMetadataWithNotify(x, y, z, l, 2);
-		System.out.println(l);
+		//System.out.println(l);
 		world.markBlockForUpdate(x, y, z);
 	}
 
@@ -162,7 +155,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 			c = (int)mop.sideHit;
 			Main.sNet.sendToServer(new MsgPacketForge((int) c));
 		}
-		System.out.println(sideMeta + " " + world.getBlockMetadata(x, y, z));
+
 		if(!world.isRemote){
 			if(player.inventory.getCurrentItem()!=null){
 				if((player.inventory.getCurrentItem().getItem()==Item.getItemFromBlock(Blocks.torch))||
@@ -221,10 +214,9 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 					return true;
 				}
 			}
-			if(sideMeta-2 == world.getBlockMetadata(x, y, z)||sideMeta == world.getBlockMetadata(x, y, z)-4||sideMeta == world.getBlockMetadata(x, y, z)-8){
+			if(sideMeta!=1){
 				if(player.inventory.getCurrentItem()!=null){
 					if(tileEnt.getStackInSlot(0)==null){
-						System.out.println();
 						if(isItemFuel(player.inventory.getCurrentItem())==true){
 							tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
 							player.inventory.setInventorySlotContents(player.inventory.currentItem, null);

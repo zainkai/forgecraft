@@ -74,9 +74,11 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 			GL11.glPushMatrix();
 			this.entItem.hoverStart = 0.0F;
 			RenderItem.renderInFrame = true;
+			
 			GL11.glScalef(1.0f, 1.0f, 1.0f);
 			//GL11.glRotatef(10, 0, 1, 0);
 			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.55D, 0.25D, 0.5D, 0.0F, 0.0F);
+			
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
 			tileEntity.markForUpdate();

@@ -23,10 +23,8 @@ public class TileEntityBoilingWaterCrucible extends TileEntity {
 		this.boilingWaterCrucibleName = string;
 	}
 	private void heat(World world, int x, int y, int z){
-		Block ironbar = this.worldObj.getBlock(x, y - 1, z);
-		Block fire = this.worldObj.getBlock(x, y-2, z);
 		if(!world.isRemote){
-			if((ironbar == Blocks.iron_bars) && (fire == Blocks.fire)){
+			if(world.getBlock(x, y-1, z).equals(ModBlocks.firebox)&&world.getBlockMetadata(x, y-1, z)==1){
 				cticks = 0;
 				if((dotan==true)){
 					bticks++;
@@ -49,16 +47,14 @@ public class TileEntityBoilingWaterCrucible extends TileEntity {
 		Block fire = this.worldObj.getBlock(x, y-2, z);
 		Block ironbar = this.worldObj.getBlock(x, y - 1, z);
 		if(!world.isRemote){
-			if((fire != Blocks.fire)&&(ironbar == Blocks.iron_bars)){
+			if(world.getBlock(x, y-1, z)!=(ModBlocks.firebox)||world.getBlock(x, y-1, z)!=(Blocks.fire)){
 				cticks++;
-				//System.out.println(tagCompound.getInteger("CTICKS"));
 				if(cticks >= 500 + world.rand.nextInt(50)){
 					world.setBlock(x, y, z, ModBlocks.filledWaterCrucible, 0, 2);
 				}
 			}
-			if((fire != Blocks.fire)&&(ironbar != Blocks.iron_bars)){
+			if(world.getBlock(x, y-1, z)==(ModBlocks.firebox)&&world.getBlockMetadata(x, y, z)==0){
 				cticks++;
-				//System.out.println(tagCompound.getInteger("CTICKS"));
 				if(cticks >= 500 + world.rand.nextInt(50)){
 					world.setBlock(x, y, z, ModBlocks.filledWaterCrucible, 0, 2);
 				}

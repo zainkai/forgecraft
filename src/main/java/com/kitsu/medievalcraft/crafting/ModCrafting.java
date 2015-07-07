@@ -184,7 +184,6 @@ public final class ModCrafting {
 			'x', ModBlocks.ironPlate, 
 			'i', Blocks.iron_bars,
 			'y', ModItems.charcoalFilter});
-		
 		GameRegistry.addRecipe(new ItemStack(ModItems.itemSmallBarrelLid), new Object[]
 				{"ixi", "xxx", "ixi", 
 			'x', ModItems.halfSplitBoard, 
@@ -196,7 +195,6 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.firebox), new Object[]
 				{"x x", "x x", "xxx",  
 			'x', Items.brick});
-
 
 		//-----------------------LEATHER STUFF-----------------------//
 
@@ -218,26 +216,42 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(longbow0, new Object[]{"ya", 'y', ModItems.unstrungLongbow, 'a', Items.string});
 
 		//-----------------------CRUCIBLE STUFF-----------------------//
-		/*//GameRegistry.addRecipe(new ItemStack(ModItems.crucibleLid), new Object[]{"x", "y", 'x', Items.clay_ball, 'y', Blocks.stone_slab});
+		//GameRegistry.addRecipe(new ItemStack(ModItems.crucibleLid), new Object[]{"x", "y", 'x', Items.clay_ball, 'y', Blocks.stone_slab});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.emptySoftCrucible), new Object[]{"y y", "y y", "yyy", 'y', Items.clay_ball});
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.filledCrucibleIron), new Object[]{" x ", "abc", " y ", 'x', Blocks.stone_slab, 'y', ModBlocks.emptyCookedCrucible, 
-			'a', Blocks.sand, 'b', Blocks.iron_ore, 'c', new ItemStack(Items.coal,0,1)});		
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.filledCrucibleIronIngot), new Object[]{" x ", "abc", " y ", 'x', Blocks.stone_slab, 'y', ModBlocks.emptyCookedCrucible, 
-			'a', Blocks.sand, 'b', Items.iron_ingot, 'c', new ItemStack(Items.coal,0,1)});	
 		GameRegistry.addRecipe(new ItemStack(ModItems.charcoalLeafPellet), new Object[]{"xxx", "xyx", "xxx", 'x', new ItemStack(Blocks.leaves,0,3), 'y', new ItemStack(Items.coal,0,1)});
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.filledCrucibleDamascus), new Object[]{" x ", "abc", " y ", 'x', Blocks.stone_slab, 'y', ModBlocks.emptyCookedCrucible, 
-			'a', Blocks.sand, 'b', ModBlocks.wootzOre, 'c', ModItems.charcoalLeafPellet});	
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.filledLapisCrucible),
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleIronOre), 
+				new Object[]{" x ", "abc", " y ",
+			'x', Blocks.stone_slab,
+			'y', ModBlocks.emptyCookedCrucible, 
+			'a', Blocks.sand, 
+			'b', Blocks.iron_ore, 
+			'c', new ItemStack(Items.coal,0,1)});		
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleIronIngot), 
+				new Object[]{" x ", "abc"," y ",
+			'x', Blocks.stone_slab,
+			'y', ModBlocks.emptyCookedCrucible, 
+			'a', Blocks.sand,
+			'b', Items.iron_ingot,
+			'c', new ItemStack(Items.coal,0,1)});	
+		
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleWootz), 
+				new Object[]{" x ", "abc", " y ",
+			'x', Blocks.stone_slab,
+			'y', ModBlocks.emptyCookedCrucible, 
+			'a', Blocks.sand,
+			'b', ModBlocks.wootzOre,
+			'c', ModItems.charcoalLeafPellet});	
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleLapis),
 				new Object[]{" x ", "abb", " y ", 
 			'x', Blocks.stone_slab, 
 			'a', Blocks.sand, 'b', Blocks.lapis_block,
 			'y', ModBlocks.emptyCookedCrucible});	
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.filledRedstoneCrucible),
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleRedstone),
 				new Object[]{" x ", "abb", " y ", 
 			'x', Blocks.stone_slab, 
 			'a', Blocks.sand, 'b', Blocks.redstone_block,
 			'y', ModBlocks.emptyCookedCrucible});	
-*/
+
 		//-----------------------WEAPONS-----------------------//
 		GameRegistry.addRecipe(new ShapedOreRecipe((ModItems.longSword), new Object[]{"b", "a", Character.valueOf('a'), "strapLeather", 'b', ModItems.ironlongswordBlade}));
 		GameRegistry.addRecipe(new ShapedOreRecipe((ModItems.heavyMace), new Object[]{" a ", "aba", " c ", 'a', ModItems.ironsharpTip, 'b', ModItems.ironmaceHead, 'c', ModItems.ironweaponHandle}));

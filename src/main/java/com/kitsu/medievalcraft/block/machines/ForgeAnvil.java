@@ -23,11 +23,10 @@ import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityAnvilForge;
 import com.kitsu.medievalcraft.util.CustomTab;
 
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ForgeAnvil extends BlockContainer {
+public class ForgeAnvil extends BlockContainer{
 
 	private final Random random = new Random();
 
@@ -69,7 +68,56 @@ public class ForgeAnvil extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z,EntityPlayer player, int metadata, float what, float these, float are) {
-		FMLNetworkHandler.openGui(player, Main.instance, 2, world, x, y, z);
+		TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y, z);
+		if(!world.isRemote){
+
+			if(player.inventory.getCurrentItem()!=null){
+				if (tileEnt.getStackInSlot(0)==null){
+					tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
+					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+					tileEnt.markForUpdate();
+				}
+				if (tileEnt.getStackInSlot(0)!=null){
+					if(player.inventory.getCurrentItem()!=null){
+						ItemStack pStack = player.inventory.getCurrentItem().copy();
+						ItemStack sStack = tileEnt.getStackInSlot(0).copy();
+						ItemStack sStackTemp = tileEnt.getStackInSlot(0).copy();
+						if(tileEnt.getStackInSlot(0).stackSize < 64){
+							sStackTemp.stackSize++;
+							if ((sStack.getItem().equals(pStack.getItem())) && (sStack.getItemDamage() == pStack.getItemDamage())  ){
+								tileEnt.setInventorySlotContents(0, sStackTemp);
+								player.inventory.decrStackSize(player.inventory.currentItem, 1);
+							}
+						}
+					}
+				}
+				tileEnt.markForUpdate();
+				return true;
+			}
+			if (player.isSneaking() && player.inventory.getCurrentItem()==null) {
+				if(tileEnt.getStackInSlot(0)!=null){
+					player.inventory.setInventorySlotContents(player.inventory.currentItem, tileEnt.getStackInSlot(0));
+					tileEnt.setInventorySlotContents(0, null);
+				}
+				tileEnt.markForUpdate();
+				return true;
+			}
+			if (!player.isSneaking()){
+				if((player.inventory.getCurrentItem()==null)){
+					if(tileEnt.getStackInSlot(0)!=null){
+						ItemStack pStack = tileEnt.getStackInSlot(0).copy();
+						pStack.stackSize = 1;
+						world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, pStack));
+						tileEnt.setInventorySlotContents(0, null);
+						tileEnt.markForUpdate();
+					}
+				}
+				tileEnt.markForUpdate();
+				return true;
+			}
+		}
+		tileEnt.markForUpdate();
+		tileEnt.markDirty();
 		return true;
 	}
 
@@ -79,13 +127,6 @@ public class ForgeAnvil extends BlockContainer {
 
 	public Item getItem(World world, int par2, int par3, int par4) {
 		return Item.getItemFromBlock(ModBlocks.forgeAnvil);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(World world, int x, int y, int z, Random random)
-	{
-		super.randomDisplayTick(world, x, y, z, random);
 	}
 
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
@@ -122,7 +163,6 @@ public class ForgeAnvil extends BlockContainer {
 					}
 				}
 			}
-			world.func_147453_f(x, y, z, block);
 		}
 
 		super.breakBlock(world, x, y, z, block, meta);
@@ -149,6 +189,8 @@ public class ForgeAnvil extends BlockContainer {
     	world.setBlockMetadataWithNotify(x, y, z, dir, 0);
     	//System.out.println(dir);
     }
+
+	
 
 }
 

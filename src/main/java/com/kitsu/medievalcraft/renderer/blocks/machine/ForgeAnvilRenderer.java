@@ -33,6 +33,11 @@ public class ForgeAnvilRenderer extends TileEntitySpecialRenderer {
 		TileEntityAnvilForge tileEntity = (TileEntityAnvilForge)tile;
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x, (float) y, (float) z);
+		
+		if(tileEntity.getStackInSlot(0)==null){
+			entItem=null;
+		}
+		
 		if(tileEntity.getStackInSlot(0)!=null){
 			entItem = new EntityItem(tileEntity.getWorldObj(), x, y, z, tileEntity.getStackInSlot(0));
 			GL11.glPushMatrix();
@@ -43,8 +48,12 @@ public class ForgeAnvilRenderer extends TileEntitySpecialRenderer {
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
 			tileEntity.markForUpdate();
+			tileEntity.markDirty();
 		}
+		
 		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forgeAnvil);
+		tileEntity.markForUpdate();
+		tileEntity.markDirty();
 		GL11.glPopMatrix();
 	}
 

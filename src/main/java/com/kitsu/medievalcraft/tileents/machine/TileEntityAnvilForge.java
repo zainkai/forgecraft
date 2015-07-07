@@ -1,50 +1,102 @@
 package com.kitsu.medievalcraft.tileents.machine;
 
+import com.kitsu.medievalcraft.block.ModBlocks;
+import com.kitsu.medievalcraft.block.crucible.CrucibleBase;
+import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleBase;
+import com.kitsu.medievalcraft.tileents.crucible.empty.TileEntityFilledWaterCrucible;
+import com.kitsu.medievalcraft.tileents.crucible.empty.TileEntitySoftEmptyCrucible;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFurnace;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.world.World;
 
-public class TileEntityAnvilForge extends TileEntity implements IInventory {
+public class TileEntityAnvilForge extends TileEntity implements IInventory{
 
-	private String forgeAnvilName;
-	public ItemStack[] inv;
-	NBTTagCompound tag = new NBTTagCompound();
+	private String anvilName;
+	private ItemStack[] inv;
+	private NBTTagCompound tag = new NBTTagCompound();
+	private int ticks;
+	public boolean isOn;
 
 	public TileEntityAnvilForge(){
-		inv = new ItemStack[1];
-	}
-
-	public void forgeName(String string){
-		this.forgeAnvilName = string;
+		this.inv = new ItemStack[1];
 	}
 
 	@Override
 	public int getSizeInventory() {
-		return inv.length;
+		return this.inv.length;
 	}
-
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-		return inv[slot];
+		return this.inv[slot];
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int p_70304_1_)
+	public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_)
 	{
-		if (this.inv[p_70304_1_] != null)
+		if (this.inv[p_70298_1_] != null)
 		{
-			ItemStack itemstack = this.inv[p_70304_1_];
-			this.inv[p_70304_1_] = null;
+			ItemStack itemstack;
+
+			if (this.inv[p_70298_1_].stackSize <= p_70298_2_)
+			{
+				itemstack = this.inv[p_70298_1_];
+				this.inv[p_70298_1_] = null;
+				this.markForUpdate();
+				this.markDirty();
+				return itemstack;
+			}
+			itemstack = this.inv[p_70298_1_].splitStack(p_70298_2_);
+
+			if (this.inv[p_70298_1_].stackSize == 0)
+			{
+				this.inv[p_70298_1_] = null;
+			}
+			this.markForUpdate();
+			this.markDirty();
 			return itemstack;
 		}
 		this.markForUpdate();
+		this.markDirty();
 		return null;
+	}
+
+	@Override
+	public ItemStack getStackInSlotOnClosing(int i)
+	{
+		if (this.inv[i] != null)
+		{
+			ItemStack itemstack = this.inv[i];
+			this.inv[i] = null;
+			this.markForUpdate();
+			this.markDirty();
+			return itemstack;
+		}
+		else
+		{
+			this.markForUpdate();
+			this.markDirty();
+			return null;
+		}
 	}
 
 	@Override
@@ -62,44 +114,54 @@ public class TileEntityAnvilForge extends TileEntity implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.forgeAnvilName : "Forge";
+		return this.hasCustomInventoryName() ? this.anvilName : "anvilName";
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return this.forgeAnvilName != null && this.forgeAnvilName.length() > 0;
+		return this.anvilName != null && this.anvilName.length() > 0;
 	}
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 1;
+		return 64;
 	}
-	
+
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int par1, ItemStack itemstack) {
+	public void openInventory() {}
+	@Override
+	public void closeInventory() {}
 
+	@Override
+	public boolean isItemValidForSlot(int par1, ItemStack itemstack) {
 		return false;
 	}
+
+	public void markForUpdate(){
+		worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound) {
 		super.readFromNBT(tagCompound);
-
 		NBTTagList tagList = tagCompound.getTagList("Inventory", 10);
+		this.inv = new ItemStack[this.getSizeInventory()];
 		for (int i = 0; i < tagList.tagCount(); i++) {
 			NBTTagCompound tag = tagList.getCompoundTagAt(i);
 			byte slot = tag.getByte("Slot");
-			if (slot >= 0 && slot < inv.length) {
-				inv[slot] = ItemStack.loadItemStackFromNBT(tag);
+			if (slot >= 0 && slot < this.inv.length) {
+				this.inv[slot] = ItemStack.loadItemStackFromNBT(tag);
 			}
 		}
 		if (tagCompound.hasKey("CustomName", 8)) {
-			this.forgeAnvilName = tagCompound.getString("CustomName");
+			this.anvilName = tagCompound.getString("CustomName");
 		}
+
 	}
 
 	@Override
@@ -108,59 +170,22 @@ public class TileEntityAnvilForge extends TileEntity implements IInventory {
 
 		NBTTagList itemList = new NBTTagList();
 		for (int i = 0; i < inv.length; i++) {
-			ItemStack stack = inv[i];
-			if (stack != null) {
+			//ItemStack stack = inv[i];
+			if (inv[i] != null) {
 				NBTTagCompound tag = new NBTTagCompound();
 				tag.setByte("Slot", (byte) i);
-				stack.writeToNBT(tag);
+				this.inv[i].writeToNBT(tag);
 				itemList.appendTag(tag);
 			}
 		}
 		tagCompound.setTag("Inventory", itemList);
+
 	}
-
-	@Override
-	public void openInventory() {}
-
-	@Override
-	public void closeInventory() {}
-
-	  /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
-     */
-	
-	@Override
-	public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_)
-	{
-		if (this.inv[p_70298_1_] != null)
-		{
-			ItemStack itemstack;
-
-			if (this.inv[p_70298_1_].stackSize <= p_70298_2_)
-			{
-				itemstack = this.inv[p_70298_1_];
-				this.inv[p_70298_1_] = null;
-				return itemstack;
-			}
-			itemstack = this.inv[p_70298_1_].splitStack(p_70298_2_);
-
-			if (this.inv[p_70298_1_].stackSize == 0)
-			{
-				this.inv[p_70298_1_] = null;
-			}
-			this.markForUpdate();
-			return itemstack;
-		}
-		this.markForUpdate();
-		return null;
-	}
-	
 	@Override
 	public Packet getDescriptionPacket() {
 		NBTTagCompound tag = new NBTTagCompound();
-		writeToNBT(tag);
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, -998, tag);
+		this.writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 998, tag);
 	}
 
 	@Override
@@ -168,11 +193,25 @@ public class TileEntityAnvilForge extends TileEntity implements IInventory {
 		readFromNBT(pkt.func_148857_g());
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
-	public void markForUpdate(){
-		worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+
+	@Override
+	public void updateEntity() {
+
+		World world = getWorldObj();
+		int x = this.xCoord;
+		int y = this.yCoord;
+		int z = this.zCoord;
+		if(!world.isRemote){
+
+		}
+		if (worldObj.isRemote) return;
 	}
 
+
+
+
 }
+
 
 
 

@@ -45,8 +45,9 @@ public class FireboxRenderer extends TileEntitySpecialRenderer {
 				this.entItem.hoverStart = 0.0F;
 				RenderItem.renderInFrame = true;
 				GL11.glScalef(1.0f, 1.0f, 1.0f);
-				//GL11.glRotatef(90, 0, 1, 0);
 				RenderManager.instance.renderEntityWithPosYaw(entItem, 0.5D, 0.3D, 0.5D, 0.0F, 0.0F);
+				GL11.glRotatef(90, 0, 1, 0);
+				RenderManager.instance.renderEntityWithPosYaw(entItem, -0.5D, 0.3D, 0.5D, 0.0F, 0.0F);
 				RenderItem.renderInFrame = false;
 				GL11.glPopMatrix();
 			}
@@ -60,10 +61,6 @@ public class FireboxRenderer extends TileEntitySpecialRenderer {
 
 	@SuppressWarnings({ "cast"})
 	public void renderBlock(TileEntityFirebox tl, World world, int i, int j,int k, Block block) {
-		Tessellator tessellator = Tessellator.instance;
-		// This will make your block brightness dependent from surroundings
-		// lighting.
-
 		int dir = world.getBlockMetadata(i, j, k);
 
 		GL11.glPushMatrix();

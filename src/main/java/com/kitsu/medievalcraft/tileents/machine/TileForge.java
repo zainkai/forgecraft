@@ -22,13 +22,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.block.ingots.IngotBase;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketBurning;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeX;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeY;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeZ;
-import com.kitsu.medievalcraft.packethandle.forge.MsgPacketOn;
 import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -221,6 +215,7 @@ public class TileForge extends TileEntity implements IInventory{
 			heatIngot(world, x, y, z);
 			fireboxFuelDec(world, x, y, z,this.getStackInSlot(0), this.ticks);
 			fireboxFuelDec2(world, x, y, z,this.getStackInSlot(1), this.ticks);
+			//System.out.println(world.getBlockMetadata(x, y, z));
 		}
 
 		if (worldObj.isRemote) return;
@@ -230,7 +225,7 @@ public class TileForge extends TileEntity implements IInventory{
 		if(!world.isRemote){
 			if(world.getBlock(x, y+1, z) instanceof IngotBase){
 				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y+1, z);
-				if(this.isOn==true){
+				if(world.getBlockMetadata(x, y, z)>7){
 					if(tile.hot==false){
 						tile.heatTicks--;
 					}
@@ -240,7 +235,7 @@ public class TileForge extends TileEntity implements IInventory{
 	}
 
 	private void fireboxFuelDec(World world, int x, int y, int z, ItemStack stack, int time){
-		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
+		if(world.getBlockMetadata(x, y, z)>3){
 			if(stack!=null){
 				if(isItemFuel(stack)==true){
 					this.ticks++;
@@ -258,7 +253,7 @@ public class TileForge extends TileEntity implements IInventory{
 
 
 	private void fireboxFuelDec2(World world, int x, int y, int z, ItemStack stack, int time){
-		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
+		if(world.getBlockMetadata(x, y, z)>7){
 			if(stack!=null){
 				if(isItemFuel(stack)==true){
 					this.ticks++;
@@ -335,7 +330,7 @@ public class TileForge extends TileEntity implements IInventory{
 	{
 		return getItemBurnTime(stack) > 0;
 	}
-	
+
 	//Main.sNet.sendToAll(new MsgPacketOn(tileEnt.isBurning));
 	//Main.sNet.sendToAll(new MsgPacketForgeX(tileEnt.xCoord));
 	//Main.sNet.sendToAll(new MsgPacketForgeY(tileEnt.yCoord));
@@ -351,6 +346,11 @@ public class TileForge extends TileEntity implements IInventory{
 		if(this.getStackInSlot(1)==null){
 			if(world.getBlockMetadata(x, y, z)>=8){
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 2);
+			}
+		}
+		if(world.getBlockMetadata(x, y, z)>3&&world.getBlockMetadata(x, y, z)<8){
+			if(this.getStackInSlot(1)!=null){
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 2);
 			}
 		}
 	}
