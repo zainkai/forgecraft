@@ -38,6 +38,7 @@ import com.kitsu.medievalcraft.tileents.machine.TileForge;
 import com.kitsu.medievalcraft.util.CustomTab;
 import com.kitsu.medievalcraft.util.TileForgePlaceables;
 
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -76,44 +77,45 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
-		if(this.furnaceParts==true){
-			world.spawnParticle("fire", (double)locX, (double)locY+1f, (double)locZ, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("flame", (double)locX, (double)locY+1f, (double)locZ, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("smoke", (double)locX, (double)locY+1f, (double)locZ, 0.0D, 0.0D, 0.0D);
-		}
-		//if(x==locX&&y==locY&&z==locZ){
-			/*if(this.furnaceParts == true){
-				int l;
-				float f;
-				float f1;
-				float f2;
-				for (l = 0; l < 3; ++l)
-				{
-					f = (float)(locX+0.25) + (rand.nextFloat()/2);
-					f1 = (float)locY + rand.nextFloat() * 0.4F + 0.3F;
-					f2 = (float)(locZ+0.25) + (rand.nextFloat()/2);
-					world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-					world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-					//world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-				}
+
+		if(world.getBlockMetadata(x, y, z)>=4&&world.getBlockMetadata(x, y, z)<=7){
+			int l;
+			float f;
+			float f1;
+			float f2;
+			for (l = 0; l < 3; ++l)
+			{
+				f = (float)(x+0.25) + (rand.nextFloat()/2);
+				f1 = (float)y + rand.nextFloat() * 0.4F + 0.3F;
+				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
+				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
 			}
-			if(this.coalParts == true){
-				int l;
-				float f;
-				float f1;
-				float f2;
-				for (l = 0; l < 3; ++l)
-				{
-					f = (float)(locX+0.25) + (rand.nextFloat()/2);
-					//f1 = (float)y + rand.nextFloat() * 0.4F + 0.3F;
-					f1 = locY;
-					f2 = (float)(locZ+0.25) + (rand.nextFloat()/2);
-					world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-					world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-					//world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-				}
-			}*/
-		//}
+		}
+		if(world.getBlockMetadata(x, y, z)>=8){
+			int l;
+			float f;
+			float f1;
+			float f2;
+			for (l = 0; l < 3; ++l)
+			{
+				f = (float)(x+0.25) + (rand.nextFloat()/2);
+				//f1 = (float)y + rand.nextFloat() * 0.4F + 0.3F;
+				f1 = y+1.1f;
+				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
+				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+			}
+			for (l = 0; l < 3; ++l)
+			{
+				f = (float)(x+0.25) + (rand.nextFloat()/2);
+				f1 = (float)y + rand.nextFloat() * 0.4F + 0.3F;
+				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
+				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+			}
+		}
 	}
 
 	public static int determineOrientation(World p_150071_0_, int p_150071_1_, int p_150071_2_, int p_150071_3_, EntityLivingBase p_150071_4_)
@@ -132,7 +134,15 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack p_149689_6_) {
 		int l = determineOrientation(world, x, y, z, player);
+		if(l==1){
+			l=5;
+		}
+		if(l==0){
+			l=5;
+		}
+		l=l-2;
 		world.setBlockMetadataWithNotify(x, y, z, l, 2);
+		System.out.println(l);
 		world.markBlockForUpdate(x, y, z);
 	}
 
@@ -147,26 +157,25 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int q, float a, float b, float c) {
 		TileForge tileEnt = (TileForge) world.getTileEntity(x, y, z);
-
 		if(world.isRemote){
 			MovingObjectPosition mop = Minecraft.getMinecraft().renderViewEntity.rayTrace(5, 1.0F);
 			c = (int)mop.sideHit;
 			Main.sNet.sendToServer(new MsgPacketForge((int) c));
 		}
+		System.out.println(sideMeta + " " + world.getBlockMetadata(x, y, z));
 		if(!world.isRemote){
 			if(player.inventory.getCurrentItem()!=null){
 				if((player.inventory.getCurrentItem().getItem()==Item.getItemFromBlock(Blocks.torch))||
 						(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
-						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
-						){
-					tileEnt.isBurning=true;
-					Main.sNet.sendToAll(new MsgPacketOn(tileEnt.isBurning));
-					Main.sNet.sendToAll(new MsgPacketForgeX(tileEnt.xCoord));
-					Main.sNet.sendToAll(new MsgPacketForgeY(tileEnt.yCoord));
-					Main.sNet.sendToAll(new MsgPacketForgeZ(tileEnt.zCoord));
+						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)){
+					if(world.getBlockMetadata(x, y, z)<=3){
+						world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 2);
+					}
+					tileEnt.markForUpdate();
 					if(tileEnt.getStackInSlot(1)!=null){
-						tileEnt.isOn=true;
-						Main.sNet.sendToAll(new MsgPacketBurning(tileEnt.isOn));
+						if(world.getBlockMetadata(x, y, z)>=4&&world.getBlockMetadata(x, y, z)<=7){
+							world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 2);
+						}
 					}
 				}
 			}
@@ -212,7 +221,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 					return true;
 				}
 			}
-			if(sideMeta == world.getBlockMetadata(x, y, z)){
+			if(sideMeta-2 == world.getBlockMetadata(x, y, z)||sideMeta == world.getBlockMetadata(x, y, z)-4||sideMeta == world.getBlockMetadata(x, y, z)-8){
 				if(player.inventory.getCurrentItem()!=null){
 					if(tileEnt.getStackInSlot(0)==null){
 						System.out.println();

@@ -1,5 +1,7 @@
 package com.kitsu.medievalcraft.tileents.machine;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +24,10 @@ import net.minecraft.world.World;
 
 import com.kitsu.medievalcraft.Main;
 import com.kitsu.medievalcraft.block.ingots.IngotBase;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketBurning;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeX;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeY;
+import com.kitsu.medievalcraft.packethandle.forge.MsgPacketForgeZ;
 import com.kitsu.medievalcraft.packethandle.forge.MsgPacketOn;
 import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 
@@ -35,6 +41,7 @@ public class TileForge extends TileEntity implements IInventory{
 	public boolean isOn;
 	public boolean isBurning;
 	private int ticks;
+	private Random rand;
 
 	public TileForge(){
 		this.inv = new ItemStack[2];
@@ -205,7 +212,7 @@ public class TileForge extends TileEntity implements IInventory{
 	@Override
 	public void updateEntity() {
 
-		World world = getWorldObj();
+		World world = this.getWorldObj();
 		int x = this.xCoord;
 		int y = this.yCoord;
 		int z = this.zCoord;
@@ -215,6 +222,7 @@ public class TileForge extends TileEntity implements IInventory{
 			fireboxFuelDec(world, x, y, z,this.getStackInSlot(0), this.ticks);
 			fireboxFuelDec2(world, x, y, z,this.getStackInSlot(1), this.ticks);
 		}
+
 		if (worldObj.isRemote) return;
 	}
 
@@ -327,15 +335,23 @@ public class TileForge extends TileEntity implements IInventory{
 	{
 		return getItemBurnTime(stack) > 0;
 	}
+	
+	//Main.sNet.sendToAll(new MsgPacketOn(tileEnt.isBurning));
+	//Main.sNet.sendToAll(new MsgPacketForgeX(tileEnt.xCoord));
+	//Main.sNet.sendToAll(new MsgPacketForgeY(tileEnt.yCoord));
+	//Main.sNet.sendToAll(new MsgPacketForgeZ(tileEnt.zCoord));
+	//Main.sNet.sendToAll(new MsgPacketBurning(tileEnt.isOn));
 
 	private void forgeMaint(World world, int x, int y, int z){
 		if(this.getStackInSlot(0)==null){
-			this.isOn = false;
-			this.isBurning = false;
-			Main.sNet.sendToAll(new MsgPacketOn(this.isBurning));
+			if(world.getBlockMetadata(x, y, z)>=4&&world.getBlockMetadata(x, y, z)<=7){
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 2);
+			}
 		}
 		if(this.getStackInSlot(1)==null){
-			this.isOn = false;
+			if(world.getBlockMetadata(x, y, z)>=8){
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 2);
+			}
 		}
 	}
 }

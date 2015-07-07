@@ -94,9 +94,9 @@ public class TestForge extends BlockContainer {
 		super.randomDisplayTick(world, x, y, z, random);
 		TileEntityTestForge tileEnt = (TileEntityTestForge) world.getTileEntity(x, y, z);
 		
-		if(tileEnt.isRunning == true){
+		/*if(tileEnt.isRunning == true){
 			
-		}
+		}*/
 		/*Block test = world.getBlock(x, y+1, z);
 		if (test == TestForgeCrafting.blockToCheck.get(0) || test == TestForgeCrafting.blockToCheck.get(1) || test == TestForgeCrafting.blockToCheck.get(2) 
 				|| test == TestForgeCrafting.blockToCheck.get(3) || test == TestForgeCrafting.blockToCheck.get(4)) {

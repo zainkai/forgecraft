@@ -106,16 +106,16 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		GL11.glScalef(scale, scale, scale);
 		GL11.glTranslatef(1.0F, 1.0F, 1.0F);
 		int dir = world.getBlockMetadata(i, j, k);
-		//System.out.println(dir);
-		if(dir == 4){
+		
+		if(dir == 2||dir == 6||dir == 10){
 			GL11.glRotated(-180F, 0.0, 1.0F, 0.0F);
 		}
-		if(dir == 5){
+		if(dir == 3||dir == 7||dir == 11){
 		}
-		if(dir == 2){
+		if(dir == 0||dir == 4||dir == 8){
 			GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
 		}
-		if(dir == 3){
+		if(dir == 1||dir == 5||dir == 9){
 			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
 		}
 		
