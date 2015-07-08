@@ -3,6 +3,7 @@ package com.kitsu.medievalcraft.tileents.machine;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -46,6 +47,7 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 	public int getSizeInventory() {
 		return this.inv.length;
 	}
+	
 	@Override
 	public ItemStack getStackInSlot(int slot) {
 		return this.inv[slot];
@@ -219,17 +221,21 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 	
 	private void fireboxMaint(World world, int x, int y, int z){
 		if(world.getBlockMetadata(x, y, z)==0&&world.getBlock(x, y+1, z).equals(Blocks.fire)){
-			world.setBlock(x, y+1, z, Blocks.air, 0, 2);
+			//world.setBlock(x, y+1, z, Blocks.air, 0, 2);
+
+			world.scheduleBlockUpdate(x, y, z, world.getBlock(x,y,z), 10);
 		}
 		if((this.getStackInSlot(0)==null)){
 			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+			world.scheduleBlockUpdate(x, y, z, world.getBlock(x, y, z), 10);
 		}
 		if(world.getBlockMetadata(x, y, z)==1 && world.getBlock(x, y+1, z).equals(Blocks.air)){
 			world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
 		}
-		/*if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
-			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-		}*/
+		if(world.getBlockMetadata(x, y, z)==1){
+			//this.worldObj.markBlockForUpdate(x, y, z);
+			world.scheduleBlockUpdate(x, y, z, world.getBlock(x,y,z), 10);	
+		}
 	}
 	private void fireboxFuelDec(World world, int x, int y, int z, ItemStack stack, int time){
 		if(world.getBlock(x, y+1, z).equals(Blocks.fire)){
@@ -306,24 +312,20 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 		return getItemBurnTime(stack) > 0;
 	}
 	public void isFurnace(World world, int x, int y, int z){
-		if(world.getBlock(x, y+2, z).equals(Blocks.furnace) &&(world.getBlock(x, y+1, z).equals(Blocks.fire))){
-			TileEntityFurnace tile = (TileEntityFurnace) world.getTileEntity(x, y+2, z);
+		if(world.getBlock(x, y+1, z).equals(Blocks.furnace)&&(world.getBlockMetadata(x, y, z)==1)){
+			TileEntityFurnace tile = (TileEntityFurnace) world.getTileEntity(x, y+1, z);
 			if(tile.getStackInSlot(0)!=null){
-				//System.out.println(tile.getStackInSlot(0));
-				//System.out.println(tile.getStackInSlot(1));
 				if(isItemFuel(tile.getStackInSlot(1))==false){
-					//System.out.println();
 					tile.furnaceBurnTime = (int)(this.getItemBurnTime(this.getStackInSlot(0))+((fuelMulti(this.getStackInSlot(0).stackSize, this.getStackInSlot(0))*this.getItemBurnTime(this.getStackInSlot(0)))));
-					BlockFurnace.updateFurnaceBlockState(true, world, x, y+2, z);
+					BlockFurnace.updateFurnaceBlockState(true, world, x, y+1, z);
 				}
 			}
 		}
-		if(world.getBlock(x, y+2, z).equals(Blocks.furnace)&&(world.getBlock(x, y+1, z)!=(Blocks.fire))){
-			TileEntityFurnace tile = (TileEntityFurnace) world.getTileEntity(x, y+2, z);
+		if(world.getBlock(x, y+1, z).equals(Blocks.furnace)&&(world.getBlockMetadata(x, y, z)==1)){
+			TileEntityFurnace tile = (TileEntityFurnace) world.getTileEntity(x, y+1, z);
 			if(tile.getStackInSlot(1)!=null){
 				if(isItemFuel(tile.getStackInSlot(1))==false){
-					//tile.furnaceBurnTime = (int)(this.getItemBurnTime(this.getStackInSlot(0))+((fuelMulti(this.getStackInSlot(0).stackSize, this.getStackInSlot(0))*this.getItemBurnTime(this.getStackInSlot(0)))));
-					BlockFurnace.updateFurnaceBlockState(false, world, x, y+2, z);
+					BlockFurnace.updateFurnaceBlockState(false, world, x, y+1, z);
 				}
 			}
 		}

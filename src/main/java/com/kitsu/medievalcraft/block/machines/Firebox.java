@@ -56,19 +56,35 @@ public class Firebox extends BlockContainer{
 		//(xmin, ymin, zmin, 
 		// xmax, ymax, zmax)
 		this.setBlockBounds(0.0F, 0.00F, 0.0F,
-				1.0F, 0.98F, 1.0F);
+				1.0F, 1.00F, 1.0F);
 
 	}
 	@Override
-	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face)
-	{
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		if(!world.isRemote){
+			if(world.getBlockMetadata(x, y, z)==1){
+				//this.setLightLevel(9999);
+				this.setLightLevel(1F);
+				//this.setLightOpacity(0);
+				//System.out.println(this.getLightValue()+" "+this.getLightOpacity());
+			}
+			if(world.getBlockMetadata(x, y, z)==0){
+				//this.setLightLevel(9999);
+				this.setLightLevel(0F);
+				//this.setLightOpacity(0);
+				//System.out.println(this.getLightValue()+" "+this.getLightOpacity());
+			}
+		}
+	}
+
+	@Override
+	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face){
 		return true;
 	}
 
 	@Override
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side) {
-		if (this == ModBlocks.firebox && side == UP)
-		{
+		if (this == ModBlocks.firebox && side == UP){
 			return true;
 		}
 		return true;
@@ -96,7 +112,7 @@ public class Firebox extends BlockContainer{
 		}
 
 	}
-//PACKETHANDLE FOR C 
+	//PACKETHANDLE FOR C 
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int q, float a, float b, float c) {
 
 		TileEntityFirebox tileEnt = (TileEntityFirebox) world.getTileEntity(x, y, z);
@@ -107,6 +123,8 @@ public class Firebox extends BlockContainer{
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
 					world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+					//world.notifyBlockChange(x, y, z, this);
+					world.scheduleBlockUpdate(x, y, z, this, 10);
 					player.inventory.getCurrentItem().damageItem(1, player);
 					if(world.getBlock(x, y, z).equals(Blocks.air)){
 						world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
