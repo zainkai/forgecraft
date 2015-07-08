@@ -30,13 +30,6 @@ public class ForgeAnvil extends BlockContainer{
 
 	private final Random random = new Random();
 
-	@SideOnly(Side.CLIENT)
-	private IIcon iconSide;
-	@SideOnly(Side.CLIENT)
-	private IIcon iconTop;
-	@SideOnly(Side.CLIENT)
-	private IIcon iconBot;
-
 	public ForgeAnvil(String unlocalizedName, Material mat) {
 		super(mat);
 		this.setBlockName(unlocalizedName);
@@ -46,19 +39,6 @@ public class ForgeAnvil extends BlockContainer{
 		this.setResistance(6.0F);
 		this.setStepSound(Block.soundTypeStone);
 
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-	}
-	
-
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int metadata) {
-
-		return side == 1 ? this.iconTop : (side == 0 ? this.iconBot : (side != metadata ? this.blockIcon : this.iconSide));
 	}
 
 	@Override

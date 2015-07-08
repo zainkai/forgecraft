@@ -60,28 +60,28 @@ public class BlockSmoke extends BlockFluidFinite{
 		super.randomDisplayTick(world, x, y, z, random);
 
 		if (random.nextInt(6) == 0) {
-			world.spawnParticle("cloud", x + 0.5D, y + 0.2D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("largesmoke", x + 0.5D, y + 0.2D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("cloud", x + 0.5D, y + 0.5D, z + 0.5D, 0.0D, 0.2D, 0.0D);
+			world.spawnParticle("largesmoke", x + 0.5D, y + 0.5D, z + 0.5D, 0.0D, 0.2D, 0.0D);
 		}	
 		if (random.nextInt(6) == 1) {
-			world.spawnParticle("cloud", x + 0.5D, y + 0.8D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("largesmoke", x + 0.5D, y + 0.8D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("cloud", x + 0.8D, y + 0.5D, z + 0.5D, 0.0D, 0.2D, 0.0D);
+			world.spawnParticle("largesmoke", x + 0.8D, y + 0.5D, z + 0.5D, 0.0D, 0.2D, 0.0D);
 		}
 		if (random.nextInt(6) == 2) {	
-			world.spawnParticle("cloud", x + 0.2D, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("largesmoke", x + 0.2D, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("cloud", x + 0.2D, y + 0.5D, z + 0.5D, 0.0D, 0.2D, 0.0D);
+			world.spawnParticle("largesmoke", x + 0.2D, y + 0.5D, z + 0.5D, 0.0D, 0.2D, 0.0D);
 		}	
 		if (random.nextInt(6) == 3) {
-			world.spawnParticle("cloud", x + 0.8D, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("largesmoke", x + 0.8D, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("cloud", x + 0.5D, y + 0.5D, z + 0.8D, 0.0D, 0.2D, 0.0D);
+			world.spawnParticle("largesmoke", x + 0.5D, y + 0.5D, z + 0.8D, 0.0D, 0.2D, 0.0D);
 		}
 		if (random.nextInt(6) == 4) {	
-			world.spawnParticle("cloud", x + 0.5D, y + 0.5D, z + 0.2D, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("largesmoke", x + 0.5D, y + 0.5D, z + 0.2D, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("cloud", x + 0.5D, y + 0.5D, z + 0.2D, 0.0D, 0.2D, 0.0D);
+			world.spawnParticle("largesmoke", x + 0.5D, y + 0.5D, z + 0.2D, 0.0D, 0.2D, 0.0D);
 		}
 		if (random.nextInt(6) == 5) {
-			world.spawnParticle("cloud", x + 0.5D, y + 0.5D, z + 0.8D, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("largesmoke", x + 0.5D, y + 0.5D, z + 0.8D, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle("cloud", x + 0.8D, y + 0.5D, z + 0.2D, 0.0D, 0.2D, 0.0D);
+			world.spawnParticle("largesmoke", x + 0.8D, y + 0.5D, z + 0.2D, 0.0D, 0.2D, 0.0D);
 		}
 	}
 

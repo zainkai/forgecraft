@@ -124,7 +124,7 @@ public class IRFirebox implements IItemRenderer {
 		
 		case ENTITY: {
 			GL11.glPushMatrix();
-			//GL11.glScalef(1.75F, 1.75F, 1.75F);
+			GL11.glScalef(0.5F, 1.0F, 0.5F);
 			GL11.glTranslatef(0.0F, 0.5F, 0.0F);
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);

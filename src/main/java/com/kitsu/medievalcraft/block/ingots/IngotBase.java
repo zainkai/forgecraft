@@ -67,6 +67,7 @@ public abstract class IngotBase extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int aa, float bb, float cc, float ff){
+		//System.out.println(this.getUnlocalizedName());
 		if(player.inventory.getCurrentItem().getItem()!=ModItems.forgeHammer){
 			int a = player.inventory.currentItem;
 			if(player.inventory.getStackInSlot(a)!=null){

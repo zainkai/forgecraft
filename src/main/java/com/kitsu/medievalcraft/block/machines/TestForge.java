@@ -80,11 +80,12 @@ public class TestForge extends BlockContainer {
     }
     
 	public Item getItemDropped(int par1, Random random, int par3) {
-		return Item.getItemFromBlock(ModBlocks.testForge);
+		return null;
 	}
 
 	public Item getItem(World world, int par2, int par3, int par4) {
-		return Item.getItemFromBlock(ModBlocks.testForge);
+		//return Item.getItemFromBlock(ModBlocks.testForge);
+		return null;
 	}
 
 	@Override

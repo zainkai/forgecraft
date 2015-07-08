@@ -42,8 +42,6 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x, (float) y, (float) z);
 
-		
-
 		if(tileEntity.getStackInSlot(1) != null){
 			entItem1 = new EntityItem(tileEntity.getWorldObj(), x, y, z, tileEntity.getStackInSlot(1));
 			GL11.glPushMatrix();
@@ -94,7 +92,6 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 		if(loc == null){
 			loc = TEXTURE;
 		}
-
 
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(loc);
 		renderBlock(tileEntity, tile.getWorldObj(), tile.xCoord,tile.yCoord, tile.zCoord, ModBlocks.forge);

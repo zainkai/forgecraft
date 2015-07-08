@@ -110,7 +110,7 @@ public class ModBlocks {
 	//MACHINES
 	public static Block formtable;
 	//public static Block newForge;
-	public static Block testForge;
+	//public static Block testForge;
 	public static Block forgeAnvil;
 	public static Block waterFilter;
 	public static Block shelfFour;
@@ -139,11 +139,11 @@ public class ModBlocks {
 	public static Block tanWaterCrucible;
 	public static Block slackWaterCrucible;
 	
-
 	public static final void init() {
 		
 		GameRegistry.registerBlock(testBlock = new TestBlock("testBlock", Material.rock), "testBlock");
-		Fluid fluidSmoke = new Fluid("blocksmoke").setDensity(-1000).setTemperature(310).setGaseous(true).setBlock(blockSmoke).setViscosity(1200);
+		
+		Fluid fluidSmoke = new Fluid("blocksmoke").setDensity(-1000).setTemperature(310).setGaseous(true).setBlock(blockSmoke).setViscosity(0);
 		FluidRegistry.registerFluid(fluidSmoke);
 		blockSmoke = new BlockSmoke(fluidSmoke, Material.water).setBlockName("blockSmoke");
 		GameRegistry.registerBlock(blockSmoke, Main.MODID + "_" + blockSmoke.getUnlocalizedName().substring(5));
@@ -174,7 +174,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(wootzOre = new WootzOre("wootzOre", Material.rock), "wootzOre");
 		
 		GameRegistry.registerBlock(formtable = new formTable("formTable", Material.wood), "formTable");
-		GameRegistry.registerBlock(testForge = new TestForge("TestForge", Material.iron), "TestForge");
+		//GameRegistry.registerBlock(testForge = new TestForge("TestForge", Material.iron), "TestForge");
 		GameRegistry.registerBlock(forgeAnvil = new ForgeAnvil("forgeAnvil", Material.iron), "forgeAnvil");
 		GameRegistry.registerBlock(waterFilter = new WaterFilter("waterFilter", Material.iron), "waterFilter");
 		//GameRegistry.registerBlock(sandFilter = new SandFilter("sandFilter", Material.wood), "sandFilter");

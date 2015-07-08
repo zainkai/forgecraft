@@ -22,6 +22,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.block.ingots.IngotBase;
 import com.kitsu.medievalcraft.tileents.ingots.TileIngotBase;
 
@@ -331,16 +332,15 @@ public class TileForge extends TileEntity implements IInventory{
 		return getItemBurnTime(stack) > 0;
 	}
 
-	//Main.sNet.sendToAll(new MsgPacketOn(tileEnt.isBurning));
-	//Main.sNet.sendToAll(new MsgPacketForgeX(tileEnt.xCoord));
-	//Main.sNet.sendToAll(new MsgPacketForgeY(tileEnt.yCoord));
-	//Main.sNet.sendToAll(new MsgPacketForgeZ(tileEnt.zCoord));
-	//Main.sNet.sendToAll(new MsgPacketBurning(tileEnt.isOn));
-
 	private void forgeMaint(World world, int x, int y, int z){
 		if(this.getStackInSlot(0)==null){
 			if(world.getBlockMetadata(x, y, z)>=4&&world.getBlockMetadata(x, y, z)<=7){
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 2);
+			}
+		}
+		if(this.getStackInSlot(0)==null){
+			if(world.getBlockMetadata(x, y, z)>7){
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-8, 2);
 			}
 		}
 		if(this.getStackInSlot(1)==null){
@@ -349,8 +349,13 @@ public class TileForge extends TileEntity implements IInventory{
 			}
 		}
 		if(world.getBlockMetadata(x, y, z)>3&&world.getBlockMetadata(x, y, z)<8){
-			if(this.getStackInSlot(1)!=null){
+			if(this.getStackInSlot(1)!=null && (world.canBlockSeeTheSky(x, y+1, z)==true)){
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 2);
+			}
+		}
+		if(world.getBlockMetadata(x, y, z)>7){
+			if(world.rand.nextInt(5)==1){
+				world.setBlock(x, y+2, z, ModBlocks.blockSmoke, 0, 2);
 			}
 		}
 	}

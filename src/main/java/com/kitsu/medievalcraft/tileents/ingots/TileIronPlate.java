@@ -9,6 +9,7 @@ public class TileIronPlate extends TileIngotBase{
 		this.hits = 0;
 		this.hot = false;
 		this.heatTicks = 450;
+		this.heatBase = 450;
 	}
 
 }

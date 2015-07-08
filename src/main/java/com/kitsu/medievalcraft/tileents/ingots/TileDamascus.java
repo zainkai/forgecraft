@@ -10,6 +10,7 @@ public class TileDamascus extends TileIngotBase{
 		this.hot = false;
 		
 		this.heatTicks = 500;
+		this.heatBase = 500;
 	}
 
 }

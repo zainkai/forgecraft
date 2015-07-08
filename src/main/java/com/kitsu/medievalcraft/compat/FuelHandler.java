@@ -16,8 +16,8 @@ public class FuelHandler implements IFuelHandler
         //MagnumOpus.logger.info("fuel handler: " + fuel);
 
         /** Mod Real Fuel Items **/
-        if      ( stack.isItemEqual(new ItemStack(ModItems.itemShit)) ) { return 600; }
-        else if ( stack.isItemEqual(new ItemStack(ModBlocks.shitblock)) ) { return 3200; }
+        if      ( stack.isItemEqual(new ItemStack(ModItems.itemShit)) ) { return 150; }
+        else if ( stack.isItemEqual(new ItemStack(ModBlocks.shitblock)) ) { return 1500; }
         
 
         /** that is all **/

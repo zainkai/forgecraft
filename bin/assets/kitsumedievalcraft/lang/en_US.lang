@@ -169,6 +169,7 @@ item.itemSmallBarrelLid.name
 item.halfSplitBoard.name=Half Split Board
 item.woodPulp.name=Wood Pulp
 item.charcoalFilter.name=Charcoal Filter
+item.slottedTongs.name=Stone Tongs
 
 tile.shitBlock.name=Shit Block
 tile.formTable.name=Form Table

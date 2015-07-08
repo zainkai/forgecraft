@@ -36,7 +36,7 @@ public class TileIngotBase extends TileEntity implements AnvilUtil{
 		int y = this.yCoord;
 		int z = this.zCoord;
 		if(!world.isRemote){
-			System.out.println(this.heatTicks);
+			//System.out.println(this.heatTicks);
 			if(this.heatTicks<=0){
 				world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 				this.hot=true;

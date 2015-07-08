@@ -8,9 +8,6 @@ public class TileMyIronIngot extends TileIngotBase{
 		super(nameCustom);
 		this.hits = 0;
 		this.hot = false;
-		this.heatBase = 50;
-		this.heatTicks = 50;
-		this.coolBase = 50;
 	}
 
 }
