@@ -41,6 +41,7 @@ public abstract class CrucibleBase extends BlockContainer {
 				player.inventory.addItemStackToInventory(jar);
 				if(!world.isRemote){
 					world.setBlock(x, y, z, Blocks.air, 0, 2);
+	
 				}
 			}
 		}
