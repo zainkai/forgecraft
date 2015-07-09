@@ -1,5 +1,8 @@
 package com.kitsu.medievalcraft.item.tools;
 
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
@@ -14,18 +17,26 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class CustomIronPick extends ItemPickaxe{
-	private String name = "customIronPick";
-	private Item item;
+	//private String name = "customIronPick";
+	//private Item item;
 	
 	public CustomIronPick(String name, ToolMaterial mat) {
 		super(mat);
-		item = this;
+		//item = this;
 		setUnlocalizedName(name);
 		setCreativeTab(CustomTab.MedievalCraftTab);
 		setTextureName(Main.MODID + ":" + name);
-		this.toolMaterial = ModItems.customWoodNormal;
-		GameRegistry.registerItem(this, name);
+		//this.toolMaterial = ModItems.customWoodNormal;
+		//GameRegistry.registerItem(this, name);
 	}
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+	list.add("");
+	}
+	
+	
 	@Override
 	public int getItemEnchantability () {
 		return 0;

@@ -220,21 +220,12 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 	}
 	
 	private void fireboxMaint(World world, int x, int y, int z){
-		if(world.getBlockMetadata(x, y, z)==0&&world.getBlock(x, y+1, z).equals(Blocks.fire)){
-			//world.setBlock(x, y+1, z, Blocks.air, 0, 2);
-
-			world.scheduleBlockUpdate(x, y, z, world.getBlock(x,y,z), 10);
-		}
-		if((this.getStackInSlot(0)==null)){
-			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
-			world.scheduleBlockUpdate(x, y, z, world.getBlock(x, y, z), 10);
+		if((this.getStackInSlot(0)==null)&&(world.getBlockMetadata(x, y, z)==1)){
+			world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+			world.getBlock(x, y, z).setLightLevel(0f);
 		}
 		if(world.getBlockMetadata(x, y, z)==1 && world.getBlock(x, y+1, z).equals(Blocks.air)){
 			world.setBlock(x, y+1, z, Blocks.fire, 0, 2);
-		}
-		if(world.getBlockMetadata(x, y, z)==1){
-			//this.worldObj.markBlockForUpdate(x, y, z);
-			world.scheduleBlockUpdate(x, y, z, world.getBlock(x,y,z), 10);	
 		}
 	}
 	private void fireboxFuelDec(World world, int x, int y, int z, ItemStack stack, int time){

@@ -756,11 +756,16 @@ public final class ModItems {
 		GameRegistry.registerItem(battleAxe = new ItemBattleAxe("battleAxe",  heavymacemat), "battleAxe");
 		
 		GameRegistry.registerItem(customIronPick = new CustomIronPick("customIronPick", customWoodNormal), "customIronPick");
-		GameRegistry.registerItem(customStrongIronPick = new CustomStrongIronPick("customStrongIronPick", customWoodStrong), "customStrongIronPick");
+		GameRegistry.registerItem(customStrongIronPick = new CustomIronPick("customStrongIronPick", customWoodStrong), "customStrongIronPick");
+		GameRegistry.registerItem(customWeakIronPick = new CustomIronPick("customWeakIronPick", customWoodWeak), "customWeakIronPick");
+		GameRegistry.registerItem(customHandleIronPick = new CustomIronPick("customHandleIronPick", customIronToolRodNormal), "customHandleIronPick");
+		GameRegistry.registerItem(customHandleStrongIronPick = new CustomIronPick("customHandleStrongIronPick", customIronToolRodStrong), "customHandleStrongIronPick");
+		
+/*		GameRegistry.registerItem(customStrongIronPick = new CustomStrongIronPick("customStrongIronPick", customWoodStrong), "customStrongIronPick");
 		GameRegistry.registerItem(customWeakIronPick = new CustomWeakIronPick("customWeakIronPick", customWoodWeak), "customWeakIronPick");
 		GameRegistry.registerItem(customHandleIronPick = new CustomHandleIronPick("customHandleIronPick", customIronToolRodNormal), "customHandleIronPick");
 		GameRegistry.registerItem(customHandleStrongIronPick = new CustomHandleStrongIronPick("customHandleStrongIronPick", customIronToolRodStrong), "customHandleStrongIronPick");
-		
+		*/
 		GameRegistry.registerItem(customIronShovel = new CustomIronShovel("customIronShovel", customWoodNormal), "customIronShovel");
 		GameRegistry.registerItem(customStrongIronShovel = new CustomStrongIronShovel("customStrongIronShovel", customWoodStrong), "customStrongIronShovel");
 		GameRegistry.registerItem(customWeakIronShovel = new CustomWeakIronShovel("customWeakIronShovel", customWoodWeak), "customWeakIronShovel");

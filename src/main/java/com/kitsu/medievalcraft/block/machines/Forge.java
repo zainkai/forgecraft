@@ -162,7 +162,8 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 						(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)){
 					if(world.getBlockMetadata(x, y, z)<=3){
-						world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 2);
+						world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 3);
+						this.setLightLevel(1f);
 					}
 					tileEnt.markForUpdate();
 					if(tileEnt.getStackInSlot(1)!=null){

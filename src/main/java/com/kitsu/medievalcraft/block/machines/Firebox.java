@@ -59,23 +59,6 @@ public class Firebox extends BlockContainer{
 				1.0F, 1.00F, 1.0F);
 
 	}
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		if(!world.isRemote){
-			if(world.getBlockMetadata(x, y, z)==1){
-				//this.setLightLevel(9999);
-				this.setLightLevel(1F);
-				//this.setLightOpacity(0);
-				//System.out.println(this.getLightValue()+" "+this.getLightOpacity());
-			}
-			if(world.getBlockMetadata(x, y, z)==0){
-				//this.setLightLevel(9999);
-				this.setLightLevel(0F);
-				//this.setLightOpacity(0);
-				//System.out.println(this.getLightValue()+" "+this.getLightOpacity());
-			}
-		}
-	}
 
 	@Override
 	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face){
@@ -122,9 +105,8 @@ public class Firebox extends BlockContainer{
 						(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel)||
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
-					world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-					//world.notifyBlockChange(x, y, z, this);
-					world.scheduleBlockUpdate(x, y, z, this, 10);
+					world.setBlockMetadataWithNotify(x, y, z, 1, 3);
+					this.setLightLevel(1f);
 					player.inventory.getCurrentItem().damageItem(1, player);
 					if(world.getBlock(x, y, z).equals(Blocks.air)){
 						world.setBlock(x, y+1, z, Blocks.fire, 0, 2);

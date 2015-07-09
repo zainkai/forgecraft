@@ -335,12 +335,14 @@ public class TileForge extends TileEntity implements IInventory{
 	private void forgeMaint(World world, int x, int y, int z){
 		if(this.getStackInSlot(0)==null){
 			if(world.getBlockMetadata(x, y, z)>=4&&world.getBlockMetadata(x, y, z)<=7){
-				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 2);
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 3);
+				world.getBlock(x, y, z).setLightLevel(0f);
 			}
 		}
 		if(this.getStackInSlot(0)==null){
 			if(world.getBlockMetadata(x, y, z)>7){
-				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-8, 2);
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-8, 3);
+				world.getBlock(x, y, z).setLightLevel(0f);
 			}
 		}
 		if(this.getStackInSlot(1)==null){
