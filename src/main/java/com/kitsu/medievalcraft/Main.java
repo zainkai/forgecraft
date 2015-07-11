@@ -55,7 +55,7 @@ public class Main {
 
 	public static final String MODID = "kitsumedievalcraft";
 	public static final String MODNAME = "ForgeCraft";
-	public static final String VERSION = "2.2.2";
+	public static final String VERSION = "2.2.3";
 
 	public static SimpleNetworkWrapper sNet;
 
@@ -131,8 +131,6 @@ public class Main {
 		ModDict.RegisterOres();
 		System.out.println("U want some Body Massage?");
 		//RenderingRegistry.registerEntityRenderingHandler(EntityShit.class, new RenderSnowball(ModItems.itemShit));
-
-
 	}
 }
 

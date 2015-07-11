@@ -82,12 +82,15 @@ public class ForgeRenderer extends TileEntitySpecialRenderer {
 			tileEntity.markForUpdate();
 			tileEntity.markDirty();
 		}
-		/*if(tileEntity.isOn==false && tileEntity.isBurning==false){
+		if(tile.getBlockMetadata()<4){
 			loc = TEXTURE;
 		}
-		if(tileEntity.isOn==false && tileEntity.isBurning==true){
+		if(tile.getBlockMetadata()>3&&tile.getBlockMetadata()<8){
 			loc = TEXTURE1;
-		}*/
+		}
+		if(tile.getBlockMetadata()>7){
+			loc = TEXTURE2;
+		}
 
 		if(loc == null){
 			loc = TEXTURE;

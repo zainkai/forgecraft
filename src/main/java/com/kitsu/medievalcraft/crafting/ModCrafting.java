@@ -285,53 +285,63 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ShapedOreRecipe((ModItems.customIronLumberAxe), new Object[]{"a", "c", "b", Character.valueOf('c'), "strapLeather", 'a', ModItems.ironaxeHead,   'b', ModItems.woodentoolHandle}));
 		GameRegistry.addRecipe(new ShapedOreRecipe((ModItems.customHandleIronLumberAxe), new Object[]{"a", "c", "b", Character.valueOf('c'), "strapLeather", 'a', ModItems.ironaxeHead,   'b', ModItems.ironweaponHandle}));
 
-		ItemStack sTouchpick = new ItemStack(ModItems.customWeakIronPick);
+		GameRegistry.addRecipe(new ShapedOreRecipe((ModItems.customIronHoe), new Object[]{"a", "c", "b", Character.valueOf('c'), "strapLeather", 'a', ModItems.ironhoeHead,   'b', ModItems.woodentoolHandle}));
+		
+		ItemStack sTouchpick = new ItemStack(ModItems.customIronPick1);
 		sTouchpick.addEnchantment(Enchantment.silkTouch, 1);
 
-
-		ItemStack sTouchpick1 = new ItemStack(ModItems.customWeakIronPick);
+		ItemStack sTouchpick1 = new ItemStack(ModItems.customIronPick2);
 		sTouchpick1.addEnchantment(Enchantment.silkTouch, 1);
 		sTouchpick1.addEnchantment(Enchantment.unbreaking, 1);
+		
+		ItemStack sTouchpick3 = new ItemStack(ModItems.customIronPick4);
+		sTouchpick3.addEnchantment(Enchantment.silkTouch, 1);
 
-		ItemStack sTouchpick2 = new ItemStack(ModItems.customHandleIronPick);
+		ItemStack sTouchpick2 = new ItemStack(ModItems.customIronPick3);
 		sTouchpick2.addEnchantment(Enchantment.silkTouch, 1);
 		sTouchpick2.addEnchantment(Enchantment.efficiency, 1);
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchpick, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronHead, 'b', ModItems.woodentoolHandle, Character.valueOf('c'), "strapLeather"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchpick1, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronHead, 'b', ModItems.unbreakingWoodRod, Character.valueOf('c'), "strapLeather"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchpick, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronHead, 'b', ModItems.ironweaponHandle, Character.valueOf('c'), "strapLeather"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchpick3, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronHead, 'b', ModItems.ironweaponHandle, Character.valueOf('c'), "strapLeather"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchpick2, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronHead, 'b', ModItems.efficIronRod, Character.valueOf('c'), "strapLeather"}));
 
-		ItemStack sTouchspade = new ItemStack(ModItems.customWeakIronShovel);
-		sTouchspade.addEnchantment(Enchantment.silkTouch, 1);
+		ItemStack sTouchspade0 = new ItemStack(ModItems.customIronShovel0);
+		sTouchspade0.addEnchantment(Enchantment.silkTouch, 1);
+		
+		ItemStack sTouchspade2 = new ItemStack(ModItems.customIronShovel2);
+		sTouchspade2.addEnchantment(Enchantment.silkTouch, 1);
 
-		ItemStack sTouchspade1 = new ItemStack(ModItems.customWeakIronShovel);
+		ItemStack sTouchspade1 = new ItemStack(ModItems.customIronShovel1);
 		sTouchspade1.addEnchantment(Enchantment.silkTouch, 1);
 		sTouchspade1.addEnchantment(Enchantment.unbreaking, 1);
 
-		ItemStack sTouchspade2 = new ItemStack(ModItems.customHandleIronShovel);
-		sTouchspade2.addEnchantment(Enchantment.silkTouch, 1);
-		sTouchspade2.addEnchantment(Enchantment.efficiency, 1);
+		ItemStack sTouchspade3 = new ItemStack(ModItems.customIronShovel3);
+		sTouchspade3.addEnchantment(Enchantment.silkTouch, 1);
+		sTouchspade3.addEnchantment(Enchantment.efficiency, 1);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchspade, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronSpade, 'b', ModItems.woodentoolHandle, Character.valueOf('c'), "strapLeather"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchspade0, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronSpade, 'b', ModItems.woodentoolHandle, Character.valueOf('c'), "strapLeather"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchspade1, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronSpade, 'b', ModItems.unbreakingWoodRod, Character.valueOf('c'), "strapLeather"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchspade, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronSpade, 'b', ModItems.ironweaponHandle, Character.valueOf('c'), "strapLeather"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchspade2, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronSpade, 'b', ModItems.efficIronRod, Character.valueOf('c'), "strapLeather"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchspade2, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronSpade, 'b', ModItems.ironweaponHandle, Character.valueOf('c'), "strapLeather"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchspade3, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronSpade, 'b', ModItems.efficIronRod, Character.valueOf('c'), "strapLeather"}));
 
-		ItemStack sTouchaxe = new ItemStack(ModItems.customWeakIronLumberAxe);
+		ItemStack sTouchaxe = new ItemStack(ModItems.customIronLumberAxe0);
 		sTouchaxe.addEnchantment(Enchantment.silkTouch, 1);
+		
+		ItemStack sTouchaxe3 = new ItemStack(ModItems.customIronLumberAxe3);
+		sTouchaxe3.addEnchantment(Enchantment.silkTouch, 1);
 
-		ItemStack sTouchaxe1 = new ItemStack(ModItems.customWeakIronLumberAxe);
+		ItemStack sTouchaxe1 = new ItemStack(ModItems.customIronLumberAxe1);
 		sTouchaxe1.addEnchantment(Enchantment.silkTouch, 1);
 		sTouchaxe1.addEnchantment(Enchantment.unbreaking, 1);
 
-		ItemStack sTouchaxe2 = new ItemStack(ModItems.customHandleIronLumberAxe);
+		ItemStack sTouchaxe2 = new ItemStack(ModItems.customIronLumberAxe2);
 		sTouchaxe2.addEnchantment(Enchantment.silkTouch, 1);
 		sTouchaxe2.addEnchantment(Enchantment.efficiency, 1);
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchaxe, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronLumberAxe, 'b', ModItems.woodentoolHandle, Character.valueOf('c'), "strapLeather"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchaxe1, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronLumberAxe, 'b', ModItems.unbreakingWoodRod, Character.valueOf('c'), "strapLeather"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchaxe, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronLumberAxe, 'b', ModItems.ironweaponHandle, Character.valueOf('c'), "strapLeather"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchaxe3, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronLumberAxe, 'b', ModItems.ironweaponHandle, Character.valueOf('c'), "strapLeather"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(sTouchaxe2, new Object[]{"a", "c", "b", 'a', ModItems.silkTouchIronLumberAxe, 'b', ModItems.efficIronRod, Character.valueOf('c'), "strapLeather"}));
 
 		//REGISTERS ALL POSSIBLE COMBINATIONS OF PICKAXE
@@ -344,7 +354,6 @@ public final class ModCrafting {
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
 							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
 				} else if 
-
 				((i == 0 && j == 3)){
 					ItemStack enchantedSwitch = new ItemStack(ModItems.customHandleIronPick);
 					enchantedSwitch.addEnchantment(Enchantment.unbreaking, 1);

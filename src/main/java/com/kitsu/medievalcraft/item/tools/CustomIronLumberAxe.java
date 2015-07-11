@@ -1,5 +1,8 @@
 package com.kitsu.medievalcraft.item.tools;
 
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
@@ -17,31 +20,35 @@ public class CustomIronLumberAxe extends ItemAxe{
 
 	private String name = "customIronLumberAxe";
 	private Item item;
-	
+
 	public CustomIronLumberAxe(String name, ToolMaterial mat) {
 		super(mat);
-		item = this;
+		//item = this;
 		setUnlocalizedName(name);
 		setCreativeTab(CustomTab.MedievalCraftTab);
-		this.toolMaterial = ModItems.customWoodNormal;
+		//this.toolMaterial = ModItems.customWoodNormal;
 		setTextureName(Main.MODID + ":" + name);
-		GameRegistry.registerItem(this, name);
+		//GameRegistry.registerItem(this, name);
 	}
 	@Override
 	public int getItemEnchantability () {
 		return 0;
-		
 	}
 
-    @Override
-    public boolean getIsRepairable(ItemStack item, ItemStack repair)
-    {
-        return Items.iron_ingot == repair.getItem() ? true : false;
-    }
-    
-	 @SideOnly(Side.CLIENT)
-	    public boolean hasEffect(ItemStack par1ItemStack)
-	    {
-	        return false;
-	    }
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4){
+		list.add("Uses Left: " + Integer.toString(stack.getMaxDamage()-stack.getItemDamage()));
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack item, ItemStack repair)
+	{
+		return Items.iron_ingot == repair.getItem() ? true : false;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack par1ItemStack)
+	{
+		return false;
+	}
 }

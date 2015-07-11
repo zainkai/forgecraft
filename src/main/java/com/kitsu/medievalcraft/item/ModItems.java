@@ -52,21 +52,10 @@ import com.kitsu.medievalcraft.item.misc.ItemSmallBarrelLid;
 import com.kitsu.medievalcraft.item.misc.RawCuredLeather;
 import com.kitsu.medievalcraft.item.throwable.ItemShit;
 import com.kitsu.medievalcraft.item.throwable.ItemTester;
-import com.kitsu.medievalcraft.item.tools.CustomHandleIronLumberAxe;
-import com.kitsu.medievalcraft.item.tools.CustomHandleIronPick;
-import com.kitsu.medievalcraft.item.tools.CustomHandleIronShovel;
-import com.kitsu.medievalcraft.item.tools.CustomHandleStrongIronLumberAxe;
-import com.kitsu.medievalcraft.item.tools.CustomHandleStrongIronPick;
-import com.kitsu.medievalcraft.item.tools.CustomHandleStrongIronShovel;
+import com.kitsu.medievalcraft.item.tools.CustomIronHoe;
 import com.kitsu.medievalcraft.item.tools.CustomIronLumberAxe;
 import com.kitsu.medievalcraft.item.tools.CustomIronPick;
 import com.kitsu.medievalcraft.item.tools.CustomIronShovel;
-import com.kitsu.medievalcraft.item.tools.CustomStrongIronLumberAxe;
-import com.kitsu.medievalcraft.item.tools.CustomStrongIronPick;
-import com.kitsu.medievalcraft.item.tools.CustomStrongIronShovel;
-import com.kitsu.medievalcraft.item.tools.CustomWeakIronLumberAxe;
-import com.kitsu.medievalcraft.item.tools.CustomWeakIronPick;
-import com.kitsu.medievalcraft.item.tools.CustomWeakIronShovel;
 import com.kitsu.medievalcraft.item.weapon.ItemBattleAxe;
 import com.kitsu.medievalcraft.item.weapon.ItemGladius;
 import com.kitsu.medievalcraft.item.weapon.ItemHeavyMace;
@@ -174,10 +163,20 @@ public final class ModItems {
 	
 	//-----------------------FINISHED TOOL COMBOS-----------------------///
 	public static Item customIronPick;
+	public static Item customIronPick1;
+	public static Item customIronPick2;
+	public static Item customIronPick3;
+	public static Item customIronPick4;
+	
 	public static Item customStrongIronPick;
 	public static Item customWeakIronPick;
 	public static Item customHandleIronPick;
 	public static Item customHandleStrongIronPick;
+	
+	public static Item customIronShovel0;
+	public static Item customIronShovel1;
+	public static Item customIronShovel2;
+	public static Item customIronShovel3;
 	
 	public static Item customIronShovel;
 	public static Item customStrongIronShovel;
@@ -185,11 +184,18 @@ public final class ModItems {
 	public static Item customHandleIronShovel;
 	public static Item customHandleStrongIronShovel;
 	
+	public static Item customIronLumberAxe0;
+	public static Item customIronLumberAxe1;
+	public static Item customIronLumberAxe2;
+	public static Item customIronLumberAxe3;
+	
 	public static Item customIronLumberAxe;
 	public static Item customStrongIronLumberAxe;
 	public static Item customWeakIronLumberAxe;
 	public static Item customHandleIronLumberAxe;
 	public static Item customHandleStrongIronLumberAxe;
+	
+	public static Item customIronHoe;
 	
 	//-----------------------CLAYFORMS-----------------------///
 	public static Item pickaxeClayForm;
@@ -755,27 +761,45 @@ public final class ModItems {
 		GameRegistry.registerItem(heavyMace = new ItemHeavyMace("heavyMace", heavymacemat), "heavyMace");
 		GameRegistry.registerItem(battleAxe = new ItemBattleAxe("battleAxe",  heavymacemat), "battleAxe");
 		
+		//Silk Touch
+		GameRegistry.registerItem(customIronPick1 = new CustomIronPick("customIronPick1", customWoodWeak), "customIronPick1");
+		GameRegistry.registerItem(customIronPick2 = new CustomIronPick("customIronPick2", customWoodNormal), "customIronPick2");
+		GameRegistry.registerItem(customIronPick3 = new CustomIronPick("customIronPick3", customIronToolRodWeak), "customIronPick3");
+		GameRegistry.registerItem(customIronPick4 = new CustomIronPick("customIronPick4", customIronToolRodWeak), "customIronPick4");
+		
 		GameRegistry.registerItem(customIronPick = new CustomIronPick("customIronPick", customWoodNormal), "customIronPick");
 		GameRegistry.registerItem(customStrongIronPick = new CustomIronPick("customStrongIronPick", customWoodStrong), "customStrongIronPick");
 		GameRegistry.registerItem(customWeakIronPick = new CustomIronPick("customWeakIronPick", customWoodWeak), "customWeakIronPick");
 		GameRegistry.registerItem(customHandleIronPick = new CustomIronPick("customHandleIronPick", customIronToolRodNormal), "customHandleIronPick");
 		GameRegistry.registerItem(customHandleStrongIronPick = new CustomIronPick("customHandleStrongIronPick", customIronToolRodStrong), "customHandleStrongIronPick");
 		
-/*		GameRegistry.registerItem(customStrongIronPick = new CustomStrongIronPick("customStrongIronPick", customWoodStrong), "customStrongIronPick");
-		GameRegistry.registerItem(customWeakIronPick = new CustomWeakIronPick("customWeakIronPick", customWoodWeak), "customWeakIronPick");
-		GameRegistry.registerItem(customHandleIronPick = new CustomHandleIronPick("customHandleIronPick", customIronToolRodNormal), "customHandleIronPick");
-		GameRegistry.registerItem(customHandleStrongIronPick = new CustomHandleStrongIronPick("customHandleStrongIronPick", customIronToolRodStrong), "customHandleStrongIronPick");
-		*/
+		//SilkTouch Numbers
+		GameRegistry.registerItem(customIronShovel0 = new CustomIronShovel("customIronShovel0", customWoodWeak), "customIronShovel0");
+		GameRegistry.registerItem(customIronShovel1 = new CustomIronShovel("customIronShovel1", customIronToolRodWeak), "customIronShovel1");
+		GameRegistry.registerItem(customIronShovel2 = new CustomIronShovel("customIronShovel2", customWoodNormal), "customIronShovel2");
+		GameRegistry.registerItem(customIronShovel3 = new CustomIronShovel("customIronShovel3", customIronToolRodWeak), "customIronShovel3");
+		
+		
+		
 		GameRegistry.registerItem(customIronShovel = new CustomIronShovel("customIronShovel", customWoodNormal), "customIronShovel");
-		GameRegistry.registerItem(customStrongIronShovel = new CustomStrongIronShovel("customStrongIronShovel", customWoodStrong), "customStrongIronShovel");
-		GameRegistry.registerItem(customWeakIronShovel = new CustomWeakIronShovel("customWeakIronShovel", customWoodWeak), "customWeakIronShovel");
-		GameRegistry.registerItem(customHandleIronShovel = new CustomHandleIronShovel("customHandleIronShovel", customIronToolRodNormal), "customHandleIronShovel");
-		GameRegistry.registerItem(customHandleStrongIronShovel = new CustomHandleStrongIronShovel("customHandleStrongIronShovel", customIronToolRodStrong), "customHandleStrongIronShovel");
+		GameRegistry.registerItem(customStrongIronShovel = new CustomIronShovel("customStrongIronShovel", customWoodStrong), "customStrongIronShovel");
+		GameRegistry.registerItem(customWeakIronShovel = new CustomIronShovel("customWeakIronShovel", customWoodWeak), "customWeakIronShovel");
+		GameRegistry.registerItem(customHandleIronShovel = new CustomIronShovel("customHandleIronShovel", customIronToolRodNormal), "customHandleIronShovel");
+		GameRegistry.registerItem(customHandleStrongIronShovel = new CustomIronShovel("customHandleStrongIronShovel", customIronToolRodStrong), "customHandleStrongIronShovel");
+		
+		//Silk Touch
+		GameRegistry.registerItem(customIronLumberAxe0 = new CustomIronLumberAxe("customIronLumberAxe0", customWoodWeak), "customIronLumberAxe0");
+		GameRegistry.registerItem(customIronLumberAxe1 = new CustomIronLumberAxe("customIronLumberAxe1", customWoodNormal), "customIronLumberAxe1");
+		GameRegistry.registerItem(customIronLumberAxe2 = new CustomIronLumberAxe("customIronLumberAxe2", customIronToolRodWeak), "customIronLumberAxe2");
+		GameRegistry.registerItem(customIronLumberAxe3 = new CustomIronLumberAxe("customIronLumberAxe3", customIronToolRodWeak), "customIronLumberAxe3");
 		
 		GameRegistry.registerItem(customIronLumberAxe = new CustomIronLumberAxe("customIronLumberAxe", customWoodNormal), "customIronLumberAxe");
-		GameRegistry.registerItem(customStrongIronLumberAxe = new CustomStrongIronLumberAxe("customStrongIronLumberAxe", customWoodStrong), "customStrongIronLumberAxe");
-		GameRegistry.registerItem(customWeakIronLumberAxe = new CustomWeakIronLumberAxe("customWeakIronLumberAxe", customWoodWeak), "customWeakIronLumberAxe");
-		GameRegistry.registerItem(customHandleIronLumberAxe = new CustomHandleIronLumberAxe("customHandleIronLumberAxe", customIronToolRodNormal), "customHandleIronLumberAxe");
-		GameRegistry.registerItem(customHandleStrongIronLumberAxe = new CustomHandleStrongIronLumberAxe("customHandleStrongIronLumberAxe", customIronToolRodStrong), "customHandleStrongIronLumberAxe");
+		GameRegistry.registerItem(customStrongIronLumberAxe = new CustomIronLumberAxe("customStrongIronLumberAxe", customWoodStrong), "customStrongIronLumberAxe");
+		GameRegistry.registerItem(customWeakIronLumberAxe = new CustomIronLumberAxe("customWeakIronLumberAxe", customWoodWeak), "customWeakIronLumberAxe");
+		GameRegistry.registerItem(customHandleIronLumberAxe = new CustomIronLumberAxe("customHandleIronLumberAxe", customIronToolRodNormal), "customHandleIronLumberAxe");
+		GameRegistry.registerItem(customHandleStrongIronLumberAxe = new CustomIronLumberAxe("customHandleStrongIronLumberAxe", customIronToolRodStrong), "customHandleStrongIronLumberAxe");
+		
+		GameRegistry.registerItem(customIronHoe = new CustomIronHoe("customIronHoe", customWoodNormal), "customIronHoe");
+		
 	}
 }

@@ -89,11 +89,14 @@ item.ironSawBladeForm.name=Iron Saw Blade Form
 item.ironSharpTipForm.name=Iron Sharp Tip Form
 item.ironRingForm.name=Iron Ring Form
 item.ironHandleForm.name=Iron Handle Form
-item.customIronPick.name=Forged Iron Pickaxe
-item.customStrongIronPick.name=Forged Iron Pickaxe
-item.customWeakIronPick.name=Forged Iron Pickaxe
-item.customHandleStrongIronPick.name=Forged Iron Pickaxe
-item.customHandleIronPick.name=Forged Iron Pickaxe
+
+item.customIronPick.name=Forged Pickaxe
+item.customStrongIronPick.name=Forged Pickaxe
+item.customWeakIronPick.name=Forged Pickaxe
+item.customHandleStrongIronPick.name=Forged Pickaxe
+item.customHandleIronPick.name=Forged Pickaxe
+item.customIronHoe.name=Forged Hoe
+
 item.silkTouchIronHead.name=Emerald Tipped Pickaxe Head
 item.unbreakingOneHead.name=Diamond Tip Pickaxe Head
 item.unbreakingTwoHead.name=Diamond Tipped Pickaxe Head
@@ -128,6 +131,7 @@ item.fortuneWoodRod.name=Lapis Inlayed Wood Handle
 item.unbreakingWoodRod.name=Diamond Inlayed Wood Handle
 item.fortuneIronRod.name=Lapis Inlayed Iron Handle
 item.efficIronRod.name=Redstone Inlayed Iron Handle
+
 item.customIronLumberAxe.name=Forged Lumber Axe
 item.customStrongIronLumberAxe.name=Forged Lumber Axe
 item.customWeakIronLumberAxe.name=Forged Lumber Axe
@@ -138,6 +142,7 @@ item.customHandleIronShovel.name=Forged Shovel
 item.customHandleStrongIronShovel.name=Forged Shovel
 item.customWeakIronShovel.name=Forged Shovel
 item.customStrongIronShovel.name=Forged Shovel
+
 item.forgeHammer.name=Forge Hammer
 item.inlayHammer.name=Inlay Hammer
 item.ironSaw.name=Iron Saw

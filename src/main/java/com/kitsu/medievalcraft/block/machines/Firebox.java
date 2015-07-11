@@ -7,7 +7,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,8 +20,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -32,7 +29,6 @@ import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityFirebox;
-import com.kitsu.medievalcraft.tileents.machine.TileEntityShelfFour;
 import com.kitsu.medievalcraft.util.CustomTab;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -68,26 +64,43 @@ public class Firebox extends BlockContainer{
 	@Override
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side) {
 		if (this == ModBlocks.firebox && side == UP){
-			return true;
+			TileEntityFirebox tile = (TileEntityFirebox) world.getTileEntity(x, y, z);
+			if(this.getItemBurnTime(tile.getStackInSlot(0))>0){
+				return true;
+			}
 		}
-		return true;
+		return false;
 	}
+	
+	@Override
+	public int getLightValue(IBlockAccess world,int  x,int y,int z){
+    	if(world.getBlockMetadata(x, y, z)==1){
+    		return 15;
+    	}
+    	return 0;
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
+		
+
 		if(world.getBlockMetadata(x, y, z)==1){
+	        if (rand.nextInt(24) == 0&&world.getBlock(x, y+1, z)!=Blocks.fire)
+	        {
+	            world.playSound((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+	        }
 			int l;
 			float f;
 			float f1;
 			float f2;
 			for (l = 0; l < 3; ++l)
 			{
-				f = (float)(x+0.25) + (rand.nextFloat()/2);
+				f = (float)(x+0.1) + ((rand.nextFloat()/1.25f));
 				f1 = (float)y+0.3f + rand.nextFloat() * 0.4F;
-				f2 = (float)(z+0.25) + (rand.nextFloat()/2);
+				f2 = (float)(z+0.1) + ((rand.nextFloat()/1.25f));
 				world.spawnParticle("fire", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
 				world.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
 				world.spawnParticle("smoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
@@ -106,7 +119,8 @@ public class Firebox extends BlockContainer{
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)
 						){
 					world.setBlockMetadataWithNotify(x, y, z, 1, 3);
-					this.setLightLevel(1f);
+					tileEnt.markForUpdate();
+					tileEnt.markDirty();
 					player.inventory.getCurrentItem().damageItem(1, player);
 					if(world.getBlock(x, y, z).equals(Blocks.air)){
 						world.setBlock(x, y+1, z, Blocks.fire, 0, 2);

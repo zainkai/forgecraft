@@ -52,6 +52,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 		this.setResistance(5.0F);
 		this.setHarvestLevel("pickaxe", 1, 0);
 		this.setStepSound(Block.soundTypeStone);
+		//this.setTickRandomly(true);
 		//this.isFlammable(world, x, y, z, face);
 		//(xmin, ymin, zmin, 
 		// xmax, ymax, zmax)
@@ -63,6 +64,26 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face)
 	{
 		return true;
+	}
+	
+	@Override
+	public int getLightValue(IBlockAccess world,int  x,int y,int z){
+    	if(world.getBlockMetadata(x, y, z)>3){
+    		return 15;
+    	}
+    	return 0;
+    }
+	
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		/*System.out.println("Update Tick");
+		if(world.getBlockMetadata(x, y, z)<4){
+			this.setLightLevel(0f);
+		}
+		if(world.getBlockMetadata(x, y, z)>3){
+			this.setLightLevel(1f);
+		}
+*/
 	}
 
 	@Override
@@ -163,7 +184,8 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 						(player.inventory.getCurrentItem().getItem()==ModItems.fireBow)){
 					if(world.getBlockMetadata(x, y, z)<=3){
 						world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 3);
-						this.setLightLevel(1f);
+						tileEnt.markDirty();
+						tileEnt.markForUpdate();
 					}
 					tileEnt.markForUpdate();
 					if(tileEnt.getStackInSlot(1)!=null){
@@ -221,6 +243,7 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 						if(isItemFuel(player.inventory.getCurrentItem())==true){
 							tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
 							player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+							//world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 3);
 						}
 					}
 					if(tileEnt.getStackInSlot(0)!=null){
@@ -245,6 +268,8 @@ public class Forge extends BlockContainer implements TileForgePlaceables{
 					if(tileEnt.getStackInSlot(0)!=null){
 						world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tileEnt.getStackInSlot(0)));
 						tileEnt.setInventorySlotContents(0, null);
+						tileEnt.markDirty();
+						tileEnt.markForUpdate();
 					}
 					return true;
 				}

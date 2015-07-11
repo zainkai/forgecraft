@@ -243,6 +243,9 @@ public class TileForge extends TileEntity implements IInventory{
 					double burnTime = (this.getItemBurnTime(stack)+((fuelMulti(stack.stackSize, stack)*this.getItemBurnTime(stack))));
 					//System.out.println(this.ticks+" "+ burnTime+" "+this.getStackInSlot(0).stackSize);
 					if(time >= burnTime){
+						if(this.getStackInSlot(0).stackSize==1){
+							this.setInventorySlotContents(0, null);
+						}
 						decrStackSize(0, 1);
 						this.ticks=0;
 					}
@@ -261,6 +264,9 @@ public class TileForge extends TileEntity implements IInventory{
 					double burnTime = 1.5*(this.getItemBurnTime(stack)+((fuelMulti(stack.stackSize, stack)*this.getItemBurnTime(stack))));
 					//System.out.println(this.ticks+" "+ burnTime+" "+this.getStackInSlot(0).stackSize);
 					if(time >= burnTime){
+						if(this.getStackInSlot(0).stackSize==1){
+							this.setInventorySlotContents(0, null);
+						}
 						decrStackSize(0, 1);
 						this.ticks=0;
 					}
@@ -336,23 +342,27 @@ public class TileForge extends TileEntity implements IInventory{
 		if(this.getStackInSlot(0)==null){
 			if(world.getBlockMetadata(x, y, z)>=4&&world.getBlockMetadata(x, y, z)<=7){
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 3);
-				world.getBlock(x, y, z).setLightLevel(0f);
+				this.markDirty();
+				this.markForUpdate();
+				//world.getBlock(x, y, z).setLightLevel(0f);
 			}
 		}
 		if(this.getStackInSlot(0)==null){
 			if(world.getBlockMetadata(x, y, z)>7){
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-8, 3);
-				world.getBlock(x, y, z).setLightLevel(0f);
+				this.markDirty();
+				this.markForUpdate();
+				//world.getBlock(x, y, z).setLightLevel(0f);
 			}
 		}
 		if(this.getStackInSlot(1)==null){
 			if(world.getBlockMetadata(x, y, z)>=8){
-				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 2);
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-4, 3);
 			}
 		}
 		if(world.getBlockMetadata(x, y, z)>3&&world.getBlockMetadata(x, y, z)<8){
 			if(this.getStackInSlot(1)!=null && (world.canBlockSeeTheSky(x, y+1, z)==true)){
-				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 2);
+				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 3);
 			}
 		}
 		if(world.getBlockMetadata(x, y, z)>7){
