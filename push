@@ -6,4 +6,3 @@ git add --all
 read COM
 git commit -m $COM
 git push
-
