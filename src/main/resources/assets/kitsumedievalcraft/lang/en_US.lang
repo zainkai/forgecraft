@@ -90,13 +90,6 @@ item.ironSharpTipForm.name=Iron Sharp Tip Form
 item.ironRingForm.name=Iron Ring Form
 item.ironHandleForm.name=Iron Handle Form
 
-item.customIronPick.name=Forged Pickaxe
-item.customStrongIronPick.name=Forged Pickaxe
-item.customWeakIronPick.name=Forged Pickaxe
-item.customHandleStrongIronPick.name=Forged Pickaxe
-item.customHandleIronPick.name=Forged Pickaxe
-item.customIronHoe.name=Forged Hoe
-
 item.silkTouchIronHead.name=Emerald Tipped Pickaxe Head
 item.unbreakingOneHead.name=Diamond Tip Pickaxe Head
 item.unbreakingTwoHead.name=Diamond Tipped Pickaxe Head
@@ -132,11 +125,48 @@ item.unbreakingWoodRod.name=Diamond Inlayed Wood Handle
 item.fortuneIronRod.name=Lapis Inlayed Iron Handle
 item.efficIronRod.name=Redstone Inlayed Iron Handle
 
+item.customIronPick.name=Forged Pickaxe
+item.customStrongIronPick.name=Forged Pickaxe
+item.customWeakIronPick.name=Forged Pickaxe
+item.customHandleStrongIronPick.name=Forged Pickaxe
+item.customHandleIronPick.name=Forged Pickaxe
+item.customIronHoe.name=Forged Hoe
+item.customIronPick1.name=Forged Pickaxe
+item.customIronPick2.name=Forged Pickaxe
+item.customIronPick3.name=Forged Pickaxe
+item.customIronPick4.name=Forged Pickaxe
+item.customIronPickCase0.name=Forged Pickaxe
+item.customHandleIronPickCase0.name=Forged Pickaxe
+item.customIronPickCase1.name=Forged Pickaxe
+item.customIronPickCase2.name=Forged Pickaxe
+item.customIronPickCase3.name=Forged Pickaxe
+item.customIronPickCase4.name=Forged Pickaxe
+item.customIronPickCase5.name=Forged Pickaxe
+item.customIronPickCase6.name=Forged Pickaxe
+item.customIronPickCase7.name=Forged Pickaxe
+item.customIronPickCase8.name=Forged Pickaxe
+item.customIronPickCase9.name=Forged Pickaxe
+item.customIronPickCase10.name=Forged Pickaxe
+item.customIronPickCase11.name=Forged Pickaxe
+item.customIronPickCase12.name=Forged Pickaxe
+
+item.customIronLumberAxe0.name=Forged Lumber Axe
+item.customIronLumberAxe1.name=Forged Lumber Axe
+item.customIronLumberAxe2.name=Forged Lumber Axe
+item.customIronLumberAxe3.name=Forged Lumber Axe
+
 item.customIronLumberAxe.name=Forged Lumber Axe
 item.customStrongIronLumberAxe.name=Forged Lumber Axe
 item.customWeakIronLumberAxe.name=Forged Lumber Axe
 item.customHandleIronLumberAxe.name=Forged Lumber Axe
 item.customHandleStrongIronLumberAxe.name=Forged Lumber Axe
+
+
+item.customIronShovel0.name=Forged Shovel
+item.customIronShovel1.name=Forged Shovel
+item.customIronShovel2.name=Forged Shovel
+item.customIronShovel3.name=Forged Shovel
+
 item.customIronShovel.name=Forged Shovel
 item.customHandleIronShovel.name=Forged Shovel
 item.customHandleStrongIronShovel.name=Forged Shovel

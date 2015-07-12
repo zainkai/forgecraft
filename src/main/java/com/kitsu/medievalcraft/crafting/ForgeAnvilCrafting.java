@@ -68,7 +68,7 @@ public static final Hashtable<Integer, ItemStack> itemToGive = new Hashtable <In
 	
 	public static final Hashtable<Integer, String> toolToRepair = new Hashtable <Integer, String>(){{
 
-		put(0, "Forged Iron Pickaxe");
+		put(0, "Forged Pickaxe");
 		put(1, "Forged Shovel");
 		put(2, "Forged Lumber Axe");
 		put(3, "Leather Shears");

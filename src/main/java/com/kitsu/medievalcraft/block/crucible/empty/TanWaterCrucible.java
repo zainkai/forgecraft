@@ -44,7 +44,7 @@ public class TanWaterCrucible extends BlockContainer {
 					ItemStack tan = new ItemStack(ModItems.tanninBucket, 1);
 					player.inventory.consumeInventoryItem(player.inventory.getStackInSlot(a).getItem());
 					player.inventory.addItemStackToInventory(tan);
-					player.inventory.addItemStackToInventory(new ItemStack(ModItems.woodPulp, 2 + world.rand.nextInt(6)));
+					player.inventory.addItemStackToInventory(new ItemStack(ModItems.woodPulp, 6 + world.rand.nextInt(4)));
 					world.setBlock(x, y, z, ModBlocks.emptyCookedCrucible, 0, 2);
 					player.inventoryContainer.detectAndSendChanges();
 				}
