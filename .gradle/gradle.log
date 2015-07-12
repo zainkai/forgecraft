@@ -1,16 +1,15 @@
+****************************
+ Powered By MCP:             
+ http://mcp.ocean-labs.de/   
+ Searge, ProfMobius, Fesh0r, 
+ R4wk, ZeuX, IngisKahn, bspkrs
+ MCP Data version : unknown
+****************************
+:eclipseClasspath
+:eclipseJdt
+:eclipseProject
+:eclipse
 
-FAILURE: Build failed with an exception.
+BUILD SUCCESSFUL
 
-* Where:
-Build file '/home/kitsudesktop/Development/ForgeCraft/build.gradle' line: 40
-
-* What went wrong:
-A problem occurred evaluating root project 'ForgeCraft'.
-> The description primalcore is invalid
-
-* Try:
-Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
-
-BUILD FAILED
-
-Total time: 9.303 secs
+Total time: 15.227 secs
