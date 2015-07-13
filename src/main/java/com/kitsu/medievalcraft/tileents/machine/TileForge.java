@@ -264,10 +264,10 @@ public class TileForge extends TileEntity implements IInventory{
 					double burnTime = 1.5*(this.getItemBurnTime(stack)+((fuelMulti(stack.stackSize, stack)*this.getItemBurnTime(stack))));
 					//System.out.println(this.ticks+" "+ burnTime+" "+this.getStackInSlot(0).stackSize);
 					if(time >= burnTime){
-						if(this.getStackInSlot(0).stackSize==1){
-							this.setInventorySlotContents(0, null);
+						if(this.getStackInSlot(1).stackSize==1){
+							this.setInventorySlotContents(1, null);
 						}
-						decrStackSize(0, 1);
+						decrStackSize(1, 1);
 						this.ticks=0;
 					}
 					markForUpdate();

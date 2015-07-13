@@ -77,7 +77,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 	}
 
 	private void onClick(Block block, Block blockSub, World world, int x, int y, int z, EntityPlayer p, ItemStack stack, Random rand){
-		System.out.println("Layer 1");
+		//System.out.println("Layer 1");
 		if(block == ModBlocks.refinedIron){
 			tileRefIngot = (TileMyIronIngot) world.getTileEntity(x, y, z);
 		}
@@ -124,7 +124,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 				//IRON FORMS
 				if(tileEnt.getStackInSlot(0)!=null){
 					if((tileEnt.getStackInSlot(0).getItem() instanceof IronForms)&&(tile.hot==true)){
-						System.out.println("working");
+						//System.out.println("working");
 						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 						Main.sNet.sendToAll(new MsgPacket(true));
 						Main.sNet.sendToAll(new MsgPacketLocX(x));
