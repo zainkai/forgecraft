@@ -859,6 +859,14 @@ public final class ModItems {
 		GameRegistry.registerItem(customIronPickCase33 = new CustomIronPick("customIronPickCase33", customWoodWeak), "customIronPickCase33");
 		GameRegistry.registerItem(customIronPickCase34 = new CustomIronPick("customIronPickCase34", customIronToolRodWeak), "customIronPickCase34");
 		GameRegistry.registerItem(customIronPickCase35 = new CustomIronPick("customIronPickCase35", customWoodWeak), "customIronPickCase35");
+		GameRegistry.registerItem(customIronPickCase36 = new CustomIronPick("customIronPickCase36", customWoodWeak), "customIronPickCase36");
+		GameRegistry.registerItem(customIronPickCase37 = new CustomIronPick("customIronPickCase37", customWoodNormal), "customIronPickCase37");
+		GameRegistry.registerItem(customIronPickCase38 = new CustomIronPick("customIronPickCase38", customIronToolRodWeak), "customIronPickCase38");
+		GameRegistry.registerItem(customIronPickCase39 = new CustomIronPick("customIronPickCase39", customIronToolRodWeak), "customIronPickCase39");
+		GameRegistry.registerItem(customIronPickCase40 = new CustomIronPick("customIronPickCase40", customIronToolRodWeak), "customIronPickCase40");
+		GameRegistry.registerItem(customIronPickCase41 = new CustomIronPick("customIronPickCase41", customWoodNormal), "customIronPickCase41");
+		GameRegistry.registerItem(customIronPickCase42 = new CustomIronPick("customIronPickCase42", customIronToolRodNormal), "customIronPickCase42");
+		
 		
 		GameRegistry.registerItem(customIronPick = new CustomIronPick("customIronPick", customWoodNormal), "customIronPick");
 		GameRegistry.registerItem(customStrongIronPick = new CustomIronPick("customStrongIronPick", customWoodStrong), "customStrongIronPick");

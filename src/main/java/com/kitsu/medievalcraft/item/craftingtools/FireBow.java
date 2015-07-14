@@ -43,15 +43,15 @@ public class FireBow extends Item {
 			if(rand.nextInt(5) == 0){
 				world.setBlock(x, y + 1, z , Blocks.fire);
 				stack.damageItem(1, player);
-				player.worldObj.playSoundAtEntity(player, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-				for(int i=0; i < player.worldObj.playerEntities.size(); i++){
+				//player.worldObj.playSoundAtEntity(player, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+				/*for(int i=0; i < player.worldObj.playerEntities.size(); i++){
 					EntityPlayer test = (EntityPlayer) player.worldObj.playerEntities.get(i);
 					Vec3 vecTest = Vec3.createVectorHelper(test.posX, test.posY, test.posZ);
 					Vec3 vecPlayer = Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
 					if(vecPlayer.distanceTo(vecTest)>10f && vecPlayer.distanceTo(vecTest)<100f){
 						test.worldObj.playSoundAtEntity(test, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 					}
-				}
+				}*/
 			}
 		}
 		return true;

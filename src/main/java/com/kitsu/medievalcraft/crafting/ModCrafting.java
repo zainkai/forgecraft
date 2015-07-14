@@ -599,40 +599,40 @@ public final class ModCrafting {
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
 							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
 				} else if 
-				//EFFIC ONE + FORTUNE + UNBREAKING
+				//EFFIC ONE + FORTUNE
 				((i == 6 && j == 2)) {
 					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase35);
 					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
-					enchantedSwitch.addEnchantment(Enchantment.unbreaking, 1);
-					enchantedSwitch.addEnchantment(Enchantment.fortune, 1);
+					enchantedSwitch.addEnchantment(Enchantment.fortune, 2);
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
 							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
 				} else if 
 				//EFFIC ONEFORTUNE + WOOD/IRON
-				((i == 6 && j == 1)) {
-					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPick);
+				((i == 6 && j == 0)) {
+					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase36);
 					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
 					enchantedSwitch.addEnchantment(Enchantment.fortune, 1);
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
 							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
 				} else if 
+				((i == 6 && j == 1)) {
+					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase37);
+					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
+					enchantedSwitch.addEnchantment(Enchantment.fortune, 1);
+					enchantedSwitch.addEnchantment(Enchantment.unbreaking, 1);
+					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
+							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
+				} else if 
 				((i == 6 && j == 3)) {
-					ItemStack enchantedSwitch = new ItemStack(ModItems.customHandleIronPick);
+					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase38);
 					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
 					enchantedSwitch.addEnchantment(Enchantment.fortune, 1);
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
 							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
 				} else if 
 				//EFFIC ONEFORTUNE + FORTUNE
-				((i == 6 && j == 2)) {
-					ItemStack enchantedSwitch = new ItemStack(ModItems.customWeakIronPick);
-					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
-					enchantedSwitch.addEnchantment(Enchantment.fortune, 2);
-					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
-							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
-				} else if 
 				((i == 6 && j == 5)) {
-					ItemStack enchantedSwitch = new ItemStack(ModItems.customHandleIronPick);
+					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase39);
 					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
 					enchantedSwitch.addEnchantment(Enchantment.fortune, 2);
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
@@ -640,7 +640,7 @@ public final class ModCrafting {
 				} else if 
 				//EFFIC ONEFORTUNE + EFFIC
 				((i == 6 && j == 4)) {
-					ItemStack enchantedSwitch = new ItemStack(ModItems.customHandleIronPick);
+					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase40);
 					enchantedSwitch.addEnchantment(Enchantment.efficiency, 2);
 					enchantedSwitch.addEnchantment(Enchantment.fortune, 1);
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
@@ -648,14 +648,14 @@ public final class ModCrafting {
 				} else if 
 				//UNBREAKONEEFFICONE + WOOD/IRON
 				((i == 7 && j == 0)) {
-					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPick);
+					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase41);
 					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
 					enchantedSwitch.addEnchantment(Enchantment.unbreaking, 1);
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
 							new Object[]{"a", "c", "b", 'a', pickheads.get(i), 'b', rods.get(j), Character.valueOf('c'), "strapLeather"}));
 				} else if 
 				((i == 7 && j == 3)) {
-					ItemStack enchantedSwitch = new ItemStack(ModItems.customHandleIronPick);
+					ItemStack enchantedSwitch = new ItemStack(ModItems.customIronPickCase42);
 					enchantedSwitch.addEnchantment(Enchantment.efficiency, 1);
 					enchantedSwitch.addEnchantment(Enchantment.unbreaking, 1);
 					GameRegistry.addRecipe(new ShapedOreRecipe(enchantedSwitch, 
