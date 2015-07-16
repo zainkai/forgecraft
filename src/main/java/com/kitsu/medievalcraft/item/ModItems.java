@@ -220,6 +220,7 @@ public final class ModItems {
 	public static Item customIronPickCase49;
 	public static Item customIronPickCase50;
 	public static Item customIronPickCase51;
+	public static Item customIronPickCase52;
 	
 	
 	public static Item customStrongIronPick;
@@ -231,6 +232,63 @@ public final class ModItems {
 	public static Item customIronShovel1;
 	public static Item customIronShovel2;
 	public static Item customIronShovel3;
+	public static Item customIronShovelCase0;
+	public static Item customIronShovelCase00;
+	public static Item customIronShovelCase1;
+	public static Item customIronShovelCase2;
+	public static Item customIronShovelCase3;
+	public static Item customIronShovelCase4;
+	public static Item customIronShovelCase5;
+	public static Item customIronShovelCase6;
+	public static Item customIronShovelCase7;
+	public static Item customIronShovelCase8;
+	public static Item customIronShovelCase9;
+	public static Item customIronShovelCase10;
+	public static Item customIronShovelCase11;
+	public static Item customIronShovelCase12;
+	public static Item customIronShovelCase13;
+	public static Item customIronShovelCase14;
+	public static Item customIronShovelCase15;
+	public static Item customIronShovelCase16;
+	public static Item customIronShovelCase17;
+	public static Item customIronShovelCase18;
+	public static Item customIronShovelCase19;
+	public static Item customIronShovelCase20;
+	public static Item customIronShovelCase21;
+	public static Item customIronShovelCase22;
+	public static Item customIronShovelCase23;
+	public static Item customIronShovelCase24;
+	public static Item customIronShovelCase25;
+	public static Item customIronShovelCase26;
+	public static Item customIronShovelCase27;
+	public static Item customIronShovelCase28;
+	public static Item customIronShovelCase29;
+	public static Item customIronShovelCase30;
+	public static Item customIronShovelCase31;
+	public static Item customIronShovelCase32;
+	public static Item customIronShovelCase33;
+	public static Item customIronShovelCase34;
+	public static Item customIronShovelCase35;
+	public static Item customIronShovelCase36;
+	public static Item customIronShovelCase37;
+	public static Item customIronShovelCase38;
+	public static Item customIronShovelCase39;
+	public static Item customIronShovelCase40;
+	public static Item customIronShovelCase41;
+	public static Item customIronShovelCase42;
+	public static Item customIronShovelCase43;
+	public static Item customIronShovelCase44;
+	public static Item customIronShovelCase45;
+	public static Item customIronShovelCase46;
+	public static Item customIronShovelCase47;
+	public static Item customIronShovelCase48;
+	public static Item customIronShovelCase49;
+	public static Item customIronShovelCase50;
+	public static Item customIronShovelCase51;
+	public static Item customIronShovelCase52;
+	public static Item customIronShovelCase53;
+	
+	
 	
 	public static Item customIronShovel;
 	public static Item customStrongIronShovel;
@@ -866,6 +924,16 @@ public final class ModItems {
 		GameRegistry.registerItem(customIronPickCase40 = new CustomIronPick("customIronPickCase40", customIronToolRodWeak), "customIronPickCase40");
 		GameRegistry.registerItem(customIronPickCase41 = new CustomIronPick("customIronPickCase41", customWoodNormal), "customIronPickCase41");
 		GameRegistry.registerItem(customIronPickCase42 = new CustomIronPick("customIronPickCase42", customIronToolRodNormal), "customIronPickCase42");
+		GameRegistry.registerItem(customIronPickCase43 = new CustomIronPick("customIronPickCase43", customWoodNormal), "customIronPickCase43");
+		GameRegistry.registerItem(customIronPickCase44 = new CustomIronPick("customIronPickCase44", customWoodWeak), "customIronPickCase44");
+		GameRegistry.registerItem(customIronPickCase45 = new CustomIronPick("customIronPickCase45", customIronToolRodWeak), "customIronPickCase45");
+		GameRegistry.registerItem(customIronPickCase46 = new CustomIronPick("customIronPickCase46", customIronToolRodWeak), "customIronPickCase46");
+		GameRegistry.registerItem(customIronPickCase47 = new CustomIronPick("customIronPickCase47", customWoodNormal), "customIronPickCase47");
+		GameRegistry.registerItem(customIronPickCase48 = new CustomIronPick("customIronPickCase48", customIronToolRodNormal), "customIronPickCase48");
+		GameRegistry.registerItem(customIronPickCase49 = new CustomIronPick("customIronPickCase49", customWoodWeak), "customIronPickCase49");
+		GameRegistry.registerItem(customIronPickCase50 = new CustomIronPick("customIronPickCase50", customIronToolRodWeak), "customIronPickCase50");
+		GameRegistry.registerItem(customIronPickCase51 = new CustomIronPick("customIronPickCase51", customWoodNormal), "customIronPickCase51");
+		GameRegistry.registerItem(customIronPickCase52 = new CustomIronPick("customIronPickCase52", customIronToolRodWeak), "customIronPickCase52");
 		
 		
 		GameRegistry.registerItem(customIronPick = new CustomIronPick("customIronPick", customWoodNormal), "customIronPick");
@@ -880,6 +948,63 @@ public final class ModItems {
 		GameRegistry.registerItem(customIronShovel1 = new CustomIronShovel("customIronShovel1", customIronToolRodWeak), "customIronShovel1");
 		GameRegistry.registerItem(customIronShovel2 = new CustomIronShovel("customIronShovel2", customWoodNormal), "customIronShovel2");
 		GameRegistry.registerItem(customIronShovel3 = new CustomIronShovel("customIronShovel3", customIronToolRodWeak), "customIronShovel3");
+		
+		GameRegistry.registerItem(customIronShovelCase0 = new CustomIronShovel("customIronShovelCase0", customWoodNormal), "customIronShovelCase0");
+		GameRegistry.registerItem(customIronShovelCase00 = new CustomIronShovel("customIronShovelCase00", customIronToolRodNormal), "customIronShovelCase00");
+		GameRegistry.registerItem(customIronShovelCase1 = new CustomIronShovel("customIronShovelCase1", customWoodNormal), "customIronShovelCase1");
+		GameRegistry.registerItem(customIronShovelCase2 = new CustomIronShovel("customIronShovelCase2", customWoodNormal), "customIronShovelCase2");
+		GameRegistry.registerItem(customIronShovelCase3 = new CustomIronShovel("customIronShovelCase3", customIronToolRodNormal), "customIronShovelCase3");
+		GameRegistry.registerItem(customIronShovelCase4 = new CustomIronShovel("customIronShovelCase4", customWoodStrong), "customIronShovelCase4");
+		GameRegistry.registerItem(customIronShovelCase5 = new CustomIronShovel("customIronShovelCase5", customWoodWeak), "customIronShovelCase5");
+		GameRegistry.registerItem(customIronShovelCase6 = new CustomIronShovel("customIronShovelCase6", customIronToolRodWeak), "customIronShovelCase6");
+		GameRegistry.registerItem(customIronShovelCase7 = new CustomIronShovel("customIronShovelCase7", customWoodWeak), "customIronShovelCase7");
+		GameRegistry.registerItem(customIronShovelCase8 = new CustomIronShovel("customIronShovelCase8", customWoodWeak), "customIronShovelCase8");
+		GameRegistry.registerItem(customIronShovelCase9 = new CustomIronShovel("customIronShovelCase9", customIronToolRodWeak), "customIronShovelCase9");
+		GameRegistry.registerItem(customIronShovelCase10 = new CustomIronShovel("customIronShovelCase10", customIronToolRodWeak), "customIronShovelCase10");
+		GameRegistry.registerItem(customIronShovelCase11 = new CustomIronShovel("customIronShovelCase11", customWoodWeak), "customIronShovelCase11");
+		GameRegistry.registerItem(customIronShovelCase12 = new CustomIronShovel("customIronShovelCase12", customIronToolRodWeak), "customIronShovelCase12");
+		GameRegistry.registerItem(customIronShovelCase13 = new CustomIronShovel("customIronShovelCase13", customWoodNormal), "customIronShovelCase13");
+		GameRegistry.registerItem(customIronShovelCase14 = new CustomIronShovel("customIronShovelCase14", customIronToolRodNormal), "customIronShovelCase14");
+		GameRegistry.registerItem(customIronShovelCase15 = new CustomIronShovel("customIronShovelCase15", customWoodWeak), "customIronShovelCase15");
+		GameRegistry.registerItem(customIronShovelCase16 = new CustomIronShovel("customIronShovelCase16", customIronToolRodWeak), "customIronShovelCase16");
+		GameRegistry.registerItem(customIronShovelCase17 = new CustomIronShovel("customIronShovelCase17", customIronToolRodWeak), "customIronShovelCase17");
+		GameRegistry.registerItem(customIronShovelCase18 = new CustomIronShovel("customIronShovelCase18", customIronToolRodWeak), "customIronShovelCase18");
+		GameRegistry.registerItem(customIronShovelCase19 = new CustomIronShovel("customIronShovelCase19", customWoodNormal), "customIronShovelCase19");
+		GameRegistry.registerItem(customIronShovelCase20 = new CustomIronShovel("customIronShovelCase20", customIronToolRodNormal), "customIronShovelCase20");
+		GameRegistry.registerItem(customIronShovelCase21 = new CustomIronShovel("customIronShovelCase21", customIronToolRodNormal), "customIronShovelCase21");
+		GameRegistry.registerItem(customIronShovelCase22 = new CustomIronShovel("customIronShovelCase22", customWoodNormal), "customIronShovelCase22");
+		GameRegistry.registerItem(customIronShovelCase23 = new CustomIronShovel("customIronShovelCase23", customIronToolRodStrong), "customIronShovelCase23");
+		GameRegistry.registerItem(customIronShovelCase24 = new CustomIronShovel("customIronShovelCase24", customIronToolRodStrong), "customIronShovelCase24");
+		GameRegistry.registerItem(customIronShovelCase25 = new CustomIronShovel("customIronShovelCase25", customWoodNormal), "customIronShovelCase25");
+		GameRegistry.registerItem(customIronShovelCase26 = new CustomIronShovel("customIronShovelCase26", customIronToolRodWeak), "customIronShovelCase26");
+		GameRegistry.registerItem(customIronShovelCase27 = new CustomIronShovel("customIronShovelCase27", customWoodNormal), "customIronShovelCase27");
+		GameRegistry.registerItem(customIronShovelCase28 = new CustomIronShovel("customIronShovelCase28", customIronToolRodWeak), "customIronShovelCase28");
+		GameRegistry.registerItem(customIronShovelCase29 = new CustomIronShovel("customIronShovelCase29", customWoodNormal), "customIronShovelCase29");
+		GameRegistry.registerItem(customIronShovelCase30 = new CustomIronShovel("customIronShovelCase30", customWoodWeak), "customIronShovelCase30");
+		GameRegistry.registerItem(customIronShovelCase31 = new CustomIronShovel("customIronShovelCase31", customIronToolRodWeak), "customIronShovelCase31");
+		GameRegistry.registerItem(customIronShovelCase32 = new CustomIronShovel("customIronShovelCase32", customWoodNormal), "customIronShovelCase32");
+		GameRegistry.registerItem(customIronShovelCase33 = new CustomIronShovel("customIronShovelCase33", customWoodWeak), "customIronShovelCase33");
+		GameRegistry.registerItem(customIronShovelCase34 = new CustomIronShovel("customIronShovelCase34", customIronToolRodWeak), "customIronShovelCase34");
+		GameRegistry.registerItem(customIronShovelCase35 = new CustomIronShovel("customIronShovelCase35", customWoodWeak), "customIronShovelCase35");
+		GameRegistry.registerItem(customIronShovelCase36 = new CustomIronShovel("customIronShovelCase36", customWoodWeak), "customIronShovelCase36");
+		GameRegistry.registerItem(customIronShovelCase37 = new CustomIronShovel("customIronShovelCase37", customWoodNormal), "customIronShovelCase37");
+		GameRegistry.registerItem(customIronShovelCase38 = new CustomIronShovel("customIronShovelCase38", customIronToolRodWeak), "customIronShovelCase38");
+		GameRegistry.registerItem(customIronShovelCase39 = new CustomIronShovel("customIronShovelCase39", customIronToolRodWeak), "customIronShovelCase39");
+		GameRegistry.registerItem(customIronShovelCase40 = new CustomIronShovel("customIronShovelCase40", customIronToolRodWeak), "customIronShovelCase40");
+		GameRegistry.registerItem(customIronShovelCase41 = new CustomIronShovel("customIronShovelCase41", customWoodNormal), "customIronShovelCase41");
+		GameRegistry.registerItem(customIronShovelCase42 = new CustomIronShovel("customIronShovelCase42", customIronToolRodNormal), "customIronShovelCase42");
+		GameRegistry.registerItem(customIronShovelCase43 = new CustomIronShovel("customIronShovelCase43", customWoodNormal), "customIronShovelCase43");
+		GameRegistry.registerItem(customIronShovelCase44 = new CustomIronShovel("customIronShovelCase44", customWoodWeak), "customIronShovelCase44");
+		GameRegistry.registerItem(customIronShovelCase45 = new CustomIronShovel("customIronShovelCase45", customIronToolRodWeak), "customIronShovelCase45");
+		GameRegistry.registerItem(customIronShovelCase46 = new CustomIronShovel("customIronShovelCase46", customIronToolRodWeak), "customIronShovelCase46");
+		GameRegistry.registerItem(customIronShovelCase47 = new CustomIronShovel("customIronShovelCase47", customWoodNormal), "customIronShovelCase47");
+		GameRegistry.registerItem(customIronShovelCase48 = new CustomIronShovel("customIronShovelCase48", customIronToolRodNormal), "customIronShovelCase48");
+		GameRegistry.registerItem(customIronShovelCase49 = new CustomIronShovel("customIronShovelCase49", customWoodWeak), "customIronShovelCase49");
+		GameRegistry.registerItem(customIronShovelCase50 = new CustomIronShovel("customIronShovelCase50", customIronToolRodWeak), "customIronShovelCase50");
+		GameRegistry.registerItem(customIronShovelCase51 = new CustomIronShovel("customIronShovelCase51", customWoodNormal), "customIronShovelCase51");
+		GameRegistry.registerItem(customIronShovelCase52 = new CustomIronShovel("customIronShovelCase52", customIronToolRodWeak), "customIronShovelCase52");
+		
+		
 		
 		GameRegistry.registerItem(customIronShovel = new CustomIronShovel("customIronShovel", customWoodNormal), "customIronShovel");
 		GameRegistry.registerItem(customStrongIronShovel = new CustomIronShovel("customStrongIronShovel", customWoodStrong), "customStrongIronShovel");

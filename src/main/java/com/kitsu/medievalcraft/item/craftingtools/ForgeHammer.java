@@ -271,7 +271,6 @@ public class ForgeHammer extends Item implements AnvilUtil{
 		Block block = world.getBlock(x, y, z);
 		Block anvil = world.getBlock(x, y-1, z);
 		if(!world.isRemote){
-			System.out.println("Item Use");
 			onClick(block, anvil, world, x, y, z, player, stack, world.rand);	
 		}
 		return true;
