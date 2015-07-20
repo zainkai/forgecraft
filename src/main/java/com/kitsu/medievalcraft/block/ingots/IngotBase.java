@@ -68,9 +68,18 @@ public abstract class IngotBase extends BlockContainer {
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int aa, float bb, float cc, float ff){
 		//System.out.println(this.getUnlocalizedName());
-		if(player.inventory.getCurrentItem().getItem()!=ModItems.forgeHammer){
+		
+			//if(player.inventory.getCurrentItem().getItem()!=ModItems.forgeHammer){
 			int a = player.inventory.currentItem;
-			if(player.inventory.getStackInSlot(a)!=null){
+			if(player.inventory.getStackInSlot(a)==null){
+				ItemStack jar = new ItemStack(this);
+				player.inventory.setInventorySlotContents(a, jar);
+				if(!world.isRemote){
+					world.setBlock(x, y, z, Blocks.air, 0, 2);
+				}
+				return true;
+			}
+			if(player.inventory.getStackInSlot(a)!=null && player.inventory.getCurrentItem().getItem()!=ModItems.forgeHammer){
 				if(player.inventory.getStackInSlot(a).getItem()==Item.getItemFromBlock(this)){
 					ItemStack jar = new ItemStack(this);
 					player.inventory.addItemStackToInventory(jar);
@@ -80,15 +89,8 @@ public abstract class IngotBase extends BlockContainer {
 				}
 				return true;
 			}
-			if(player.inventory.getStackInSlot(a)==null){
-				ItemStack jar = new ItemStack(this);
-				player.inventory.setInventorySlotContents(a, jar);
-				if(!world.isRemote){
-					world.setBlock(x, y, z, Blocks.air, 0, 2);
-				}
-				return true;
-			}
-		}
+
+		
 		return false;
 	}
 
