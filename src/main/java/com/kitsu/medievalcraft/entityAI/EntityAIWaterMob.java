@@ -1,8 +1,11 @@
 package com.kitsu.medievalcraft.entityAI;
 
+import java.util.List;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.IMob;
@@ -10,9 +13,13 @@ import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.pathfinding.PathEntity;
+import net.minecraft.pathfinding.PathFinder;
+import net.minecraft.profiler.Profiler;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.ChunkCache;
 import net.minecraft.world.World;
 
 public class EntityAIWaterMob extends EntityWaterMob implements IAnimals{
@@ -30,6 +37,7 @@ public class EntityAIWaterMob extends EntityWaterMob implements IAnimals{
 	protected boolean Agrooed = false;
 	protected boolean landBounce = true;
 	protected float moreDamage = 0.5F;
+	public Profiler theProfiler;
 
 
 	public EntityAIWaterMob(World world)
@@ -88,15 +96,6 @@ public class EntityAIWaterMob extends EntityWaterMob implements IAnimals{
 
 	}
 	
-	protected Entity findPreySquid()
-	{
-		//EntitySquid squid = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
-		//AxisAlignedBB ab = new AxisAlignedBB(-16d, -16d, -16d, 16d, 16d, 16d);
-		EntitySquid squid = (EntitySquid) this.worldObj.getEntitiesWithinAABB(EntitySquid.class, AxisAlignedBB.getBoundingBox(-106d, -106d, -106d, 106d, 106d, 106d));
-		System.out.println("Finding Squid");
-		return (squid != null) && (canEntityBeSeen(squid)) ? squid : null;
-
-	}
 
 	public boolean attackEntityAsMob(Entity entity)
 	{
@@ -172,14 +171,7 @@ public class EntityAIWaterMob extends EntityWaterMob implements IAnimals{
 					this.targetZ = this.targetedEntity.posZ;
 					this.isAttacking = true;
 				}
-				this.targetedEntity = findPreySquid();
-				if ((this.targetedEntity != null) && (this.targetedEntity.isInWater()))
-				{
-					this.targetX = this.targetedEntity.posX;
-					this.targetY = this.targetedEntity.posY;
-					this.targetZ = this.targetedEntity.posZ;
-					this.isAttacking = true;
-				}
+
 			}
 			this.renderYawOffset += (-(float)Math.atan2(this.motionX, this.motionZ) * 180.0F / 3.141593F - this.renderYawOffset) * 0.5F;
 			this.rotationYaw = this.renderYawOffset;
