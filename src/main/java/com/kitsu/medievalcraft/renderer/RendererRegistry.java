@@ -111,8 +111,8 @@ public class RendererRegistry {
     	MinecraftForgeClient.registerItemRenderer(ModItems.forgeHammer, new IRForgeHammer());
     	MinecraftForgeClient.registerItemRenderer(ModItems.inlayHammer, new IRInlayHammer());
     	
-    	MinecraftForgeClient.registerItemRenderer(ModItems.itemModelArrow, new ItemRendererModelArrow());
-    	MinecraftForgeClient.registerItemRenderer(ModItems.itemIronTippedModelArrow, new ItemRendererITModelArrow());
+    	//MinecraftForgeClient.registerItemRenderer(ModItems.itemModelArrow, new ItemRendererModelArrow());
+    	//MinecraftForgeClient.registerItemRenderer(ModItems.itemIronTippedModelArrow, new ItemRendererITModelArrow());
     	
     	
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.emptySoftCrucible), new ItemRendererSECrucible());

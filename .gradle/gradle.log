@@ -5,11 +5,28 @@
  R4wk, ZeuX, IngisKahn, bspkrs
  MCP Data version : unknown
 ****************************
-:eclipseClasspath
-:eclipseJdt
-:eclipseProject
-:eclipse
+:cleanTest UP-TO-DATE
+:compileApiJava UP-TO-DATE
+:processApiResources UP-TO-DATE
+:apiClasses UP-TO-DATE
+:sourceMainJava
+:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+
+:processResources
+:classes
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test
+
+<ijLog><event type='reportLocation' testReport='/home/kitsudesktop/Development/ForgeCraft/build/reports/tests/index.html' /></ijLog>
+:test UP-TO-DATE
 
 BUILD SUCCESSFUL
 
-Total time: 22.646 secs
+Total time: 4.199 secs
