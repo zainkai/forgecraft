@@ -1,0 +1,28 @@
+[13:29:57] [main/INFO]: Setting user: Player692
+[13:29:58] [Client thread/INFO]: LWJGL Version: 2.9.1
+[13:29:59] [Client thread/ERROR]: Couldn't initialize twitch stream
+[13:30:02] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:ForgeCraft
+[13:30:03] [Sound Library Loader/INFO]: Sound engine started
+[13:30:03] [Client thread/INFO]: Created: 1024x512 textures/blocks-atlas
+[13:30:03] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[13:30:03] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:ForgeCraft
+[13:30:04] [Client thread/INFO]: Created: 1024x512 textures/blocks-atlas
+[13:30:04] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[13:30:05] [Sound Library Loader/INFO]: Sound engine started
+[13:30:06] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[13:30:06] [Server thread/INFO]: Generating keypair
+[13:30:07] [Server thread/INFO]: Preparing start region for level 0
+[13:30:07] [Server thread/INFO]: Changing view distance to 12, from 10
+[13:30:07] [Server thread/INFO]: Player692[local:E:3d1176b5] logged in with entity id 86 at (-243.18071290580363, 71.0, 64.87583910846845)
+[13:30:07] [Server thread/INFO]: Player692 joined the game
+[13:30:08] [Server thread/INFO]: Player692 has just earned the achievement [Taking Inventory]
+[13:30:08] [Client thread/INFO]: [CHAT] Player692 has just earned the achievement [Taking Inventory]
+[13:30:20] [Server thread/INFO]: [Player692: Set own game mode to Creative Mode]
+[13:30:20] [Client thread/INFO]: [CHAT] Your game mode has been updated
+[13:30:51] [Client thread/INFO]: Stopping!
+[13:30:51] [Server thread/INFO]: Stopping server
+[13:30:51] [Server thread/INFO]: Saving players
+[13:30:51] [Server thread/INFO]: Saving worlds
+[13:30:51] [Server thread/INFO]: Saving chunks for level 'Demo World'/Overworld
+[13:30:51] [Server thread/INFO]: Saving chunks for level 'Demo World'/Nether
+[13:30:51] [Server thread/INFO]: Saving chunks for level 'Demo World'/The End
