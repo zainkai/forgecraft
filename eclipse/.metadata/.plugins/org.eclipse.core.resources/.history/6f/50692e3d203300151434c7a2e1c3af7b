@@ -1004,6 +1004,8 @@ public final class ModItems {
 		GameRegistry.registerItem(customIronShovelCase51 = new CustomIronShovel("customIronShovelCase51", customWoodNormal), "customIronShovelCase51");
 		GameRegistry.registerItem(customIronShovelCase52 = new CustomIronShovel("customIronShovelCase52", customIronToolRodWeak), "customIronShovelCase52");
 		
+		
+		
 		GameRegistry.registerItem(customIronShovel = new CustomIronShovel("customIronShovel", customWoodNormal), "customIronShovel");
 		GameRegistry.registerItem(customStrongIronShovel = new CustomIronShovel("customStrongIronShovel", customWoodStrong), "customStrongIronShovel");
 		GameRegistry.registerItem(customWeakIronShovel = new CustomIronShovel("customWeakIronShovel", customWoodWeak), "customWeakIronShovel");
