@@ -1,9 +1,3 @@
-./gradlew setupDecompWorkspace --refresh-dependencies
-
-./gradlew idea
-
-./gradlew genIntellijruns
-
 -------------------------------------------
 Source installation information for modders
 -------------------------------------------

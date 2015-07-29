@@ -1,26 +1,12 @@
-[18:56:08] [main/INFO]: Setting user: Player764
-[18:56:09] [Client thread/INFO]: LWJGL Version: 2.9.1
-[18:56:10] [Client thread/ERROR]: Couldn't initialize twitch stream
-[18:56:11] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:ForgeCraft
-[18:56:12] [Sound Library Loader/INFO]: Sound engine started
-[18:56:13] [Client thread/INFO]: Created: 1024x512 textures/blocks-atlas
-[18:56:13] [Client thread/INFO]: Created: 512x512 textures/items-atlas
-[18:56:13] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:ForgeCraft
-[18:56:13] [Client thread/INFO]: Created: 1024x512 textures/blocks-atlas
-[18:56:13] [Client thread/INFO]: Created: 512x512 textures/items-atlas
-[18:56:14] [Sound Library Loader/INFO]: Sound engine started
-[18:56:18] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[18:56:18] [Server thread/INFO]: Generating keypair
-[18:56:18] [Server thread/INFO]: Preparing start region for level 0
-[18:56:19] [Server thread/INFO]: Changing view distance to 12, from 10
-[18:56:19] [Server thread/INFO]: Player764[local:E:02750152] logged in with entity id 80 at (-243.18071290580363, 71.0, 64.87583910846845)
-[18:56:19] [Server thread/INFO]: Player764 joined the game
-[18:56:21] [Server thread/INFO]: Player764 has just earned the achievement [Taking Inventory]
-[18:56:21] [Client thread/INFO]: [CHAT] Player764 has just earned the achievement [Taking Inventory]
-[19:05:27] [Client thread/INFO]: Stopping!
-[19:05:27] [Server thread/INFO]: Stopping server
-[19:05:27] [Server thread/INFO]: Saving players
-[19:05:27] [Server thread/INFO]: Saving worlds
-[19:05:27] [Server thread/INFO]: Saving chunks for level 'Demo World'/Overworld
-[19:05:27] [Server thread/INFO]: Saving chunks for level 'Demo World'/Nether
-[19:05:27] [Server thread/INFO]: Saving chunks for level 'Demo World'/The End
+[19:29:24] [main/INFO]: Setting user: Player958
+[19:29:24] [Client thread/INFO]: LWJGL Version: 2.9.1
+[19:29:25] [Client thread/ERROR]: Couldn't initialize twitch stream
+[19:29:28] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:ForgeCraft
+[19:29:28] [Sound Library Loader/INFO]: Sound engine started
+[19:29:29] [Client thread/INFO]: Created: 1024x512 textures/blocks-atlas
+[19:29:29] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[19:29:29] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:ForgeCraft
+[19:29:30] [Client thread/INFO]: Created: 1024x512 textures/blocks-atlas
+[19:29:30] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[19:29:31] [Sound Library Loader/INFO]: Sound engine started
+[19:32:54] [Client thread/INFO]: Stopping!
