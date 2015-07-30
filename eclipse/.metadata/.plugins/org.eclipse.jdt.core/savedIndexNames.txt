@@ -1,3 +1,0 @@
-INDEX VERSION 1.127+/home/kitsudesktop/Development/forgecraft/eclipse/.metadata/.plugins/org.eclipse.jdt.core
-208370467.index
-2540607589.index
