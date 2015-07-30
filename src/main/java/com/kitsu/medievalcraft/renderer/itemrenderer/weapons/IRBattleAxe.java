@@ -1,5 +1,9 @@
 package com.kitsu.medievalcraft.renderer.itemrenderer.weapons;
 
+import java.util.Vector;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -7,18 +11,18 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
-import org.lwjgl.opengl.GL11;
-
 public class IRBattleAxe implements IItemRenderer {
 
 	public static final ResourceLocation LONGSWORD = new ResourceLocation("kitsumedievalcraft:models/Battleaxev3.obj");
 	public static final ResourceLocation blade = new ResourceLocation("kitsumedievalcraft:models/Battleaxe.png");
+	public static final ResourceLocation blade1 = new ResourceLocation("kitsumedievalcraft:models/Battleaxe1.png");
+	public Vector testVector;
 	
 	public IModelCustom model = AdvancedModelLoader.loadModel(LONGSWORD);
 	
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		
+
 		switch(type) {
 		case EQUIPPED: {
 			return true;
@@ -79,6 +83,7 @@ public class IRBattleAxe implements IItemRenderer {
 			GL11.glTranslatef(2.8F, 0.2F, 0.0F);
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(blade);
+			//Minecraft.getMinecraft().renderEngine.bindTexture(blade1);
 			model.renderAll();
 
 			GL11.glPopMatrix();
@@ -101,6 +106,7 @@ public class IRBattleAxe implements IItemRenderer {
 			GL11.glTranslatef(2.0F, -1.6F, 0.0F);
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(blade);
+			//Minecraft.getMinecraft().renderEngine.bindTexture(blade1);
 			model.renderAll();
 
 			GL11.glPopMatrix();
