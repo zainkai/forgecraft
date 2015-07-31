@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 
 public abstract class CrucibleBase extends BlockContainer {
 
+	//comment
 	protected CrucibleBase(Material mat, String unlocalizedName) {
 		super(mat);
 		this.setBlockName(unlocalizedName);
