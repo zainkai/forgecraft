@@ -1,8 +1,5 @@
 package com.kitsu.medievalcraft.renderer;
 
-import net.minecraft.item.Item;
-import net.minecraftforge.client.MinecraftForgeClient;
-
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.blocks.BarrelLidRender;
@@ -31,9 +28,7 @@ import com.kitsu.medievalcraft.renderer.blocks.machine.ForgeRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.FourShelfRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.SolidFilterRender;
 import com.kitsu.medievalcraft.renderer.blocks.machine.WaterFilterRenderer;
-import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererITModelArrow;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererLongbow;
-import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererModelArrow;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.IRCrucible;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.IRSlackCrucible;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.IRTanninCrucible;
@@ -57,6 +52,7 @@ import com.kitsu.medievalcraft.renderer.itemrenderer.tongs.IRSlottedTongs;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRCraftingBlade;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRForgeHammer;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRInlayHammer;
+import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRironPicks;
 import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.IRBattleAxe;
 import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.IRGladius;
 import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.ItemRenderHeavymace;
@@ -91,6 +87,8 @@ import com.kitsu.medievalcraft.tileents.machine.TileEntityWaterFilter;
 import com.kitsu.medievalcraft.tileents.machine.TileForge;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class RendererRegistry {
 
@@ -110,6 +108,7 @@ public class RendererRegistry {
     	
     	MinecraftForgeClient.registerItemRenderer(ModItems.forgeHammer, new IRForgeHammer());
     	MinecraftForgeClient.registerItemRenderer(ModItems.inlayHammer, new IRInlayHammer());
+    	MinecraftForgeClient.registerItemRenderer(ModItems.customIronPick, new IRironPicks());
     	
     	//MinecraftForgeClient.registerItemRenderer(ModItems.itemModelArrow, new ItemRendererModelArrow());
     	//MinecraftForgeClient.registerItemRenderer(ModItems.itemIronTippedModelArrow, new ItemRendererITModelArrow());
