@@ -65,33 +65,35 @@ public class Firebox extends BlockContainer{
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side) {
 		if (this == ModBlocks.firebox && side == UP){
 			TileEntityFirebox tile = (TileEntityFirebox) world.getTileEntity(x, y, z);
-			if(this.getItemBurnTime(tile.getStackInSlot(0))>0){
-				return true;
+			if(tile.isOn==true){
+				if(this.getItemBurnTime(tile.getStackInSlot(0))>0){
+					return true;
+				}
 			}
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int getLightValue(IBlockAccess world,int  x,int y,int z){
-    	if(world.getBlockMetadata(x, y, z)==1){
-    		return 15;
-    	}
-    	return 0;
-    }
+		if(world.getBlockMetadata(x, y, z)==1){
+			return 15;
+		}
+		return 0;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		super.randomDisplayTick(world, x, y, z, random);
-		
+
 
 		if(world.getBlockMetadata(x, y, z)==1){
-	        if (rand.nextInt(24) == 0&&world.getBlock(x, y+1, z)!=Blocks.fire)
-	        {
-	            world.playSound((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
-	        }
+			if (rand.nextInt(24) == 0&&world.getBlock(x, y+1, z)!=Blocks.fire)
+			{
+				world.playSound((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+			}
 			int l;
 			float f;
 			float f1;
@@ -129,8 +131,10 @@ public class Firebox extends BlockContainer{
 			}
 			if(player.inventory.getCurrentItem()!=null){
 				if (tileEnt.getStackInSlot(0)==null){
-					tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
-					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+					if(isItemFuel(player.inventory.getCurrentItem())==true){
+						tileEnt.setInventorySlotContents(0, player.inventory.getCurrentItem());
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+					}
 				}
 				if (tileEnt.getStackInSlot(0)!=null){
 					if(player.inventory.getCurrentItem()!=null){

@@ -50,6 +50,7 @@ import com.kitsu.medievalcraft.item.forms.iron.IronSpearTipForm;
 import com.kitsu.medievalcraft.item.misc.ItemBark;
 import com.kitsu.medievalcraft.item.misc.ItemSmallBarrelLid;
 import com.kitsu.medievalcraft.item.misc.RawCuredLeather;
+import com.kitsu.medievalcraft.item.throwable.ItemITSpear;
 import com.kitsu.medievalcraft.item.throwable.ItemShit;
 import com.kitsu.medievalcraft.item.throwable.ItemTester;
 import com.kitsu.medievalcraft.item.tools.CustomIronHoe;
@@ -81,8 +82,11 @@ public final class ModItems {
 	public static Item ironChunk;
 	public static Item hotironChunk;
 	public static Item ironRing;
+	
 	public static Item itemShit;
+	public static Item itemITSpear;
 	public static Item itemTester;
+	
 	public static Item linkedRings;
 	public static Item ironRingMesh;
 	public static Item chainMailPlate;
@@ -425,6 +429,7 @@ public final class ModItems {
     WOOD(0, 59, 2.0F, 0, 15), STONE(1, 131, 4.0F, 1, 5), IRON(2, 250, 6.0F, 2, 14), EMERALD(3, 1561, 8.0F, 3, 10), GOLD(0, 32, 12.0F, 0, 22);*/
 	
 	public static ToolMaterial longswordmat = EnumHelper.addToolMaterial("LONGSWORD", 1, 350, 2.0F, 2.0F, 0);
+	public static ToolMaterial ironspearmat = EnumHelper.addToolMaterial("IRONSPEAR", 1, 350, 2.0F, 2.0F, 0);
 	public static ToolMaterial woodenshieldmat = EnumHelper.addToolMaterial("WOODENSHIELD", 0, 65, 2.0F, -3.5F, 0);
 	public static ToolMaterial ironshieldmat = EnumHelper.addToolMaterial("IRONSHIELD", 0, 500, 2.0F, -3.5F, 0);
 	public static ToolMaterial heavymacemat = EnumHelper.addToolMaterial("HEAVYMACE", 0, 350, 4.0F, -4.0F, 0);
@@ -820,6 +825,7 @@ public final class ModItems {
 		
 		itemModelArrow = new ItemModelArrow();
 		itemIronTippedModelArrow = new ItemIronTippedModelArrow();
+		itemITSpear = new ItemITSpear("itemITSpear", ironspearmat);
 		
 		itemBark= new ItemBark();
 		itemSmallBarrelLid = new ItemSmallBarrelLid();

@@ -28,7 +28,10 @@ import com.kitsu.medievalcraft.renderer.blocks.machine.ForgeRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.FourShelfRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.machine.SolidFilterRender;
 import com.kitsu.medievalcraft.renderer.blocks.machine.WaterFilterRenderer;
+import com.kitsu.medievalcraft.renderer.itemrenderer.IRITSpear;
+import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererITModelArrow;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererLongbow;
+import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererModelArrow;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.IRCrucible;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.IRSlackCrucible;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.IRTanninCrucible;
@@ -52,7 +55,6 @@ import com.kitsu.medievalcraft.renderer.itemrenderer.tongs.IRSlottedTongs;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRCraftingBlade;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRForgeHammer;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRInlayHammer;
-import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRironPicks;
 import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.IRBattleAxe;
 import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.IRGladius;
 import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.ItemRenderHeavymace;
@@ -108,10 +110,11 @@ public class RendererRegistry {
     	
     	MinecraftForgeClient.registerItemRenderer(ModItems.forgeHammer, new IRForgeHammer());
     	MinecraftForgeClient.registerItemRenderer(ModItems.inlayHammer, new IRInlayHammer());
-    	MinecraftForgeClient.registerItemRenderer(ModItems.customIronPick, new IRironPicks());
+    	//MinecraftForgeClient.registerItemRenderer(ModItems.customIronPick, new IRironPicks());
     	
-    	//MinecraftForgeClient.registerItemRenderer(ModItems.itemModelArrow, new ItemRendererModelArrow());
-    	//MinecraftForgeClient.registerItemRenderer(ModItems.itemIronTippedModelArrow, new ItemRendererITModelArrow());
+    	MinecraftForgeClient.registerItemRenderer(ModItems.itemModelArrow, new ItemRendererModelArrow());
+    	MinecraftForgeClient.registerItemRenderer(ModItems.itemIronTippedModelArrow, new ItemRendererITModelArrow());
+    	MinecraftForgeClient.registerItemRenderer(ModItems.itemITSpear, new IRITSpear());
     	
     	
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.emptySoftCrucible), new ItemRendererSECrucible());

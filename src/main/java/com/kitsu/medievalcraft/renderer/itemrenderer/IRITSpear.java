@@ -1,0 +1,154 @@
+package com.kitsu.medievalcraft.renderer.itemrenderer;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
+import net.minecraftforge.client.model.AdvancedModelLoader;
+import net.minecraftforge.client.model.IModelCustom;
+
+public class IRITSpear implements IItemRenderer{
+	
+	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/Spear.obj");
+	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/Spear.png");
+	
+	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL);
+	
+	@Override
+	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+		
+		switch(type) {
+		case EQUIPPED: {
+			return true;
+		} 
+		case EQUIPPED_FIRST_PERSON: {
+			return true;
+		} 
+		case INVENTORY: {
+			return true;
+		}
+		case ENTITY: {
+			return true;
+		}
+		
+		default: return false;
+		}
+	}
+	
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
+			ItemRendererHelper helper) {
+		
+		switch(type) {
+		case EQUIPPED: {
+			return false;
+		} 
+		case EQUIPPED_FIRST_PERSON: {
+			return false;
+		} 
+		case INVENTORY: {
+			return false;
+		}
+		case ENTITY: {
+	        return false;
+		}
+		
+		default: return false;
+		}
+	}
+	
+	@Override
+	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+		
+		switch(type) {
+		
+		case EQUIPPED: {
+			
+			GL11.glPushMatrix();
+			
+			GL11.glScalef(1.0F, 1.0F, 1.0F);
+			
+			GL11.glTranslatef(0.5F, 0.4F, -0.0F);
+			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
+			GL11.glRotatef(140F, 0.0F, 0.0F, 1.0F);
+			//GL11.glRotatef(-20F, 0.0F, 1.0F, 0.0F);
+			//GL11.glRotatef(40F, 1.0F, 0.0F, 0.0F);
+			//GL11.glRotated(90, 1.0, 0.0, 0.0);
+
+			
+		
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			model.renderAll();
+
+			GL11.glPopMatrix();
+		} break;
+		
+		case EQUIPPED_FIRST_PERSON: {
+			
+			GL11.glPushMatrix();
+			GL11.glScalef(1.0F, 1.0F, 1.0F);
+			
+			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
+			GL11.glTranslatef(0.0F, 2.0F, 0.0F);
+			//GL11.glRotatef(45F, 1.0F, 0.0F, 0.0F);
+		//	GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
+		//	GL11.glRotatef(45F, 0.0F, -1.0F, 0.0F);
+
+			//GL11.glRotated(-85, 1.0, 0.0, 0.0);
+			//GL11.glRotated(50, 0.0F, 0.0F, 1.0F);
+			//GL11.glRotated(3, 0.0F, 1.0F, 0.0F);
+
+			
+		
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			model.renderAll();
+
+			GL11.glPopMatrix();
+			
+		} break;
+		
+		case INVENTORY: {
+			GL11.glPushMatrix();
+			
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			float iscale = 9F;
+			GL11.glScalef(iscale, iscale, iscale);
+			//GL11.glRotatef(-45, 0.0F, 0.0F, 1.0F);
+			//GL11.glRotatef(45, 1.0F, 0.0F, 0.0F);
+			//GL11.glTranslatef(0.2F, 1.2F, 0.0F);
+			
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			model.renderAll();
+		  
+			GL11.glPopMatrix();
+
+		} break;
+		
+		case ENTITY: {
+			GL11.glPushMatrix();
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+			GL11.glScalef(5.0F, 5.0F, 5.0F);
+			//GL11.glTranslatef(5.0F, 5.0F, 5.0F);
+						
+			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
+			//GL11.glRotatef(180F, 0.0F, 1.0F, 0.0F);
+			//GL11.glRotatef(90F, 1.0F, 0.0F, 1.0F);
+			//GL11.glRotatef(45F, 0.0F, 0.0F, 1.0F);
+			//GL11.glRotated(90, 1.0, 0.0, 0.0);
+
+			model.renderAll();
+			GL11.glPopMatrix();
+
+		} break;
+
+		default: 
+			break;
+		}
+	}
+
+}

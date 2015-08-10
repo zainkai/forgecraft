@@ -1,11 +1,10 @@
 package com.kitsu.medievalcraft;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.compat.FuelHandler;
 import com.kitsu.medievalcraft.compat.ModDict;
 import com.kitsu.medievalcraft.crafting.CraftingHandle;
 import com.kitsu.medievalcraft.crafting.ModCrafting;
+import com.kitsu.medievalcraft.entity.EntityITSpear;
 import com.kitsu.medievalcraft.entity.EntityModelArrow;
 import com.kitsu.medievalcraft.entity.EntityShit;
 import com.kitsu.medievalcraft.entity.EntityTester;
@@ -49,6 +48,7 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Main.MODID, name = Main.MODNAME, version = Main.VERSION)
 public class Main {
@@ -111,7 +111,8 @@ public class Main {
 		
 		EntityRegistry.registerModEntity(EntityShit.class, "itemShit", 1, this, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityModelArrow.class, "itemModelArrow", 2, this, 64, 10, true);
-		EntityRegistry.registerModEntity(EntityTester.class, "itemTester", 3, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityITSpear.class, "itemITSpear", 3, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityTester.class, "itemTester", 4, this, 64, 10, true);
 
 		GameRegistry.registerFuelHandler(new FuelHandler());
 

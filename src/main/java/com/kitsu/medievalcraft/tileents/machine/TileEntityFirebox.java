@@ -222,6 +222,9 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 	private void fireboxMaint(World world, int x, int y, int z){
 		if((this.getStackInSlot(0)==null)&&(world.getBlockMetadata(x, y, z)==1)){
 			world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+			if(world.getBlock(x, y+1, z)==Blocks.fire){
+				world.setBlock(x, y+1, z, Blocks.air, 0, 2);
+			}
 			this.markForUpdate();
 			this.markDirty();
 			//world.getBlock(x, y, z).setLightLevel(0f);
