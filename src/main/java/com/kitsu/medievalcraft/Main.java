@@ -55,7 +55,7 @@ public class Main {
 
 	public static final String MODID = "kitsumedievalcraft";
 	public static final String MODNAME = "ForgeCraft";
-	public static final String VERSION = "2.2.5";
+	public static final String VERSION = "2.2.6";
 
 	public static SimpleNetworkWrapper sNet;
 

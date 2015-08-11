@@ -281,6 +281,7 @@ item.fireBow.name=Fire Bow
 item.longbow.name=Longbow
 item.gladius.name=Gladius
 item.battleAxe.name=Battle Axe
+item.itemITSpear.name=Iron Tipped Spear
 item.itemIronTippedModelArrow.name=Iron Tipped Longbow Arrow
 item.itemModelArrow.name=Longbow Arrow
 item.workBlade.name=Crafting Blade

@@ -102,7 +102,7 @@ public class RendererRegistry {
     	MinecraftForgeClient.registerItemRenderer(ModItems.heavyMace, new ItemRenderHeavymace());
     	MinecraftForgeClient.registerItemRenderer(ModItems.battleAxe, new IRBattleAxe());
     	MinecraftForgeClient.registerItemRenderer(ModItems.gladius, new IRGladius());
-    	MinecraftForgeClient.registerItemRenderer(ModItems.workBlade, new IRCraftingBlade());
+    	//MinecraftForgeClient.registerItemRenderer(ModItems.workBlade, new IRCraftingBlade());
     	
     	MinecraftForgeClient.registerItemRenderer(ModItems.slottedTongs, new IRSlottedTongs());
 

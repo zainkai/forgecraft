@@ -13,15 +13,15 @@ import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
 public class IRITSpear implements IItemRenderer{
-	
+
 	public static final ResourceLocation MODEL = new ResourceLocation("kitsumedievalcraft:models/Spear.obj");
 	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/Spear.png");
-	
+
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL);
-	
+
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		
+
 		switch(type) {
 		case EQUIPPED: {
 			return true;
@@ -35,15 +35,15 @@ public class IRITSpear implements IItemRenderer{
 		case ENTITY: {
 			return true;
 		}
-		
+
 		default: return false;
 		}
 	}
-	
+
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
 			ItemRendererHelper helper) {
-		
+
 		switch(type) {
 		case EQUIPPED: {
 			return false;
@@ -55,86 +55,77 @@ public class IRITSpear implements IItemRenderer{
 			return false;
 		}
 		case ENTITY: {
-	        return false;
+			return false;
 		}
-		
+
 		default: return false;
 		}
 	}
-	
+
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-		
+
 		switch(type) {
-		
 		case EQUIPPED: {
-			
 			GL11.glPushMatrix();
-			
 			GL11.glScalef(1.0F, 1.0F, 1.0F);
-			
-			GL11.glTranslatef(0.5F, 0.4F, -0.0F);
-			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-			GL11.glRotatef(140F, 0.0F, 0.0F, 1.0F);
-			//GL11.glRotatef(-20F, 0.0F, 1.0F, 0.0F);
-			//GL11.glRotatef(40F, 1.0F, 0.0F, 0.0F);
-			//GL11.glRotated(90, 1.0, 0.0, 0.0);
-
-			
-		
+			if(item.getMaxDamage()==500){
+				GL11.glTranslatef(0.5F, 0.6F, -0.125F);
+				GL11.glRotatef(40F, 0.0F, 0.0F, 1.0F);
+			}
+			if(item.getMaxDamage()==100){
+				GL11.glTranslatef(0.5F, 0.4F, -0.0F);
+				GL11.glRotatef(140F, 0.0F, 0.0F, 1.0F);
+			}
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
-
 			GL11.glPopMatrix();
+			
 		} break;
-		
+
 		case EQUIPPED_FIRST_PERSON: {
-			
+
 			GL11.glPushMatrix();
 			GL11.glScalef(1.0F, 1.0F, 1.0F);
-			
-			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-			GL11.glTranslatef(0.0F, 2.0F, 0.0F);
-			//GL11.glRotatef(45F, 1.0F, 0.0F, 0.0F);
-			//GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
-			//GL11.glRotatef(45F, 0.0F, -1.0F, 0.0F);
 
-			//GL11.glRotated(-85, 1.0, 0.0, 0.0);
-			//GL11.glRotated(50, 0.0F, 0.0F, 1.0F);
-			//GL11.glRotated(3, 0.0F, 1.0F, 0.0F);
-
-			
-		
+			if(item.getMaxDamage()==500){
+				GL11.glRotatef(40F, 0.0F, 0.0F, 1.0F);
+				GL11.glTranslatef(0.0F, 0.8F, -0.2F);
+			}
+			if(item.getMaxDamage()==100){
+				GL11.glRotatef(110F, 0.0F, 0.0F, 1.0F);
+				GL11.glTranslatef(0.0F, -0.5F, -0.2F);
+			}
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
-
 			GL11.glPopMatrix();
-			
+
 		} break;
-		
+
 		case INVENTORY: {
 			GL11.glPushMatrix();
-			
+
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			float iscale = 9F;
+			float iscale = 5F;
 			GL11.glScalef(iscale, iscale, iscale);
-			//GL11.glRotatef(-45, 0.0F, 0.0F, 1.0F);
-			//GL11.glRotatef(45, 1.0F, 0.0F, 0.0F);
+			GL11.glTranslatef(1.5F,  1.5F, 0.0F);
+			GL11.glRotatef(-45, 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
 			//GL11.glTranslatef(0.2F, 1.2F, 0.0F);
-			
+
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
-		  
+
 			GL11.glPopMatrix();
 
 		} break;
-		
+
 		case ENTITY: {
 			GL11.glPushMatrix();
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
-			GL11.glScalef(5.0F, 5.0F, 5.0F);
+			GL11.glScalef(2.0F, 2.0F, 2.0F);
 			//GL11.glTranslatef(5.0F, 5.0F, 5.0F);
-						
+
 			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
 			//GL11.glRotatef(180F, 0.0F, 1.0F, 0.0F);
 			//GL11.glRotatef(90F, 1.0F, 0.0F, 1.0F);

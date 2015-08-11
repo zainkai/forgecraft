@@ -260,6 +260,7 @@ public final class ModCrafting {
 		gladius0.stackTagCompound = new NBTTagCompound();
 		gladius0.stackTagCompound.setInteger("GLADIUSTEXTURE", 0);
 		GameRegistry.addRecipe(new ShapedOreRecipe(gladius0, new Object[]{"x", "y", Character.valueOf('y'), "strapLeather", 'x', ModItems.ironshortswordBlade}));
+		GameRegistry.addRecipe(new ShapedOreRecipe((ModItems.itemITSpear), new Object[]{"a", "c", "b", 'a', ModItems.ironspearTip, 'b', ModItems.woodentoolHandle, Character.valueOf('c'), "strapLeather"}));
 
 		//-----------------------PICKAXE COMBOS-----------------------//
 		//BASE PICK
