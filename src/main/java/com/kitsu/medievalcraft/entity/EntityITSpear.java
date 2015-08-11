@@ -106,7 +106,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 
 		this.setSize(0.5F, 0.5F);
 		this.setLocationAndAngles(player.posX, player.posY + (double)player.getEyeHeight(), player.posZ, player.rotationYaw, player.rotationPitch);
-		
+
 		this.posX += (player.getLookVec().xCoord);
 		//this.posY -= 0.10000000149011612D;
 		this.posZ += (player.getLookVec().zCoord);
@@ -179,7 +179,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	@SideOnly(Side.CLIENT)
 	public void setVelocity(double p_70016_1_, double p_70016_3_, double p_70016_5_)
 	{
-		
+
 		this.motionX = p_70016_1_ ;
 		this.motionY = p_70016_3_ ;
 		this.motionZ = p_70016_5_ ;
@@ -213,7 +213,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 
 		Block block = this.worldObj.getBlock(this.field_145791_d, this.field_145792_e, this.field_145789_f);
 		//this.getEntityData().setInteger("blockX", this.field_145791_d);
-		
+
 		if (block.getMaterial() != Material.air)
 		{
 			block.setBlockBoundsBasedOnState(this.worldObj, this.field_145791_d, this.field_145792_e, this.field_145789_f);
@@ -240,7 +240,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 
 				if (this.ticksInGround == -1)
 				{
-					this.setDead();
+					//this.setDead();
 				}
 			}
 			else
@@ -299,6 +299,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 			if (entity != null)
 			{
 				movingobjectposition = new MovingObjectPosition(entity);
+				this.inGround=true;
 			}
 
 			if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
@@ -317,6 +318,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 			if (movingobjectposition != null)
 			{
 				if (movingobjectposition.entityHit != null)
+
 				{
 					f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 					int k = MathHelper.ceiling_double_int((double)f2 * this.damage);
@@ -345,7 +347,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 
 							if (!this.worldObj.isRemote)
 							{
-								entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
+								//entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
 							}
 
 							if (this.knockbackStrength > 0)
@@ -374,7 +376,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 
 						if (!(movingobjectposition.entityHit instanceof EntityEnderman))
 						{
-							this.setDead();
+							this.inGround = true;
 						}
 					}
 					else
@@ -386,10 +388,11 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 						this.prevRotationYaw += 180.0F;
 						this.ticksInAir = 0;
 					}
+					this.inGround=true;
 				}
 				else
 				{
-					
+
 					this.field_145791_d = movingobjectposition.blockX;
 					this.field_145792_e = movingobjectposition.blockY;
 					this.field_145789_f = movingobjectposition.blockZ;
@@ -405,7 +408,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 					this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 					this.inGround = true;
 					this.arrowShake = 7;
-					
+
 
 					if (this.field_145790_g.getMaterial() != Material.air)
 					{
@@ -459,6 +462,14 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 			if (this.isWet())
 			{
 				this.extinguish();
+			}
+
+			if (movingobjectposition != null)
+			{
+				if (movingobjectposition.entityHit != null)
+				{
+					this.inGround=true;
+				}
 			}
 
 			this.motionX *= (double)f3;
@@ -551,7 +562,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize()
 	{
-		return 0.0F;
+		return 1.0F;
 	}
 
 	public void setDamage(double p_70239_1_)
@@ -577,6 +588,6 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	 */
 	public boolean canAttackWithItem()
 	{
-		return false;
+		return true;
 	}
 }

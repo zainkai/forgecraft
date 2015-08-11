@@ -96,8 +96,8 @@ public class IRITSpear implements IItemRenderer{
 			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
 			GL11.glTranslatef(0.0F, 2.0F, 0.0F);
 			//GL11.glRotatef(45F, 1.0F, 0.0F, 0.0F);
-		//	GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
-		//	GL11.glRotatef(45F, 0.0F, -1.0F, 0.0F);
+			//GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
+			//GL11.glRotatef(45F, 0.0F, -1.0F, 0.0F);
 
 			//GL11.glRotated(-85, 1.0, 0.0, 0.0);
 			//GL11.glRotated(50, 0.0F, 0.0F, 1.0F);

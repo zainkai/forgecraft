@@ -15,10 +15,10 @@ public class TileIngotBase extends TileEntity implements AnvilUtil{
 
 	private String specName;
 	public int hits = 0;
-	protected int heatBase = 300;
+	public int heatBase = 300;
 	public int coolTicks = 250;
 	public int heatTicks = 300;
-	protected int coolBase = 250;
+	public int coolBase = 250;
 	public boolean hot;
 
 	public TileIngotBase(String name){
