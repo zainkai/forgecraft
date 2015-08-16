@@ -1,7 +1,10 @@
 =========================
        FORGECRAFT
 =========================
-The development of this mod is for the sole purpose of providing an avenue to learn and apply new knowledge in java. I have been working on this mod publicly since December, which was the time of its first release. I have, however, been working on this mod privately for about 3 years going into 4. Feel free to contact me on my forum thread with questions, comments, concerns etc. I appreciate all feedback!
+The development of this mod is for the sole purpose of providing an avenue to learn and apply new knowledge in java. 
+I have been working on this mod publicly since December, which was the time of its first release. I have, however, been 
+working on this mod privately for about 3 years going into 4. Feel free to contact me on my forum thread with questions,
+comments, concerns etc. I appreciate all feedback!
 
 ===FORUM THREAD===
 http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/wip-mods/2296334-wip-kitsus-forgecraft-blacksmith-style-forging
