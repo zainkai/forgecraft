@@ -1,5 +1,6 @@
 package com.kitsu.medievalcraft.compat;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -23,6 +24,11 @@ public class ModDict {
 		OreDictionary.registerOre("pulpWood", new ItemStack(ModItems.woodPulp, 1, 0));
 		OreDictionary.registerOre("knappedFlint", new ItemStack(ModItems.flintKnapped, 1, 0));
 		
+		OreDictionary.registerOre("blockClay", new ItemStack(Blocks.clay, 1, 0));
+        OreDictionary.registerOre("clumpClay", new ItemStack(Items.clay_ball, 1, 0));
+        OreDictionary.registerOre("clumpFuel", new ItemStack(ModBlocks.shitblock, 1, 0));
+        
+        OreDictionary.registerOre("ingotBrickClay", new ItemStack(Items.brick, 1, 0));
 		//OreDictionary.registerOre("cordage", new ItemStack(ModItems.leatherString, 1, 0));
 		//OreDictionary.registerOre("itemLeather", ModItems.cutLeather);
 		//OreDictionary.replacements.put(new ItemStack(Item.leather), "itemLeather");

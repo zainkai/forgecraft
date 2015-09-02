@@ -167,6 +167,9 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.forge), new Object []
 				{"xax", "xsx", "xxx",
 			'x', Blocks.stonebrick, 'a', Blocks.stone_slab, 's', ModBlocks.firebox});
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.forge), new Object []
+				{"xax", "xsx", "xxx",
+			'x', Blocks.nether_brick, 'a', Blocks.stone_slab, 's', ModBlocks.firebox});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.solidFilter), new Object[]
 				{"xyx", "y y", "xyx", 
 			'x', ModItems.splitBoard, 
@@ -187,11 +190,17 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.firebox), new Object[]
 				{"x x", "x x", "xxx",  
 			'x', Items.brick});
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.firebox), new Object[]
+				{"x x", "x x", "xxx",  
+			'x', Items.netherbrick});
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.firebox), new Object[]
+				{"x x", "x x", "xxx",  
+				Character.valueOf('x'), "ingotBrickClay"});
 
 		//-----------------------LEATHER STUFF-----------------------//
 
 		//GameRegistry.addRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{"x", "z", 'x', Items.leather, 'z', ModItems.salt});
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{Items.leather, ModItems.salt});
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{Items.leather, "foodSalt"});
 		GameRegistry.addRecipe(new ItemStack(ModItems.finishedLeather), new Object[]{"x",'x', ModItems.tannedLeather});
 		//GameRegistry.addRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{"x", "z", 'x', Items.leather, 'z', ModItems.salt});
 
