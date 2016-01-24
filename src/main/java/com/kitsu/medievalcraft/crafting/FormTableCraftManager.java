@@ -13,13 +13,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.kitsu.medievalcraft.item.ModItems;
 
-public class FormTableCraftManager {
+import cpw.mods.fml.common.registry.GameRegistry;
+
+public class FormTableCraftManager implements IRecipe{
 
 	private static final FormTableCraftManager instance = new FormTableCraftManager();
     private List recipes = new ArrayList();
+    private ItemStack output = null;
+    private Object[] input = null;
+    private int width = 0;
+    private int height = 0;
+    private boolean mirrored = true;
     //private static final String __OBFID = "CL_00000090";
 
     public static final FormTableCraftManager getInstance() {
@@ -51,8 +60,108 @@ public class FormTableCraftManager {
 	   
        Collections.sort(this.recipes, new FormTableRecipeSorter(this));
     }
+   
+/*   public ShapedOreRecipe(Block     result, Object... recipe){ this(new ItemStack(result), recipe); }
+   public ShapedOreRecipe(Item      result, Object... recipe){ this(new ItemStack(result), recipe); }
+   public ShapedOreRecipe(ItemStack result, Object... recipe)
+   {
+       output = result.copy();
 
-    public FormTableShapedRecipes addRecipe(ItemStack p_92103_1_, Object ... p_92103_2_)
+       String shape = "";
+       int idx = 0;
+
+       if (recipe[idx] instanceof Boolean)
+       {
+           mirrored = (Boolean)recipe[idx];
+           if (recipe[idx+1] instanceof Object[])
+           {
+               recipe = (Object[])recipe[idx+1];
+           }
+           else
+           {
+               idx = 1;
+           }
+       }
+
+       if (recipe[idx] instanceof String[])
+       {
+           String[] parts = ((String[])recipe[idx++]);
+
+           for (String s : parts)
+           {
+               width = s.length();
+               shape += s;
+           }
+
+           height = parts.length;
+       }
+       else
+       {
+           while (recipe[idx] instanceof String)
+           {
+               String s = (String)recipe[idx++];
+               shape += s;
+               width = s.length();
+               height++;
+           }
+       }
+
+       if (width * height != shape.length())
+       {
+           String ret = "Invalid shaped ore recipe: ";
+           for (Object tmp :  recipe)
+           {
+               ret += tmp + ", ";
+           }
+           ret += output;
+           throw new RuntimeException(ret);
+       }
+
+       HashMap<Character, Object> itemMap = new HashMap<Character, Object>();
+
+       for (; idx < recipe.length; idx += 2)
+       {
+           Character chr = (Character)recipe[idx];
+           Object in = recipe[idx + 1];
+
+           if (in instanceof ItemStack)
+           {
+               itemMap.put(chr, ((ItemStack)in).copy());
+           }
+           else if (in instanceof Item)
+           {
+               itemMap.put(chr, new ItemStack((Item)in));
+           }
+           else if (in instanceof Block)
+           {
+               itemMap.put(chr, new ItemStack((Block)in, 1, OreDictionary.WILDCARD_VALUE));
+           }
+           else if (in instanceof String)
+           {
+               itemMap.put(chr, OreDictionary.getOres((String)in));
+           }
+           else
+           {
+               String ret = "Invalid shaped ore recipe: ";
+               for (Object tmp :  recipe)
+               {
+                   ret += tmp + ", ";
+               }
+               ret += output;
+               throw new RuntimeException(ret);
+           }
+       }
+
+       input = new Object[width * height];
+       int x = 0;
+       for (char chr : shape.toCharArray())
+       {
+           input[x++] = itemMap.get(chr);
+       }
+   }
+
+   */
+	public FormTableShapedRecipes addRecipe(ItemStack p_92103_1_, Object ... p_92103_2_)
     {
         String s = "";
         int i = 0;
@@ -155,6 +264,7 @@ public class FormTableCraftManager {
                 arraylist.add(new ItemStack((Block)object1));
             }
         }
+        
 
         this.recipes.add(new ShapelessRecipes(p_77596_1_, arraylist));
     }
@@ -222,4 +332,28 @@ public class FormTableCraftManager {
     {
         return this.recipes;
     }
+
+	@Override
+	public boolean matches(InventoryCrafting p_77569_1_, World p_77569_2_) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ItemStack getCraftingResult(InventoryCrafting p_77572_1_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getRecipeSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ItemStack getRecipeOutput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

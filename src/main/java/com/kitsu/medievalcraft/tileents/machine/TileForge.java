@@ -361,8 +361,10 @@ public class TileForge extends TileEntity implements IInventory{
 			}
 		}
 		if(world.getBlockMetadata(x, y, z)>3&&world.getBlockMetadata(x, y, z)<8){
-			if(this.getStackInSlot(1)!=null && (world.canBlockSeeTheSky(x, y+1, z)==true)){
-				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 3);
+			if(this.getStackInSlot(1)!=null){
+				if(world.canBlockSeeTheSky(x, y+1, z)==true || world.provider.isHellWorld==true){
+					world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+4, 3);
+				}
 			}
 		}
 		if(world.getBlockMetadata(x, y, z)>7){

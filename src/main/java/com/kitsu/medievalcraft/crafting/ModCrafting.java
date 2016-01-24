@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.item.ModItems;
@@ -193,14 +194,14 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.firebox), new Object[]
 				{"x x", "x x", "xxx",  
 			'x', Items.netherbrick});
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.firebox), new Object[]
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.firebox), new Object[]
 				{"x x", "x x", "xxx",  
-				Character.valueOf('x'), "ingotBrickClay"});
+				('x'), "ingotBrickClay"}));
 
 		//-----------------------LEATHER STUFF-----------------------//
 
 		//GameRegistry.addRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{"x", "z", 'x', Items.leather, 'z', ModItems.salt});
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{Items.leather, "foodSalt"});
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{Items.leather, "foodSalt"}));
 		GameRegistry.addRecipe(new ItemStack(ModItems.finishedLeather), new Object[]{"x",'x', ModItems.tannedLeather});
 		//GameRegistry.addRecipe(new ItemStack(ModItems.rawCuredLeather), new Object[]{"x", "z", 'x', Items.leather, 'z', ModItems.salt});
 
@@ -218,7 +219,7 @@ public final class ModCrafting {
 
 		//-----------------------CRUCIBLE STUFF-----------------------//
 		//GameRegistry.addRecipe(new ItemStack(ModItems.crucibleLid), new Object[]{"x", "y", 'x', Items.clay_ball, 'y', Blocks.stone_slab});
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.emptySoftCrucible), new Object[]{"y y", "y y", "yyy", 'y', Items.clay_ball});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.emptySoftCrucible), new Object[]{"y y", "y y", "yyy", 'y', "clumpClay"}));
 		GameRegistry.addRecipe(new ItemStack(ModItems.charcoalLeafPellet), new Object[]{"xxx", "xyx", "xxx", 'x', new ItemStack(Blocks.leaves,0,3), 'y', new ItemStack(Items.coal,0,1)});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleIronOre), 
 				new Object[]{" x ", "abc", " y ",

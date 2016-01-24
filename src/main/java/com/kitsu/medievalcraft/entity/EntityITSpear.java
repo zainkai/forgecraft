@@ -41,7 +41,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	public Entity shootingEntity;
 	private int ticksInGround;
 	private int ticksInAir;
-	private double damage = 10.0D;
+	private double damage = 35.0D;
 	/** The amount of knockback an arrow applies when it hits a mob. */
 	private int knockbackStrength;
 
@@ -327,7 +327,10 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 
 					if (this.shootingEntity == null)
 					{
+						//EntityPlayer player = (EntityPlayer) movingobjectposition.entityHit;
+						//System.out.println(player.inventory.getTotalArmorValue());
 						damagesource = DamageSource.causeArrowDamage(this, this.shootingEntity);
+						//damagesource = DamageSource.
 					}
 					else
 					{
@@ -372,7 +375,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 							}
 						}
 
-						this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+						//this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 
 						if (!(movingobjectposition.entityHit instanceof EntityEnderman))
 						{
@@ -405,7 +408,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 					this.posX -= this.motionX / (double)f2 * 0.05000000074505806D;
 					this.posY -= this.motionY / (double)f2 * 0.05000000074505806D;
 					this.posZ -= this.motionZ / (double)f2 * 0.05000000074505806D;
-					this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+					//this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 					this.inGround = true;
 					this.arrowShake = 7;
 
@@ -415,6 +418,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 						this.field_145790_g.onEntityCollidedWithBlock(this.worldObj, this.field_145791_d, this.field_145792_e, this.field_145789_f, this);
 					}
 				}
+				this.inGround=true;
 			}
 
 			this.posX += this.motionX;
@@ -562,7 +566,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize()
 	{
-		return 1.0F;
+		return 2.0F;
 	}
 
 	public void setDamage(double p_70239_1_)

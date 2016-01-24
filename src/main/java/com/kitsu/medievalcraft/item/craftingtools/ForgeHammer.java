@@ -102,7 +102,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 						world.setBlock(x, y, z, ModBlocks.ironPlate, 0, 2);
 					}
 				}
-
+				if(tileEnt.getStackInSlot(0)!=null){
 				if((tileEnt.getStackInSlot(0).getItem().equals(Items.flower_pot))||tileEnt.getStackInSlot(0).getItem().equals(Items.bucket)){
 					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 					Main.sNet.sendToAll(new MsgPacket(true));
@@ -120,6 +120,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 						world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, new ItemStack(Items.bucket, 1)));
 					}
 				}
+				
 
 				//IRON FORMS
 				if(tileEnt.getStackInSlot(0)!=null){
@@ -164,11 +165,12 @@ public class ForgeHammer extends Item implements AnvilUtil{
 			}
 
 			if((block instanceof IngotBase)){
-				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
+				//TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
 				//REPAIR TOOLS
-				Item checkItem = tileEnt.getStackInSlot(0).getItem();
-				String displayName = tileEnt.getStackInSlot(0).getDisplayName();
+
 				if(tileEnt.getStackInSlot(0) != null){
+					Item checkItem = tileEnt.getStackInSlot(0).getItem();
+					String displayName = tileEnt.getStackInSlot(0).getDisplayName();
 					if(displayName.equals(getTool(tileEnt.getStackInSlot(0)))&&(tile.hot == true)&&(block==ModBlocks.refinedIron)){
 						if(tileEnt.getStackInSlot(0).isItemDamaged() == true){
 							p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
@@ -206,6 +208,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 					}
 				}
 			}
+		}
 		}
 	}
 	/*
