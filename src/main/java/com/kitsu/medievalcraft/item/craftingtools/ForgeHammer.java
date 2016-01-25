@@ -85,7 +85,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 			tilePlate = (TileIronPlate) world.getTileEntity(x, y, z);
 		}
 		if((blockSub == ModBlocks.forgeAnvil)&&(p.isSwingInProgress == false)){
-			
+
 			TileEntityAnvilForge tileEnt = (TileEntityAnvilForge) world.getTileEntity(x, y-1, z);
 			if((block instanceof IngotBase)&&(block==ModBlocks.refinedIron)){
 				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
@@ -103,29 +103,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 					}
 				}
 				if(tileEnt.getStackInSlot(0)!=null){
-				if((tileEnt.getStackInSlot(0).getItem().equals(Items.flower_pot))||tileEnt.getStackInSlot(0).getItem().equals(Items.bucket)){
-					p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-					Main.sNet.sendToAll(new MsgPacket(true));
-					Main.sNet.sendToAll(new MsgPacketLocX(x));
-					Main.sNet.sendToAll(new MsgPacketLocY(y));
-					Main.sNet.sendToAll(new MsgPacketLocZ(z));
-					tile.hits++;
-					stack.damageItem(1, p);
-					if(tile.hits >= 4 + rand.nextInt(3)){
-						world.setBlock(x, y, z, Blocks.air, 0, 2);
-
-						if(tileEnt.getStackInSlot(0).getItem().equals(Items.flower_pot)){
-							tileEnt.decrStackSize(0, 1);
-						}
-						world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, new ItemStack(Items.bucket, 1)));
-					}
-				}
-				
-
-				//IRON FORMS
-				if(tileEnt.getStackInSlot(0)!=null){
-					if((tileEnt.getStackInSlot(0).getItem() instanceof IronForms)&&(tile.hot==true)){
-						//System.out.println("working");
+					if((tileEnt.getStackInSlot(0).getItem().equals(Items.flower_pot))||tileEnt.getStackInSlot(0).getItem().equals(Items.bucket)){
 						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 						Main.sNet.sendToAll(new MsgPacket(true));
 						Main.sNet.sendToAll(new MsgPacketLocX(x));
@@ -134,60 +112,86 @@ public class ForgeHammer extends Item implements AnvilUtil{
 						tile.hits++;
 						stack.damageItem(1, p);
 						if(tile.hits >= 4 + rand.nextInt(3)){
-							world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsIron.get(tileEnt.getStackInSlot(0).getItem())));
 							world.setBlock(x, y, z, Blocks.air, 0, 2);
-							if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
-								if(tileEnt.getStackInSlot(0).getItemDamage() == tileEnt.getStackInSlot(0).getMaxDamage()-1){
-									tileEnt.decrStackSize(0, 1);
-								}
-								else {tileEnt.getStackInSlot(0).setItemDamage(tileEnt.getStackInSlot(0).getItemDamage()+1);
-								}
+
+							if(tileEnt.getStackInSlot(0).getItem().equals(Items.flower_pot)){
+								tileEnt.decrStackSize(0, 1);
 							}
+							world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, new ItemStack(Items.bucket, 1)));
 						}
 					}
-					//CLAY FORMS
-					if((tileEnt.getStackInSlot(0).getItem() instanceof ClayForms)&&(tile.hot==true)){
-						p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
-						Main.sNet.sendToAll(new MsgPacket(true));
-						Main.sNet.sendToAll(new MsgPacketLocX(x));
-						Main.sNet.sendToAll(new MsgPacketLocY(y));
-						Main.sNet.sendToAll(new MsgPacketLocZ(z));
-						tile.hits++;
-						stack.damageItem(1, p);
-						if(tile.hits >= 4 + rand.nextInt(3)){
-							world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsClay.get(tileEnt.getStackInSlot(0).getItem())));
-							world.setBlock(x, y, z, Blocks.air, 0, 2);
-							tileEnt.decrStackSize(0, 1);
-							tile.markForUpdate();
-						}
-					}
-				}
-			}
 
-			if((block instanceof IngotBase)){
-				//TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
-				//REPAIR TOOLS
 
-				if(tileEnt.getStackInSlot(0) != null){
-					Item checkItem = tileEnt.getStackInSlot(0).getItem();
-					String displayName = tileEnt.getStackInSlot(0).getDisplayName();
-					if(displayName.equals(getTool(tileEnt.getStackInSlot(0)))&&(tile.hot == true)&&(block==ModBlocks.refinedIron)){
-						if(tileEnt.getStackInSlot(0).isItemDamaged() == true){
+					//IRON FORMS
+					if(tileEnt.getStackInSlot(0)!=null){
+						if((tileEnt.getStackInSlot(0).getItem() instanceof IronForms)&&(tile.hot==true)){
+							//System.out.println("working");
 							p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
 							Main.sNet.sendToAll(new MsgPacket(true));
 							Main.sNet.sendToAll(new MsgPacketLocX(x));
 							Main.sNet.sendToAll(new MsgPacketLocY(y));
 							Main.sNet.sendToAll(new MsgPacketLocZ(z));
-							stack.damageItem(1, p);
 							tile.hits++;
+							stack.damageItem(1, p);
 							if(tile.hits >= 4 + rand.nextInt(3)){
-								checkItem.setDamage(tileEnt.getStackInSlot(0), 0);
+								world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsIron.get(tileEnt.getStackInSlot(0).getItem())));
 								world.setBlock(x, y, z, Blocks.air, 0, 2);
+								if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
+									if(tileEnt.getStackInSlot(0).getItemDamage() == tileEnt.getStackInSlot(0).getMaxDamage()-1){
+										tileEnt.decrStackSize(0, 1);
+									}
+									else {tileEnt.getStackInSlot(0).setItemDamage(tileEnt.getStackInSlot(0).getItemDamage()+1);
+									}
+								}
+							}
+						}
+						//CLAY FORMS
+						if((tileEnt.getStackInSlot(0).getItem() instanceof ClayForms)&&(tile.hot==true)){
+							p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+							Main.sNet.sendToAll(new MsgPacket(true));
+							Main.sNet.sendToAll(new MsgPacketLocX(x));
+							Main.sNet.sendToAll(new MsgPacketLocY(y));
+							Main.sNet.sendToAll(new MsgPacketLocZ(z));
+							tile.hits++;
+							stack.damageItem(1, p);
+							if(tile.hits >= 4 + rand.nextInt(3)){
+								world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsClay.get(tileEnt.getStackInSlot(0).getItem())));
+								world.setBlock(x, y, z, Blocks.air, 0, 2);
+								tileEnt.decrStackSize(0, 1);
+								tile.markForUpdate();
 							}
 						}
 					}
 				}
-				//MAKE FORMS
+
+				if((block instanceof IngotBase)){
+					//TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
+					//REPAIR TOOLS
+
+					if(tileEnt.getStackInSlot(0) != null){
+						Item checkItem = tileEnt.getStackInSlot(0).getItem();
+						String displayName = tileEnt.getStackInSlot(0).getDisplayName();
+						if(displayName.equals(getTool(tileEnt.getStackInSlot(0)))&&(tile.hot == true)&&(block==ModBlocks.refinedIron)){
+							if(tileEnt.getStackInSlot(0).isItemDamaged() == true){
+								p.worldObj.playSoundAtEntity(p, Main.MODID + ":anvilhammer", 1.0F, 1.0F);
+								Main.sNet.sendToAll(new MsgPacket(true));
+								Main.sNet.sendToAll(new MsgPacketLocX(x));
+								Main.sNet.sendToAll(new MsgPacketLocY(y));
+								Main.sNet.sendToAll(new MsgPacketLocZ(z));
+								stack.damageItem(1, p);
+								tile.hits++;
+								if(tile.hits >= 4 + rand.nextInt(3)){
+									checkItem.setDamage(tileEnt.getStackInSlot(0), 0);
+									world.setBlock(x, y, z, Blocks.air, 0, 2);
+								}
+							}
+						}
+					}
+				}
+			}
+			//MAKE FORMS
+			if((block instanceof IngotBase)&&(block==ModBlocks.ironPlate)){
+				TileIngotBase tile = (TileIngotBase) world.getTileEntity(x, y, z);
 				if(tileEnt.getStackInSlot(0)!= null){
 					if((makeForms.containsKey(tileEnt.getStackInSlot(0).getItem())==true)){
 						if((tile.hot == true)&&(block==ModBlocks.ironPlate)){
@@ -209,8 +213,8 @@ public class ForgeHammer extends Item implements AnvilUtil{
 				}
 			}
 		}
-		}
 	}
+
 	/*
 	 * 		ItemStack gladius0 = new ItemStack(ModItems.gladius);
 		gladius0.stackTagCompound = new NBTTagCompound();
