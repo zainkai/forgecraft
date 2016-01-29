@@ -18,6 +18,7 @@ import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -442,6 +443,21 @@ public void splitLogEvent(PlayerInteractEvent event){
 			}
 		}
 	}
+	
+	/*@SubscribeEvent
+	public void onItemShitJoinEvent(ItemEvent event){
+		
+		if(!event.entity.worldObj.isRemote){
+
+			if(event.entity.getgetEntityItem().getItem() == ModItems.itemShit){
+				//System.out.println(event.entityItem.worldObj.getBlock((int)event.entityItem.posX, (int)event.entityItem.posY-2, (int)event.entityItem.posZ));
+				/*if(event.entityItem.worldObj.getBlock((int)event.entityItem.posX, (int)event.entityItem.posY-1, (int)event.entityItem.posZ)==Blocks.grass){
+					event.entityItem.setDead();
+				}
+				event.lifespan=200;
+			}
+		}
+	}*/
 
 	@SubscribeEvent
 	public void onLivingUpdateEventShit(LivingUpdateEvent event) {
@@ -454,6 +470,7 @@ public void splitLogEvent(PlayerInteractEvent event){
 			if ( rand.nextInt(1500) == 0 ) {
 				//Checks to see if the LivingUpdate is being applied to cow, if so:
 				if (event.entity instanceof EntityCow) {
+					
 					event.entityLiving.dropItem(ModItems.itemShit, 1);
 				}
 			}
