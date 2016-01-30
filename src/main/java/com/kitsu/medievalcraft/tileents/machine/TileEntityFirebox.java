@@ -239,6 +239,7 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 				if(isItemFuel(stack)==true){
 					this.ticks++;
 					double burnTime = (this.getItemBurnTime(stack)+((fuelMulti(stack.stackSize, stack)*this.getItemBurnTime(stack))));
+					//System.out.println(this.ticks);
 					if(time >= burnTime){
 						decrStackSize(0, 1);
 						this.ticks=0;
@@ -249,29 +250,30 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 		}
 	}
 	private static double fuelMulti(int i, ItemStack stack){
+		double a=0;
 		if(stack!=null){
 			if(stack.stackSize<=15){
-				return 0.25;
+				a=0.25;
 			}
 			if(stack.stackSize>=16 && stack.stackSize<=31){
-				return 0.5;
+				a=0.5;
 			}
 			if(stack.stackSize>=32 && stack.stackSize<=47){
-				return 0.75;
+				a=0.75;
 			}
 			if(stack.stackSize>=48){
-				return 1;
+				a=1;
 			}
 		}
-		return 0.0d;
+		return a;
 	}
-	public static int getItemBurnTime(ItemStack p_145952_0_)
+	public static int getItemBurnTime(ItemStack stack)
 	{
-		if (p_145952_0_ == null)
+		if (stack == null)
 		{
 			return 0;
 		}
-		Item item = p_145952_0_.getItem();
+		Item item = stack.getItem();
 
 		if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air)
 		{
@@ -291,6 +293,7 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 			{
 				return 16000;
 			}
+		
 		}
 
 		if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
@@ -301,11 +304,14 @@ public class TileEntityFirebox extends TileEntity implements IInventory{
 		if (item == Items.lava_bucket) return 20000;
 		if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
 		if (item == Items.blaze_rod) return 2400;
-		return GameRegistry.getFuelValue(p_145952_0_);
+		return GameRegistry.getFuelValue(stack);
 	}
 	public static boolean isItemFuel(ItemStack stack)
 	{
-		return getItemBurnTime(stack) > 0;
+		if(getItemBurnTime(stack)>0){
+			return true;
+		} else
+		return false;
 	}
 	public void isFurnace(World world, int x, int y, int z){
 		if(world.getBlock(x, y+1, z).equals(Blocks.furnace)&&(world.getBlockMetadata(x, y, z)==1)){

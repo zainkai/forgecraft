@@ -56,7 +56,7 @@ public class Main {
 
 	public static final String MODID = "kitsumedievalcraft";
 	public static final String MODNAME = "ForgeCraft";
-	public static final String VERSION = "2.3.1";
+	public static final String VERSION = "2.3.4";
 
 	public static SimpleNetworkWrapper sNet;
 
@@ -110,7 +110,7 @@ public class Main {
 		BucketHandle.INSTANCE.buckets.put(ModBlocks.blockTannin, ModItems.tanninBucket);
 		BucketHandle.INSTANCE.buckets.put(ModBlocks.blockSlackedLime, ModItems.slackBucket);
 		
-		//EntityRegistry.registerModEntity(EntityShit.class, "itemShit", 1, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityShit.class, "itemShit", 1, this, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityModelArrow.class, "itemModelArrow", 2, this, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityITSpear.class, "itemITSpear", 3, this, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityTester.class, "itemTester", 4, this, 64, 10, true);
