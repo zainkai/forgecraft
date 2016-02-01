@@ -29,6 +29,7 @@ public class ModDict {
         OreDictionary.registerOre("clumpFuel", new ItemStack(ModBlocks.shitblock, 1, 0));
         
         OreDictionary.registerOre("ingotBrickClay", new ItemStack(Items.brick, 1, 0));
+        OreDictionary.registerOre("cordageStrong", new ItemStack(Items.string, 1, 0));
 		//OreDictionary.registerOre("cordage", new ItemStack(ModItems.leatherString, 1, 0));
 		//OreDictionary.registerOre("itemLeather", ModItems.cutLeather);
 		//OreDictionary.replacements.put(new ItemStack(Item.leather), "itemLeather");

@@ -172,89 +172,93 @@ public void splitLogEvent(PlayerInteractEvent event){
 		if(!event.entity.worldObj.isRemote){
 			if (event.entity instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) event.entity;
+				if(player.inventory.getCurrentItem()!=null){
 				Block test = event.world.getBlock(event.x, event.y, event.z);
 				//Block isEmpty = event.world.getBlock(event.x, event.y + 1, event.z);
 				ItemStack itemStack = new ItemStack(ModItems.itemBark);
-				if((player.inventory.getCurrentItem() == null)) {
-					if((event.action == event.action.RIGHT_CLICK_BLOCK ) && ((test == Blocks.log)||test == Blocks.log2) ) { //&& (test == ModBlocks.testForge) && (isEmpty == Blocks.air)
-						if(test == Blocks.log){
-							player.worldObj.playSoundAtEntity(player, Main.MODID + ":scrapes1", 0.15F, 0.85F);
-							int woodMeta = event.world.getBlockMetadata(event.x,event.y, event.z);
-							if(woodMeta == 0 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanOak, 0, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+				//ItemStack stickStack = new ItemStack(Items.stick);
+				
+					if((player.inventory.getCurrentItem().getItem() == Items.stick)) {
+						if((event.action == event.action.RIGHT_CLICK_BLOCK ) && ((test == Blocks.log)||test == Blocks.log2) ) { //&& (test == ModBlocks.testForge) && (isEmpty == Blocks.air)
+							if(test == Blocks.log){
+								player.worldObj.playSoundAtEntity(player, Main.MODID + ":scrapes1", 0.15F, 0.85F);
+								int woodMeta = event.world.getBlockMetadata(event.x,event.y, event.z);
+								if(woodMeta == 0 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanOak, 0, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 4 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanOak, 4, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 8 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanOak, 8, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 1 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanSpruce, 0, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 5 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanSpruce, 4, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 9 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanSpruce, 8, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 2 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanBirch, 0, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 6 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanBirch, 4, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 10 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanBirch, 8, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 3 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanJungle, 0, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 7 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanJungle, 4, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 11 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanJungle, 8, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
 							}
-							if(woodMeta == 4 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanOak, 4, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 8 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanOak, 8, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 1 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanSpruce, 0, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 5 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanSpruce, 4, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 9 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanSpruce, 8, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 2 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanBirch, 0, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 6 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanBirch, 4, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 10 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanBirch, 8, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 3 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanJungle, 0, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 7 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanJungle, 4, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 11 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y,event.z, ModBlocks.cleanJungle, 8, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-						}
-						if(test == Blocks.log2){
-							player.worldObj.playSoundAtEntity(player, Main.MODID + ":scrapes1", 0.2F, 0.8F);
-							int woodMeta = event.world.getBlockMetadata(event.x, event.y, event.z);
-							if(woodMeta == 0 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanAcacia, 0, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 4 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanAcacia, 4, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 8 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanAcacia, 8, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 1 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanDarkOak, 0, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 5 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanDarkOak, 4, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
-							}
-							if(woodMeta == 9 && event.world.rand.nextInt(9)==0){
-								event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanDarkOak, 8, 2);
-								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+							if(test == Blocks.log2){
+								player.worldObj.playSoundAtEntity(player, Main.MODID + ":scrapes1", 0.2F, 0.8F);
+								int woodMeta = event.world.getBlockMetadata(event.x, event.y, event.z);
+								if(woodMeta == 0 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanAcacia, 0, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 4 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanAcacia, 4, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 8 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanAcacia, 8, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 1 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanDarkOak, 0, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 5 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanDarkOak, 4, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
+								if(woodMeta == 9 && event.world.rand.nextInt(9)==0){
+									event.world.setBlock(event.x, event.y, event.z, ModBlocks.cleanDarkOak, 8, 2);
+									event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(ModItems.itemBark, 1 + event.world.rand.nextInt(2), 0)));
+								}
 							}
 						}
 					}
@@ -285,7 +289,7 @@ public void splitLogEvent(PlayerInteractEvent event){
 								event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y+1, event.z, flintKnapped));
 								player.inventory.decrStackSize(player.inventory.currentItem, 1);
 							}
-							
+
 						}
 					}
 				}
@@ -443,10 +447,10 @@ public void splitLogEvent(PlayerInteractEvent event){
 			}
 		}
 	}
-	
+
 	/*@SubscribeEvent
 	public void onItemShitJoinEvent(ItemEvent event){
-		
+
 		if(!event.entity.worldObj.isRemote){
 
 			if(event.entity.getgetEntityItem().getItem() == ModItems.itemShit){
@@ -470,7 +474,7 @@ public void splitLogEvent(PlayerInteractEvent event){
 			if ( rand.nextInt(1500) == 0 ) {
 				//Checks to see if the LivingUpdate is being applied to cow, if so:
 				if (event.entity instanceof EntityCow) {
-					
+
 					event.entityLiving.dropItem(ModItems.itemShit, 1);
 				}
 			}

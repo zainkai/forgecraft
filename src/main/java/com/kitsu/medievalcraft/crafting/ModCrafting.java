@@ -113,6 +113,7 @@ public final class ModCrafting {
 			'x', Items.string,
 			'y', Items.paper,
 			'z', new ItemStack(ModItems.woodPulp,2,0)});
+		
 		GameRegistry.addRecipe(new ItemStack(ModItems.fineFilter), new Object[]
 				{"xyx", "zzz", "xyx",
 			'x', Items.string,
@@ -139,10 +140,8 @@ public final class ModCrafting {
 				'x', ModBlocks.damascus,
 				'y', ModItems.ironweaponHandle}));
 		
-		GameRegistry.addRecipe(new ItemStack(ModItems.fireBow), new Object[]
-				{"xxx", "yxy", 
-			'x', Items.stick,
-			'y', Items.string});		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.fireBow), 
+				new Object[]{" x ", "xyx", 'x', Items.stick, Character.valueOf('y'), "cordageStrong"}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.workBlade, true, new Object[]
 				{"x", "y",
