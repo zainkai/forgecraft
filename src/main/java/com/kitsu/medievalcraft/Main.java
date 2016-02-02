@@ -6,6 +6,7 @@ import com.kitsu.medievalcraft.crafting.CraftingHandle;
 import com.kitsu.medievalcraft.crafting.ModCrafting;
 import com.kitsu.medievalcraft.entity.EntityITSpear;
 import com.kitsu.medievalcraft.entity.EntityModelArrow;
+import com.kitsu.medievalcraft.entity.EntityModelITArrow;
 import com.kitsu.medievalcraft.entity.EntityShit;
 import com.kitsu.medievalcraft.entity.EntityShortLivedShit;
 import com.kitsu.medievalcraft.entity.EntityTester;
@@ -112,9 +113,10 @@ public class Main {
 		
 		EntityRegistry.registerModEntity(EntityShit.class, "itemShit", 1, this, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityModelArrow.class, "itemModelArrow", 2, this, 64, 10, true);
-		EntityRegistry.registerModEntity(EntityITSpear.class, "itemITSpear", 3, this, 64, 10, true);
-		EntityRegistry.registerModEntity(EntityTester.class, "itemTester", 4, this, 64, 10, true);
-		EntityRegistry.registerModEntity(EntityShortLivedShit.class, "itemShit", 5, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityModelITArrow.class, "itemIronTippedModelArrow", 3, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityITSpear.class, "itemITSpear", 4, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityTester.class, "itemTester", 5, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityShortLivedShit.class, "itemShit", 6, this, 64, 10, true);
 
 		GameRegistry.registerFuelHandler(new FuelHandler());
 

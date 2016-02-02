@@ -2,12 +2,14 @@ package com.kitsu.medievalcraft;
 
 import com.kitsu.medievalcraft.entity.EntityITSpear;
 import com.kitsu.medievalcraft.entity.EntityModelArrow;
+import com.kitsu.medievalcraft.entity.EntityModelITArrow;
 import com.kitsu.medievalcraft.entity.EntityShit;
 import com.kitsu.medievalcraft.entity.EntityTester;
 import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.renderer.RendererRegistry;
 import com.kitsu.medievalcraft.renderer.blocks.RenderModelArrow;
+import com.kitsu.medievalcraft.renderer.blocks.RenderModelITArrow;
 import com.kitsu.medievalcraft.renderer.blocks.RenderModelITSpear;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -22,6 +24,7 @@ public class ClientProxy extends CommonProxy {
     	RenderingRegistry.registerEntityRenderingHandler(EntityShit.class, new RenderSnowball(ModItems.itemShit));
     	RenderingRegistry.registerEntityRenderingHandler(EntityTester.class, new RenderSnowball(ModItems.itemTester));
     	RenderingRegistry.registerEntityRenderingHandler(EntityModelArrow.class, new RenderModelArrow());
+    	RenderingRegistry.registerEntityRenderingHandler(EntityModelITArrow.class, new RenderModelITArrow());
     	RenderingRegistry.registerEntityRenderingHandler(EntityITSpear.class, new RenderModelITSpear());
     }
     
