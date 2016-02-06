@@ -66,6 +66,45 @@ public interface AnvilUtil {
 		put(ModItems.cookedspeartipClayForm, new ItemStack(ModItems.ironspearTip, 1));
 		
 	}};
+	static final Hashtable<Item, Item> makeFormsTest = new Hashtable <Item, Item>(){{
+
+		put(ModItems.ironaxeHead, (ModItems.ironAxeForm));
+		put(ModItems.ironbattleaxeHead, (ModItems.ironBattleAxeForm));
+		put(ModItems.irondaggerBlade, (ModItems.ironDaggerForm));
+		put(ModItems.woodentoolHandle, (ModItems.ironHandleForm));
+		put(ModItems.ironhoeHead, (ModItems.ironHoeForm));
+		put(ModItems.ironlongswordBlade, (ModItems.ironLongswordForm));
+		put(ModItems.ironmaceHead, (ModItems.ironMaceHeadForm));
+		put(ModItems.ironpickaxeHead, (ModItems.ironPickaxeForm));
+		put(ModItems.ironRing, (ModItems.ironRingForm));
+		put(ModItems.ironsawBlade, (ModItems.ironSawBladeForm));
+		put(ModItems.ironsharpTip, (ModItems.ironSharpTipForm));
+		put(ModItems.ironshortswordBlade, (ModItems.ironShortSwordForm));
+		put(ModItems.ironspadeHead, (ModItems.ironSpadForm));
+		put(ModItems.ironspearTip, (ModItems.ironSpearTipForm));
+		
+	}};
+	
+	
+	//==============TESTING========================//
+	static final Hashtable<Item, Item> formsIronTest = new Hashtable <Item, Item>(){{
+
+		put(ModItems.ironAxeForm, (ModItems.ironaxeHead));
+		put(ModItems.ironBattleAxeForm, (ModItems.ironbattleaxeHead));
+		put(ModItems.ironDaggerForm, (ModItems.irondaggerBlade));
+		put(ModItems.ironHandleForm, (ModItems.ironweaponHandle));
+		put(ModItems.ironHoeForm, (ModItems.ironhoeHead));
+		put(ModItems.ironLongswordForm, (ModItems.ironlongswordBlade));
+		put(ModItems.ironMaceHeadForm, (ModItems.ironmaceHead));
+		put(ModItems.ironPickaxeForm, (ModItems.ironpickaxeHead));
+		put(ModItems.ironRingForm, (ModItems.ironRing));
+		put(ModItems.ironSawBladeForm, (ModItems.ironsawBlade));
+		put(ModItems.ironSharpTipForm, (ModItems.ironsharpTip));
+		put(ModItems.ironShortSwordForm, (ModItems.ironshortswordBlade));
+		put(ModItems.ironSpadForm, (ModItems.ironspadeHead));
+		put(ModItems.ironSpearTipForm, (ModItems.ironspearTip));
+		
+	}};
 	
 
 	

@@ -20,6 +20,7 @@ import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.block.ingots.IngotBase;
 import com.kitsu.medievalcraft.crafting.ForgeAnvilCrafting;
 import com.kitsu.medievalcraft.crafting.TestForgeCrafting;
+import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.item.forms.clay.ClayForms;
 import com.kitsu.medievalcraft.item.forms.iron.IronForms;
 import com.kitsu.medievalcraft.packethandle.forgeHammerParticles.MsgPacket;
@@ -46,6 +47,7 @@ public class ForgeHammer extends Item implements AnvilUtil{
 	TileMyIronIngot tileRefIngot;
 	TileIronPlate tilePlate;
 	Random rand;
+	private ItemStack stackGive;
 
 	public ForgeHammer() {
 
@@ -134,7 +136,25 @@ public class ForgeHammer extends Item implements AnvilUtil{
 							tile.hits++;
 							stack.damageItem(1, p);
 							if(tile.hits >= 4 + rand.nextInt(3)){
-								world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, formsIron.get(tileEnt.getStackInSlot(0).getItem())));
+								Item itemGive = formsIronTest.get(tileEnt.getStackInSlot(0).getItem());
+								if(itemGive == ModItems.irondaggerBlade){
+									stackGive = new ItemStack (itemGive, 3);
+								} else if (itemGive == ModItems.ironweaponHandle){
+									stackGive = new ItemStack (itemGive, 2);
+								} else if (itemGive == ModItems.ironRing){
+									stackGive = new ItemStack (itemGive, 9);
+								} else if (itemGive == ModItems.ironsharpTip){
+									stackGive = new ItemStack (itemGive, 9);
+								} else if (itemGive == ModItems.ironshortswordBlade){
+									stackGive = new ItemStack (itemGive, 2);
+								} else {
+									stackGive = new ItemStack (itemGive, 1);
+								}
+								
+								System.out.println(stackGive);
+								world.spawnEntityInWorld(new EntityItem(world, x+0.5D, y+0.6D, z+0.5D, stackGive));
+								//formsIron.get(tileEnt.getStackInSlot(0).getItem())
+								System.out.println(formsIron.get(tileEnt.getStackInSlot(0).getItem()));
 								world.setBlock(x, y, z, Blocks.air, 0, 2);
 								if(tileEnt.getStackInSlot(0).getMaxStackSize() == 1){
 									if(tileEnt.getStackInSlot(0).getItemDamage() == tileEnt.getStackInSlot(0).getMaxDamage()-1){

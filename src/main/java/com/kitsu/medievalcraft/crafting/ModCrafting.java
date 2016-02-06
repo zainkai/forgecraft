@@ -209,7 +209,10 @@ public final class ModCrafting {
 
 		GameRegistry.addRecipe(new ItemStack(ModItems.itemModelArrow, 4), new Object[]{" x", "zy", 'x', Items.stick, 'y', Items.feather, 'z', ModItems.leatherString});
 		GameRegistry.addRecipe(new ItemStack(ModItems.itemModelArrow, 4), new Object[]{" x", "zy", 'x', Items.stick, 'y', Items.feather, 'z', Items.string});
-		//GameRegistry.addRecipe(new ItemStack(ModItems.itemIronTippedModelArrow), new Object[]{" a"," x", "zy", 'x', Items.stick, 'y', Items.feather, 'z', Items.string, 'a', ModItems.ironsharpTip});
+		GameRegistry.addRecipe(new ItemStack(ModItems.itemIronTippedModelArrow), new Object[]{"x", "z", 'z', ModItems.itemModelArrow, 'x', ModItems.ironsharpTip});
+		
+		//GameRegistry.addRecipe(new ItemStack(ModItems.itemIronTippedModelArrow, 4), new Object[]{" a"," x", "zy", 'x', Items.stick, 'y', Items.feather, 'z', ModItems.leatherString, 'a', ModItems.ironsharpTip});
+		//GameRegistry.addRecipe(new ItemStack(ModItems.itemIronTippedModelArrow, 4), new Object[]{" a"," x", "zy", 'x', Items.stick, 'y', Items.feather, 'z', Items.string, 'a', ModItems.ironsharpTip});
 		//Temp Recipe
 		ItemStack longbow0 = new ItemStack(ModItems.longbow);
 		longbow0.stackTagCompound = new NBTTagCompound();

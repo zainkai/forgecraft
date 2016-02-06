@@ -648,46 +648,46 @@ public final class ModItems {
 		cookedsawbladeClayForm = new CClaySawBladeForm("cookedsawbladeClayForm", cookedsawbladeClayForm);
 
 		//-----------------------IRON PARTS-----------------------//
-		ironpickaxeHead = new Item().setUnlocalizedName("ironpickaxeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironpickaxeHead").setMaxStackSize(1);
+		ironpickaxeHead = new Item().setUnlocalizedName("ironpickaxeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironpickaxeHead").setMaxStackSize(64);
 		GameRegistry.registerItem(ironpickaxeHead, "ironpickaxeHead");
 		
-		ironspadeHead = new Item().setUnlocalizedName("ironspadeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironspadeHead").setMaxStackSize(1);
+		ironspadeHead = new Item().setUnlocalizedName("ironspadeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironspadeHead").setMaxStackSize(64);
 		GameRegistry.registerItem(ironspadeHead, "ironspadeHead");
 		
-		ironhoeHead = new Item().setUnlocalizedName("ironhoeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironhoeHead").setMaxStackSize(1);
+		ironhoeHead = new Item().setUnlocalizedName("ironhoeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironhoeHead").setMaxStackSize(64);
 		GameRegistry.registerItem(ironhoeHead, "ironhoeHead");
 		
-		ironaxeHead = new Item().setUnlocalizedName("ironaxeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironaxeHead").setMaxStackSize(1);
+		ironaxeHead = new Item().setUnlocalizedName("ironaxeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironaxeHead").setMaxStackSize(64);
 		GameRegistry.registerItem(ironaxeHead, "ironaxeHead");
 		
-		ironlongswordBlade = new Item().setUnlocalizedName("ironlongswordBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironlongswordBlade").setMaxStackSize(1);
+		ironlongswordBlade = new Item().setUnlocalizedName("ironlongswordBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironlongswordBlade").setMaxStackSize(64);
 		GameRegistry.registerItem(ironlongswordBlade, "ironlongswordBlade");
 		
-		ironshortswordBlade = new Item().setUnlocalizedName("ironshortswordBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironshortswordBlade").setMaxStackSize(1);
+		ironshortswordBlade = new Item().setUnlocalizedName("ironshortswordBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironshortswordBlade").setMaxStackSize(64);
 		GameRegistry.registerItem(ironshortswordBlade, "ironshortswordBlade");
 		
-		irondaggerBlade = new Item().setUnlocalizedName("irondaggerBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "irondaggerBlade").setMaxStackSize(1);
+		irondaggerBlade = new Item().setUnlocalizedName("irondaggerBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "irondaggerBlade").setMaxStackSize(64);
 		GameRegistry.registerItem(irondaggerBlade, "irondaggerBlade");
 		
 		//ironhalberdHead = new Item().setUnlocalizedName("ironhalberdHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironhalberdHead");
 		//GameRegistry.registerItem(ironhalberdHead, "ironhalberdHead");
 		
-		ironspearTip = new Item().setUnlocalizedName("ironspearTip").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironspearTip").setMaxStackSize(1);
+		ironspearTip = new Item().setUnlocalizedName("ironspearTip").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironspearTip").setMaxStackSize(64);
 		GameRegistry.registerItem(ironspearTip, "ironspearTip");
 		
-		ironsharpTip = new Item().setUnlocalizedName("ironsharpTip").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironsharpTip").setMaxStackSize(1);
+		ironsharpTip = new Item().setUnlocalizedName("ironsharpTip").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironsharpTip").setMaxStackSize(64);
 		GameRegistry.registerItem(ironsharpTip, "ironsharpTip");
 		
-		ironmaceHead = new Item().setUnlocalizedName("ironmaceHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironmaceHead").setMaxStackSize(1);
+		ironmaceHead = new Item().setUnlocalizedName("ironmaceHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironmaceHead").setMaxStackSize(64);
 		GameRegistry.registerItem(ironmaceHead, "ironmaceHead");
 		
-		ironbattleaxeHead = new Item().setUnlocalizedName("ironbattleaxeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironbattleaxeHead").setMaxStackSize(1);
+		ironbattleaxeHead = new Item().setUnlocalizedName("ironbattleaxeHead").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironbattleaxeHead").setMaxStackSize(64);
 		GameRegistry.registerItem(ironbattleaxeHead, "ironbattleaxeHead");
 		
-		ironsquarePlate = new Item().setUnlocalizedName("ironsquarePlate").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironsquarePlate").setMaxStackSize(1);
+		ironsquarePlate = new Item().setUnlocalizedName("ironsquarePlate").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironsquarePlate").setMaxStackSize(64);
 		GameRegistry.registerItem(ironsquarePlate, "ironsquarePlate");
 		
-		ironsawBlade = new Item().setUnlocalizedName("ironsawBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironsawBlade").setMaxStackSize(1);
+		ironsawBlade = new Item().setUnlocalizedName("ironsawBlade").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":" + "ironsawBlade").setMaxStackSize(64);
 		GameRegistry.registerItem(ironsawBlade, "ironsawBlade");
 		
 		//-----------------------TOOL ROD PARTS-----------------------//
