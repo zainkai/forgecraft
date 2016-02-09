@@ -84,10 +84,9 @@ public class CrucibleWootz extends CrucibleBase{
 			if(meta == 2){
 				world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(Blocks.stone_slab, 1, 0)));
 				world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(ModBlocks.emptyCookedCrucible, 1, 0)));
-				//world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(ModBlocks.damascusIngot, 1, 0)));
+				world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(ModBlocks.damascus, 1, 0)));
 				world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(Blocks.glass, 1, 0)));
 			}
-
 		}
 	}
 
