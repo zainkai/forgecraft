@@ -1,5 +1,6 @@
 package com.kitsu.medievalcraft.tileents;
 
+import com.kitsu.medievalcraft.tileents.cannon.TileCannon_28;
 import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleIronOre;
 import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleLapis;
 import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleRedstone;
@@ -62,6 +63,8 @@ public class TileEntRegister {
         GameRegistry.registerTileEntity(TileIronPlate.class, "IronPlate");
         GameRegistry.registerTileEntity(TileRedstoneIngot.class, "RedstoneIngot");
         GameRegistry.registerTileEntity(TileLapisIngot.class, "LapisIngot");
+        
+        GameRegistry.registerTileEntity(TileCannon_28.class, "Cannon_28");
         
 	}
 

@@ -1,18 +1,20 @@
-package com.kitsu.medievalcraft.renderer.itemrenderer.machines;
+package com.kitsu.medievalcraft.renderer.itemrenderer.cannons;
+
+import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
-import org.lwjgl.opengl.GL11;
-
-public class IRForgeAnvil implements IItemRenderer {
+public class IR_Cannon_28 implements IItemRenderer {
 	
-	public static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/ForgeAnvil.obj");
-	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/ForgeAnvil.png");
+	public static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/Cannon.obj");
+	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/Cannon.png");
 	
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL_CRUCIBLE);
 	
@@ -69,14 +71,14 @@ public class IRForgeAnvil implements IItemRenderer {
 		case EQUIPPED: {
 			
 			GL11.glPushMatrix();
-			float scale = 0.8F;
+			float scale = 1.0F;
 			GL11.glScalef(scale, scale, scale);
 			
 			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-			GL11.glRotatef(22F, 0.0F, 0.0F, 1.0F);
-			GL11.glRotatef(-90F, 0.0F, 1.0F, 0.0F);
+			//GL11.glRotatef(22F, 0.0F, 0.0F, 1.0F);
+			//GL11.glRotatef(-90F, 0.0F, 1.0F, 0.0F);
 
-			GL11.glTranslatef(-0.2F, -1.5F, -1.05F);
+			GL11.glTranslatef(0.7F, 0.3F, 0.0F);
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
@@ -89,11 +91,12 @@ public class IRForgeAnvil implements IItemRenderer {
 			GL11.glPushMatrix();
 			GL11.glScalef(f, f, f);
 			
+			GL11.glTranslatef(0.5F, 1.F, 1.0F);
 			//ANGLE, X ROTATE, Y ROTATE, Z ROTATE
-			GL11.glRotatef(-135F, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(-50F, 0.0F, 1.0F, 0.0F);
 			//GL11.glRotatef(-45F, 0.0F, 1.0F, 0.0F);
 
-			GL11.glTranslatef(1.0F, -0.2F, -0.4F);
+			
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
@@ -106,12 +109,12 @@ public class IRForgeAnvil implements IItemRenderer {
 			GL11.glPushMatrix();
 			
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			float scale = 0.5F;
+			float scale = 0.8F;
 			GL11.glScalef(scale, scale, scale);
 			
 			//GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
 			
-			GL11.glTranslatef(0.0F, -1.0F, 0.0F);
+			GL11.glTranslatef(0.0F, -0.1F, 0.35F);
 		
 			
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);

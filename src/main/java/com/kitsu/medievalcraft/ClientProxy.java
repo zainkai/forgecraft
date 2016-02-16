@@ -1,16 +1,20 @@
 package com.kitsu.medievalcraft;
 
+import com.kitsu.medievalcraft.entity.EntityCannonBall;
 import com.kitsu.medievalcraft.entity.EntityITSpear;
 import com.kitsu.medievalcraft.entity.EntityModelArrow;
 import com.kitsu.medievalcraft.entity.EntityModelITArrow;
 import com.kitsu.medievalcraft.entity.EntityShit;
 import com.kitsu.medievalcraft.entity.EntityTester;
+import com.kitsu.medievalcraft.entity.ProjectileCannonBall;
 import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.renderer.RendererRegistry;
 import com.kitsu.medievalcraft.renderer.blocks.RenderModelArrow;
 import com.kitsu.medievalcraft.renderer.blocks.RenderModelITArrow;
 import com.kitsu.medievalcraft.renderer.blocks.RenderModelITSpear;
+import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_CannonBall_Iron;
+import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_CannonBall_Projectile;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -26,6 +30,8 @@ public class ClientProxy extends CommonProxy {
     	RenderingRegistry.registerEntityRenderingHandler(EntityModelArrow.class, new RenderModelArrow());
     	RenderingRegistry.registerEntityRenderingHandler(EntityModelITArrow.class, new RenderModelITArrow());
     	RenderingRegistry.registerEntityRenderingHandler(EntityITSpear.class, new RenderModelITSpear());
+    	RenderingRegistry.registerEntityRenderingHandler(EntityCannonBall.class, new Render_CannonBall_Iron());
+    	//RenderingRegistry.registerEntityRenderingHandler(ProjectileCannonBall.class, new Render_CannonBall_Projectile());
     }
     
     @Override

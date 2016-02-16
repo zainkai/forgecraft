@@ -4,12 +4,14 @@ import com.kitsu.medievalcraft.compat.FuelHandler;
 import com.kitsu.medievalcraft.compat.ModDict;
 import com.kitsu.medievalcraft.crafting.CraftingHandle;
 import com.kitsu.medievalcraft.crafting.ModCrafting;
+import com.kitsu.medievalcraft.entity.EntityCannonBall;
 import com.kitsu.medievalcraft.entity.EntityITSpear;
 import com.kitsu.medievalcraft.entity.EntityModelArrow;
 import com.kitsu.medievalcraft.entity.EntityModelITArrow;
 import com.kitsu.medievalcraft.entity.EntityShit;
 import com.kitsu.medievalcraft.entity.EntityShortLivedShit;
 import com.kitsu.medievalcraft.entity.EntityTester;
+import com.kitsu.medievalcraft.entity.ProjectileCannonBall;
 import com.kitsu.medievalcraft.events.BucketHandle;
 import com.kitsu.medievalcraft.events.EventHandle;
 import com.kitsu.medievalcraft.gui.GuiHandler;
@@ -117,6 +119,8 @@ public class Main {
 		EntityRegistry.registerModEntity(EntityITSpear.class, "itemITSpear", 4, this, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityTester.class, "itemTester", 5, this, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityShortLivedShit.class, "itemShit", 6, this, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityCannonBall.class, "cannonBall", 7, this, 64, 10, true);
+		//EntityRegistry.registerModEntity(ProjectileCannonBall.class, "cannonBallProjectile", 8, this, 64, 10, true);
 
 		GameRegistry.registerFuelHandler(new FuelHandler());
 

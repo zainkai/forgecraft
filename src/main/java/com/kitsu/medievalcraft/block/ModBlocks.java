@@ -17,6 +17,7 @@ import com.kitsu.medievalcraft.block.crucible.empty.EmptySoftCrucible;
 import com.kitsu.medievalcraft.block.crucible.empty.FilledWaterCrucible;
 import com.kitsu.medievalcraft.block.crucible.empty.SlackWaterCrucible;
 import com.kitsu.medievalcraft.block.crucible.empty.TanWaterCrucible;
+import com.kitsu.medievalcraft.block.decorative.CannonBall28;
 import com.kitsu.medievalcraft.block.decorative.EggWashedBrick;
 import com.kitsu.medievalcraft.block.decorative.EggWashedWall;
 import com.kitsu.medievalcraft.block.decorative.LimestoneRaw;
@@ -31,6 +32,7 @@ import com.kitsu.medievalcraft.block.ingots.IronPlate;
 import com.kitsu.medievalcraft.block.ingots.LapisIngot;
 import com.kitsu.medievalcraft.block.ingots.RedstoneIngot;
 import com.kitsu.medievalcraft.block.ingots.RefinedIron;
+import com.kitsu.medievalcraft.block.machines.Cannon_28;
 import com.kitsu.medievalcraft.block.machines.Firebox;
 import com.kitsu.medievalcraft.block.machines.Forge;
 import com.kitsu.medievalcraft.block.machines.ForgeAnvil;
@@ -118,6 +120,10 @@ public class ModBlocks {
 	public static Block solidFilter;
 	public static Block forge;
 	
+	//CANNONS
+	public static Block cannon_28;
+	public static Block cannonBall_28;
+	
 	//GEMS
 	public static Block myDiamond, myEmerald;
 	//IRON INGOTS
@@ -183,6 +189,9 @@ public class ModBlocks {
 		GameRegistry.registerBlock(shelfFour = new ShelfFour("shelfFour", Material.wood), "shelfFour");
 		GameRegistry.registerBlock(firebox = new Firebox("firebox", Material.rock), "firebox");
 		GameRegistry.registerBlock(forge = new Forge("forge", Material.rock), "forge");
+		
+		GameRegistry.registerBlock(cannon_28 = new Cannon_28("cannon_28", Material.iron), "cannon_28");
+		GameRegistry.registerBlock(cannonBall_28 = new CannonBall28("cannonBall28", Material.iron), "cannonBall28");
 		
 		/*GameRegistry.registerBlock(myIronIngot = new MyIronIngot("myIronIngot", Material.iron), "myIronIngot");
 		GameRegistry.registerBlock(damascusIngot = new DamascusIngot("damascusIngot", Material.iron), "damascusIngot");

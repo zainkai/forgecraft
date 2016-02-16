@@ -35,6 +35,8 @@ public class RenderId {
 	public static int shelfFourID;
 	public static int fireboxID;
 	public static int forgeID;
+	public static int cannon_28ID;
+	public static int my28CannonBallID;
 	
 	public static void init(){
 		myironingotID = RenderingRegistry.getNextAvailableRenderId();
@@ -68,6 +70,8 @@ public class RenderId {
 		shelfFourID = RenderingRegistry.getNextAvailableRenderId();
 		fireboxID = RenderingRegistry.getNextAvailableRenderId();
 		forgeID = RenderingRegistry.getNextAvailableRenderId();
+		cannon_28ID = RenderingRegistry.getNextAvailableRenderId();
+		my28CannonBallID = RenderingRegistry.getNextAvailableRenderId();
 		
 		testBlockID = RenderingRegistry.getNextAvailableRenderId();
 	}

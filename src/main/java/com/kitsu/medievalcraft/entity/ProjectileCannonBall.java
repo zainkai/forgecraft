@@ -26,7 +26,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntityITSpear extends EntityArrow implements IProjectile {
+public class ProjectileCannonBall extends EntityArrow implements IProjectile {
 	private int field_145791_d = -1;
 	private int field_145792_e = -1;
 	private int field_145789_f = -1;
@@ -45,14 +45,14 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	/** The amount of knockback an arrow applies when it hits a mob. */
 	private int knockbackStrength;
 
-	public EntityITSpear(World world)
+	public ProjectileCannonBall(World world)
 	{
 		super(world);
 		this.renderDistanceWeight = 10.0D;
 		this.setSize(0.5F, 0.5F);
 	}
 
-	public EntityITSpear(World world, double x, double y, double z)
+	public ProjectileCannonBall(World world, double x, double y, double z)
 	{
 		super(world);
 		this.renderDistanceWeight = 10.0D;
@@ -62,7 +62,7 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	}
 
 	@SuppressWarnings("cast")
-	public EntityITSpear(World world, EntityLivingBase player, EntityLivingBase p_i1755_3_, float p_i1755_4_, float p_i1755_5_)
+	public ProjectileCannonBall(World world, EntityLivingBase player, EntityLivingBase p_i1755_3_, float p_i1755_4_, float p_i1755_5_)
 	{
 		super(world);
 		this.renderDistanceWeight = 10.0D;
@@ -93,16 +93,11 @@ public class EntityITSpear extends EntityArrow implements IProjectile {
 	}
 
 	@SuppressWarnings("cast")
-	public EntityITSpear(World world, EntityLivingBase player, float p_i1756_3_)
+	public ProjectileCannonBall(World world, EntityLivingBase player, float p_i1756_3_)
 	{
 		super(world);
 		this.renderDistanceWeight = 10.0D;
 		this.shootingEntity = player;
-
-		if (player instanceof EntityPlayer)
-		{
-			this.canBePickedUp = 1;
-		}
 
 		this.setSize(0.5F, 0.5F);
 		this.setLocationAndAngles(player.posX, player.posY + (double)player.getEyeHeight(), player.posZ, player.rotationYaw, player.rotationPitch);

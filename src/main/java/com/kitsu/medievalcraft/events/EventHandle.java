@@ -173,11 +173,11 @@ public void splitLogEvent(PlayerInteractEvent event){
 			if (event.entity instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) event.entity;
 				if(player.inventory.getCurrentItem()!=null){
-				Block test = event.world.getBlock(event.x, event.y, event.z);
-				//Block isEmpty = event.world.getBlock(event.x, event.y + 1, event.z);
-				ItemStack itemStack = new ItemStack(ModItems.itemBark);
-				//ItemStack stickStack = new ItemStack(Items.stick);
-				
+					Block test = event.world.getBlock(event.x, event.y, event.z);
+					//Block isEmpty = event.world.getBlock(event.x, event.y + 1, event.z);
+					ItemStack itemStack = new ItemStack(ModItems.itemBark);
+					//ItemStack stickStack = new ItemStack(Items.stick);
+
 					if((player.inventory.getCurrentItem().getItem() == Items.stick)) {
 						if((event.action == event.action.RIGHT_CLICK_BLOCK ) && ((test == Blocks.log)||test == Blocks.log2) ) { //&& (test == ModBlocks.testForge) && (isEmpty == Blocks.air)
 							if(test == Blocks.log){
@@ -587,47 +587,50 @@ public void onPlayerUpdateMaceWoodenShield (LivingUpdateEvent event) {
 	@SubscribeEvent
 	public void onPlayerHurtShield (LivingHurtEvent event) {
 
-		if (event.entity instanceof EntityPlayer && event.ammount > 0) {
+		if(event.entity.worldObj.isRemote){
+			if (event.entity instanceof EntityPlayer && event.ammount > 0) {
+				EntityPlayer player = (EntityPlayer) event.entity;
+				Entity mobEntity = event.source.getEntity();
+				String mobString = event.source.getDamageType();
+				//System.out.println(mobEntity);
+				//System.out.println(mobString);
+				if (player.inventory.getCurrentItem()!=null){
+					if(player.isUsingItem()==true){
+						if (player.inventory.getCurrentItem()!=null){
+							if (player.inventory.getCurrentItem().getItem().equals(checkShield(player.inventory.getCurrentItem().getItem()))) {
+								if ((mobString.equals("explosion"))  || (mobString.equals("thrown")) || (mobString.equals("arrow") || (mobString.equals("player")) || (mobString.equals("mob")) || (mobString.equals("fireball")))) {
 
-			EntityPlayer player = (EntityPlayer) event.entity;
-			Entity mobEntity = event.source.getEntity();
-			String mobString = event.source.getDamageType();
-			//System.out.println(mobEntity);
-			//System.out.println(mobString);
+									Vec3 vec3 = player.getLook(1.0F).normalize();
+									Vec3 vec31 = Vec3.createVectorHelper(mobEntity.posX - player.posX, mobEntity.boundingBox.minY + mobEntity.height / 2.0F - (player.posY + player.getEyeHeight()), mobEntity.posZ - player.posZ);
+									double d0 = vec31.lengthVector();
+									vec31 = vec31.normalize();
+									double d1 = vec3.dotProduct(vec31);
+									double d2 = 1.0D - 0.025D / d0;
 
-			if(player.isUsingItem()==true){
+									if (d1 + 0.3 > d2) {
 
-				if (player.inventory.getCurrentItem().getItem().equals(checkShield(player.inventory.getCurrentItem().getItem()))) {
-					if ((mobString.equals("explosion"))  || (mobString.equals("thrown")) || (mobString.equals("arrow") || (mobString.equals("player")) || (mobString.equals("mob")) || (mobString.equals("fireball")))) {
+										if(player.inventory.getCurrentItem().getItem().equals(ModItems.woodenShield)){
+											if(event.ammount > 1.5F){
+												event.ammount = event.ammount-2F;
+											} else event.ammount = 0;
+											player.getCurrentEquippedItem().damageItem(2, player);
+											player.worldObj.playSoundAtEntity(player, Main.MODID + ":woodshieldbash", 1.0F, 1.0F);
+											//event.entityLiving.addPotionEffect(new PotionEffect(Potion.resistance.id, 60, 0, true));
+											if (mobString.equals("explosion") && rand.nextInt(5) == 1) {	
+												--player.getCurrentEquippedItem().stackSize;
+											}	
+										}
+										if(player.inventory.getCurrentItem().getItem().equals(ModItems.ironShield)){
+											if(event.ammount > 4F){
+												event.ammount = event.ammount-4F;
+											} else event.ammount = 0;
+											player.getCurrentEquippedItem().damageItem(4, player);
+											player.worldObj.playSoundAtEntity(player, Main.MODID + ":ironShieldBash", 1.0F, 1.0F);
+										}
 
-						Vec3 vec3 = player.getLook(1.0F).normalize();
-						Vec3 vec31 = Vec3.createVectorHelper(mobEntity.posX - player.posX, mobEntity.boundingBox.minY + mobEntity.height / 2.0F - (player.posY + player.getEyeHeight()), mobEntity.posZ - player.posZ);
-						double d0 = vec31.lengthVector();
-						vec31 = vec31.normalize();
-						double d1 = vec3.dotProduct(vec31);
-						double d2 = 1.0D - 0.025D / d0;
-
-						if (d1 + 0.3 > d2) {
-
-							if(player.inventory.getCurrentItem().getItem().equals(ModItems.woodenShield)){
-								if(event.ammount > 1.5F){
-									event.ammount = event.ammount-2F;
-								} else event.ammount = 0;
-								player.getCurrentEquippedItem().damageItem(2, player);
-								player.worldObj.playSoundAtEntity(player, Main.MODID + ":woodshieldbash", 1.0F, 1.0F);
-								//event.entityLiving.addPotionEffect(new PotionEffect(Potion.resistance.id, 60, 0, true));
-								if (mobString.equals("explosion") && rand.nextInt(5) == 1) {	
-									--player.getCurrentEquippedItem().stackSize;
-								}	
+									}
+								}
 							}
-							if(player.inventory.getCurrentItem().getItem().equals(ModItems.ironShield)){
-								if(event.ammount > 4F){
-									event.ammount = event.ammount-4F;
-								} else event.ammount = 0;
-								player.getCurrentEquippedItem().damageItem(4, player);
-								player.worldObj.playSoundAtEntity(player, Main.MODID + ":ironShieldBash", 1.0F, 1.0F);
-							}
-
 						}
 					}
 				}
