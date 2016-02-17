@@ -75,47 +75,47 @@ public void zombieJoinsEvent(EntityJoinWorldEvent event){
 					longbowTicks = player.getItemInUseDuration();
 					ItemStack stack = player.inventory.getCurrentItem();
 
-					if((longbowTicks > 0) && (longbowTicks <=10)){
+					if((longbowTicks > 0) && (longbowTicks <=5)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 1);
 					}
-					if((longbowTicks > 10) && (longbowTicks <=20)){
+					if((longbowTicks > 5) && (longbowTicks <=10)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 2);
 					}
-					if((longbowTicks > 20) && (longbowTicks <=30)){
+					if((longbowTicks > 10) && (longbowTicks <=15)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 3);
 					}
-					if((longbowTicks > 30) && (longbowTicks <=40)){
+					if((longbowTicks > 15) && (longbowTicks <=20)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 4);
 					}
-					if((longbowTicks > 40) && (longbowTicks <=50)){
+					if((longbowTicks > 20) && (longbowTicks <=25)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 5);
 					}
-					if((longbowTicks > 50) && (longbowTicks <=60)){
+					if((longbowTicks > 25) && (longbowTicks <=30)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 6);
 					}
-					if((longbowTicks > 60) && (longbowTicks <=70)){
+					if((longbowTicks > 30) && (longbowTicks <=35)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 7);
 					}
-					if((longbowTicks > 70) && (longbowTicks <=80)){
+					if((longbowTicks > 35) && (longbowTicks <=40)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 8);
 					}
-					if((longbowTicks > 80) && (longbowTicks <=90)){
+					if((longbowTicks > 40) && (longbowTicks <=45)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 9);
 					}
-					if(longbowTicks == 99){
+					if(longbowTicks == 45){
 						player.playSound((Main.MODID + ":tautBow"), 0.8F, 1.0F);
 						//player.worldObj.playSoundAtEntity(player, (Main.MODID + ":tautBow"), 0.8F, 1.0F);
 					}
-					if((longbowTicks > 90) && (longbowTicks <=100)){
+					if((longbowTicks > 45) && (longbowTicks <=55)){
 						stack.stackTagCompound = new NBTTagCompound();
 						stack.stackTagCompound.setInteger("D", 10);
 					}
@@ -540,7 +540,7 @@ public void onPlayerUpdateMaceWoodenShield (LivingUpdateEvent event) {
 		}
 	}
 }*/
-
+/*
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void SwordToShieldSwitch (LivingUpdateEvent event) {
@@ -637,7 +637,7 @@ public void onPlayerUpdateMaceWoodenShield (LivingUpdateEvent event) {
 			}
 		}
 	}
-
+*/
 
 
 }

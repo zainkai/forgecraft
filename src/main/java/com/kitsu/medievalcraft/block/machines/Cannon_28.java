@@ -9,6 +9,7 @@ import com.kitsu.medievalcraft.block.ModBlocks;
 import com.kitsu.medievalcraft.entity.EntityCannonBall;
 import com.kitsu.medievalcraft.entity.EntityModelArrow;
 import com.kitsu.medievalcraft.entity.ProjectileCannonBall;
+import com.kitsu.medievalcraft.gui.GuiHandler;
 import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.tileents.cannon.TileCannon_28;
@@ -54,7 +55,7 @@ public class Cannon_28 extends BlockContainer{
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
 		this.setHarvestLevel("pickaxe", 1, 0);
-		this.setStepSound(Block.soundTypeAnvil);
+		this.setStepSound(Block.soundTypeMetal);
 		//this.isFlammable(world, x, y, z, face);
 		//(xmin, ymin, zmin, 
 		// xmax, ymax, zmax)
@@ -75,28 +76,84 @@ public class Cannon_28 extends BlockContainer{
 		super.randomDisplayTick(world, x, y, z, random);
 
 	}
-	
+
 	private Entity shootCannon(World world, Integer x, Integer y, Integer z){
 		EntityCannonBall cannonball = null;
+		TileCannon_28 tile = (TileCannon_28) world.getTileEntity(x, y, z);
+		Item ball = new ItemStack(ModBlocks.cannonBall_28, 0, 1).getItem();
 		
-		if(world.getBlockMetadata(x, y, z)==3){
-			cannonball = new EntityCannonBall(world, (double)x+2, (double)y, (double)z, null);
-			cannonball.setVelocity(5+world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
+		if(tile.getStackInSlot(0)!=null){
+			if(world.getBlockMetadata(x, y, z)==3){
+				tile.isOn=true;
+				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				if(tile.getStackInSlot(1)!=null){
+					if(tile.getStackInSlot(1).getItem()==ball){
+						tile.decrStackSize(1, 1);
+						cannonball = new EntityCannonBall(world, (double)x+2, (double)y, (double)z, null);
+						cannonball.setVelocity(tile.getStackInSlot(0).stackSize-world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
+						tile.markForUpdate();
+						tile.markDirty();
+					}
+				}
+			}
 		}
-		if(world.getBlockMetadata(x, y, z)==2){
-			cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z-2, null);
-			cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, -5-world.rand.nextFloat());
+		if(tile.getStackInSlot(0)!=null){
+			if(world.getBlockMetadata(x, y, z)==2){
+				tile.isOn=true;
+				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				if(tile.getStackInSlot(1)!=null){
+					if(tile.getStackInSlot(1).getItem()==ball){
+						tile.decrStackSize(1, 1);
+						cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z-2, null);
+						cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, -tile.getStackInSlot(0).stackSize+world.rand.nextFloat());
+						tile.markForUpdate();
+						tile.markDirty();
+					}
+				}
+			}
 		}
-		if(world.getBlockMetadata(x, y, z)==1){
-			cannonball = new EntityCannonBall(world, (double)x-2, (double)y, (double)z, null);
-			cannonball.setVelocity(-5-world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
+		if(tile.getStackInSlot(0)!=null){
+			if(world.getBlockMetadata(x, y, z)==1){
+				tile.isOn=true;
+				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				if(tile.getStackInSlot(1)!=null){
+					if(tile.getStackInSlot(1).getItem()==ball){
+						tile.decrStackSize(1, 1);
+						cannonball = new EntityCannonBall(world, (double)x-2, (double)y, (double)z, null);
+						cannonball.setVelocity(-tile.getStackInSlot(0).stackSize+world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
+						tile.markForUpdate();
+						tile.markDirty();
+					}
+				}
+			}
 		}
-		if(world.getBlockMetadata(x, y, z)==0){
-			cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z+2, null);
-			cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, 5+world.rand.nextFloat());
+		if(tile.getStackInSlot(0)!=null){
+			if(world.getBlockMetadata(x, y, z)==0){
+				tile.isOn=true;
+				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
+				if(tile.getStackInSlot(1)!=null){
+					if(tile.getStackInSlot(1).getItem()==ball){
+						tile.decrStackSize(1, 1);
+						cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z+2, null);
+						cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, tile.getStackInSlot(0).stackSize-world.rand.nextFloat());
+						tile.markForUpdate();
+						tile.markDirty();
+					}
+				}
+			}
 		}
+		tile.setInventorySlotContents(0, null);
+		tile.markForUpdate();
+		tile.markDirty();
 		return cannonball;
 	}
+
+
+
 
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int q, float a, float b, float c) {
 		if(!world.isRemote){
@@ -104,10 +161,6 @@ public class Cannon_28 extends BlockContainer{
 			if(tileEnt.isOn==false){
 				if(player.inventory.getCurrentItem()!=null){
 					if(player.inventory.getCurrentItem().getItem()==Items.flint_and_steel){
-						tileEnt.isOn=true;
-						world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-						world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-
 						world.spawnEntityInWorld(shootCannon(world,x,y,z));
 						tileEnt.markForUpdate();
 						tileEnt.markDirty();
@@ -115,7 +168,14 @@ public class Cannon_28 extends BlockContainer{
 					}
 				}
 			}
+			if (!player.isSneaking()) {
+				if(player.inventory.getCurrentItem()==null||player.inventory.getCurrentItem().getItem()!=Items.flint_and_steel){
+					player.openGui(Main.instance, GuiHandler.guiIDcannon28, world, x, y, z);
+					return true;
+				}
+			}
 		}
+
 		return false;
 	}
 	@Override

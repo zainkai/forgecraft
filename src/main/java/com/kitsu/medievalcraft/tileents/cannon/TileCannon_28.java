@@ -23,6 +23,11 @@ public class TileCannon_28 extends TileEntity implements IInventory, ISidedInven
 	private NBTTagCompound tag = new NBTTagCompound();
 	private int ticks;
 	public boolean isOn;
+	private static final int[] slots_all = new int[] {0,1};
+	private static final int[] slots_top = new int[] {0};
+	//private static final int[] slots_bottom = new int[] {2, 1};
+	private static final int[] slots_sides = new int[] {1};
+
 
 	public TileCannon_28(){
 		this.inv = new ItemStack[2];
@@ -38,25 +43,25 @@ public class TileCannon_28 extends TileEntity implements IInventory, ISidedInven
 	}
 
 	@Override
-	public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_)
+	public ItemStack decrStackSize(int slot, int par2)
 	{
-		if (this.inv[p_70298_1_] != null)
+		if (this.inv[slot] != null)
 		{
 			ItemStack itemstack;
 
-			if (this.inv[p_70298_1_].stackSize <= p_70298_2_)
+			if (this.inv[slot].stackSize <= par2)
 			{
-				itemstack = this.inv[p_70298_1_];
-				this.inv[p_70298_1_] = null;
+				itemstack = this.inv[slot];
+				this.inv[slot] = null;
 				this.markForUpdate();
 				this.markDirty();
 				return itemstack;
 			}
-			itemstack = this.inv[p_70298_1_].splitStack(p_70298_2_);
+			itemstack = this.inv[slot].splitStack(par2);
 
-			if (this.inv[p_70298_1_].stackSize == 0)
+			if (this.inv[slot].stackSize == 0)
 			{
-				this.inv[p_70298_1_] = null;
+				this.inv[slot] = null;
 			}
 			this.markForUpdate();
 			this.markDirty();
@@ -111,7 +116,7 @@ public class TileCannon_28 extends TileEntity implements IInventory, ISidedInven
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 9;
+		return 5;
 	}
 
 	@Override
@@ -126,13 +131,20 @@ public class TileCannon_28 extends TileEntity implements IInventory, ISidedInven
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-		if(slot == 0 && itemstack.getItem() == Items.gunpowder){
+		if(this.getStackInSlot(0)==null && slot == 0 && itemstack.getItem() == Items.gunpowder){
 			return true;
 		}
-		if(slot == 1 && itemstack.getItem() == Item.getItemFromBlock(ModBlocks.cannonBall_28)){
+		if(this.getStackInSlot(0)!=null && slot == 0 && itemstack.getItem() == Items.gunpowder && this.getStackInSlot(0).stackSize <= 5){
+				return true;
+		}
+		if(this.getStackInSlot(1)==null && slot == 1 && itemstack.getItem() == Item.getItemFromBlock(ModBlocks.cannonBall_28)){
 			return true;
 		}
-		return true;
+		if(this.getStackInSlot(1)!=null){
+				return false;
+		}
+
+		return false;
 	}
 
 	public void markForUpdate(){
@@ -207,20 +219,25 @@ public class TileCannon_28 extends TileEntity implements IInventory, ISidedInven
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] getAccessibleSlotsFromSide(int par1) {
+
+		/*if(par1 == 1){
+			return slots_top;
+		}
+		else return slots_sides;*/
+		return slots_all;
+		
 	}
 
 	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean canInsertItem(int slot, ItemStack itemstack, int p_102007_3_) {
+
+		return this.isItemValidForSlot(slot, itemstack);
 	}
 
 	@Override
 	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 

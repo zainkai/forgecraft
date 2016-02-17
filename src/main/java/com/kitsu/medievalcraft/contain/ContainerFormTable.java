@@ -68,7 +68,7 @@ public class ContainerFormTable extends Container {
     /**
      * Called when the container is closed.
      */
-    public void onContainerClosed(EntityPlayer player)
+    /*public void onContainerClosed(EntityPlayer player)
     {
         super.onContainerClosed(player);
 
@@ -84,7 +84,7 @@ public class ContainerFormTable extends Container {
                 }
             }
         }
-    }
+    }*/
 	
 	 public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int p_82846_2_)
 	    {

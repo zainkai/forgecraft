@@ -17,7 +17,7 @@ import com.kitsu.medievalcraft.block.crucible.empty.EmptySoftCrucible;
 import com.kitsu.medievalcraft.block.crucible.empty.FilledWaterCrucible;
 import com.kitsu.medievalcraft.block.crucible.empty.SlackWaterCrucible;
 import com.kitsu.medievalcraft.block.crucible.empty.TanWaterCrucible;
-import com.kitsu.medievalcraft.block.decorative.CannonBall28;
+import com.kitsu.medievalcraft.block.decorative.CannonBallBlock28;
 import com.kitsu.medievalcraft.block.decorative.EggWashedBrick;
 import com.kitsu.medievalcraft.block.decorative.EggWashedWall;
 import com.kitsu.medievalcraft.block.decorative.LimestoneRaw;
@@ -191,7 +191,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(forge = new Forge("forge", Material.rock), "forge");
 		
 		GameRegistry.registerBlock(cannon_28 = new Cannon_28("cannon_28", Material.iron), "cannon_28");
-		GameRegistry.registerBlock(cannonBall_28 = new CannonBall28("cannonBall28", Material.iron), "cannonBall28");
+		GameRegistry.registerBlock(cannonBall_28 = new CannonBallBlock28("cannonBallBlock_28", Material.iron), "cannonBallBlock_28");
 		
 		/*GameRegistry.registerBlock(myIronIngot = new MyIronIngot("myIronIngot", Material.iron), "myIronIngot");
 		GameRegistry.registerBlock(damascusIngot = new DamascusIngot("damascusIngot", Material.iron), "damascusIngot");

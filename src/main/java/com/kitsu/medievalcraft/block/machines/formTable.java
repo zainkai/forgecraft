@@ -32,7 +32,6 @@ public class formTable extends Block {
 		this.setCreativeTab(CustomTab.MedievalCraftTab);
 		this.setHardness(3.5F);
 		this.setResistance(2.0F);
-	
 	}
 	
 	@SideOnly(Side.CLIENT)

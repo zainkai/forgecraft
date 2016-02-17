@@ -5,6 +5,7 @@ import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.blocks.BarrelLidRender;
 import com.kitsu.medievalcraft.renderer.blocks.SmallBarrelRender;
 import com.kitsu.medievalcraft.renderer.blocks.TestBlockRenderer;
+import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_CannonBall_Iron;
 import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_Cannon_28;
 import com.kitsu.medievalcraft.renderer.blocks.crucibles.IronOreCrucibleRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.crucibles.LapisCrucibleRenderer;
@@ -66,6 +67,7 @@ import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.NewIronShield;
 import com.kitsu.medievalcraft.tileents.TileEntitySmallBarrel;
 import com.kitsu.medievalcraft.tileents.TileEntitySmallLid;
 import com.kitsu.medievalcraft.tileents.TileEntityTestBlock;
+import com.kitsu.medievalcraft.tileents.cannon.TileCannonBall28;
 import com.kitsu.medievalcraft.tileents.cannon.TileCannon_28;
 import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleIronOre;
 import com.kitsu.medievalcraft.tileents.crucible.TileCrucibleLapis;
@@ -184,6 +186,7 @@ public class RendererRegistry {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileLapisIngot.class, new LapisIngotRenderer());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCannon_28.class, new Render_Cannon_28());
+    	//ClientRegistry.bindTileEntitySpecialRenderer(TileCannonBall28.class, new Render_CannonBall_Iron());
     	
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTestBlock.class, new TestBlockRenderer());

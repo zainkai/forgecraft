@@ -6,7 +6,6 @@ import com.kitsu.medievalcraft.entity.EntityModelArrow;
 import com.kitsu.medievalcraft.entity.EntityModelITArrow;
 import com.kitsu.medievalcraft.entity.EntityShit;
 import com.kitsu.medievalcraft.entity.EntityTester;
-import com.kitsu.medievalcraft.entity.ProjectileCannonBall;
 import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.renderer.RendererRegistry;
@@ -14,7 +13,6 @@ import com.kitsu.medievalcraft.renderer.blocks.RenderModelArrow;
 import com.kitsu.medievalcraft.renderer.blocks.RenderModelITArrow;
 import com.kitsu.medievalcraft.renderer.blocks.RenderModelITSpear;
 import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_CannonBall_Iron;
-import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_CannonBall_Projectile;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
