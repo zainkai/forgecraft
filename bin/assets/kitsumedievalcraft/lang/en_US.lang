@@ -302,6 +302,7 @@ item.halfSplitBoard.name=Half Split Board
 item.woodPulp.name=Wood Pulp
 item.charcoalFilter.name=Charcoal Filter
 item.slottedTongs.name=Stone Tongs
+item.flintKnapped.name=Knapped Flint
 
 tile.shitBlock.name=Shit Block
 tile.formTable.name=Form Table
@@ -352,7 +353,10 @@ tile.smallBarrelLid.name=Small Barrel Lid
 tile.shelfFour.name=Shelf
 tile.firebox.name=Clay Firebox
 tile.emptySoftCrucible.name=Empty Soft Crucible
-tile.emptyCookedCrucible=Empty Crucible
+tile.emptyCookedCrucible.name=Empty Crucible
+
+tile.cannon_28.name=Cannon 28lb
+tile.cannonBallBlock_28.name=Cannon Ball 28lb
 
 itemGroup.MedievalCraftTab=ForgeCraft
 

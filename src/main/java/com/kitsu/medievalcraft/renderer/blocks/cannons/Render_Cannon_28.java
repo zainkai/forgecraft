@@ -85,19 +85,67 @@ public class Render_Cannon_28 extends TileEntitySpecialRenderer {
 		
 		if(dir == 0){
 			GL11.glTranslatef(0.48F, 0.5F, 0.7F);
-			GL11.glRotated(180F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(0, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 1){
 			GL11.glTranslatef(0.3F, 0.5F, 0.48F);
-			GL11.glRotated(90F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(22.5F, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 2){
 			GL11.glTranslatef(0.48F, 0.5F, 0.3F);
-			GL11.glRotated(0F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 3){
 			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
-			GL11.glRotated(-90F, 0.0, 1.0F, 0.0F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 3){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 4){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 5){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 6){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 7){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 8){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 9){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 10){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 11){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 12){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 13){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 14){
+			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		//
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(TEXTURE);

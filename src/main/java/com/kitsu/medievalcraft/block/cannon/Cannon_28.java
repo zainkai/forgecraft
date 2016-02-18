@@ -1,4 +1,4 @@
-package com.kitsu.medievalcraft.block.machines;
+package com.kitsu.medievalcraft.block.cannon;
 
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
@@ -38,6 +38,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -82,7 +83,7 @@ public class Cannon_28 extends BlockContainer{
 		TileCannon_28 tile = (TileCannon_28) world.getTileEntity(x, y, z);
 		Item ball = new ItemStack(ModBlocks.cannonBall_28, 0, 1).getItem();
 		
-		if(tile.getStackInSlot(0)!=null){
+		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
 			if(world.getBlockMetadata(x, y, z)==3){
 				tile.isOn=true;
 				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
@@ -92,13 +93,14 @@ public class Cannon_28 extends BlockContainer{
 						tile.decrStackSize(1, 1);
 						cannonball = new EntityCannonBall(world, (double)x+2, (double)y, (double)z, null);
 						cannonball.setVelocity(tile.getStackInSlot(0).stackSize-world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
+						tile.setInventorySlotContents(0, null);
 						tile.markForUpdate();
 						tile.markDirty();
 					}
 				}
 			}
 		}
-		if(tile.getStackInSlot(0)!=null){
+		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
 			if(world.getBlockMetadata(x, y, z)==2){
 				tile.isOn=true;
 				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
@@ -108,13 +110,14 @@ public class Cannon_28 extends BlockContainer{
 						tile.decrStackSize(1, 1);
 						cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z-2, null);
 						cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, -tile.getStackInSlot(0).stackSize+world.rand.nextFloat());
+						tile.setInventorySlotContents(0, null);
 						tile.markForUpdate();
 						tile.markDirty();
 					}
 				}
 			}
 		}
-		if(tile.getStackInSlot(0)!=null){
+		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
 			if(world.getBlockMetadata(x, y, z)==1){
 				tile.isOn=true;
 				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
@@ -124,13 +127,14 @@ public class Cannon_28 extends BlockContainer{
 						tile.decrStackSize(1, 1);
 						cannonball = new EntityCannonBall(world, (double)x-2, (double)y, (double)z, null);
 						cannonball.setVelocity(-tile.getStackInSlot(0).stackSize+world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
+						tile.setInventorySlotContents(0, null);
 						tile.markForUpdate();
 						tile.markDirty();
 					}
 				}
 			}
 		}
-		if(tile.getStackInSlot(0)!=null){
+		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
 			if(world.getBlockMetadata(x, y, z)==0){
 				tile.isOn=true;
 				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
@@ -140,20 +144,18 @@ public class Cannon_28 extends BlockContainer{
 						tile.decrStackSize(1, 1);
 						cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z+2, null);
 						cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, tile.getStackInSlot(0).stackSize-world.rand.nextFloat());
+						tile.setInventorySlotContents(0, null);
 						tile.markForUpdate();
 						tile.markDirty();
 					}
 				}
 			}
 		}
-		tile.setInventorySlotContents(0, null);
+		
 		tile.markForUpdate();
 		tile.markDirty();
 		return cannonball;
 	}
-
-
-
 
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int q, float a, float b, float c) {
 		if(!world.isRemote){
@@ -194,12 +196,94 @@ public class Cannon_28 extends BlockContainer{
 		}
 	}
 
-	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack p_149689_6_) {
-		int dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3; 
-		world.setBlockMetadataWithNotify(x, y, z, dir, 0);
-		System.out.println(dir);
-	}
+    /**
+     * Updates the blocks bounds based on its current state. Args: world, x, y, z
+     */
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess iBlock, int x, int y, int z)
+    {
+        int l = iBlock.getBlockMetadata(x, y, z) & 7;
+
+        switch (l)
+        {
+            case 1:
+            default:
+                this.setBlockBounds(0F, 0.0F, 0F, 1F, 1F, 1F);
+                break;
+            case 2:
+            	this.setBlockBounds(0F, 0.0F, 0F, 1F, 1F, 1F);
+                break;
+            case 3:
+            	this.setBlockBounds(0F, 0.0F, 0F, 1F, 1F, 1F);
+                break;
+            case 4:
+            	this.setBlockBounds(0F, 0.0F, 0F, 1F, 1F, 1F);
+                break;
+            case 5:
+            	this.setBlockBounds(0F, 0.0F, 0F, 1F, 1F, 1F);
+        }
+    }
+
+    /**
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
+     */
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+    {
+        this.setBlockBoundsBasedOnState(world, x, y, z);
+        return super.getCollisionBoundingBoxFromPool(world, x, y, z);
+    }
+
+    /**
+     * Called when the block is placed in the world.
+     */
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
+    {
+    	//22.5
+    	//11.25
+    	if(!world.isRemote){
+    		double a = living.rotationYaw*(-1);
+    		if(a >= 180-11.25 && a <= 180+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+    			System.out.println("0");
+    		}
+    		if(a >= 202.5-11.25 && a <= 202.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+    			System.out.println("1");
+    		}
+    		if(a >= 225-11.25 && a <= 225+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+    			System.out.println("2");
+    		}
+    		/*int l = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
+        	world.setBlockMetadataWithNotify(x, y, z, l, 2);*/
+        	System.out.println((a));
+    	}
+        //System.out.println(l);
+    }
+    
+    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
+    	if(!world.isRemote){
+    		if(player.isSneaking()==true){
+    			if(world.getBlockMetadata(x, y, z)==15){
+    				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+    			}
+    			if(world.getBlockMetadata(x, y, z)<15){
+    				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+1, 2);
+    			}
+    		}
+    		if(!player.isSneaking()==true){
+    			if(world.getBlockMetadata(x, y, z)==0){
+    				world.setBlockMetadataWithNotify(x, y, z, 15, 2);
+    			}
+    			if(world.getBlockMetadata(x, y, z)>0){
+    				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-1, 2);
+    			}
+    		}
+    	}
+    }
 
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		TileCannon_28 tileEnt = (TileCannon_28) world.getTileEntity(x, y, z);

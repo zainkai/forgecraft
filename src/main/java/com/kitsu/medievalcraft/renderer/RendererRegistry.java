@@ -5,7 +5,7 @@ import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.blocks.BarrelLidRender;
 import com.kitsu.medievalcraft.renderer.blocks.SmallBarrelRender;
 import com.kitsu.medievalcraft.renderer.blocks.TestBlockRenderer;
-import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_CannonBall_Iron;
+import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_CannonBall_Iron_Block;
 import com.kitsu.medievalcraft.renderer.blocks.cannons.Render_Cannon_28;
 import com.kitsu.medievalcraft.renderer.blocks.crucibles.IronOreCrucibleRenderer;
 import com.kitsu.medievalcraft.renderer.blocks.crucibles.LapisCrucibleRenderer;
@@ -34,6 +34,7 @@ import com.kitsu.medievalcraft.renderer.itemrenderer.IRITSpear;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererITModelArrow;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererLongbow;
 import com.kitsu.medievalcraft.renderer.itemrenderer.ItemRendererModelArrow;
+import com.kitsu.medievalcraft.renderer.itemrenderer.cannons.IR_CannonBall_28;
 import com.kitsu.medievalcraft.renderer.itemrenderer.cannons.IR_Cannon_28;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.IRCrucible;
 import com.kitsu.medievalcraft.renderer.itemrenderer.crucibles.empty.IRSlackCrucible;
@@ -55,7 +56,6 @@ import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRSmallBarrel;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRSolidFilter;
 import com.kitsu.medievalcraft.renderer.itemrenderer.machines.IRWaterFilter;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tongs.IRSlottedTongs;
-import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRCraftingBlade;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRForgeHammer;
 import com.kitsu.medievalcraft.renderer.itemrenderer.tools.IRInlayHammer;
 import com.kitsu.medievalcraft.renderer.itemrenderer.weapons.IRBattleAxe;
@@ -123,6 +123,7 @@ public class RendererRegistry {
     	
     	
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.cannon_28), new IR_Cannon_28());
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.cannonBall_28), new IR_CannonBall_28());
     	
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.emptySoftCrucible), new ItemRendererSECrucible());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.emptyCookedCrucible), new ItemRendererECCrucible());
@@ -186,7 +187,7 @@ public class RendererRegistry {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileLapisIngot.class, new LapisIngotRenderer());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCannon_28.class, new Render_Cannon_28());
-    	//ClientRegistry.bindTileEntitySpecialRenderer(TileCannonBall28.class, new Render_CannonBall_Iron());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileCannonBall28.class, new Render_CannonBall_Iron_Block());
     	
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTestBlock.class, new TestBlockRenderer());

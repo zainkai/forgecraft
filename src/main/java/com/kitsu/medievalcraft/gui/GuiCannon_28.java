@@ -12,7 +12,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiCannon_28 extends GuiContainer {
-	private ResourceLocation texture = new ResourceLocation(Main.MODID + ":" + "textures/gui/forgeovengui.png");
+	private ResourceLocation texture = new ResourceLocation(Main.MODID + ":" + "textures/gui/cannongui.png");
 
 	public GuiCannon_28(InventoryPlayer inventoryPlayer, TileCannon_28 tileEntity) {
 		super(new ContainerCannon_28(inventoryPlayer, tileEntity));

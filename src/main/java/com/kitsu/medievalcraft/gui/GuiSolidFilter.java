@@ -17,12 +17,11 @@ public class GuiSolidFilter extends GuiContainer {
 	
 	public GuiSolidFilter(InventoryPlayer inventoryPlayer, TileEntitySolidFilter tileEntity) {
 		super(new ContainerSolidFilter(inventoryPlayer, tileEntity));
-		// TODO Auto-generated constructor stub
 	}
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		//String name = "Forge";
+		//String name = "28lb Cannon";
 		
 		//this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
 		//this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);

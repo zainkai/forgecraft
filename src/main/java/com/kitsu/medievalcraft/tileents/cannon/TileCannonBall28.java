@@ -12,4 +12,5 @@ public class TileCannonBall28 extends TileEntity {
 	public void tileCannonBall28(String string){
 		this.stringCannonBall_28 = string;
 	}
+	
 }

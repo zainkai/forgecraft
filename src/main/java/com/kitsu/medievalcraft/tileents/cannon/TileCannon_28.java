@@ -127,7 +127,9 @@ public class TileCannon_28 extends TileEntity implements IInventory, ISidedInven
 	@Override
 	public void openInventory() {}
 	@Override
-	public void closeInventory() {}
+	public void closeInventory() {
+
+	}
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
