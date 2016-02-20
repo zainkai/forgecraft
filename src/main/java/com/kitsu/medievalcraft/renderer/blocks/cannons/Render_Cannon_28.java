@@ -24,6 +24,7 @@ public class Render_Cannon_28 extends TileEntitySpecialRenderer {
 	EntityItem entItem = null;
 
 	private static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/Cannon.obj");
+	//private static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/cannonTest.obj");
 	private static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/Cannon.png");
 	private IModelCustom model = AdvancedModelLoader.loadModel(MODEL_CRUCIBLE);
 
@@ -83,68 +84,73 @@ public class Render_Cannon_28 extends TileEntitySpecialRenderer {
 		float scale = 1.05f;
 		GL11.glScalef(scale, scale, scale);
 		
+		/*if(dir >= 0 && dir <= 15){
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+			GL11.glTranslatef(0.48F, 0.5F, -0.5F);
+		}*/
+		
 		if(dir == 0){
-			GL11.glTranslatef(0.48F, 0.5F, 0.7F);
-			GL11.glRotated(0, 0.0, 1.0F, 0.0F);
+			GL11.glTranslatef(0.45F, 0.5F, 0.66F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 1){
-			GL11.glTranslatef(0.3F, 0.5F, 0.48F);
-			GL11.glRotated(22.5F, 0.0, 1.0F, 0.0F);
+			GL11.glTranslatef(0.52F, 0.5F, 0.64F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 2){
-			GL11.glTranslatef(0.48F, 0.5F, 0.3F);
+			GL11.glTranslatef(0.60F, 0.5F, 0.60F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 3){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
-			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
-		}
-		if(dir == 3){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.64F, 0.5F, 0.530F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 4){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.655F, 0.5F, 0.44F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 5){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.645F, 0.5F, 0.368F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 6){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.60F, 0.5F, 0.3F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 7){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.52F, 0.5F, 0.25F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 8){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.45F, 0.5F, 0.232F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 9){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.375F, 0.5F, 0.25F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 10){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.3F, 0.5F, 0.31F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 11){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.25F, 0.5F, 0.3675F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		if(dir == 12){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+			GL11.glTranslatef(0.45F, 0.5F, -0.235F);
 		}
 		if(dir == 13){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+			GL11.glTranslatef(0.58F, 0.5F, -0.022F);
 		}
 		if(dir == 14){
-			GL11.glTranslatef(0.7F, 0.5F, 0.48F);
+			GL11.glTranslatef(0.3F, 0.5F, 0.6F);
+			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
+		}
+		if(dir == 15){
+			GL11.glTranslatef(0.36F, 0.5F, 0.64F);
 			GL11.glRotated(22.5F*dir, 0.0, 1.0F, 0.0F);
 		}
 		//

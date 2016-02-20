@@ -14,6 +14,7 @@ import com.kitsu.medievalcraft.item.ModItems;
 import com.kitsu.medievalcraft.renderer.RenderId;
 import com.kitsu.medievalcraft.tileents.cannon.TileCannon_28;
 import com.kitsu.medievalcraft.tileents.machine.TileEntityFirebox;
+import com.kitsu.medievalcraft.util.CannonUtil;
 import com.kitsu.medievalcraft.util.CustomTab;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -44,7 +45,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class Cannon_28 extends BlockContainer{
+public class Cannon_28 extends BlockContainer implements CannonUtil{
 
 	private final Random random = new Random();
 
@@ -84,73 +85,34 @@ public class Cannon_28 extends BlockContainer{
 		Item ball = new ItemStack(ModBlocks.cannonBall_28, 0, 1).getItem();
 		
 		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
-			if(world.getBlockMetadata(x, y, z)==3){
+			//if(world.getBlockMetadata(x, y, z)==0){
 				tile.isOn=true;
 				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
 				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
 				if(tile.getStackInSlot(1)!=null){
 					if(tile.getStackInSlot(1).getItem()==ball){
 						tile.decrStackSize(1, 1);
-						cannonball = new EntityCannonBall(world, (double)x+2, (double)y, (double)z, null);
-						cannonball.setVelocity(tile.getStackInSlot(0).stackSize-world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
+						cannonball = new EntityCannonBall(world, (double)x+(Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))), (double)y, (double)z+(Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))), null);
+						//System.out.println(angles[world.getBlockMetadata(x, y, z)]);
+						//System.out.println(Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])));
+						//System.out.println(Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])));
+						cannonball.setVelocity(
+								((tile.getStackInSlot(0).stackSize*(Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))))-(world.rand.nextFloat()/4)),
+								0.25, 
+								((tile.getStackInSlot(0).stackSize*(Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))))-(world.rand.nextFloat()/4)));
+								/*
+								 * (((tile.getStackInSlot(0).stackSize-world.rand.nextFloat())*((Math.sin(Math.PI)/180) * angles[world.getBlockMetadata(x, y, z)]))),
+								0.25, 
+								(((tile.getStackInSlot(0).stackSize-world.rand.nextFloat())*((Math.cos(Math.PI)/180) * angles[world.getBlockMetadata(x, y, z)]))));
+								*/
 						tile.setInventorySlotContents(0, null);
 						tile.markForUpdate();
 						tile.markDirty();
 					}
 				}
-			}
+			//}
 		}
-		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
-			if(world.getBlockMetadata(x, y, z)==2){
-				tile.isOn=true;
-				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-				if(tile.getStackInSlot(1)!=null){
-					if(tile.getStackInSlot(1).getItem()==ball){
-						tile.decrStackSize(1, 1);
-						cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z-2, null);
-						cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, -tile.getStackInSlot(0).stackSize+world.rand.nextFloat());
-						tile.setInventorySlotContents(0, null);
-						tile.markForUpdate();
-						tile.markDirty();
-					}
-				}
-			}
-		}
-		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
-			if(world.getBlockMetadata(x, y, z)==1){
-				tile.isOn=true;
-				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-				if(tile.getStackInSlot(1)!=null){
-					if(tile.getStackInSlot(1).getItem()==ball){
-						tile.decrStackSize(1, 1);
-						cannonball = new EntityCannonBall(world, (double)x-2, (double)y, (double)z, null);
-						cannonball.setVelocity(-tile.getStackInSlot(0).stackSize+world.rand.nextFloat(), 0.25, (world.rand.nextFloat()*2-1)/5);
-						tile.setInventorySlotContents(0, null);
-						tile.markForUpdate();
-						tile.markDirty();
-					}
-				}
-			}
-		}
-		if(tile.getStackInSlot(0)!=null && tile.getStackInSlot(0).getItem()==Items.gunpowder){
-			if(world.getBlockMetadata(x, y, z)==0){
-				tile.isOn=true;
-				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-				if(tile.getStackInSlot(1)!=null){
-					if(tile.getStackInSlot(1).getItem()==ball){
-						tile.decrStackSize(1, 1);
-						cannonball = new EntityCannonBall(world, (double)x, (double)y, (double)z+2, null);
-						cannonball.setVelocity((world.rand.nextFloat()*2-1)/5, 0.25, tile.getStackInSlot(0).stackSize-world.rand.nextFloat());
-						tile.setInventorySlotContents(0, null);
-						tile.markForUpdate();
-						tile.markDirty();
-					}
-				}
-			}
-		}
+
 		
 		tile.markForUpdate();
 		tile.markDirty();
@@ -186,9 +148,6 @@ public class Cannon_28 extends BlockContainer{
 		{
 			TileCannon_28 tileEnt = (TileCannon_28) world.getTileEntity(x, y, z);
 			if(tileEnt.isOn==false){
-				tileEnt.isOn=true;
-				world.playSoundEffect(x, y, z, "random.fizz", 0.1f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
-				world.playSoundEffect(x, y, z, "random.explode", 0.5f, world.rand.nextFloat()/0.5f * 0.1F + 0.8F);
 				world.spawnEntityInWorld(shootCannon(world, x, y, z));
 				tileEnt.markForUpdate();
 				tileEnt.markDirty();
@@ -245,21 +204,74 @@ public class Cannon_28 extends BlockContainer{
     	//11.25
     	if(!world.isRemote){
     		double a = living.rotationYaw*(-1);
+    		//System.out.println(a);
     		if(a >= 180-11.25 && a <= 180+11.25){
     			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
-    			System.out.println("0");
+    			//System.out.println("0");
     		}
     		if(a >= 202.5-11.25 && a <= 202.5+11.25){
     			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-    			System.out.println("1");
+    			//System.out.println("1");
     		}
     		if(a >= 225-11.25 && a <= 225+11.25){
     			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-    			System.out.println("2");
+    			//System.out.println("2");
+    		}
+    		if(a >= 247.5-11.25 && a <= 247.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+    			//System.out.println("3");
+    		}
+    		if(a >= 270-11.25 && a <= 270+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+    			//System.out.println("4");
+    		}
+    		if(a >= 292.5-11.25 && a <= 292.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+    			//System.out.println("5");
+    		}
+    		if(a >= 315-11.25 && a <= 315+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 6, 2);
+    			//System.out.println("6");
+    		}
+    		if(a >= 337.5-11.25 && a <= 337.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 7, 2);
+    			//System.out.println("7");
+    		}
+    		if(a >= 360-11.25 || a <= 0+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 8, 2);
+    			//System.out.println("8");
+    		}
+    		if(a >= 22.5-11.25 && a <= 22.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 9, 2);
+    			//System.out.println("9");
+    		}
+    		if(a >= 45-11.25 && a <= 45+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 10, 2);
+    			//System.out.println("10");
+    		}
+    		if(a >= 67.5-11.25 && a <= 67.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 11, 2);
+    			//System.out.println("11");
+    		}
+    		if(a >= 90-11.25 && a <= 90+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 12, 2);
+    			//System.out.println("12");
+    		}
+    		if(a >= 112.5-11.25 && a <= 112.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 13, 2);
+    			//System.out.println("13");
+    		}
+    		if(a >= 135-11.25 && a <= 135+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 14, 2);
+    			//System.out.println("14");
+    		}
+    		if(a >= 157.5-11.25 && a <= 157.5+11.25){
+    			world.setBlockMetadataWithNotify(x, y, z, 15, 2);
+    			//System.out.println("15");
     		}
     		/*int l = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
         	world.setBlockMetadataWithNotify(x, y, z, l, 2);*/
-        	System.out.println((a));
+        	//System.out.println((a));
     	}
         //System.out.println(l);
     }
@@ -269,17 +281,21 @@ public class Cannon_28 extends BlockContainer{
     		if(player.isSneaking()==true){
     			if(world.getBlockMetadata(x, y, z)==15){
     				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+    				//System.out.println(world.getBlockMetadata(x,y,z));
     			}
     			if(world.getBlockMetadata(x, y, z)<15){
     				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)+1, 2);
+    				//System.out.println(world.getBlockMetadata(x,y,z));
     			}
     		}
     		if(!player.isSneaking()==true){
-    			if(world.getBlockMetadata(x, y, z)==0){
-    				world.setBlockMetadataWithNotify(x, y, z, 15, 2);
-    			}
     			if(world.getBlockMetadata(x, y, z)>0){
     				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z)-1, 2);
+    				//System.out.println(world.getBlockMetadata(x,y,z));
+    			} 
+    			if(world.getBlockMetadata(x, y, z)==0){
+    				world.setBlockMetadataWithNotify(x, y, z, 15, 2);
+    				//System.out.println(world.getBlockMetadata(x,y,z));
     			}
     		}
     	}
