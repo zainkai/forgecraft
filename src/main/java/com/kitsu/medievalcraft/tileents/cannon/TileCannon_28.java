@@ -1,6 +1,7 @@
 package com.kitsu.medievalcraft.tileents.cannon;
 
 import com.kitsu.medievalcraft.block.ModBlocks;
+import com.kitsu.medievalcraft.util.CannonUtil;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -16,13 +17,15 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class TileCannon_28 extends TileEntity implements IInventory, ISidedInventory{
+public class TileCannon_28 extends TileEntity implements IInventory, ISidedInventory, CannonUtil{
 
 	private String tileCannon_28;
 	private ItemStack[] inv;
 	private NBTTagCompound tag = new NBTTagCompound();
 	private int ticks;
 	public boolean isOn;
+	public static boolean smoke;
+	public static int xSmoke, ySmoke, zSmoke;
 	private static final int[] slots_all = new int[] {0,1};
 	private static final int[] slots_top = new int[] {0};
 	//private static final int[] slots_bottom = new int[] {2, 1};
@@ -216,6 +219,9 @@ public class TileCannon_28 extends TileEntity implements IInventory, ISidedInven
 				this.isOn=false;
 				ticks=0;
 			}
+		}
+		if(world.isRemote){
+
 		}
 		if (worldObj.isRemote) return;
 	}

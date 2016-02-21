@@ -13,7 +13,6 @@ public class MsgPacketLocX implements IMessage {
 		this.locx = x;
 	}
 
-
 	@Override
 	public void fromBytes(ByteBuf buf) {
 

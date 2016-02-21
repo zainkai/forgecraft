@@ -13,12 +13,7 @@ public class MsgHandleLocX implements IMessageHandler<MsgPacketLocX, IMessage>{
 	public IMessage onMessage(MsgPacketLocX message, MessageContext ctx) {
 
 		IngotBase.locX = message.locx;
-		//Forge.locX = message.locx;
-		//ItemRendererLongbow.tick = message.lTick;
-		
-		//System.out.println(message.lTick);
-		//ctx.getClientHandler().addToSendQueue(new MsgPacket(message.useme));
-		
+
 		return null;
 	}
 }

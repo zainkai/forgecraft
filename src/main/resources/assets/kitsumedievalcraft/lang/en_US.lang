@@ -303,6 +303,8 @@ item.woodPulp.name=Wood Pulp
 item.charcoalFilter.name=Charcoal Filter
 item.slottedTongs.name=Stone Tongs
 item.flintKnapped.name=Knapped Flint
+item.cannonBreach.name=CannonBreach
+item.cannonBarrel.name=CannonBarrel
 
 tile.shitBlock.name=Shit Block
 tile.formTable.name=Form Table

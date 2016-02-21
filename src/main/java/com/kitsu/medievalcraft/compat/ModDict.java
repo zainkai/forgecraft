@@ -17,6 +17,7 @@ public class ModDict {
 		OreDictionary.registerOre("strapLeather", new ItemStack(ModItems.leatherStrap, 1, 0));
 		OreDictionary.registerOre("ringIron",  new ItemStack(ModItems.ironRing, 1, 0));
 		OreDictionary.registerOre("ingotIron", new ItemStack(ModBlocks.refinedIron, 1, 0));
+		OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.ironChunk, 1, 0));
 		OreDictionary.registerOre("ingotSteel", new ItemStack(ModBlocks.damascus, 1, 0));
 		OreDictionary.registerOre("materialHardenedLeather", new ItemStack(ModItems.finishedLeather, 1, 0));
 		OreDictionary.registerOre("bladeTool", new ItemStack(ModItems.workBlade, 1, 0));

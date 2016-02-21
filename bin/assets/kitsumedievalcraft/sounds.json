@@ -6,6 +6,7 @@
   "scrapes1": {"category": "neutral", "sounds": [{"name": "scrapes1", "stream": false}]},
   "splitlog": {"category": "neutral", "sounds": [{"name": "splitlog", "stream": false}]},
   "sawwood": {"category": "neutral", "sounds": [{"name": "sawwood", "stream": false}]},
+  "cannon1": {"category": "neutral", "sounds": [{"name": "cannon1", "stream": false}]},
   "ironShieldBash": {"category": "neutral", "sounds": [{"name": "ironShieldBash", "stream": false}]}
   }
 

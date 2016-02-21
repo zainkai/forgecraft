@@ -230,13 +230,13 @@ public final class ModCrafting {
 			'a', Blocks.sand, 
 			'b', Blocks.iron_ore, 
 			'c', new ItemStack(Items.coal,0,1)});		
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleIronIngot), 
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.crucibleIronIngot), 
 				new Object[]{" x ", "abc"," y ",
 			'x', Blocks.stone_slab,
 			'y', ModBlocks.emptyCookedCrucible, 
 			'a', Blocks.sand,
-			'b', Items.iron_ingot,
-			'c', new ItemStack(Items.coal,0,1)});	
+			'b', "ingotIron",
+			'c', new ItemStack(Items.coal,0,1)}));	
 		
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucibleWootz), 
 				new Object[]{" x ", "abc", " y ",
@@ -274,6 +274,23 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ShapedOreRecipe(gladius0, new Object[]{"x", "y", Character.valueOf('y'), "strapLeather", 'x', ModItems.ironshortswordBlade}));
 		GameRegistry.addRecipe(new ShapedOreRecipe((ModItems.itemITSpear), new Object[]{"a", "c", "b", 'a', ModItems.ironspearTip, 'b', ModItems.woodentoolHandle, Character.valueOf('c'), "strapLeather"}));
 
+		//-----------------------CANNONS-----------------------//
+		GameRegistry.addRecipe(new ItemStack(ModItems.cannonBarrel),
+				new Object[]{" xx", "   ", " xx", 
+			'x', ModBlocks.ironPlate});	
+		GameRegistry.addRecipe(new ItemStack(ModItems.cannonBreach),
+				new Object[]{" x ", "  x", " x ", 
+			'x', ModBlocks.ironPlate});	
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.cannon_28),
+				new Object[]{" x ","cyc", "ccc", 
+			'y', ModItems.cannonBreach,
+			'c', ModItems.splitBoard,
+			'x', ModItems.cannonBarrel});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.cannonBall_28,4),
+				new Object[]{" x ", "xyx", " x ", 
+			'x', "nuggetIron",
+			'y', Blocks.stone}));
+		
 		//-----------------------PICKAXE COMBOS-----------------------//
 		//BASE PICK
 		GameRegistry.addRecipe(new ItemStack(Items.iron_pickaxe),      new Object[]{"a", "b", 'a',ModItems.ironpickaxeHead,   'b', ModItems.woodentoolHandle});
@@ -1643,9 +1660,9 @@ public final class ModCrafting {
 
 		//-----------------------FORGE HAMMER CRAFTING-----------------------//
 		//IRON CHUNK
-		//GameRegistry.addRecipe(new ItemStack(ModItems.ironChunk, 18, 0), new Object[]{"x", "y", 
-		//	Character.valueOf('y'), ModItems.hotIronIngot, 
-		//	Character.valueOf('x'), new ItemStack(ModItems.forgeHammer, 1, OreDictionary.WILDCARD_VALUE) });
+		GameRegistry.addRecipe(new ShapedOreRecipe (new ItemStack(ModItems.ironChunk, 18, 0), new Object[]{"x", "y", 
+			Character.valueOf('y'), "ingotIron", 
+			Character.valueOf('x'), new ItemStack(ModItems.forgeHammer, 1, OreDictionary.WILDCARD_VALUE) }));
 		/*
 		//IRON PICKAXE HEAD FROM CLAY FORM
 		GameRegistry.addRecipe(new ItemStack(ModItems.ironpickaxeHead, 1, 0), new Object []{"x", "y", "z", 

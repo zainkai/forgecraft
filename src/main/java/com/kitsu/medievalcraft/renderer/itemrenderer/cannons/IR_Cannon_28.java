@@ -16,7 +16,10 @@ public class IR_Cannon_28 implements IItemRenderer {
 	public static final ResourceLocation MODEL_CRUCIBLE = new ResourceLocation("kitsumedievalcraft:models/Cannon.obj");
 	public static final ResourceLocation TEXTURE = new ResourceLocation("kitsumedievalcraft:models/Cannon.png");
 	
+	private static final ResourceLocation MODEL_MOUNT = new ResourceLocation("kitsumedievalcraft:models/cannon_mount.obj");
+	private static final ResourceLocation TEXTURE_MOUNT = new ResourceLocation("kitsumedievalcraft:models/cannon_mount.png");
 	public IModelCustom model = AdvancedModelLoader.loadModel(MODEL_CRUCIBLE);
+	private IModelCustom modelMount = AdvancedModelLoader.loadModel(MODEL_MOUNT);
 	
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -82,6 +85,8 @@ public class IR_Cannon_28 implements IItemRenderer {
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_MOUNT);
+			modelMount.renderAll();
 
 			GL11.glPopMatrix();
 		} break;
@@ -100,7 +105,8 @@ public class IR_Cannon_28 implements IItemRenderer {
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
-
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_MOUNT);
+			modelMount.renderAll();
 			GL11.glPopMatrix();
 			
 		} break;
@@ -109,24 +115,26 @@ public class IR_Cannon_28 implements IItemRenderer {
 			GL11.glPushMatrix();
 			
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			float scale = 0.8F;
+			float scale = 0.75F;
 			GL11.glScalef(scale, scale, scale);
 			
 			//GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
 			
-			GL11.glTranslatef(0.0F, -0.1F, 0.35F);
+			GL11.glTranslatef(0.3F, 0.2F, 0.35F);
 		
 			
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
-		  
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_MOUNT);
+			modelMount.renderAll();
 			GL11.glPopMatrix();
 
 		} break;
 		
 		case ENTITY: {
 			GL11.glPushMatrix();
-			//GL11.glScalef(1.75F, 1.75F, 1.75F);
+			float scale = 3;
+			GL11.glScalef(scale, scale, scale);
 			
 			
 			
@@ -135,7 +143,8 @@ public class IR_Cannon_28 implements IItemRenderer {
 		
 			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
 			model.renderAll();
-
+			Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_MOUNT);
+			modelMount.renderAll();
 			GL11.glPopMatrix();
 
 		} break;

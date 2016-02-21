@@ -422,6 +422,10 @@ public final class ModItems {
 	public static Item fortuneIronRod;
 	public static Item efficIronRod;
 	
+	//-----------------------TEMP CANNON PARTS-----------------------//
+	public static Item cannonBreach;
+	public static Item cannonBarrel;
+	
 	//EnumHelper.addToolMaterial(name, harvestLevel, maxUses, efficiency, damage, enchantability)
 	//Max stats a tool / weapon can have
 	//public static ToolMaterial TUTORIAL = EnumHelper.addToolMaterial("TUTORIAL", 3, 1000, 15.0F, 4.0F, 30);
@@ -483,6 +487,11 @@ public final class ModItems {
 
 		//itemSmallBarrelLid = new Item().setUnlocalizedName("itemSmallBarrelLid").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":itemSmallBarrelLid");
 		//GameRegistry.registerItem(itemSmallBarrelLid, "itemSmallBarrelLid");
+		cannonBreach = new Item().setUnlocalizedName("cannonBreach").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":cannonBreach");
+		GameRegistry.registerItem(cannonBreach, "cannonBreach");
+		
+		cannonBarrel = new Item().setUnlocalizedName("cannonBarrel").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":cannonBarrel");
+		GameRegistry.registerItem(cannonBarrel, "cannonBarrel");
 		
 		woodPulp = new Item().setUnlocalizedName("woodPulp").setCreativeTab(CustomTab.MedievalCraftTab).setTextureName(Main.MODID + ":woodPulp");
 		GameRegistry.registerItem(woodPulp, "woodPulp");

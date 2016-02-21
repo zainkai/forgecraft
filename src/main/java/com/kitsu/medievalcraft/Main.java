@@ -11,11 +11,12 @@ import com.kitsu.medievalcraft.entity.EntityModelITArrow;
 import com.kitsu.medievalcraft.entity.EntityShit;
 import com.kitsu.medievalcraft.entity.EntityShortLivedShit;
 import com.kitsu.medievalcraft.entity.EntityTester;
-import com.kitsu.medievalcraft.entity.ProjectileCannonBall;
 import com.kitsu.medievalcraft.events.BucketHandle;
 import com.kitsu.medievalcraft.events.EventHandle;
 import com.kitsu.medievalcraft.gui.GuiHandler;
 import com.kitsu.medievalcraft.item.ModItems;
+import com.kitsu.medievalcraft.packethandle.cannon.MsgHandleCannon;
+import com.kitsu.medievalcraft.packethandle.cannon.MsgPacketCannon;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgHandleCuredLeatherX;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgHandleCuredLeatherY;
 import com.kitsu.medievalcraft.packethandle.curedLeather.MsgHandleCuredLeatherZ;
@@ -59,7 +60,7 @@ public class Main {
 
 	public static final String MODID = "kitsumedievalcraft";
 	public static final String MODNAME = "ForgeCraft";
-	public static final String VERSION = "2.3.9";
+	public static final String VERSION = "2.4.0";
 
 	public static SimpleNetworkWrapper sNet;
 
@@ -89,6 +90,11 @@ public class Main {
 		sNet.registerMessage(MsgHandleCuredLeatherZ.class, MsgPacketCuredLeatherZ.class, 8, Side.SERVER);
 		sNet.registerMessage(MsgHandleShelfCase.class, MsgPacketShelfCase.class, 9, Side.SERVER);
 		sNet.registerMessage(MsgHandleForge.class, MsgPacketForge.class, 10, Side.SERVER);
+		sNet.registerMessage(MsgHandleCannon.class, MsgPacketCannon.class, 11, Side.CLIENT);
+		sNet.registerMessage(MsgHandleCannon.class, MsgPacketCannon.class, 12, Side.SERVER);
+		//sNet.registerMessage(MsgHandleCannonX.class, MsgPacketCannonX.class, 12, Side.CLIENT);
+		//sNet.registerMessage(MsgHandleCannonY.class, MsgPacketCannonY.class, 13, Side.CLIENT);
+		//sNet.registerMessage(MsgHandleCannonZ.class, MsgPacketCannonZ.class, 14, Side.CLIENT);
 		
 		CustomTab.MedievalTab();
 		ModBlocks.init();
