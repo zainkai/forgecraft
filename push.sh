@@ -3,7 +3,6 @@
 clear
 git status
 git add --all
-echo "Enter commit message"
-read COM
-git commit -m $COM
+IFS= read -r -p "Enter commit message: " com
+git commit -m "$com"
 git push
