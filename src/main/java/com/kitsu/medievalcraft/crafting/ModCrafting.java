@@ -1660,7 +1660,7 @@ public final class ModCrafting {
 
 		//-----------------------FORGE HAMMER CRAFTING-----------------------//
 		//IRON CHUNK
-		GameRegistry.addRecipe(new ShapedOreRecipe (new ItemStack(ModItems.ironChunk, 18, 0), new Object[]{"x", "y", 
+		GameRegistry.addRecipe(new ShapedOreRecipe (new ItemStack(ModItems.ironChunk, 9, 0), new Object[]{"x", "y", 
 			Character.valueOf('y'), "ingotIron", 
 			Character.valueOf('x'), new ItemStack(ModItems.forgeHammer, 1, OreDictionary.WILDCARD_VALUE) }));
 		/*
