@@ -31,6 +31,7 @@ public class EntityCannonBall extends Entity implements CannonUtil{
 	private int field_145791_d = -1;
 	private int field_145792_e = -1;
 	private int field_145789_f = -1;
+	private int h;
 	public Entity shootingEntity;
 	private boolean smoke = true;
 
@@ -39,7 +40,7 @@ public class EntityCannonBall extends Entity implements CannonUtil{
 		this.preventEntitySpawning = true;
 		this.setSize(0.5F, 0.5F);
 		//this.yOffset = this.height / 2.0F;
-		this.boundingBox.setBounds(0.3, 0.3, 0.3, 0.7, 0.7, 0.7);
+		this.boundingBox.setBounds(0.49, 0.49, 0.49, 0.51, 0.51, 0.51);
 
 	}
 
@@ -49,7 +50,7 @@ public class EntityCannonBall extends Entity implements CannonUtil{
 		this.setPosition(x, y, z);
 		float f = (float)(Math.random() * Math.PI * 2.0D);
 		this.motionX = (double)(-((float)Math.sin((double)f)) * 0.02F);
-		this.motionY = 0.20000000298023224D;
+		this.motionY = 0.05D;
 		this.motionZ = (double)(-((float)Math.cos((double)f)) * 0.02F);
 		this.prevPosX = x;
 		this.prevPosY = y;
@@ -61,12 +62,16 @@ public class EntityCannonBall extends Entity implements CannonUtil{
 
 	public void onUpdate()
 	{
-		if(this.smoke==true){
-			for(int g = 0; g < 20; g++){
-				this.worldObj.spawnParticle("explode", this.posX + worldObj.rand.nextFloat()*2 - 1, this.posY + worldObj.rand.nextFloat()*2 - 1, this.posZ + worldObj.rand.nextFloat()*2 - 1,0.0, 0.0, 0.0);
+		
+		if(h > 0 && h < 2){
+			if(this.smoke==true){
+				for(int g = 0; g < 50; g++){
+					this.worldObj.spawnParticle("explode", this.posX + (worldObj.rand.nextFloat()*2 - 1), this.posY + (worldObj.rand.nextFloat()*2 - 1), (this.posZ + worldObj.rand.nextFloat()*2 - 1),0.0, 0.0, 0.0);
+				}
+				this.smoke=false;
 			}
-			this.smoke=false;
 		}
+		h++;
 		/*double x = this.posX;
 		double y = this.posY;
 		double z = this.posZ;

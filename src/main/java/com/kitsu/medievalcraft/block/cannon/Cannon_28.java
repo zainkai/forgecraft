@@ -63,8 +63,8 @@ public class Cannon_28 extends BlockContainer implements CannonUtil{
 		//this.isFlammable(world, x, y, z, face);
 		//(xmin, ymin, zmin, 
 		// xmax, ymax, zmax)
-		this.setBlockBounds(0.0F, 0.00F, 0.0F,
-				1.0F, 1.00F, 1.0F);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F,
+				1.0F, 0.85F, 1.0F);
 	}
 
 	@Override
@@ -97,13 +97,13 @@ public class Cannon_28 extends BlockContainer implements CannonUtil{
 				if(tile.getStackInSlot(1)!=null){
 					if(tile.getStackInSlot(1).getItem()==ball){
 						tile.decrStackSize(1, 1);
-						cannonball = new EntityCannonBall(world, (double)x+(2*(Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])))), (double)y+0.5, (double)z+(2*(Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])))), null);
+						cannonball = new EntityCannonBall(world, (double)x+((Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])))/2), (double)y+0.5, (double)z+((Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])))/2), null);
 						//System.out.println(angles[world.getBlockMetadata(x, y, z)]);
 						//System.out.println(Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])));
 						//System.out.println(Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)])));
 						//cannonball.setVelocity(((tile.getStackInSlot(0).stackSize*(Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))))-(world.rand.nextFloat()/4)),0.25, ((tile.getStackInSlot(0).stackSize*(Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))))-(world.rand.nextFloat()/4)));
 						cannonball.motionX = ((tile.getStackInSlot(0).stackSize*(Math.sin(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))))-(world.rand.nextFloat()/4));
-						cannonball.motionY = 0.25;
+						cannonball.motionY = 0.02;
 						cannonball.motionZ = ((tile.getStackInSlot(0).stackSize*(Math.cos(Math.toRadians(angles[world.getBlockMetadata(x, y, z)]))))-(world.rand.nextFloat()/4));
 						tile.setInventorySlotContents(0, null);
 						tile.markForUpdate();
@@ -161,7 +161,7 @@ public class Cannon_28 extends BlockContainer implements CannonUtil{
 	/**
 	 * Updates the blocks bounds based on its current state. Args: world, x, y, z
 	 */
-	@Override
+	/*@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess iBlock, int x, int y, int z)
 	{
 		int l = iBlock.getBlockMetadata(x, y, z) & 7;
@@ -184,18 +184,18 @@ public class Cannon_28 extends BlockContainer implements CannonUtil{
 		case 5:
 			this.setBlockBounds(0F, 0.0F, 0F, 1F, 1F, 1F);
 		}
-	}
+	}*/
 
 	/**
 	 * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
 	 * cleared to be reused)
 	 */
-	@Override
+	/*@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		this.setBlockBoundsBasedOnState(world, x, y, z);
 		return super.getCollisionBoundingBoxFromPool(world, x, y, z);
-	}
+	}*/
 	/**
 	 * Called when the block is placed in the world.
 	 */
