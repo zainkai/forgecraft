@@ -11,7 +11,16 @@ import nmd.primal.forgecraft.Item.ModItems;
  */
 public class CommonProxy {
 
-    public void registerItemRenderer(Item item, int meta, String id) {
+    public void preInit(FMLPreInitializationEvent e) {
+        //ModBlocks.createBlocks();
+        ModItems.init();
+    }
+
+    public void init(FMLInitializationEvent e) {
+
+    }
+
+    public void postInit(FMLPostInitializationEvent e) {
 
     }
 }

@@ -8,23 +8,15 @@ import nmd.primal.forgecraft.ModInfo;
 /**
  * Created by kitsu on 11/24/2016.
  */
-public class ItemBase extends Item implements ItemModelProvider{
+public class ItemBase extends Item {
 
     protected String name;
 
     public ItemBase(String name) {
+        super();
         this.name = name;
-        setUnlocalizedName(name);
-        setRegistryName(name);
-    }
-
-    public void registerItemModel(Item item) {
-        ForgeCraft.proxy.registerItemRenderer(this, 0, name);
-    }
-
-    @Override
-    public ItemBase setCreativeTab(CreativeTabs tab) {
-        super.setCreativeTab(tab);
-        return this;
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
+        this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
 }

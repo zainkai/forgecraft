@@ -26,92 +26,27 @@ public class ForgeCraft
     @Mod.Instance(ModInfo.MOD_ID)
     public static ForgeCraft INSTANCE = new ForgeCraft();
 
-    @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.COMMON_PROXY)
+    @SidedProxy(clientSide = "nmd.primal.forgecraft.proxy.ClientProxy", serverSide = "nmd.primal.forgecraft.proxy.ServerProxy")
     public static CommonProxy proxy;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        Locale.setDefault(Locale.ENGLISH);
-        //this.proxy.preInit(event);
+        this.proxy.preInit(event);
 
-        ModItems.init();
-        //ModItems.createItems();
-        /*Configuration File*/
-
-        //CONFIG_DIRECTORY = new File(event.getModConfigurationDirectory(), "primal");
-        //ModConfig.init(event.getSuggestedConfigurationFile());
-        //LOGGER.info("Debug Level: " + ModConfig.DEBUG_LEVEL);
-
-        /*Networking*/
-        //NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.MOD_CHANNEL);
-        //NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-
-        /*
-        Load Main Content
-        In Order of:
-            Sounds, Entities, Tiles, Blocks, Fluids, Items
-        */
-        //ModTileEntities.registerTileEntities();
-
-        //ModBlocks.registerBlocks();
-        //ModBlocks.registerSubBlocks();
-        //ModBlocks.registerOres();
-        //ModBlocks.registerPlants();
-        //ModBlocks.registerLighting();
-        //ModBlocks.registerTablesShelves();
-
-        //ModFluids.registerFluids();
-
-        //ModItems.registerItems();
-
-        //ModSounds.registerSounds();
-        //ModEntities.registerEntities();
-
-        /*Events*/
-        //ModEvents.registerCommonEvents();
-
-        /*Sounds*/
-        //ModSoundHandler.init();
-
-        /*Proxy Power*/
-        //proxy.preInit();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        //this.proxy.init(event);
-
-        //LOGGER.info("Init");
-       // proxy.init();
-
-        /*World-Gen*/
-
-        //ModWorldGen.registerWorldGenerators();
-        //ModWorldGen.registerDimensionProviders();
-
-        /*Register More Stuff*/
-        //ModRegistries.registerFuels();
-        //ModRegistries.registerVanillaTorches();
-        //ModRegistries.registerRepairItems();
-        //ModRegistries.registerToolBreakItems();
-        //ModRegistries.registerAdditionalCraftingItems();
-        //DispenserBehavoir.registerDispenserItems();
-        //ModDictionary.registerDictionaryNames();
+        this.proxy.init(event);
 
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        //this.proxy.postInit(event);
-        //LOGGER.info("Post-Init");
-        //proxy.postInit();
-
-        /*Crafting, Remove Vanilla Recipes*/
-        //ModCrafting.registerRecipeRemover();
-        //ModCrafting.registerRecipes();
+        this.proxy.postInit(event);
 
     }
 
