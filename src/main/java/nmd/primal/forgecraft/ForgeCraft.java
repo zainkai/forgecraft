@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import nmd.primal.forgecraft.Item.ItemRenderRegister;
 import nmd.primal.forgecraft.Item.ModItems;
 import nmd.primal.forgecraft.proxy.CommonProxy;
 //import nmd.primal.forgecraft.common.init.*;
@@ -40,6 +41,7 @@ public class ForgeCraft
     public void init(FMLInitializationEvent event)
     {
         this.proxy.init(event);
+        ItemRenderRegister.registerItemRenderer();
 
     }
 
