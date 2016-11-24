@@ -1,6 +1,5 @@
-package nmd.primal.forgecraft.common;
+package nmd.primal.forgecraft;
 
-import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -8,10 +7,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import nmd.primal.forgecraft.common.init.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import nmd.primal.forgecraft.Item.ModItems;
+import nmd.primal.forgecraft.proxy.CommonProxy;
+//import nmd.primal.forgecraft.common.init.*;
 
 import java.util.Locale;
 
@@ -26,19 +24,19 @@ import java.util.Locale;
 public class ForgeCraft
 {
     @Mod.Instance(ModInfo.MOD_ID)
-    public static ForgeCraft INSTANCE;
+    public static ForgeCraft INSTANCE = new ForgeCraft();
 
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.COMMON_PROXY)
     public static CommonProxy proxy;
 
-    public static Logger LOGGER = LogManager.getLogger(ModInfo.MOD_ID);
-
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        LOGGER.info("Pre-Init");
         Locale.setDefault(Locale.ENGLISH);
+        //this.proxy.preInit(event);
 
+        ModItems.init();
+        //ModItems.createItems();
         /*Configuration File*/
 
         //CONFIG_DIRECTORY = new File(event.getModConfigurationDirectory(), "primal");
@@ -83,6 +81,8 @@ public class ForgeCraft
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+        //this.proxy.init(event);
+
         //LOGGER.info("Init");
        // proxy.init();
 
@@ -105,6 +105,7 @@ public class ForgeCraft
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+        //this.proxy.postInit(event);
         //LOGGER.info("Post-Init");
         //proxy.postInit();
 

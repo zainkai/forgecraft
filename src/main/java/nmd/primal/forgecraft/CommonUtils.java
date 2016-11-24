@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.common;
+package nmd.primal.forgecraft;
 
 /**
  * Created by kitsu on 11/23/2016.
