@@ -1,13 +1,9 @@
 package nmd.primal.forgecraft.init;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.main.GameConfiguration;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.MinecraftDummyContainer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.items.ItemCheese;
 import nmd.primal.forgecraft.items.ItemTest;
 
 /**
@@ -16,22 +12,22 @@ import nmd.primal.forgecraft.items.ItemTest;
 public class ModItems {
 
     public static Item test;
-    public static Item cheese;
+    //public static Item cheese;
 
     public static void init() {
 
         test = new ItemTest();
-        cheese = new ItemCheese();
+        //cheese = new ItemCheese();
     }
 
     public static void register() {
 
         GameRegistry.register(test);
-        GameRegistry.register(cheese);
+        //GameRegistry.register(cheese);
     }
 
     public static void registerRenders() {
-        registerRender(cheese);
+        //registerRender(cheese);
         registerRender(test);
     }
 

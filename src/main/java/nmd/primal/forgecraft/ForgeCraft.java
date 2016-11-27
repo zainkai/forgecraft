@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.proxy.CommonProxy;
 //import nmd.primal.forgecraft.common.init.*;
@@ -34,7 +35,9 @@ public class ForgeCraft
     public void preInit(FMLPreInitializationEvent event)
     {
         ModItems.init();
+        ModBlocks.init();
         ModItems.register();
+        ModBlocks.register();
     }
 
     @EventHandler

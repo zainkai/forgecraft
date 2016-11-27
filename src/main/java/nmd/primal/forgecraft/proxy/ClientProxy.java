@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.proxy;
 
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.forgecraft.init.ModItems.*;
@@ -13,6 +14,7 @@ public class ClientProxy implements CommonProxy {
     public void init() {
 
         ModItems.registerRenders();
+        ModBlocks.registerRenders();
     }
 
 
