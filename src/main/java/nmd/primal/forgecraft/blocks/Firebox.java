@@ -13,12 +13,12 @@ import nmd.primal.forgecraft.ModInfo;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class TestBlock extends Block {
+public class Firebox extends Block {
 
-    public TestBlock(Material material) {
+    public Firebox(Material material) {
         super(material);
-        setUnlocalizedName(ModInfo.ForgecraftBlocks.TEST_BLOCK.getUnlocalizedName());
-        setRegistryName(ModInfo.ForgecraftBlocks.TEST_BLOCK.getRegistryName());
+        setUnlocalizedName(ModInfo.ForgecraftBlocks.FIREBOX.getUnlocalizedName());
+        setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
 

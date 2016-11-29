@@ -48,7 +48,7 @@ public class ModInfo {
     }
 
     public enum ForgecraftBlocks {
-        TEST_BLOCK("test_block", "test_block");
+        FIREBOX("firebox", "firebox");
 
         private String unlocalizedName;
         private String registryName;
