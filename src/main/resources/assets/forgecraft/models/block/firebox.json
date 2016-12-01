@@ -1,5 +1,6 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
+	"parent": "block/block",
 	"textures": {
 		"texture": "forgecraft:blocks/checker_test",
 		"texture2": "forgecraft:blocks/firebox_racks",

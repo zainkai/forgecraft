@@ -1,6 +1,8 @@
 package nmd.primal.forgecraft.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +18,7 @@ import nmd.primal.forgecraft.tiles.TileFirebox;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class Firebox extends Block {
+public class Firebox extends BlockContainer implements ITileEntityProvider {
 
     public Firebox(Material material) {
         super(material);
