@@ -18,8 +18,8 @@ import nmd.primal.forgecraft.tiles.TileFirebox;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class Firebox extends BlockContainer implements ITileEntityProvider {
-
+//public class Firebox extends BlockContainer implements ITileEntityProvider {
+public class Firebox extends Block {
     public Firebox(Material material) {
         super(material);
         setUnlocalizedName(ModInfo.ForgecraftBlocks.FIREBOX.getUnlocalizedName());
@@ -27,11 +27,11 @@ public class Firebox extends BlockContainer implements ITileEntityProvider {
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileFirebox();
-    }
+    //@Override
+    //public TileEntity createNewTileEntity(World worldIn, int meta)
+    //{
+    //    return new TileFirebox();
+    //}
 
     @Override
     public boolean isFullCube(IBlockState state)
