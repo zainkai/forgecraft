@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "forgecraft:firebox" },
-    "facing=east":  { "model": "forgecraft:firebox", "y": 90 },
-    "facing=south": { "model": "forgecraft:firebox", "y": 180 },
-    "facing=west":  { "model": "forgecraft:firebox", "y": 270 }
+    "facing=north,active=false": { "model": "forgecraft:firebox" },
+    "facing=east,active=false":  { "model": "forgecraft:firebox", "y": 90 },
+    "facing=south,active=false": { "model": "forgecraft:firebox", "y": 180 },
+    "facing=west,active=false":  { "model": "forgecraft:firebox", "y": 270 },
+    "facing=north,active=true": { "model": "forgecraft:firebox" },
+    "facing=east,active=true":  { "model": "forgecraft:firebox", "y": 90 },
+    "facing=south,active=true": { "model": "forgecraft:firebox", "y": 180 },
+    "facing=west,active=true":  { "model": "forgecraft:firebox", "y": 270 }
   }
 }

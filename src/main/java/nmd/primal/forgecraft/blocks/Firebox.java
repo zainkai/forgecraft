@@ -5,12 +5,17 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -30,14 +35,16 @@ import javax.annotation.Nullable;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class Firebox extends BlockHorizontal implements ITileEntityProvider {
-//public class Firebox extends Block {
+public class Firebox extends CustomContainerFacing implements ITileEntityProvider {
+
+    public static final PropertyBool ACTIVE =  PropertyBool.create("active");
+
     public Firebox(Material material) {
         super(material);
         setUnlocalizedName(ModInfo.ForgecraftBlocks.FIREBOX.getUnlocalizedName());
         setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
-        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, Boolean.valueOf(false)));
     }
 
     @Override
@@ -56,9 +63,37 @@ public class Firebox extends BlockHorizontal implements ITileEntityProvider {
             {
 
                 ItemStack playerStack = player.getHeldItemMainhand();
+                Item playerItem;
+
                 ItemStack tileStack = tile.getStackInSlot(0);
 
-                System.out.println(playerStack + " : " + tileStack);
+                //System.out.println("Player Stack = " + playerStack);
+                //System.out.println("TileStack = " + tileStack);
+                if(playerStack != null){
+                    playerItem = playerStack.getItem();
+                    if (playerItem.equals(Items.FLINT_AND_STEEL)) {
+                        world.setBlockState(pos, state.withProperty(ACTIVE, Boolean.valueOf(true)), 2);
+                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
+                        if(world.getBlockState(tempPos).getBlock().equals(Blocks.AIR)){
+                            world.setBlockState(tempPos, Blocks.FIRE.getDefaultState(), 3);
+                        }
+                    }
+                }
+
+
+                if(tileStack == null && playerStack != null){
+                    tile.setInventorySlotContents(0, playerStack);
+                    player.setHeldItem(EnumHand.MAIN_HAND, null);
+                    return true;
+                }
+
+                if(tileStack != null && playerStack == null && player.isSneaking()){
+                    tile.setInventorySlotContents(0, null);
+                    player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
+                    return true;
+                }
+
+
 
                 /*
                 if (tile.getStackInSlot(0) == null){
@@ -76,6 +111,7 @@ public class Firebox extends BlockHorizontal implements ITileEntityProvider {
                     }
                 }
                 */
+
             }
         }
 
@@ -127,7 +163,7 @@ public class Firebox extends BlockHorizontal implements ITileEntityProvider {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer(this, new IProperty[] {FACING, ACTIVE});
     }
 
     @Override
