@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModCrafting;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.init.ModTiles;
 import nmd.primal.forgecraft.proxy.CommonProxy;
 //import nmd.primal.forgecraft.common.init.*;
 
@@ -39,7 +40,7 @@ public class ForgeCraft
         ModBlocks.init();
         ModItems.register();
         ModBlocks.register();
-
+        ModTiles.registerTileEntities();
     }
 
     @EventHandler

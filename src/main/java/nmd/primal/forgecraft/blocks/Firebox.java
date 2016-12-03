@@ -122,3 +122,10 @@ public class Firebox extends BlockContainer implements ITileEntityProvider {
         return true;
     }
 }
+
+/*
+Firebox States
+Off
+On
+
+ */
