@@ -5,8 +5,15 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -15,11 +22,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 
+import javax.annotation.Nullable;
+
 /**
  * Created by kitsu on 11/26/2016.
  */
-//public class Firebox extends BlockContainer implements ITileEntityProvider {
-public class Firebox extends Block {
+public class Firebox extends BlockContainer implements ITileEntityProvider {
+//public class Firebox extends Block {
     public Firebox(Material material) {
         super(material);
         setUnlocalizedName(ModInfo.ForgecraftBlocks.FIREBOX.getUnlocalizedName());
@@ -27,11 +36,66 @@ public class Firebox extends Block {
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
 
-    //@Override
-    //public TileEntity createNewTileEntity(World worldIn, int meta)
-    //{
-    //    return new TileFirebox();
-    //}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileFirebox();
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (!world.isRemote)
+        {
+            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+            if (tile != null)
+            {
+                if (tile.getStackInSlot(0) == null){
+                    if (player.inventory.getCurrentItem()!=null) {
+                        tile.setInventorySlotContents(0, player.inventory.getCurrentItem());
+                        player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                        return true;
+                    }
+                }
+                if (tile.getStackInSlot(0) != null){
+                    if (player.inventory.getCurrentItem()==null) {
+                        player.inventory.setInventorySlotContents(player.inventory.currentItem, tile.getStackInSlot(0));
+                        tile.setInventorySlotContents(0, null);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Called serverside after this block is replaced with another in Chunk, but before the Tile Entity is updated
+     */
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops"))
+        {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+
+            if (tileentity instanceof TileFirebox)
+            {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (TileFirebox)tileentity);
+                worldIn.updateComparatorOutputLevel(pos, this);
+            }
+        }
+
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack){
+        if (stack.hasDisplayName()){
+            ((TileFirebox) world.getTileEntity(pos)).setCustomName(stack.getDisplayName());
+        }
+    }
 
     @Override
     public boolean isFullCube(IBlockState state)
