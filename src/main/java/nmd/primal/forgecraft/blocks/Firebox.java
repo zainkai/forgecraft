@@ -2,8 +2,10 @@ package nmd.primal.forgecraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -28,13 +30,14 @@ import javax.annotation.Nullable;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class Firebox extends BlockContainer implements ITileEntityProvider {
+public class Firebox extends BlockHorizontal implements ITileEntityProvider {
 //public class Firebox extends Block {
     public Firebox(Material material) {
         super(material);
         setUnlocalizedName(ModInfo.ForgecraftBlocks.FIREBOX.getUnlocalizedName());
         setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
+        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
     @Override
@@ -51,6 +54,13 @@ public class Firebox extends BlockContainer implements ITileEntityProvider {
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
             if (tile != null)
             {
+
+                ItemStack playerStack = player.getHeldItemMainhand();
+                ItemStack tileStack = tile.getStackInSlot(0);
+
+                System.out.println(playerStack + " : " + tileStack);
+
+                /*
                 if (tile.getStackInSlot(0) == null){
                     if (player.inventory.getCurrentItem()!=null) {
                         tile.setInventorySlotContents(0, player.inventory.getCurrentItem());
@@ -65,6 +75,7 @@ public class Firebox extends BlockContainer implements ITileEntityProvider {
                         return true;
                     }
                 }
+                */
             }
         }
 
@@ -92,10 +103,31 @@ public class Firebox extends BlockContainer implements ITileEntityProvider {
     }
 
     @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        IBlockState state = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+        return state.withProperty(FACING, placer.getHorizontalFacing());
+    }
+
+    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack){
         if (stack.hasDisplayName()){
             ((TileFirebox) world.getTileEntity(pos)).setCustomName(stack.getDisplayName());
         }
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(FACING).getHorizontalIndex();
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override

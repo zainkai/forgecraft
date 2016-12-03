@@ -1,5 +1,8 @@
 {
   "variants": {
-    "normal": { "model": "forgecraft:firebox"}
+    "facing=north": { "model": "forgecraft:firebox" },
+    "facing=east":  { "model": "forgecraft:firebox", "y": 90 },
+    "facing=south": { "model": "forgecraft:firebox", "y": 180 },
+    "facing=west":  { "model": "forgecraft:firebox", "y": 270 }
   }
 }
