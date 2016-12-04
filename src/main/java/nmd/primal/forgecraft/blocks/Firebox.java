@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.blocks;
 
+import akka.actor.dsl.Creators;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -27,6 +28,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 
@@ -39,12 +41,14 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
 
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
 
+
     public Firebox(Material material) {
         super(material);
         setUnlocalizedName(ModInfo.ForgecraftBlocks.FIREBOX.getUnlocalizedName());
         setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, Boolean.valueOf(false)));
+
     }
 
     @Override
@@ -61,60 +65,86 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
             if (tile != null)
             {
-
                 ItemStack playerStack = player.getHeldItemMainhand();
                 Item playerItem;
 
                 ItemStack tileStack = tile.getStackInSlot(0);
-
-                //System.out.println("Player Stack = " + playerStack);
-                //System.out.println("TileStack = " + tileStack);
                 if(playerStack != null){
                     playerItem = playerStack.getItem();
                     if (playerItem.equals(Items.FLINT_AND_STEEL)) {
-                        world.setBlockState(pos, state.withProperty(ACTIVE, Boolean.valueOf(true)), 2);
-                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
-                        if(world.getBlockState(tempPos).getBlock().equals(Blocks.AIR)){
-                            world.setBlockState(tempPos, Blocks.FIRE.getDefaultState(), 3);
+                        if (CommonUtils.getVanillaItemBurnTime(tileStack) > 0) {
+                            world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
+                            BlockPos tempPos = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
+                            if(world.getBlockState(tempPos).getBlock().equals(Blocks.AIR)){
+                                world.setBlockState(tempPos, Blocks.FIRE.getDefaultState(), 2);
+                                this.setLightLevel(1);
+                                tile.markDirty();
+                            }
                         }
                     }
                 }
 
-
-                if(tileStack == null && playerStack != null){
-                    tile.setInventorySlotContents(0, playerStack);
-                    player.setHeldItem(EnumHand.MAIN_HAND, null);
-                    return true;
-                }
-
                 if(tileStack != null && playerStack == null && player.isSneaking()){
+                    if(state.getValue(ACTIVE)==true){
+                        world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
+                        ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1);
+                        player.setHeldItem(EnumHand.MAIN_HAND, returnStack);
+                    } else {
+                        player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
+                    }
                     tile.setInventorySlotContents(0, null);
-                    player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
-                    return true;
+                    tile.markDirty();
                 }
 
-
-
-                /*
-                if (tile.getStackInSlot(0) == null){
-                    if (player.inventory.getCurrentItem()!=null) {
-                        tile.setInventorySlotContents(0, player.inventory.getCurrentItem());
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-                        return true;
+                if(tileStack == null && playerStack != null) {
+                    if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
+                        playerItem = playerStack.getItem();
+                        if (playerItem != Items.FLINT_AND_STEEL) {
+                            tile.setInventorySlotContents(0, playerStack);
+                            player.setHeldItem(EnumHand.MAIN_HAND, null);
+                            tile.markDirty();
+                        }
                     }
                 }
-                if (tile.getStackInSlot(0) != null){
-                    if (player.inventory.getCurrentItem()==null) {
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, tile.getStackInSlot(0));
-                        tile.setInventorySlotContents(0, null);
-                        return true;
-                    }
-                }
-                */
-
             }
         }
 
+        return true;
+    }
+
+    @Override
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        if(state.getValue(ACTIVE) == true){
+            return 1;
+        }
+        return 0;
+    }
+
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return 0;
+    }
+
+    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
+    {
+        if (side == EnumFacing.UP)
+        {
+            if(!world.isRemote){
+                TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+                if(tile.getStackInSlot(0) != null){
+                    if(world.getBlockState(pos).getValue(ACTIVE)==true){
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
@@ -141,7 +171,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return state.withProperty(FACING, placer.getHorizontalFacing());
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(ACTIVE, Boolean.valueOf(false));
     }
 
     @Override
@@ -149,16 +179,96 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         if (stack.hasDisplayName()){
             ((TileFirebox) world.getTileEntity(pos)).setCustomName(stack.getDisplayName());
         }
+        System.out.println(state.getBlock().getMetaFromState(state));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getHorizontalIndex();
+        int i = 0;
+
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(ACTIVE) == false){
+            i = 0;
+            return i;
+        }
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(ACTIVE) == false){
+            i = 1;
+            return i;
+        }
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(ACTIVE) == false){
+            i = 2;
+            return i;
+        }
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(ACTIVE) == false){
+            i = 3;
+            return i;
+        }
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(ACTIVE) == true){
+            i = 4;
+            return i;
+        }
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(ACTIVE) == true){
+            i = 5;
+            return i;
+        }
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(ACTIVE) == true){
+            i = 6;
+            return i;
+        }
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(ACTIVE) == true){
+            i = 7;
+            return i;
+        }
+
+        return i;
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        EnumFacing enumfacing;
+        Boolean active;
+
+
+
+        switch (meta & 7)
+        {
+            case 0:
+                enumfacing = EnumFacing.EAST;
+                active = false;
+                break;
+            case 1:
+                enumfacing = EnumFacing.WEST;
+                active = false;
+                break;
+            case 2:
+                enumfacing = EnumFacing.SOUTH;
+                active = false;
+                break;
+            case 3:
+                enumfacing = EnumFacing.NORTH;
+                active = false;
+                break;
+            case 4:
+                enumfacing = EnumFacing.EAST;
+                active = true;
+                break;
+            case 5:
+                enumfacing = EnumFacing.WEST;
+                active = true;
+                break;
+            case 6:
+                enumfacing = EnumFacing.SOUTH;
+                active = true;
+                break;
+            case 7:
+                enumfacing = EnumFacing.NORTH;
+                active = true;
+                break;
+            default:
+                enumfacing = EnumFacing.NORTH;
+                active = false;
+        }
+
+        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(ACTIVE, Boolean.valueOf(active));
     }
 
     @Override

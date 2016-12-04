@@ -1,7 +1,11 @@
 package nmd.primal.forgecraft.tiles;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,17 +13,51 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import nmd.primal.forgecraft.CommonUtils;
+import nmd.primal.forgecraft.blocks.Firebox;
+import nmd.primal.forgecraft.init.ModBlocks;
+import org.omg.PortableInterceptor.ACTIVE;
+
+import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
 /**
  * Created by mminaie on 11/30/16.
  */
-public class TileFirebox extends TileEntity implements IInventory {
+public class TileFirebox extends BaseTile implements IInventory, ITickable {
 
     private ItemStack[] inventory;
     private String customName;
+    private int iteration = 0;
 
     public TileFirebox() {
         this.inventory = new ItemStack[this.getSizeInventory()];
+    }
+
+    @Override
+    public void update () {
+        if(!worldObj.isRemote){
+            this.iteration ++;
+            if(this.iteration == 200 ) {
+                //System.out.println(iteration);
+                this.iteration = 0;
+                IBlockState state = worldObj.getBlockState(this.getPos());
+                if (worldObj.getBlockState(this.getPos()).getValue(Firebox.ACTIVE)) {
+                    if (this.getStackInSlot(0) == null) {
+                        worldObj.setBlockState(this.getPos(), state.withProperty(Firebox.ACTIVE, false), 2);
+                    } else {
+                        if(this.getStackInSlot(0) != null) {
+                            if (worldObj.rand.nextInt((int) Math.floor(getVanillaItemBurnTime(this.getStackInSlot(0)) / 20)) == 0) {
+                                this.decrStackSize(0, 1);
+                                //System.out.println(this.getStackInSlot(0));
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public String getCustomName() {
