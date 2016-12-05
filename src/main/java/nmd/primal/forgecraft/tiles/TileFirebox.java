@@ -4,6 +4,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiChat;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -16,6 +17,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.Firebox;
 import nmd.primal.forgecraft.init.ModBlocks;
@@ -28,7 +31,7 @@ import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
  */
 public class TileFirebox extends BaseTile implements IInventory, ITickable {
 
-    private ItemStack[] inventory;
+    private ItemStack[] inventory = new ItemStack [0];
     private String customName;
     private int iteration = 0;
 
@@ -39,25 +42,36 @@ public class TileFirebox extends BaseTile implements IInventory, ITickable {
     @Override
     public void update () {
         if(!worldObj.isRemote){
+            World world = this.getWorld();
             this.iteration ++;
             if(this.iteration == 200 ) {
                 //System.out.println(iteration);
                 this.iteration = 0;
-                IBlockState state = worldObj.getBlockState(this.getPos());
+                IBlockState state = world.getBlockState(this.pos);
                 if (worldObj.getBlockState(this.getPos()).getValue(Firebox.ACTIVE)) {
                     if (this.getStackInSlot(0) == null) {
                         worldObj.setBlockState(this.getPos(), state.withProperty(Firebox.ACTIVE, false), 2);
+                        this.markDirty();
+                        world.notifyBlockUpdate(pos, state, state, 2);
                     } else {
                         if(this.getStackInSlot(0) != null) {
                             if (worldObj.rand.nextInt((int) Math.floor(getVanillaItemBurnTime(this.getStackInSlot(0)) / 20)) == 0) {
                                 this.decrStackSize(0, 1);
-                                //System.out.println(this.getStackInSlot(0));
+                                this.markDirty();
+                                world.notifyBlockUpdate(pos, state, state, 2);
                             }
                         }
                     }
                 }
             }
+
         }
+        /*if (worldObj.isRemote){
+            World world = this.getWorld();
+            if(this.getStackInSlot(0)!=null){
+                renderItem = new EntityItem(world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), this.getStackInSlot(0));
+            }
+        }*/
     }
 
     public String getCustomName() {
@@ -121,17 +135,24 @@ public class TileFirebox extends BaseTile implements IInventory, ITickable {
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        if (index < 0 || index >= this.getSizeInventory())
+        if (index < 0 || index >= this.getSizeInventory()) {
             return;
+        }
 
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
             stack.stackSize = this.getInventoryStackLimit();
+        }
 
-        if (stack != null && stack.stackSize == 0)
+        if (stack != null && stack.stackSize == 0) {
             stack = null;
+        }
 
         this.inventory[index] = stack;
         this.markDirty();
+
+        World world = this.getWorld();
+        IBlockState state = world.getBlockState(this.pos);
+        world.notifyBlockUpdate(this.pos, state, state, 3);
     }
 
     @Override
@@ -186,42 +207,49 @@ public class TileFirebox extends BaseTile implements IInventory, ITickable {
         }
     }
 
+    // ***************************************************************************** //
+    //  NBT
+    // ***************************************************************************** //
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    public NBTTagCompound readNBT(NBTTagCompound nbt)
+    {
+        NBTTagList list = nbt.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+        inventory = new ItemStack[this.getSizeInventory()];
 
-        NBTTagList list = new NBTTagList();
-        for (int i = 0; i < this.getSizeInventory(); ++i) {
-            if (this.getStackInSlot(i) != null) {
-                NBTTagCompound stackTag = new NBTTagCompound();
-                stackTag.setByte("Slot", (byte) i);
-                this.getStackInSlot(i).writeToNBT(stackTag);
-                list.appendTag(stackTag);
-            }
-        }
-        nbt.setTag("Items", list);
-
-        if (this.hasCustomName()) {
-            nbt.setString("CustomName", this.getCustomName());
-        }
-        return nbt;
-    }
-
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
-
-        NBTTagList list = nbt.getTagList("Items", 10);
-        for (int i = 0; i < list.tagCount(); ++i) {
-            NBTTagCompound stackTag = list.getCompoundTagAt(i);
-            int slot = stackTag.getByte("Slot") & 255;
-            this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
+        for (int i = 0; i < list.tagCount(); ++i)
+        {
+            NBTTagCompound tag = list.getCompoundTagAt(i);
+            this.inventory[tag.getByte("slot")] = ItemStack.loadItemStackFromNBT(tag);
         }
 
         if (nbt.hasKey("CustomName", 8)) {
             this.setCustomName(nbt.getString("CustomName"));
         }
+
+        return nbt;
+    }
+
+    @Override
+    public NBTTagCompound writeNBT(NBTTagCompound nbt)
+    {
+        NBTTagList list = new NBTTagList();
+
+        ///
+        //  RackMatrix
+        ///
+        for (int i = 0; i < this.getSizeInventory(); ++i)
+        {
+            if (inventory[i] != null) {
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setByte("slot", (byte) i);
+                inventory[i].writeToNBT(tag);
+                list.appendTag(tag);
+            }
+        }
+
+        nbt.setTag("Items", list);
+
+        return nbt;
     }
 
     @Override

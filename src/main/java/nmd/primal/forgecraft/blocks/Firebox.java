@@ -10,6 +10,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,6 +66,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
             if (tile != null)
             {
+                System.out.println("Server Slot: " + tile.getStackInSlot(0));
                 ItemStack playerStack = player.getHeldItemMainhand();
                 Item playerItem;
 
@@ -77,8 +79,8 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             BlockPos tempPos = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
                             if(world.getBlockState(tempPos).getBlock().equals(Blocks.AIR)){
                                 world.setBlockState(tempPos, Blocks.FIRE.getDefaultState(), 2);
-                                this.setLightLevel(1);
                                 tile.markDirty();
+                                world.notifyBlockUpdate(pos, state, state, 2);
                             }
                         }
                     }
@@ -89,11 +91,16 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                         world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
                         ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1);
                         player.setHeldItem(EnumHand.MAIN_HAND, returnStack);
+                        tile.markDirty();
+                        world.notifyBlockUpdate(pos, state, state, 2);
                     } else {
                         player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
+                        tile.markDirty();
+                        world.notifyBlockUpdate(pos, state, state, 2);
                     }
                     tile.setInventorySlotContents(0, null);
                     tile.markDirty();
+                    world.notifyBlockUpdate(pos, state, state, 2);
                 }
 
                 if(tileStack == null && playerStack != null) {
@@ -103,10 +110,15 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             tile.setInventorySlotContents(0, playerStack);
                             player.setHeldItem(EnumHand.MAIN_HAND, null);
                             tile.markDirty();
+                            world.notifyBlockUpdate(pos, state, state, 2);
                         }
                     }
                 }
             }
+        }
+        if(world.isRemote){
+            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+            System.out.println("Client Slot: " +  tile.getStackInSlot(0));
         }
 
         return true;
