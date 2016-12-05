@@ -1,10 +1,7 @@
 package nmd.primal.forgecraft.blocks;
 
 import akka.actor.dsl.Creators;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -34,6 +31,8 @@ import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 
 import javax.annotation.Nullable;
+
+import static net.minecraft.block.BlockHorizontal.FACING;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -82,6 +81,13 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                                 tile.markDirty();
                                 world.notifyBlockUpdate(pos, state, state, 2);
                             }
+                            /*if(world.getBlockState(tempPos).getBlock() instanceof BlockFurnace){
+                                System.out.println("Trying to set Block Furnace State active");
+                                IBlockState iblockstate = world.getBlockState(tempPos);
+                                world.setBlockState(tempPos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+                                TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(tempPos);
+                                tileFurnace.setField(0,2000);
+                            }*/
                         }
                     }
                 }
