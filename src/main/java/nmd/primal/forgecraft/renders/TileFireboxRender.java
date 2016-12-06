@@ -60,16 +60,16 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
             case SOUTH:
                 rotation = 2;
                 //Left and Right
-                translateX = 1.40f;
+                translateX = 1.5f;
                 //Back and Forth
-                translateZ = -0.5f;
+                translateZ = 0.5f;
                 break;
             case WEST:
                 rotation = 1;
                 //Back and Forth
-                translateX = 2.5f;
+                translateX = 1.5f;
                 //Left and Right
-                translateZ = 0.85f;
+                translateZ = 1.0f;
                 break;
         }
 
