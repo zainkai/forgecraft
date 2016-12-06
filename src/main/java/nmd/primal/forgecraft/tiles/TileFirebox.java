@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.tiles;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiChat;
@@ -51,7 +52,7 @@ public class TileFirebox extends BaseTile implements IInventory, ITickable {
                 //System.out.println(iteration);
                 this.iteration = 0;
                 IBlockState state = world.getBlockState(this.pos);
-                BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+                BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
                 IBlockState aboveState = world.getBlockState(abovePos);
                 if (worldObj.getBlockState(this.getPos()).getValue(Firebox.ACTIVE)) {
                     if (this.getStackInSlot(0) == null) {
@@ -66,11 +67,18 @@ public class TileFirebox extends BaseTile implements IInventory, ITickable {
                                 world.notifyBlockUpdate(pos, state, state, 2);
                             }
                             if(world.getBlockState(abovePos).getBlock() instanceof BlockFurnace){
-                                System.out.println("Trying to set Block Furnace State active");
+                                //System.out.println("Trying to set Block Furnace State active");
                                 IBlockState iblockstate = world.getBlockState(abovePos);
                                 TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(abovePos);
-                                world.setBlockState(pos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-                                tileFurnace.setField(0,2000);
+
+                                if(world.getBlockState(abovePos).getBlock() == Blocks.LIT_FURNACE){
+                                    tileFurnace.setField(0,1000);
+                                }
+                                if(world.getBlockState(abovePos).getBlock() == Blocks.FURNACE){
+                                    BlockFurnace.setState(true, world, abovePos);
+                                    //world.setBlockState(abovePos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+                                    tileFurnace.setField(0,1000);
+                                }
                             }
                         }
                     }

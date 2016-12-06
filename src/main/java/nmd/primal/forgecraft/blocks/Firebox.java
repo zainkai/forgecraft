@@ -65,7 +65,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
             if (tile != null)
             {
-                System.out.println("Server Slot: " + tile.getStackInSlot(0));
+                //System.out.println("Server Slot: " + tile.getStackInSlot(0));
                 ItemStack playerStack = player.getHeldItemMainhand();
                 Item playerItem;
 
@@ -82,7 +82,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                                 world.notifyBlockUpdate(pos, state, state, 2);
                             }
                             /*if(world.getBlockState(tempPos).getBlock() instanceof BlockFurnace){
-                                System.out.println("Trying to set Block Furnace State active");
+                                //System.out.println("Trying to set Block Furnace State active");
                                 IBlockState iblockstate = world.getBlockState(tempPos);
                                 world.setBlockState(tempPos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
                                 TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(tempPos);
@@ -122,11 +122,6 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                 }
             }
         }
-        if(world.isRemote){
-            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
-            System.out.println("Client Slot: " +  tile.getStackInSlot(0));
-        }
-
         return true;
     }
 
