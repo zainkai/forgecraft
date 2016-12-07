@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.blocks;
 
+import akka.actor.SystemGuardian;
 import akka.actor.dsl.Creators;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -110,38 +111,8 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             }
                         }
                     }
-
                 }
-                /*if(playerStack == null && player.isSneaking()){
-                    if(tileStack != null){
-                        ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.stackSize -1, tileStack.getItemDamage());
-                        world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack));
-                        tile.setInventorySlotContents(0, null);
-                        world.notifyBlockUpdate(pos, state, state, 2);
-                    }
-                }
-                if(!player.isSneaking()){
-                    if(playerStack == null) {
-                        if (tileStack != null) {
-                            ItemStack tempStack1 = tileStack;
-                            tempStack1.stackSize = 1;
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        }
-                    }
-                }*/
-
-
-
-
-
-
-
-
-
-
-
-                /*if(tileStack != null && playerStack == null && player.isSneaking()){
+                if(tileStack != null && playerStack == null && player.isSneaking()){
                     if(state.getValue(ACTIVE)==true){
                         world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
                         ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1);
@@ -150,32 +121,32 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                         world.notifyBlockUpdate(pos, state, state, 2);
                     } else {
                         player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
+                        tile.setInventorySlotContents(0, null);
                         tile.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
-                    tile.setInventorySlotContents(0, null);
+
                     tile.markDirty();
                     world.notifyBlockUpdate(pos, state, state, 2);
                 }
-
-                if(tileStack == null && playerStack != null) {
-                    if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
-                        playerItem = playerStack.getItem();
-                        if (playerItem != Items.FLINT_AND_STEEL) {
-                            tile.setInventorySlotContents(0, playerStack);
-                            player.setHeldItem(EnumHand.MAIN_HAND, null);
-                            tile.markDirty();
+                if(!player.isSneaking()){
+                    if(playerStack == null) {
+                        if (tileStack != null) {
+                            ItemStack tempStack1 = new ItemStack(tileStack.getItem(), 1, tileStack.getItemDamage());
+                            ItemStack resetStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1, tileStack.getItemDamage());
+                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
+                            tile.setInventorySlotContents(0,resetStack);
                             world.notifyBlockUpdate(pos, state, state, 2);
                         }
                     }
-                }*/
+                }
             }
         }
         return true;
     }
 
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
-        if(!world.isRemote){
+        /*if(!world.isRemote){
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
             IBlockState state = world.getBlockState(pos);
 
@@ -225,7 +196,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                 //RETURN 1
 
             }
-        }
+        }*/
     }
 
     @Override
