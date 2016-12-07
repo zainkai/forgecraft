@@ -65,6 +65,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
             if (tile != null)
             {
+
                 //System.out.println("Server Slot: " + tile.getStackInSlot(0));
                 ItemStack playerStack = player.getHeldItemMainhand();
                 Item playerItem;

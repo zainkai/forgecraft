@@ -99,6 +99,7 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
                         GL11.glScalef(scale, scale, scale);
                         GL11.glRotatef(90.0F * rotation, 0.0F, 1.0F, 0.0F);
                         renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
+
                         GL11.glPopMatrix();
                     }
                     if(stackSize > 15 && stackSize < 32){
