@@ -48,7 +48,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, Boolean.valueOf(false)));
-
+        setHardness(3.0f);
     }
 
     @Override
@@ -65,15 +65,13 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
             if (tile != null)
             {
-
-                //System.out.println("Server Slot: " + tile.getStackInSlot(0));
                 ItemStack playerStack = player.getHeldItemMainhand();
                 Item playerItem;
-
                 ItemStack tileStack = tile.getStackInSlot(0);
+
                 if(playerStack != null){
                     playerItem = playerStack.getItem();
-                    if (playerItem.equals(Items.FLINT_AND_STEEL)) {
+                    if (playerItem.equals(Items.FLINT_AND_STEEL) || playerItem.equals(Item.getItemFromBlock(Blocks.TORCH))) {
                         if (CommonUtils.getVanillaItemBurnTime(tileStack) > 0) {
                             world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                             BlockPos tempPos = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
@@ -82,18 +80,68 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                                 tile.markDirty();
                                 world.notifyBlockUpdate(pos, state, state, 2);
                             }
-                            /*if(world.getBlockState(tempPos).getBlock() instanceof BlockFurnace){
-                                //System.out.println("Trying to set Block Furnace State active");
-                                IBlockState iblockstate = world.getBlockState(tempPos);
-                                world.setBlockState(tempPos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-                                TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(tempPos);
-                                tileFurnace.setField(0,2000);
-                            }*/
+                            if(playerItem.equals(Items.FLINT_AND_STEEL)){
+                                player.inventory.getCurrentItem().damageItem(1, player);
+                            }
                         }
                     }
-                }
+                    if(tile.getStackInSlot(0)!=null){
+                        if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
+                            if (tileStack.getItem() == playerItem && tileStack.getItemDamage() == playerStack.getItemDamage()) {
+                                //tile.setInventorySlotContents(0, playerStack);
+                                ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.stackSize + 1, tileStack.getItemDamage());
+                                if(tileStack.stackSize < 64) {
+                                    tile.setInventorySlotContents(0, tempStack);
+                                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                                    //player.setHeldItem(EnumHand.MAIN_HAND, null);
+                                    tile.markDirty();
+                                    world.notifyBlockUpdate(pos, state, state, 2);
+                                }
+                            }
+                        }
+                    }
+                    if(tile.getStackInSlot(0)==null){
+                        if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
+                            if (playerItem != Items.FLINT_AND_STEEL || playerItem != Item.getItemFromBlock(Blocks.TORCH)) {
+                                tile.setInventorySlotContents(0, playerStack);
+                                player.setHeldItem(EnumHand.MAIN_HAND, null);
+                                tile.markDirty();
+                                world.notifyBlockUpdate(pos, state, state, 2);
+                            }
+                        }
+                    }
 
-                if(tileStack != null && playerStack == null && player.isSneaking()){
+                }
+                /*if(playerStack == null && player.isSneaking()){
+                    if(tileStack != null){
+                        ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.stackSize -1, tileStack.getItemDamage());
+                        world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack));
+                        tile.setInventorySlotContents(0, null);
+                        world.notifyBlockUpdate(pos, state, state, 2);
+                    }
+                }
+                if(!player.isSneaking()){
+                    if(playerStack == null) {
+                        if (tileStack != null) {
+                            ItemStack tempStack1 = tileStack;
+                            tempStack1.stackSize = 1;
+                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
+                            world.notifyBlockUpdate(pos, state, state, 2);
+                        }
+                    }
+                }*/
+
+
+
+
+
+
+
+
+
+
+
+                /*if(tileStack != null && playerStack == null && player.isSneaking()){
                     if(state.getValue(ACTIVE)==true){
                         world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
                         ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1);
@@ -120,17 +168,71 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             world.notifyBlockUpdate(pos, state, state, 2);
                         }
                     }
-                }
+                }*/
             }
         }
         return true;
+    }
+
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
+        if(!world.isRemote){
+            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+            IBlockState state = world.getBlockState(pos);
+
+            if (tile != null) {
+                ItemStack playerStack = player.getHeldItemMainhand();
+                Item playerItem;
+                ItemStack tileStack = tile.getStackInSlot(0);
+
+                if (!player.isSneaking()) {
+                    if( tileStack !=null) {
+                        if (playerStack == null) {
+                            ItemStack tempStack1 = tileStack;
+                            ItemStack tempStack2 = tileStack;
+                            tempStack1.stackSize = 1;
+                            tempStack2.stackSize = tileStack.stackSize - 1;
+                            System.out.println(tileStack.stackSize + "|" + "|" + tempStack2.stackSize);
+                            //int tileSize = tile.decrStackSize()
+
+                            //ItemStack tempReset = new ItemStack(tileStack.getItem(), tileSize - 1, tileStack.getItemDamage());
+
+                            //System.out.println(tileSize + "|" + tempReset.stackSize);
+
+                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
+
+                            tile.setInventorySlotContents(0, tempStack2);
+
+                            world.notifyBlockUpdate(pos, state, state, 2);
+                        }
+                    }
+                }
+
+                //RETURN THE WHOLE STACK
+                if (playerStack == null && player.isSneaking()) {
+                    if (tileStack != null) {
+                        if(state.getValue(ACTIVE)) {
+                            ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1, tileStack.getItemDamage());
+                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack));
+                            tile.setInventorySlotContents(0, null);
+                            world.notifyBlockUpdate(pos, state, state, 2);
+                        } else {
+                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tileStack));
+                            tile.setInventorySlotContents(0, null);
+                            world.notifyBlockUpdate(pos, state, state, 2);
+                        }
+                    }
+                }
+                //RETURN 1
+
+            }
+        }
     }
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         if(state.getValue(ACTIVE) == true){
-            return 1;
+            return 15;
         }
         return 0;
     }

@@ -93,7 +93,7 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
                     float scale = is_block ? 0.9F : 1.8F;
                     int stackSize = stack.stackSize;
 
-                    if(stackSize < 16){
+                    //if(stackSize < 16){
                         GL11.glPushMatrix();
                         GL11.glTranslatef(translateX, height, translateZ);
                         GL11.glScalef(scale, scale, scale);
@@ -101,8 +101,8 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
                         renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
 
                         GL11.glPopMatrix();
-                    }
-                    if(stackSize > 15 && stackSize < 32){
+                    //}
+                    /*if(stackSize > 15 && stackSize < 32){
                         GL11.glPushMatrix();
                         GL11.glTranslatef(translateX, height, translateZ);
                         GL11.glScalef(scale, scale, scale);
@@ -167,11 +167,7 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
                         GL11.glRotatef(90.0F * (rotation + 3), 0.0F, 1.0F, 0.0F);
                         renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
                         GL11.glPopMatrix();
-                    }
-
-
-
-
+                    }*/
         }
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
 
