@@ -16,19 +16,19 @@ public class ModItems {
 
     public static void init() {
 
-        test = new ItemTest();
+        //test = new ItemTest();
         //cheese = new ItemCheese();
     }
 
     public static void register() {
 
-        GameRegistry.register(test);
+        //GameRegistry.register(test);
         //GameRegistry.register(cheese);
     }
 
     public static void registerRenders() {
         //registerRender(cheese);
-        registerRender(test);
+        //registerRender(test);
     }
 
     private static void registerRender(Item item) {

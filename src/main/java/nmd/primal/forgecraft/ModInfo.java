@@ -3,8 +3,10 @@ package nmd.primal.forgecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 //import nmd.primal.forgecraft.Item.ModItems;
 
@@ -18,7 +20,7 @@ public class ModInfo {
     public static final String MOD_NAME = "Kitsu's ForgeCraft";
     //public static final String MOD_PREFIX = MOD_ID + ":";
     //public static final String MOD_CHANNEL = MOD_ID;
-    public static final String MOD_VERSION = "0.0.0";
+    public static final String MOD_VERSION = "1.0.0";
     public static final String MC_VERSIONS = "[1.9.4, 1.11.0)";
 
     /** Mod Structures **/
@@ -73,7 +75,7 @@ public class ModInfo {
         @Override
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem() {
-            return ModItems.test;
+            return Item.getItemFromBlock(ModBlocks.firebox);
         }
     };
 }

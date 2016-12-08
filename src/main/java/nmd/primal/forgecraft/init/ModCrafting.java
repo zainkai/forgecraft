@@ -12,6 +12,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModCrafting {
 
     public static void register() {
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),  "XXX", "XYX", "XXX", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),  "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
     }
 }

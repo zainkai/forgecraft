@@ -31,6 +31,7 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
     private final RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
     private int rotation;
     private float translateX, translateZ;
+    private double textX, textZ;
     private EntityItem entItem = null;
 
     @Override
@@ -62,7 +63,7 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
                 //Left and Right
                 translateX = 1.5f;
                 //Back and Forth
-                translateZ = 0.5f;
+                translateZ = 0.9f;
                 break;
             case WEST:
                 rotation = 1;
@@ -82,92 +83,34 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
         int bright = tile.getWorld().getCombinedLight(pos.up(), 0);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, bright % 65536, bright / 65536);
 
-                ItemStack stack = tile.getStackInSlot(0);
-                if (stack != null) {
-                    ///
-                    //  rotate 90 degrees for blocks but not items?
-                    ///
-                    boolean is_block = stack.getItem() instanceof ItemBlock;
-                    float height = -0.855f;
+        ItemStack stack = tile.getStackInSlot(0);
+        if (stack != null) {
+            boolean is_block = stack.getItem() instanceof ItemBlock;
+            float height = -0.75f;
 
-                    float scale = is_block ? 0.9F : 1.8F;
-                    int stackSize = stack.stackSize;
+            float scale = is_block ? 0.9F : 1.6F;
+            int stackSize = stack.stackSize;
 
-                    //if(stackSize < 16){
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * rotation, 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
+            GL11.glPushMatrix();
+            GL11.glTranslatef(translateX, height, translateZ);
+            GL11.glScalef(scale, scale, scale);
+            GL11.glRotatef(90.0F * rotation, 0.0F, 1.0F, 0.0F);
+            Integer temp = tile.getStackInSlot(0).stackSize;
 
-                        GL11.glPopMatrix();
-                    //}
-                    /*if(stackSize > 15 && stackSize < 32){
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * rotation, 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * (rotation + 1), 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-                    }
-                    if(stackSize > 31 && stackSize < 48){
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * rotation, 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * (rotation + 1), 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * (rotation + 2), 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-                    }
-                    if(stackSize > 47){
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * rotation, 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * (rotation + 1), 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * (rotation + 2), 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-
-                        GL11.glPushMatrix();
-                        GL11.glTranslatef(translateX, height, translateZ);
-                        GL11.glScalef(scale, scale, scale);
-                        GL11.glRotatef(90.0F * (rotation + 3), 0.0F, 1.0F, 0.0F);
-                        renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
-                        GL11.glPopMatrix();
-                    }*/
+            renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
+            GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
+            //float scale = is_block ? 0.9F : 1.6F;
+            if(is_block){
+                GL11.glScalef(0.08F,0.08F, 0.08f);
+                textZ = -23.0D;
+            } else {
+                GL11.glScalef(0.05F,0.05F, 0.05f);
+                textZ = -22.0D;
+            }
+            GL11.glTranslatef(0.0F, 2.0f, 0.0F);
+            GL11.glTranslated(0.0F, 0.0D, textZ);
+            getFontRenderer().drawString(temp.toString(), 0, 0, 4210752);
+            GL11.glPopMatrix();
         }
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
 
