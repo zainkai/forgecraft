@@ -1,2 +1,0 @@
-# ForgeCraft
-ForgeCraft Minecraft Mode
