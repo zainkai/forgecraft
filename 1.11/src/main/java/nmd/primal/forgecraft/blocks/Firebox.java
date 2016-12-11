@@ -266,7 +266,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         if (stack.hasDisplayName()){
             ((TileFirebox) world.getTileEntity(pos)).setCustomName(stack.getDisplayName());
         }
-        //System.out.println(state.getBlock().getMetaFromState(state));
+        System.out.println(state.getBlock().getMetaFromState(state));
     }
 
     @Override
