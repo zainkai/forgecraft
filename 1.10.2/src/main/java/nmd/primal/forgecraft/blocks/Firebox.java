@@ -113,21 +113,13 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                     }
                 }
                 if(tileStack != null && playerStack == null && player.isSneaking()){
-                    if(state.getValue(ACTIVE)==true){
-                        world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
-                        ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1);
-                        player.setHeldItem(EnumHand.MAIN_HAND, returnStack);
-                        tile.markDirty();
-                        world.notifyBlockUpdate(pos, state, state, 2);
-                    } else {
-                        player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
-                        tile.setInventorySlotContents(0, null);
-                        tile.markDirty();
-                        world.notifyBlockUpdate(pos, state, state, 2);
-                    }
-
+                    player.setHeldItem(EnumHand.MAIN_HAND, tile.getStackInSlot(0));
+                    tile.setInventorySlotContents(0, null);
                     tile.markDirty();
                     world.notifyBlockUpdate(pos, state, state, 2);
+                    if(state.getValue(ACTIVE)==true){
+                        world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
+                    }
                 }
                 if(!player.isSneaking()){
                     if(playerStack == null) {
@@ -146,57 +138,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     }
 
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
-        /*if(!world.isRemote){
-            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
-            IBlockState state = world.getBlockState(pos);
 
-            if (tile != null) {
-                ItemStack playerStack = player.getHeldItemMainhand();
-                Item playerItem;
-                ItemStack tileStack = tile.getStackInSlot(0);
-
-                if (!player.isSneaking()) {
-                    if( tileStack !=null) {
-                        if (playerStack == null) {
-                            ItemStack tempStack1 = tileStack;
-                            ItemStack tempStack2 = tileStack;
-                            tempStack1.stackSize = 1;
-                            tempStack2.stackSize = tileStack.stackSize - 1;
-                            System.out.println(tileStack.stackSize + "|" + "|" + tempStack2.stackSize);
-                            //int tileSize = tile.decrStackSize()
-
-                            //ItemStack tempReset = new ItemStack(tileStack.getItem(), tileSize - 1, tileStack.getItemDamage());
-
-                            //System.out.println(tileSize + "|" + tempReset.stackSize);
-
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
-
-                            tile.setInventorySlotContents(0, tempStack2);
-
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        }
-                    }
-                }
-
-                //RETURN THE WHOLE STACK
-                if (playerStack == null && player.isSneaking()) {
-                    if (tileStack != null) {
-                        if(state.getValue(ACTIVE)) {
-                            ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1, tileStack.getItemDamage());
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack));
-                            tile.setInventorySlotContents(0, null);
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        } else {
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tileStack));
-                            tile.setInventorySlotContents(0, null);
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        }
-                    }
-                }
-                //RETURN 1
-
-            }
-        }*/
     }
 
     @Override

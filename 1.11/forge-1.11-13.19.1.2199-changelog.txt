@@ -1,5 +1,59 @@
 Changelog:
-Build 2189:
+Build 2199:
+	tehgeek: Fix #3561 import io.IOUtils instead of compress.utils.IOUtils (#3562)
+
+Build 1.11-13.19.1.2198:
+	tehgeek: Update MCP mappings to snapshot_nodoc_20161220 (#3551)
+
+Build 1.11-13.19.1.2197:
+	bs2609: [1.11] Fixes for Chunk.getBlockLightOpacity implementation (#3537)
+	tehgeek:
+		Fix some resources that are never closed, close in a finally block
+		(#3544)
+	tehgeek:
+		Add hook to allow any block to respond to filtered block updates like
+		the Observer block (#3547)
+	tehgeek: Add nullable annotations to IGuiHandler (#3550)
+	tehgeek: Properly deobfuscate lambda expressions (#3552)
+
+Build 1.11-13.19.1.2196:
+	JDLogic:
+		[1.11] Fix ItemHandlerHelper canStack and ItemStack areTagsEqual methods
+		not checking capabilities  (#3500)
+
+Build 1.11-13.19.1.2195:
+	tehgeek:
+		Make NBSP character display as a space. MC-2595 (#3522)
+		Add easy getter for the Locale: MinecraftForgeClient.getLocale()
+
+Build 1.11-13.19.1.2194:
+	bs2609:
+		Patch EntityPlayerSP to use location-aware version of isNormalCube
+		(#3494)
+	tehgeek:
+		Fix uses of uppercase "Forge" where it fails Loader.isModLoaded(modID)
+		(#3513)
+	maxanier: [1.11] Made WalkNodeProcessor consider burning blocks (#3515)
+	tehgeek: Fix setting the world in TileEntity.addTileEntity (#2863) (#3517)
+	dawn0966:
+		Added Oak door to Ore Dictionary Exclusion list to fix able to craft it
+		with any wood type (#3519)
+
+Build 1.11-13.19.1.2193:
+	whs1999kr: reset repo to upstream and reapplied patches (#3434)
+	tehgeek: [1.11] Add memory display to loading screen (#3447)
+
+Build 1.11-13.19.1.2192:
+	rock: [1.11] Added EnchantmentLevelSetEvent (#3433)
+
+Build 1.11-13.19.1.2191:
+	minecrell: Register Minecraft mod container in FML loader (#3414)
+
+Build 1.11-13.19.1.2190:
+	LexManos: Fix modid field name for ProjectInjector.
+	LexManos: Small memory optimization in Registries.
+
+Build 1.11-13.19.1.2189:
 	LexManos:
 		Enable Enforcement of modid formatting. Must be lowercase and <= 64
 		characters

@@ -1,0 +1,81 @@
+Primal 
+To-Do
+
+- Models for ForgeCraft
+- Axe Mechanics for stripped logs
+- half logs (Slabs?)
+- Quarter split logs
+- Add quarter split logs, stripped logs and half logs to Fuel Dictionary
+
+ForgeCraft Process
+
+break ore into raw iron chunks 
+
+Crucibles are preheated
+
+Crucible is loaded with raw ore type and supporting minerals (sand, glass etc.)
+
+Crucible is instered into hot Forge
+
+Heat is managed carefully per ore type
+
+when ore specific heat time is reached the crucible is removed from the forge
+
+each ore type has a different curing process.
+
+for example copper can be allowed to cool quickly where-as crucible steel most be cooled slowly
+
+after the crucible has cooled the crucible lid is broken returning the crucible only
+
+the ingot can be of poor, average, or excellent quality
+(How can a player test the quality of their ingot?)
+
+The ingot is oreDict compatible
+
+The ingot is heated in an appropriate temperte forge
+
+the heating ingot is placed on an anvil and hammered slowly into shape.
+
+It takes the space of one slot and is slowly formed through hammering into another slot. Taking up both slots in the process.
+
+8 angles total
+
+Every time the ingot shape is changed it will turn into a new block or block state. Until finally it takes the intended shape.
+
+After the intended shape is taken a polishing step is completed
+
+After polishing the steel is heated again and then put into a type cooling solution, water or oil. Poor Ingots have a higher tendency to crack at this point rendering the tool worthless and only capabling of being recast into an ingot.
+
+after the metal is succesfully cooled it can be crafted into its respective weapon or tool.
+
+Probably best to break down how each metal is made and derive shared processes from them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

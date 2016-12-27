@@ -63,6 +63,7 @@ public class TileFirebox extends BaseTile implements IInventory, ITickable {
                         if(this.getStackInSlot(0) != null) {
                             if (worldObj.rand.nextInt((int) Math.floor(getVanillaItemBurnTime(this.getStackInSlot(0)) / 20)) == 0) {
                                 this.decrStackSize(0, 1);
+
                                 this.markDirty();
                                 world.notifyBlockUpdate(pos, state, state, 2);
                             }

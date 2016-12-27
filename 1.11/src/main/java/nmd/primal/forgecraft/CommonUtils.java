@@ -2,9 +2,13 @@ package nmd.primal.forgecraft;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -38,4 +42,14 @@ public class CommonUtils {
         if (item == Items.BLAZE_POWDER) return 800;
         return GameRegistry.getFuelValue(stack);
     }
+
+    public static void spawnItemEntity(World world, EntityPlayer player, ItemStack stack)
+    {
+        EntityItem entityitem = new EntityItem(world, player.posX, player.posY, player.posZ, stack); // player.posY - 1.0D
+        world.spawnEntity(entityitem);
+
+        if (!(player instanceof FakePlayer))
+            entityitem.onCollideWithPlayer(player);
+    }
+
 }

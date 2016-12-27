@@ -2,6 +2,7 @@ package nmd.primal.forgecraft;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,7 +22,7 @@ public class ModInfo {
     //public static final String MOD_PREFIX = MOD_ID + ":";
     //public static final String MOD_CHANNEL = MOD_ID;
     public static final String MOD_VERSION = "1.0.1";
-    public static final String MC_VERSIONS = "[1.9.4, 1.11.0)";
+    public static final String MC_VERSIONS = "[1.9.4, 1.11.2)";
 
     /** Mod Structures **/
     public static final String SERVER_PROXY = "nmd.primal.forgecraft.proxy.ServerProxy";
@@ -74,8 +75,23 @@ public class ModInfo {
     {
         @Override
         @SideOnly(Side.CLIENT)
-        public Item getTabIconItem() {
-            return Item.getItemFromBlock(ModBlocks.firebox);
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ModBlocks.firebox);
         }
     };
+
+    /*
+        public static CreativeTabs TAB_PRIMAL = new CreativeTabs(MOD_ID)
+    {
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getTabIconItem() {
+            return new ItemStack(PrimalItems.FLINT_HATCHET);
+        }
+
+    };
+    */
+
+
 }

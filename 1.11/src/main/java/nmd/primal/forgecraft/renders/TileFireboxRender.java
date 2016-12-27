@@ -83,19 +83,19 @@ public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
         int bright = tile.getWorld().getCombinedLight(pos.up(), 0);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, bright % 65536, bright / 65536);
 
-        ItemStack stack = tile.getStackInSlot(0);
+        ItemStack stack = tile.getSlotStack(0);
         if (stack != null) {
             boolean is_block = stack.getItem() instanceof ItemBlock;
             float height = -0.75f;
 
             float scale = is_block ? 0.9F : 1.6F;
-            int stackSize = stack.stackSize;
+            int stackSize = stack.getCount();
 
             GL11.glPushMatrix();
             GL11.glTranslatef(translateX, height, translateZ);
             GL11.glScalef(scale, scale, scale);
             GL11.glRotatef(90.0F * rotation, 0.0F, 1.0F, 0.0F);
-            Integer temp = tile.getStackInSlot(0).stackSize;
+            Integer temp = tile.getSlotStack(0).getCount();
 
             renderItem.renderItem(stack, renderItem.getItemModelMesher().getItemModel(stack));
             GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);

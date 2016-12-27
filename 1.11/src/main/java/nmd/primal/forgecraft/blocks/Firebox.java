@@ -59,7 +59,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote)
         {
@@ -68,7 +68,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
             {
                 ItemStack playerStack = player.getHeldItemMainhand();
                 Item playerItem;
-                ItemStack tileStack = tile.getStackInSlot(0);
+                ItemStack tileStack = tile.getSlotStack(0);
 
                 if(playerStack != null){
                     playerItem = playerStack.getItem();
@@ -86,13 +86,13 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             }
                         }
                     }
-                    if(tile.getStackInSlot(0)!=null){
+                    if(tile.getSlotStack(0)!=ItemStack.EMPTY){
                         if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
                             if (tileStack.getItem() == playerItem && tileStack.getItemDamage() == playerStack.getItemDamage()) {
                                 //tile.setInventorySlotContents(0, playerStack);
-                                ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.stackSize + 1, tileStack.getItemDamage());
-                                if(tileStack.stackSize < 64) {
-                                    tile.setInventorySlotContents(0, tempStack);
+                                ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.getCount() + 1, tileStack.getItemDamage());
+                                if(tileStack.getCount() < 64) {
+                                    tile.setSlotStack(0, tempStack);
                                     player.inventory.decrStackSize(player.inventory.currentItem, 1);
                                     //player.setHeldItem(EnumHand.MAIN_HAND, null);
                                     tile.markDirty();
@@ -101,11 +101,11 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             }
                         }
                     }
-                    if(tile.getStackInSlot(0)==null){
+                    if(tile.getSlotStack(0)==ItemStack.EMPTY){
                         if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
                             if (playerItem != Items.FLINT_AND_STEEL || playerItem != Item.getItemFromBlock(Blocks.TORCH)) {
-                                tile.setInventorySlotContents(0, playerStack);
-                                player.setHeldItem(EnumHand.MAIN_HAND, null);
+                                tile.setSlotStack(0, playerStack);
+                                player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
                                 tile.markDirty();
                                 world.notifyBlockUpdate(pos, state, state, 2);
                             }
@@ -115,13 +115,13 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                 if(tileStack != null && playerStack == null && player.isSneaking()){
                     if(state.getValue(ACTIVE)==true){
                         world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
-                        ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1);
+                        ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.getCount() - 1);
                         player.setHeldItem(EnumHand.MAIN_HAND, returnStack);
                         tile.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     } else {
                         player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
-                        tile.setInventorySlotContents(0, null);
+                        tile.setSlotStack(0, ItemStack.EMPTY);
                         tile.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
@@ -133,9 +133,10 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                     if(playerStack == null) {
                         if (tileStack != null) {
                             ItemStack tempStack1 = new ItemStack(tileStack.getItem(), 1, tileStack.getItemDamage());
-                            ItemStack resetStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1, tileStack.getItemDamage());
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
-                            tile.setInventorySlotContents(0,resetStack);
+                            ItemStack resetStack = new ItemStack(tileStack.getItem(), tileStack.getCount() - 1, tileStack.getItemDamage());
+                            CommonUtils.spawnItemEntity(world, player, tempStack1);
+                            //world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
+                            tile.setSlotStack(0,resetStack);
                             world.notifyBlockUpdate(pos, state, state, 2);
                         }
                     }
@@ -146,57 +147,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     }
 
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
-        /*if(!world.isRemote){
-            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
-            IBlockState state = world.getBlockState(pos);
 
-            if (tile != null) {
-                ItemStack playerStack = player.getHeldItemMainhand();
-                Item playerItem;
-                ItemStack tileStack = tile.getStackInSlot(0);
-
-                if (!player.isSneaking()) {
-                    if( tileStack !=null) {
-                        if (playerStack == null) {
-                            ItemStack tempStack1 = tileStack;
-                            ItemStack tempStack2 = tileStack;
-                            tempStack1.stackSize = 1;
-                            tempStack2.stackSize = tileStack.stackSize - 1;
-                            System.out.println(tileStack.stackSize + "|" + "|" + tempStack2.stackSize);
-                            //int tileSize = tile.decrStackSize()
-
-                            //ItemStack tempReset = new ItemStack(tileStack.getItem(), tileSize - 1, tileStack.getItemDamage());
-
-                            //System.out.println(tileSize + "|" + tempReset.stackSize);
-
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
-
-                            tile.setInventorySlotContents(0, tempStack2);
-
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        }
-                    }
-                }
-
-                //RETURN THE WHOLE STACK
-                if (playerStack == null && player.isSneaking()) {
-                    if (tileStack != null) {
-                        if(state.getValue(ACTIVE)) {
-                            ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.stackSize - 1, tileStack.getItemDamage());
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack));
-                            tile.setInventorySlotContents(0, null);
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        } else {
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tileStack));
-                            tile.setInventorySlotContents(0, null);
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        }
-                    }
-                }
-                //RETURN 1
-
-            }
-        }*/
     }
 
     @Override
@@ -225,7 +176,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         {
             if(!world.isRemote){
                 TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
-                if(tile.getStackInSlot(0) != null){
+                if(tile.getSlotStack(0) != ItemStack.EMPTY){
                     if(world.getBlockState(pos).getValue(ACTIVE)==true){
                         return true;
                     }
@@ -239,34 +190,34 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
      * Called serverside after this block is replaced with another in Chunk, but before the Tile Entity is updated
      */
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops"))
+        if (!world.isRemote && world.getGameRules().getBoolean("doTileDrops"))
         {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if (tileentity instanceof TileFirebox)
+            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+            if (tile !=null)
             {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (TileFirebox)tileentity);
-                worldIn.updateComparatorOutputLevel(pos, this);
+                for (ItemStack stack : tile.getSlotList())
+                {
+                    if (stack != null) {
+                        float offset = 0.7F;
+                        double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        EntityItem item = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack);
+                        item.setDefaultPickupDelay();
+                        world.spawnEntity(item);
+                    }
+                }
             }
         }
 
-        super.breakBlock(worldIn, pos, state);
-    }
-
-    @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        IBlockState state = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(ACTIVE, Boolean.valueOf(false));
+        super.breakBlock(world, pos, state);
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack){
-        if (stack.hasDisplayName()){
-            ((TileFirebox) world.getTileEntity(pos)).setCustomName(stack.getDisplayName());
-        }
-        System.out.println(state.getBlock().getMetaFromState(state));
+
     }
 
     @Override
