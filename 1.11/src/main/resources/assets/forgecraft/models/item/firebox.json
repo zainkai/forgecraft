@@ -1,3 +1,44 @@
 {
-  "parent": "forgecraft:/block/firebox"
+  "forge_marker":1,
+  "textures": {
+    "particle": "forgecraft:blocks/brick",
+    "texture": "forgecraft:blocks/brick"
+  },
+  "parent": "forgecraft:block/firebox",
+  "display": {
+    "thirdperson_": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.1,
+        0.1
+      ]
+    },
+    "firstperson": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.1,
+        0.1
+      ]
+    }
+  }
 }

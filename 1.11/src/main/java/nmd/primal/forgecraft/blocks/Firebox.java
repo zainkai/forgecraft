@@ -9,19 +9,21 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -33,6 +35,8 @@ import nmd.primal.forgecraft.tiles.TileFirebox;
 
 import javax.annotation.Nullable;
 
+import java.util.Random;
+
 import static net.minecraft.block.BlockHorizontal.FACING;
 
 /**
@@ -41,7 +45,8 @@ import static net.minecraft.block.BlockHorizontal.FACING;
 public class Firebox extends CustomContainerFacing implements ITileEntityProvider {
 
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
-
+    protected static final AxisAlignedBB collideBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.99D, 1.0D);
+    protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
     public Firebox(Material material) {
         super(material);
@@ -58,92 +63,121 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         return new TileFirebox();
     }
 
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return collideBox;
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return boundBox;
+    }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (!world.isRemote)
-        {
+        if (!world.isRemote) {
             TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
-            if (tile != null)
-            {
-                ItemStack playerStack = player.getHeldItemMainhand();
-                Item playerItem;
-                ItemStack tileStack = tile.getSlotStack(0);
-
-                if(playerStack != null){
-                    playerItem = playerStack.getItem();
-                    if (playerItem.equals(Items.FLINT_AND_STEEL) || playerItem.equals(Item.getItemFromBlock(Blocks.TORCH))) {
-                        if (CommonUtils.getVanillaItemBurnTime(tileStack) > 0) {
-                            world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
-                            BlockPos tempPos = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
-                            if(world.getBlockState(tempPos).getBlock().equals(Blocks.AIR)){
-                                world.setBlockState(tempPos, Blocks.FIRE.getDefaultState(), 2);
-                                tile.markDirty();
-                                world.notifyBlockUpdate(pos, state, state, 2);
-                            }
-                            if(playerItem.equals(Items.FLINT_AND_STEEL)){
-                                player.inventory.getCurrentItem().damageItem(1, player);
-                            }
+            if (tile != null) {
+                ItemStack pItem = player.inventory.getCurrentItem();
+                ItemStack tileItem = tile.getSlotStack(0);
+                if(pItem.isEmpty()) {
+                    if (player.isSneaking()) {
+                        if (!tileItem.isEmpty()) {
+                            CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(0));
+                            tile.setSlotStack(0, ItemStack.EMPTY);
+                            tile.markDirty();
+                            tile.updateBlock();
+                            return true;
                         }
                     }
-                    if(tile.getSlotStack(0)!=ItemStack.EMPTY){
-                        if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
-                            if (tileStack.getItem() == playerItem && tileStack.getItemDamage() == playerStack.getItemDamage()) {
-                                //tile.setInventorySlotContents(0, playerStack);
-                                ItemStack tempStack = new ItemStack(tileStack.getItem(), tileStack.getCount() + 1, tileStack.getItemDamage());
-                                if(tileStack.getCount() < 64) {
-                                    tile.setSlotStack(0, tempStack);
-                                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                                    //player.setHeldItem(EnumHand.MAIN_HAND, null);
+                }
+                if((pItem.getItem() == Items.FLINT_AND_STEEL) /*|| (pItem.getItem() == PrimalItems.FIRE_BOW)*/ || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
+                    world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
+                    BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+                    if(world.getBlockState(tempPos).getBlock() == Blocks.AIR) {
+                        world.setBlockState(tempPos, Blocks.FIRE.getDefaultState(), 2);
+                    }
+
+                    tile.markDirty();
+                    tile.updateBlock();
+                    return true;
+                }
+                if((!pItem.isEmpty()) && (CommonUtils.getVanillaItemBurnTime(pItem) > 0)) {
+                    if (!tileItem.isEmpty()){
+                        if(pItem.getItem() == tileItem.getItem()){
+                            if(tileItem.getCount() < 64){
+                                if(tileItem.getCount() + pItem.getCount() <= 64){
+                                    tileItem.grow(pItem.getCount());
                                     tile.markDirty();
-                                    world.notifyBlockUpdate(pos, state, state, 2);
+                                    tile.updateBlock();
+                                    return true;
+                                }
+                                if(tileItem.getCount() + pItem.getCount() > 64){
+                                    pItem.setCount(64-pItem.getCount());
+                                    tileItem.setCount(64);
+                                    tile.markDirty();
+                                    tile.updateBlock();
+                                    return true;
                                 }
                             }
                         }
                     }
-                    if(tile.getSlotStack(0)==ItemStack.EMPTY){
-                        if(CommonUtils.getVanillaItemBurnTime(playerStack) > 0) {
-                            if (playerItem != Items.FLINT_AND_STEEL || playerItem != Item.getItemFromBlock(Blocks.TORCH)) {
-                                tile.setSlotStack(0, playerStack);
-                                player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
-                                tile.markDirty();
-                                world.notifyBlockUpdate(pos, state, state, 2);
-                            }
-                        }
-                    }
-                }
-                if(tileStack != null && playerStack == null && player.isSneaking()){
-                    if(state.getValue(ACTIVE)==true){
-                        world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
-                        ItemStack returnStack = new ItemStack(tileStack.getItem(), tileStack.getCount() - 1);
-                        player.setHeldItem(EnumHand.MAIN_HAND, returnStack);
-                        tile.markDirty();
-                        world.notifyBlockUpdate(pos, state, state, 2);
-                    } else {
-                        player.setHeldItem(EnumHand.MAIN_HAND, tileStack);
-                        tile.setSlotStack(0, ItemStack.EMPTY);
-                        tile.markDirty();
-                        world.notifyBlockUpdate(pos, state, state, 2);
-                    }
-
-                    tile.markDirty();
-                    world.notifyBlockUpdate(pos, state, state, 2);
-                }
-                if(!player.isSneaking()){
-                    if(playerStack == null) {
-                        if (tileStack != null) {
-                            ItemStack tempStack1 = new ItemStack(tileStack.getItem(), 1, tileStack.getItemDamage());
-                            ItemStack resetStack = new ItemStack(tileStack.getItem(), tileStack.getCount() - 1, tileStack.getItemDamage());
-                            CommonUtils.spawnItemEntity(world, player, tempStack1);
-                            //world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, tempStack1));
-                            tile.setSlotStack(0,resetStack);
-                            world.notifyBlockUpdate(pos, state, state, 2);
-                        }
+                    if(tileItem.isEmpty()) {
+                        tile.setSlotStack(0, pItem);
+                        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                        return true;
                     }
                 }
             }
         }
-        return true;
+        return false;
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent)
+    {
+        if (!world.isRemote)
+        {
+            if(ent instanceof EntityItem){
+                //System.out.println("collision");
+                EntityItem itemEnt = (EntityItem) ent;
+                ItemStack stack = itemEnt.getEntityItem();
+                //System.out.println(stack);
+                TileFirebox tile = (TileFirebox)world.getTileEntity(pos);
+                if (tile != null) {
+                    if(!tile.getSlotStack(0).isEmpty()) {
+                        if(tile.getSlotStack(0).getItem() == stack.getItem()) {
+                            int entStackSize = stack.getCount();
+                            int tileStackSize = tile.getSlotStack(0).getCount();
+                            int tileSizeRemaining = 64 - tileStackSize;
+                            if (tileStackSize < 64) {
+                                if (entStackSize <= tileSizeRemaining) {
+                                    tile.incrementStackSize(tile.getSlotList(), 0, entStackSize);
+                                    //tile.setSlotStack(0, new ItemStack(stack.getItem(), tileStackSize + entStackSize, stack.getItemDamage()));
+                                    ent.setDead();
+                                    world.notifyBlockUpdate(pos, state, state, 3);
+                                    tile.updateBlock();
+                                }
+                                if (entStackSize > tileSizeRemaining) {
+                                    tile.getSlotStack(0).setCount(64);
+                                    stack.setCount(64 - entStackSize);
+                                }
+                            }
+                        }
+                    }
+                    if (tile.getSlotStack(0).isEmpty()) {
+                        //int entStackSize = stack.getCount();
+                        tile.setSlotStack(0, itemEnt.getEntityItem());
+                        itemEnt.setDead();
+                        world.notifyBlockUpdate(pos, state, state, 3);
+                        tile.updateBlock();
+                    }
+                }
+            }
+        }
     }
 
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
@@ -215,9 +249,16 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         super.breakBlock(world, pos, state);
     }
 
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack){
+    /*@Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        IBlockState state = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(ACTIVE, Boolean.valueOf(false));
+    }*/
 
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(ACTIVE, Boolean.valueOf(false)), 2);
     }
 
     @Override
@@ -344,11 +385,39 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     {
         return EnumBlockRenderType.MODEL;
     }
+
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("incomplete-switch")
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
+    {
+        if(state.getValue(Firebox.ACTIVE) == true)
+        {
+            double d0 = (double)pos.getX() + 0.5D;
+            double d1 = (double)pos.getY() + 0.65D;
+            double d2 = (double)pos.getZ() + 0.5D;
+            double d3 = 0.52D;
+            double d4 = rand.nextDouble() * 0.6D - 0.3D;
+
+            if (rand.nextDouble() < 0.1D)
+            {
+                world.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
+            if(rand.nextInt(4) == 1){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+            }
+            if(rand.nextInt(4) == 2){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+            }
+            if(rand.nextInt(4) == 3){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+            }
+            if(rand.nextInt(4) == 4){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+            }
+        }
+    }
 }
-
-/*
-Firebox States
-Off
-On
-
- */

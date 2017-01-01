@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 
+import java.util.List;
+
 /**
  * Created by mminaie on 12/25/16.
  */
@@ -47,6 +49,19 @@ public abstract class TileBaseSlot extends BaseTile {
         return ItemStackHelper.getAndSplit(this.getSlotList(), index, count);
     }
 
+    public ItemStack incrementStackSize(List<ItemStack> stacks, int index, int count) {
+        Integer tempCount = ((ItemStack)stacks.get(index)).getCount();
+        ItemStack tempStack = ((ItemStack)stacks.get(index));
+        if(tempCount + count > 64) {
+            tempStack.setCount(64);
+        }
+        if(tempCount + count <= 64) {
+            tempStack.setCount(tempCount + count);
+        }
+
+        return tempStack;
+    }
+
     // ***************************************************************************** //
     //  set
     //
@@ -62,16 +77,6 @@ public abstract class TileBaseSlot extends BaseTile {
         this.slotList.clear();
     }
 
-    /**
-     public boolean replaceStack(int index, ItemStack stack)
-     {
-     if (stack != null && stack.getCount() <= this.getSlotLimit()) {
-     this.setSlotStack(index, stack);
-     return true;
-     }
-
-     return false;
-     } **/
 
     // ***************************************************************************** //
     //  NBT

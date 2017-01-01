@@ -32,9 +32,9 @@ public class CommonUtils {
             if (block == Blocks.COAL_BLOCK) return 16000;
         }
 
-        if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
-        if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
-        if (item instanceof ItemHoe && ((ItemHoe)item).getMaterialName().equals("WOOD")) return 200;
+        //if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
+        //if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
+        //if (item instanceof ItemHoe && ((ItemHoe)item).getMaterialName().equals("WOOD")) return 200;
         if(item == Items.STICK) return 100;
         if(item == Items.COAL) return 1600;
         if (item == Item.getItemFromBlock(Blocks.SAPLING)) return 100;

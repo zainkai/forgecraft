@@ -1,8 +1,8 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "forgecraft:blocks/brick",
-		"texture": "forgecraft:blocks/brick"
+		"particle": "blocks/e_particle",
+		"texture": "primal:blocks/brick"
 	},
 	"elements": [
 		{
@@ -63,7 +63,7 @@
 			"to": [ 16, 16, 14 ],
 			"faces": {
 				"down": { "uv": [ 0, 14, 2, 15 ], "texture": "#texture" },
-				"up": { "uv": [ 0, 2, 2, 16 ], "texture": "#texture"},
+				"up": { "uv": [ 2, 0.5, 16, 3 ], "texture": "#texture", "rotation": 90 },
 				"north": { "uv": [ 13, 0, 15, 8 ], "texture": "#texture" },
 				"south": { "uv": [ 0, 4, 2, 8 ], "texture": "#texture" },
 				"west": { "uv": [ 2, 0, 16, 7 ], "texture": "#texture" },
@@ -94,6 +94,19 @@
 				"south": { "uv": [ 2, 0, 14, 8 ], "texture": "#texture" },
 				"west": { "uv": [ 13, 0, 15, 8 ], "texture": "#texture" },
 				"east": { "uv": [ 0, 0, 0, 8 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Cube8",
+			"from": [ -2, 0, -2 ],
+			"to": [ -1, 1, -1 ],
+			"faces": {
+				"down": { "uv": [ 0, 16, 0, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 0, 0, 0 ], "texture": "#texture" },
+				"north": { "uv": [ 16, 15, 16, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 15, 0, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 0, 15, 0, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 16, 15, 16, 16 ], "texture": "#texture" }
 			}
 		}
 	]

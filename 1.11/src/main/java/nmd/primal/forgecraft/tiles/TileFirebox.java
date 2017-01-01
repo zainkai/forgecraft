@@ -20,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
@@ -38,8 +39,9 @@ import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
  */
 public class TileFirebox extends TileBaseSlot implements ITickable {
 
-    private ItemStack[] inventory = new ItemStack [0];
-    private String customName;
+    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+    //private ItemStack[] inventory = new ItemStack [0];
+    //private String customName;
     private int iteration = 0;
 
     @Override
@@ -58,26 +60,29 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
                         world.setBlockState(this.getPos(), state.withProperty(Firebox.ACTIVE, false), 2);
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
-                    } else {
-                        if(this.getSlotStack(0) != ItemStack.EMPTY) {
-                            if (world.rand.nextInt((int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20)) == 0) {
-                                this.decrStackSize(0, 1);
-                                this.markDirty();
-                                world.notifyBlockUpdate(pos, state, state, 2);
-                            }
-                            if(world.getBlockState(abovePos).getBlock() instanceof BlockFurnace){
-                                //System.out.println("Trying to set Block Furnace State active");
-                                IBlockState iblockstate = world.getBlockState(abovePos);
-                                TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(abovePos);
+                    }
+                    if(this.getSlotStack(0) != ItemStack.EMPTY) {
+                        Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
+                        if(decrInt == 0) {
+                            decrInt = 1;
+                        }
+                        if (world.rand.nextInt(decrInt) == 0) {
+                            this.decrStackSize(0, 1);
+                            this.markDirty();
+                            this.updateBlock();
+                        }
+                        if(world.getBlockState(abovePos).getBlock() instanceof BlockFurnace){
+                            //System.out.println("Trying to set Block Furnace State active");
+                            IBlockState iblockstate = world.getBlockState(abovePos);
+                            TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(abovePos);
 
-                                if(world.getBlockState(abovePos).getBlock() == Blocks.LIT_FURNACE){
-                                    tileFurnace.setField(0,1000);
-                                }
-                                if(world.getBlockState(abovePos).getBlock() == Blocks.FURNACE){
-                                    BlockFurnace.setState(true, world, abovePos);
-                                    //world.setBlockState(abovePos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-                                    tileFurnace.setField(0,1000);
-                                }
+                            if(world.getBlockState(abovePos).getBlock() == Blocks.LIT_FURNACE){
+                                tileFurnace.setField(0,1000);
+                            }
+                            if(world.getBlockState(abovePos).getBlock() == Blocks.FURNACE){
+                                BlockFurnace.setState(true, world, abovePos);
+                                //world.setBlockState(abovePos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+                                tileFurnace.setField(0,1000);
                             }
                         }
                     }

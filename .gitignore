@@ -1,6 +1,8 @@
 README.txt
-MinecraftForge-*
-Paulscode*
+1.11/saves*
+1.11/MinecraftForge-*
+1.11/Paulscode*
+1.11/logs*
 forge-*-changelog.txt
 *-fml.txt
 .gradle
