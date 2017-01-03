@@ -7,6 +7,7 @@ import net.minecraftforge.fml.client.config.GuiConfigEntries;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.blocks.PistonBellows;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 //import nmd.primal.forgecraft.Item.ModItems;
@@ -51,7 +52,8 @@ public class ModInfo {
     }
 
     public enum ForgecraftBlocks {
-        FIREBOX("firebox", "firebox");
+        FIREBOX("firebox", "firebox"),
+        PISTONBELLOWS("pistonbellows", "pistonbellows");
 
         private String unlocalizedName;
         private String registryName;

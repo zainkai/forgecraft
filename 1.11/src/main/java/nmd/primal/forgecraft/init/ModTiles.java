@@ -13,6 +13,9 @@ public class ModTiles {
     public static void registerTileEntities () {
         registerTileEntity(TileFirebox.class, "firebox");
     }
+    //public static void registerTileEntities () {
+    //    registerTileEntity(TilePistonBellows.class, "pistonbellows");
+    //}
 
     private static void registerTileEntity(Class<? extends TileEntity> tile_class, String baseName) {
         GameRegistry.registerTileEntity(tile_class, "tile.forgecraft." + baseName);

@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.blocks.Firebox;
+import nmd.primal.forgecraft.blocks.PistonBellows;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -15,20 +16,22 @@ import nmd.primal.forgecraft.blocks.Firebox;
 public class ModBlocks {
 
     public static Block firebox;
+    public static Block pistonbellows;
 
     public static void init() {
 
         firebox = new Firebox(Material.ROCK);
+        pistonbellows = new PistonBellows(Material.WOOD);
     }
 
     public static void register() {
         registerBlock(firebox);
-
+        registerBlock(pistonbellows);
     }
 
     public static void registerRenders() {
-
         registerRender(firebox);
+        registerRender(pistonbellows);
     }
 
     private static void registerBlock(Block block) {
@@ -37,8 +40,6 @@ public class ModBlocks {
         item.setRegistryName(block.getRegistryName());
         GameRegistry.register(item);
     }
-
-
 
     private static void registerRender(Block block) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));

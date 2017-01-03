@@ -43,6 +43,7 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
     //private ItemStack[] inventory = new ItemStack [0];
     //private String customName;
     private int iteration = 0;
+    private int heat;
 
     @Override
     public void update () {
@@ -58,6 +59,7 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
                 if (world.getBlockState(this.getPos()).getValue(Firebox.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
                         world.setBlockState(this.getPos(), state.withProperty(Firebox.ACTIVE, false), 2);
+
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
@@ -87,14 +89,52 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
                         }
                     }
                 }
+                this.heatManager(this.getHeat(), state, this.getSlotStack(0));
             }
-
         }
     }
 
+    public int getHeat(){
+        return this.heat;
+    }
+
+    public void setHeat(int newHeat){
+        this.heat = newHeat;
+    }
     @Override
     public int getSlotLimit() {
         return 1;
+    }
+
+    private void heatManager(Integer h, IBlockState state, ItemStack stack){
+        if(state.getValue(Firebox.ACTIVE) == true){
+            if(!stack.isEmpty()) {
+                if(h > 400) {
+                    this.setHeat(h - 25);
+                }
+                if(h < 400){
+                    this.setHeat(400);
+                }
+            }
+            if(stack.isEmpty()){
+                if(h > 50){
+                    this.setHeat(h - 25);
+                    if(this.getHeat() < 50){
+                        this.setHeat(50);
+                    }
+                }
+            }
+        }
+        if(state.getValue(Firebox.ACTIVE) == false){
+            if(h > 50){
+                this.setHeat(h - 50);
+                if(this.getHeat() < 50){
+                    this.setHeat(50);
+                }
+            }
+        }
+        this.updateBlock();
+        this.markDirty();
     }
 
     public ItemStack removeStackFromSlot(int index) {
