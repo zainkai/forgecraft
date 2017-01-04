@@ -8,8 +8,10 @@ import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -143,5 +145,15 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
         return stack;
     }
 
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        if(index == 0){
+            if(stack.getItem() == Items.COAL){
+                if(stack.getMetadata() == 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }

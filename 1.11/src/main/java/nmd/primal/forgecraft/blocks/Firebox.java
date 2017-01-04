@@ -25,6 +25,8 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,6 +37,7 @@ import nmd.primal.forgecraft.tiles.TileFirebox;
 
 import javax.annotation.Nullable;
 
+import java.util.List;
 import java.util.Random;
 
 import static net.minecraft.block.BlockHorizontal.FACING;
@@ -42,7 +45,7 @@ import static net.minecraft.block.BlockHorizontal.FACING;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class Firebox extends CustomContainerFacing implements ITileEntityProvider {
+public class Firebox extends CustomContainerFacing implements ITileEntityProvider/*, ITextComponent*/ {
 
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
     protected static final AxisAlignedBB collideBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.99D, 1.0D);
@@ -75,6 +78,9 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         return boundBox;
     }
 
+
+
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -93,6 +99,15 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             return true;
                         }
                     }
+                    if(!player.isSneaking()){
+                        if(world.getBlockState(pos).getValue(ACTIVE) == true){
+                            Integer tempInt = tile.getHeat();
+                            String tempString = tempInt.toString();
+                            ITextComponent itextcomponent = new TextComponentString(tempString);
+                            player.sendStatusMessage(itextcomponent, true);
+                            return true;
+                        }
+                    }
                 }
                 if((pItem.getItem() == Items.FLINT_AND_STEEL) /*|| (pItem.getItem() == PrimalItems.FIRE_BOW)*/ || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
                     world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
@@ -105,7 +120,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                     tile.updateBlock();
                     return true;
                 }
-                if((!pItem.isEmpty()) && (CommonUtils.getVanillaItemBurnTime(pItem) > 0)) {
+                if((!pItem.isEmpty()) && tile.isItemValidForSlot(0, pItem)) {
                     if (!tileItem.isEmpty()){
                         if(pItem.getItem() == tileItem.getItem()){
                             if(tileItem.getCount() < 64){

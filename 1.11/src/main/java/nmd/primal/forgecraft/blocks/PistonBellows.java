@@ -16,6 +16,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,6 +46,8 @@ public class PistonBellows extends CustomFacing {
         setHardness(3.0f);
     }
 
+// DOESNT SEEM LIKE I'M ADDING HEAT TO THE RIGHT TILE
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if(!world.isRemote){
@@ -51,14 +55,50 @@ public class PistonBellows extends CustomFacing {
             if(facing == EnumFacing.NORTH){
                 BlockPos tempPos = new BlockPos(pos.getX()-1, pos.getY(), pos.getZ());
                 TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                if(tile != null){
-                    tile.setHeat(tile.getHeat() + 25);
+                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
+                    if(tile != null){
+                        tile.setHeat(tile.getHeat() + 25);
+                        tile.updateBlock();
+                        tile.markDirty();
+                        return true;
+                    }
                 }
-                System.out.println(world.getBlockState(tempPos).getBlock());
             }
             if(facing == EnumFacing.SOUTH){
                 BlockPos tempPos = new BlockPos(pos.getX()+1, pos.getY(), pos.getZ());
-                System.out.println(world.getBlockState(tempPos).getBlock());
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
+                    if(tile != null){
+                        tile.setHeat(tile.getHeat() + 25);
+                        tile.updateBlock();
+                        tile.markDirty();
+                        return true;
+                    }
+                }
+            }
+            if(facing == EnumFacing.EAST){
+                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ()-1);
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
+                    if(tile != null){
+                        tile.setHeat(tile.getHeat() + 25);
+                        tile.updateBlock();
+                        tile.markDirty();
+                        return true;
+                    }
+                }
+            }
+            if(facing == EnumFacing.EAST){
+                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ()+1);
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
+                    if(tile != null){
+                        tile.setHeat(tile.getHeat() + 25);
+                        tile.updateBlock();
+                        tile.markDirty();
+                        return true;
+                    }
+                }
             }
         }
         return true;
