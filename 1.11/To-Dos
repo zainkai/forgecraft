@@ -1,0 +1,14 @@
+To-Dos
+
+- [ ] Fix Firebox model to have more of a bowl shape and have the air inlet on the left
+  - [ ] Redo piston bellows if statements to match the new directional (should match the same directions)
+
+- [ ] Crucible
+  - [ ] Model
+  - [ ] Block
+  - [ ] Tile
+
+- [ ] Tongs
+  - [ ] Model
+  - [ ] Item(s)
+
