@@ -105,6 +105,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             String tempString = tempInt.toString();
                             ITextComponent itextcomponent = new TextComponentString(tempString);
                             player.sendStatusMessage(itextcomponent, true);
+                            //System.out.println(pos);
                             return true;
                         }
                     }

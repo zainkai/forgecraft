@@ -53,7 +53,6 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
             World world = this.getWorld();
             this.iteration ++;
             if(this.iteration == 200 ) {
-                //System.out.println(iteration);
                 this.iteration = 0;
                 IBlockState state = world.getBlockState(this.pos);
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
@@ -61,7 +60,6 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
                 if (world.getBlockState(this.getPos()).getValue(Firebox.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
                         world.setBlockState(this.getPos(), state.withProperty(Firebox.ACTIVE, false), 2);
-
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
@@ -154,6 +152,25 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
             }
         }
         return false;
+    }
+
+    // ***************************************************************************** //
+    //  NBT
+    // ***************************************************************************** //
+    @Override
+    public NBTTagCompound readNBT(NBTTagCompound nbt)
+    {
+        super.readNBT(nbt);
+        this.heat = nbt.getInteger("heat");
+        return nbt;
+    }
+
+    @Override
+    public NBTTagCompound writeNBT(NBTTagCompound nbt)
+    {
+        nbt.setInteger("heat", this.heat);
+        super.writeNBT(nbt);
+        return nbt;
     }
 
 }

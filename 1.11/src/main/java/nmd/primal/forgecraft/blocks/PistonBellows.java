@@ -9,11 +9,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -26,6 +25,7 @@ import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 /**
  * Created by mminaie on 1/1/17.
@@ -46,29 +46,16 @@ public class PistonBellows extends CustomFacing {
         setHardness(3.0f);
     }
 
-// DOESNT SEEM LIKE I'M ADDING HEAT TO THE RIGHT TILE
-
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if(!world.isRemote){
-            System.out.println(facing);
-            if(facing == EnumFacing.NORTH){
-                BlockPos tempPos = new BlockPos(pos.getX()-1, pos.getY(), pos.getZ());
-                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
-                    if(tile != null){
-                        tile.setHeat(tile.getHeat() + 25);
-                        tile.updateBlock();
-                        tile.markDirty();
-                        return true;
-                    }
-                }
-            }
-            if(facing == EnumFacing.SOUTH){
+            //System.out.println(state.getValue(PistonBellows.FACING));
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.NORTH){
                 BlockPos tempPos = new BlockPos(pos.getX()+1, pos.getY(), pos.getZ());
                 TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.EAST)){
                     if(tile != null){
+                        //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
                         tile.setHeat(tile.getHeat() + 25);
                         tile.updateBlock();
                         tile.markDirty();
@@ -76,11 +63,12 @@ public class PistonBellows extends CustomFacing {
                     }
                 }
             }
-            if(facing == EnumFacing.EAST){
-                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ()-1);
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.SOUTH){
+                BlockPos tempPos = new BlockPos(pos.getX()-1, pos.getY(), pos.getZ());
                 TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.WEST)){
                     if(tile != null){
+                        //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
                         tile.setHeat(tile.getHeat() + 25);
                         tile.updateBlock();
                         tile.markDirty();
@@ -88,11 +76,25 @@ public class PistonBellows extends CustomFacing {
                     }
                 }
             }
-            if(facing == EnumFacing.EAST){
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.EAST){
                 BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ()+1);
                 TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                if(world.getBlockState(tempPos) == Firebox.ACTIVE){
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.SOUTH)){
                     if(tile != null){
+                        //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
+                        tile.setHeat(tile.getHeat() + 25);
+                        tile.updateBlock();
+                        tile.markDirty();
+                        return true;
+                    }
+                }
+            }
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.WEST){
+                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ()-1);
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.NORTH)){
+                    if(tile != null){
+                        //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
                         tile.setHeat(tile.getHeat() + 25);
                         tile.updateBlock();
                         tile.markDirty();
@@ -101,7 +103,62 @@ public class PistonBellows extends CustomFacing {
                 }
             }
         }
+        if(world.isRemote){
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
+                BlockPos tempPos = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.EAST)){
+                    makeEmbers(world, tempPos, world.rand);
+                }
+            }
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.SOUTH) {
+                BlockPos tempPos = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ());
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.WEST)){
+                    makeEmbers(world, tempPos, world.rand);
+                }
+            }
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.EAST) {
+                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.SOUTH)){
+                    makeEmbers(world, tempPos, world.rand);
+                }
+            }
+            if(state.getValue(PistonBellows.FACING) == EnumFacing.WEST) {
+                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
+                TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
+                if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.NORTH)){
+                    makeEmbers(world, tempPos, world.rand);
+                }
+            }
+        }
         return true;
+    }
+
+    private void makeEmbers(World world, BlockPos pos, Random rand){
+        double d0 = (double)pos.getX() + 0.5D;
+        double d1 = (double)pos.getY() + 0.65D;
+        double d2 = (double)pos.getZ() + 0.5D;
+        double d3 = 0.52D;
+        double d4 = rand.nextDouble() * 0.6D - 0.3D;
+
+        if(rand.nextInt(3) == 0){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+        }
+        if(rand.nextInt(3) == 1){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+        }
+        if(rand.nextInt(3) == 2){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+        }
+        if(rand.nextInt(3) == 3){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+        }
     }
 
     @Override
