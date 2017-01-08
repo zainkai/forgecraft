@@ -406,7 +406,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         if(state.getValue(Firebox.ACTIVE) == true)
         {
             double d0 = (double)pos.getX() + 0.5D;
-            double d1 = (double)pos.getY() + 0.65D;
+            double d1 = (double)pos.getY() + 0.96D;
             double d2 = (double)pos.getZ() + 0.5D;
             double d3 = 0.52D;
             double d4 = rand.nextDouble() * 0.6D - 0.3D;

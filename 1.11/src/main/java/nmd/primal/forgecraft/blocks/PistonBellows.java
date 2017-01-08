@@ -39,7 +39,10 @@ public class PistonBellows extends CustomContainerFacing {
 
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
     //protected static final AxisAlignedBB collideBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.99D, 1.0D);
-    protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.1875D, 0.0D, 0.0D, 1.0D, 12 / 16D, 1.0D);
+    protected static final AxisAlignedBB boundBoxNorth = new AxisAlignedBB(0.1875D, 0.0D, 0.0D, 1.0D, 12 / 16D, 1.0D);
+    protected static final AxisAlignedBB boundBoxSouth = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.8125D, 12 / 16D, 1.0D);
+    protected static final AxisAlignedBB boundBoxEast = new AxisAlignedBB(0.0D, 0.0D, 0.1875D, 1.0D, 12 / 16D, 1.0D);
+    protected static final AxisAlignedBB boundBoxWest = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 12 / 16D, 0.8125D);
 
     public PistonBellows(Material material) {
         super(material);
@@ -136,48 +139,6 @@ public class PistonBellows extends CustomContainerFacing {
                 }
             }
         }
-        /*if(world.isRemote){
-            if(state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
-                BlockPos tempPos = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
-                if(world.getBlockState(tempPos).getBlock() == ModBlocks.firebox){
-                    TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                    if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.EAST)){
-                        makeEmbers(world, tempPos, world.rand);
-                    }
-                }
-
-            }
-            if(state.getValue(PistonBellows.FACING) == EnumFacing.SOUTH) {
-                BlockPos tempPos = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ());
-                if(world.getBlockState(tempPos).getBlock() == ModBlocks.firebox){
-                    TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                    if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.WEST)){
-                        makeEmbers(world, tempPos, world.rand);
-                    }
-                }
-
-            }
-            if(state.getValue(PistonBellows.FACING) == EnumFacing.EAST) {
-                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
-                if(world.getBlockState(tempPos).getBlock() == ModBlocks.firebox){
-                    TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                    if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.SOUTH)){
-                        makeEmbers(world, tempPos, world.rand);
-                    }
-                }
-
-            }
-            if(state.getValue(PistonBellows.FACING) == EnumFacing.WEST) {
-                BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
-                if(world.getBlockState(tempPos).getBlock() == ModBlocks.firebox){
-                    TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
-                    if((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.NORTH)){
-                        makeEmbers(world, tempPos, world.rand);
-                    }
-                }
-
-            }
-        }*/
         return true;
     }
 
@@ -187,7 +148,21 @@ public class PistonBellows extends CustomContainerFacing {
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return boundBox;
+        state = state.getActualState(source, pos);
+        EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+
+        switch (enumfacing)
+        {
+            case EAST:
+            default:
+                return boundBoxEast;
+            case SOUTH:
+                return boundBoxSouth;
+            case WEST:
+                return boundBoxWest;
+            case NORTH:
+                return boundBoxNorth;
+        }
     }
 
     @Override
@@ -389,7 +364,7 @@ public class PistonBellows extends CustomContainerFacing {
     }
     private void makeEmbers(World world, BlockPos pos, Random rand){
         double d0 = (double)pos.getX() + 0.5D;
-        double d1 = (double)pos.getY() + 0.65D;
+        double d1 = (double)pos.getY() + 0.96D;
         double d2 = (double)pos.getZ() + 0.5D;
         double d3 = 0.52D;
         double d4 = rand.nextDouble() * 0.6D - 0.3D;

@@ -63,7 +63,7 @@ public class TilePistonBellowsRender extends TileEntitySpecialRenderer<TilePisto
             //GL11.glPushMatrix();
             GL11.glRotated(270, 0.0F, 1.0F, 0.0F);
             if(state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE){
-                System.out.println(tile.getAnimation());
+                //System.out.println(tile.getAnimation());
                 GL11.glTranslated(0.0D, 0, (double) tile.getAnimation()/80);
             }
             ItemStack stackToRender = new ItemStack(ModItems.pistonbellows, 1);
@@ -74,7 +74,7 @@ public class TilePistonBellowsRender extends TileEntitySpecialRenderer<TilePisto
             //GL11.glPushMatrix();
             GL11.glRotated(90, 0.0F, 1.0F, 0.0F);
             if(state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE){
-                System.out.println(tile.getAnimation());
+                //System.out.println(tile.getAnimation());
                 GL11.glTranslated(0.0D, 0, (double) tile.getAnimation()/80);
             }
             ItemStack stackToRender = new ItemStack(ModItems.pistonbellows, 1);
