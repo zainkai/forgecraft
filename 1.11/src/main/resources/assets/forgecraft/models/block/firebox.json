@@ -96,5 +96,19 @@
 				"east": { "uv": [ 0, 0, 0, 8 ], "texture": "#texture" }
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 60, 45, 0 ],
+			"scale":  [ 0.5, 0.6, 0.5 ]
+		},
+		"firstperson_righthand": {
+			"rotation":  [ 0, 45, 0 ],
+			"scale":  [ 0.7, 0.7, 0.7 ]
+		},
+		"gui": {
+			"rotation":  [ 45, 45, 0 ],
+			"scale":  [ 0.6, 0.6, 0.6 ]
+		}
+	}
 }

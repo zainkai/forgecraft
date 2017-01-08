@@ -52,7 +52,7 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
         if(!world.isRemote){
             World world = this.getWorld();
             this.iteration ++;
-            if(this.iteration == 200 ) {
+            if(this.iteration == 300 ) {
                 this.iteration = 0;
                 IBlockState state = world.getBlockState(this.pos);
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());

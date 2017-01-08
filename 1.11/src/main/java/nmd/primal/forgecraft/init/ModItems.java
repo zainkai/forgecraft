@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import nmd.primal.forgecraft.items.ItemBellowsHandle;
 import nmd.primal.forgecraft.items.ItemTest;
 
 /**
@@ -11,23 +12,21 @@ import nmd.primal.forgecraft.items.ItemTest;
  */
 public class ModItems {
 
+    public static Item pistonbellows;
     public static Item test;
-    //public static Item cheese;
 
     public static void init() {
-
+        pistonbellows = new ItemBellowsHandle();
         //test = new ItemTest();
-        //cheese = new ItemCheese();
     }
 
     public static void register() {
-
+        GameRegistry.register(pistonbellows);
         //GameRegistry.register(test);
-        //GameRegistry.register(cheese);
     }
 
     public static void registerRenders() {
-        //registerRender(cheese);
+        registerRender(pistonbellows);
         //registerRender(test);
     }
 

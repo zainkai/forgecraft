@@ -13,7 +13,6 @@ public class ItemTest extends BaseItem {
     public ItemTest() {
         setUnlocalizedName(ModInfo.ForgecraftItems.TEST.getUnlocalizedName());
         setRegistryName(ModInfo.ForgecraftItems.TEST.getRegistryName());
-
     }
 
 }

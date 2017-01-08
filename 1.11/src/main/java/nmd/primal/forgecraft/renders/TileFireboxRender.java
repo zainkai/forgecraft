@@ -34,7 +34,6 @@ import scala.collection.parallel.ParIterableLike;
 public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
 {
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-    //private EntityItem entItem = null;
 
     @Override
     public void renderTileEntityAt(TileFirebox tile, double x, double y, double z, float partialTicks, int destroyStage)

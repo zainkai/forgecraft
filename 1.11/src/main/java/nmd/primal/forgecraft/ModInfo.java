@@ -32,7 +32,8 @@ public class ModInfo {
     //public static final String UPDATE_JSON  = "";
 
     public enum ForgecraftItems {
-        TEST("test", "ItemTest");
+        TEST("test", "ItemTest"),
+        BELLOWSHANDLE("bellowshandle", "bellowshandle");
 
         private String unlocalizedName;
         private String registryName;
