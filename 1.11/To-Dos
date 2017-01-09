@@ -3,6 +3,7 @@ To-Dos
 - [x] Fix Firebox model to have more of a bowl shape
 - [x] Redo piston bellows if statements to match the new directional (should match the same directions)
 - [X] Fix PistonBellows Bounding Boxes to match the direction
+- [ ] Add wood variants for piston bellows
 
 - [ ] Crucible
   - [ ] Model
