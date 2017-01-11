@@ -17,21 +17,25 @@ public class ModBlocks {
 
     public static Block firebox;
     public static Block pistonbellows;
+    public static Block pistonbellowsjungle;
 
     public static void init() {
 
         firebox = new Firebox(Material.ROCK);
         pistonbellows = new PistonBellows(Material.WOOD);
+        pistonbellowsjungle = new PistonBellows(Material.WOOD);
     }
 
     public static void register() {
         registerBlock(firebox);
         registerBlock(pistonbellows);
+        registerBlock(pistonbellowsjungle);
     }
 
     public static void registerRenders() {
         registerRender(firebox);
         registerRender(pistonbellows);
+        registerRender(pistonbellowsjungle);
     }
 
     private static void registerBlock(Block block) {
