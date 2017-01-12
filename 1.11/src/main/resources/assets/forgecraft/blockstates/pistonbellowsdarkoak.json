@@ -1,4 +1,13 @@
 {
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "blocks/checker_test",
+      "texture_test": "blocks/checker_test",
+      "texture": "blocks/planks_big_oak"
+    },
+    "parent": "forgecraft:block/pistonbellows"
+  },
   "variants": {
     "active=false,facing=north": { "model": "forgecraft:pistonbellows" },
     "active=true,facing=north": { "model": "forgecraft:pistonbellows" },

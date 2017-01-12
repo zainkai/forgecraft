@@ -54,7 +54,7 @@ public class ModInfo {
 
     public enum ForgecraftBlocks {
         FIREBOX("firebox", "firebox"),
-        PISTONBELLOWSJUNGLE("pistonbellowsjungle", "pistonbellowsjungle"),
+        //PISTONBELLOWSJUNGLE("pistonbellowsjungle", "pistonbellowsjungle"),
         PISTONBELLOWS("pistonbellows", "pistonbellows");
 
         private String unlocalizedName;

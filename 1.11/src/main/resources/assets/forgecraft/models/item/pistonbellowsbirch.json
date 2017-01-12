@@ -1,0 +1,9 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "blocks/checker_test",
+    "texture_test": "blocks/checker_test",
+    "texture": "blocks/planks_birch"
+  },
+  "parent": "forgecraft:block/pistonbellows"
+}

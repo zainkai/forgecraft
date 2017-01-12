@@ -44,11 +44,12 @@ public class PistonBellows extends CustomContainerFacing {
     protected static final AxisAlignedBB boundBoxEast = new AxisAlignedBB(0.0D, 0.0D, 0.1875D, 1.0D, 12 / 16D, 1.0D);
     protected static final AxisAlignedBB boundBoxWest = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 12 / 16D, 0.8125D);
 
-    public PistonBellows(Material material) {
+    public PistonBellows(Material material, String registryName) {
         super(material);
 
         setUnlocalizedName(ModInfo.ForgecraftBlocks.PISTONBELLOWS.getUnlocalizedName());
-        setRegistryName(ModInfo.ForgecraftBlocks.PISTONBELLOWS.getRegistryName());
+        //setRegistryName(ModInfo.ForgecraftBlocks.PISTONBELLOWS.getRegistryName());
+        setRegistryName(registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);

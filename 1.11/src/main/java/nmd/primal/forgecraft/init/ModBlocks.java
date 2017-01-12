@@ -16,26 +16,44 @@ import nmd.primal.forgecraft.blocks.PistonBellows;
 public class ModBlocks {
 
     public static Block firebox;
-    public static Block pistonbellows;
+    //public static Block pistonbellows;
+    public static Block pistonbellowsoak;
     public static Block pistonbellowsjungle;
+    public static Block pistonbellowsbirch;
+    public static Block pistonbellowsspruce;
+    public static Block pistonbellowsdarkoak;
+    public static Block pistonbellowsacacia;
+
 
     public static void init() {
 
         firebox = new Firebox(Material.ROCK);
-        pistonbellows = new PistonBellows(Material.WOOD);
-        pistonbellowsjungle = new PistonBellows(Material.WOOD);
+        pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
+        pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");
+        pistonbellowsbirch = new PistonBellows(Material.WOOD, "pistonbellowsbirch");
+        pistonbellowsspruce = new PistonBellows(Material.WOOD, "pistonbellowsspruce");
+        pistonbellowsdarkoak = new PistonBellows(Material.WOOD, "pistonbellowsdarkoak");
+        pistonbellowsacacia = new PistonBellows(Material.WOOD, "pistonbellowsacacia");
     }
 
     public static void register() {
         registerBlock(firebox);
-        registerBlock(pistonbellows);
+        registerBlock(pistonbellowsoak);
         registerBlock(pistonbellowsjungle);
+        registerBlock(pistonbellowsbirch);
+        registerBlock(pistonbellowsspruce);
+        registerBlock(pistonbellowsdarkoak);
+        registerBlock(pistonbellowsacacia);
     }
 
     public static void registerRenders() {
         registerRender(firebox);
-        registerRender(pistonbellows);
+        registerRender(pistonbellowsoak);
         registerRender(pistonbellowsjungle);
+        registerRender(pistonbellowsbirch);
+        registerRender(pistonbellowsspruce);
+        registerRender(pistonbellowsdarkoak);
+        registerRender(pistonbellowsacacia);
     }
 
     private static void registerBlock(Block block) {
