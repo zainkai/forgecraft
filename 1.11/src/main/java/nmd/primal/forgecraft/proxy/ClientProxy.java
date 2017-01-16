@@ -8,8 +8,6 @@ import nmd.primal.forgecraft.renders.TilePistonBellowsRender;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
 
-import static nmd.primal.forgecraft.init.ModItems.*;
-
 /**
  * Created by kitsu on 11/26/2016.
  */

@@ -1,39 +1,18 @@
 package nmd.primal.forgecraft.tiles;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import net.minecraft.block.Block;
-import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.gui.GuiChat;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.SlotFurnaceFuel;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
-import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.Firebox;
-import nmd.primal.forgecraft.init.ModBlocks;
-import org.omg.PortableInterceptor.ACTIVE;
-import net.minecraft.block.BlockFurnace;
 
-import static net.minecraft.block.BlockHorizontal.FACING;
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
 /**

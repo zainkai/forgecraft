@@ -7,15 +7,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.init.ModTiles;
 import nmd.primal.forgecraft.proxy.CommonProxy;
-//import nmd.primal.forgecraft.common.init.*;
 
-import java.util.Locale;
+//import nmd.primal.forgecraft.common.init.*;
 
 @Mod(   modid = ModInfo.MOD_ID,
         name = ModInfo.MOD_NAME,

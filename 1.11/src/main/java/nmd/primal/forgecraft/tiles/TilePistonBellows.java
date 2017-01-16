@@ -1,25 +1,10 @@
 package nmd.primal.forgecraft.tiles;
 
-import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.animation.TimeValues;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.model.animation.CapabilityAnimation;
-import net.minecraftforge.common.model.animation.IAnimationStateMachine;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import nmd.primal.forgecraft.blocks.Firebox;
 import nmd.primal.forgecraft.blocks.PistonBellows;
-
-import javax.annotation.Nonnull;
 
 /**
  * Created by mminaie on 1/5/17.

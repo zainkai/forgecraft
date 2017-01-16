@@ -1,8 +1,5 @@
 package nmd.primal.forgecraft.items;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.Mod;
 import nmd.primal.forgecraft.ModInfo;
 
 /**

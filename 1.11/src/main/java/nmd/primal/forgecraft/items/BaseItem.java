@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.items;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import nmd.primal.forgecraft.ModInfo;
 

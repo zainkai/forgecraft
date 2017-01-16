@@ -1,7 +1,6 @@
 package nmd.primal.forgecraft.init;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityNote;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;

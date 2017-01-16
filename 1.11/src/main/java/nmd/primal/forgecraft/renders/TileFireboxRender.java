@@ -1,32 +1,15 @@
 package nmd.primal.forgecraft.renders;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderEntityItem;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.tileentity.RenderItemFrame;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import nmd.primal.forgecraft.blocks.Firebox;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 import org.lwjgl.opengl.GL11;
-import scala.collection.parallel.ParIterableLike;
 
 /**
  * Created by kitsu on 12/4/2016.

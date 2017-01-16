@@ -1,10 +1,5 @@
 package nmd.primal.forgecraft.compat;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.IFuelHandler;
-
-import java.util.Map;
-
 /**
  * Created by kitsu on 12/3/2016.
  */
