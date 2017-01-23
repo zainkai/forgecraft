@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.init;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
 
@@ -13,6 +14,7 @@ public class ModTiles {
     public static void registerTileEntities () {
         registerTileEntity(TileFirebox.class, "firebox");
         registerTileEntity(TilePistonBellows.class, "pistonbellows");
+        registerTileEntity(TileBloomery.class, "bloomery");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> tile_class, String baseName) {

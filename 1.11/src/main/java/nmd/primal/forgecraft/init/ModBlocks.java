@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.Firebox;
 import nmd.primal.forgecraft.blocks.PistonBellows;
 
@@ -16,7 +17,7 @@ import nmd.primal.forgecraft.blocks.PistonBellows;
 public class ModBlocks {
 
     public static Block firebox;
-    //public static Block pistonbellows;
+    public static Block bloomery;
     public static Block pistonbellowsoak;
     public static Block pistonbellowsjungle;
     public static Block pistonbellowsbirch;
@@ -34,6 +35,7 @@ public class ModBlocks {
         pistonbellowsspruce = new PistonBellows(Material.WOOD, "pistonbellowsspruce");
         pistonbellowsdarkoak = new PistonBellows(Material.WOOD, "pistonbellowsdarkoak");
         pistonbellowsacacia = new PistonBellows(Material.WOOD, "pistonbellowsacacia");
+        bloomery = new Bloomery(Material.ROCK, "bloomery");
     }
 
     public static void register() {
@@ -44,6 +46,7 @@ public class ModBlocks {
         registerBlock(pistonbellowsspruce);
         registerBlock(pistonbellowsdarkoak);
         registerBlock(pistonbellowsacacia);
+        registerBlock(bloomery);
     }
 
     public static void registerRenders() {
@@ -54,6 +57,7 @@ public class ModBlocks {
         registerRender(pistonbellowsspruce);
         registerRender(pistonbellowsdarkoak);
         registerRender(pistonbellowsacacia);
+        registerRender(bloomery);
     }
 
     private static void registerBlock(Block block) {

@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
 
@@ -69,7 +70,7 @@ public class PistonBellows extends CustomContainerFacing {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if(!world.isRemote){
-            System.out.println(state.getValue(PistonBellows.FACING));
+            //System.out.println(state.getValue(PistonBellows.FACING));
             if(state.getValue(this.ACTIVE) == false) {
                 world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
@@ -80,6 +81,22 @@ public class PistonBellows extends CustomContainerFacing {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
                                 tile.setHeat(tile.getHeat() + 25);
+                                tile.updateBlock();
+                                tile.markDirty();
+                                return true;
+                            }
+                        }
+                    }
+                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
+                        TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                                && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.EAST)) {
+                            if (tile != null) {
+                                //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
+                                tile.setHeat(tile.getHeat() + 25);
+                                if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
+                                    tile.setHeat(tile.getHeat() + 25);
+                                }
                                 tile.updateBlock();
                                 tile.markDirty();
                                 return true;
@@ -101,6 +118,22 @@ public class PistonBellows extends CustomContainerFacing {
                             }
                         }
                     }
+                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
+                        TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                                && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.WEST)) {
+                            if (tile != null) {
+                                //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
+                                tile.setHeat(tile.getHeat() + 25);
+                                if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
+                                    tile.setHeat(tile.getHeat() + 25);
+                                }
+                                tile.updateBlock();
+                                tile.markDirty();
+                                return true;
+                            }
+                        }
+                    }
                 }
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.EAST) {
                     BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
@@ -116,6 +149,22 @@ public class PistonBellows extends CustomContainerFacing {
                             }
                         }
                     }
+                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
+                        TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                                && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.SOUTH)) {
+                            if (tile != null) {
+                                //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
+                                tile.setHeat(tile.getHeat() + 25);
+                                if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
+                                    tile.setHeat(tile.getHeat() + 25);
+                                }
+                                tile.updateBlock();
+                                tile.markDirty();
+                                return true;
+                            }
+                        }
+                    }
                 }
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.WEST) {
                     BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
@@ -125,6 +174,22 @@ public class PistonBellows extends CustomContainerFacing {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
                                 tile.setHeat(tile.getHeat() + 25);
+                                tile.updateBlock();
+                                tile.markDirty();
+                                return true;
+                            }
+                        }
+                    }
+                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
+                        TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                                && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.NORTH)) {
+                            if (tile != null) {
+                                //System.out.println(world.getBlockState(tempPos).getValue(Firebox.FACING));
+                                tile.setHeat(tile.getHeat() + 25);
+                                if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
+                                    tile.setHeat(tile.getHeat() + 25);
+                                }
                                 tile.updateBlock();
                                 tile.markDirty();
                                 return true;

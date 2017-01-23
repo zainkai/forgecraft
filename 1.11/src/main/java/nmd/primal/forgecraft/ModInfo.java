@@ -18,7 +18,7 @@ public class ModInfo {
     //public static final String MOD_PREFIX = MOD_ID + ":";
     //public static final String MOD_CHANNEL = MOD_ID;
     public static final String MOD_VERSION = "1.0.1";
-    public static final String MC_VERSIONS = "[1.9.4, 1.11.2)";
+    public static final String MC_VERSIONS = "[1.11.0, 1.11.1)";
 
     /** Mod Structures **/
     public static final String SERVER_PROXY = "nmd.primal.forgecraft.proxy.ServerProxy";
@@ -49,8 +49,8 @@ public class ModInfo {
 
     public enum ForgecraftBlocks {
         FIREBOX("firebox", "firebox"),
-        //PISTONBELLOWSJUNGLE("pistonbellowsjungle", "pistonbellowsjungle"),
-        PISTONBELLOWS("pistonbellows", "pistonbellows");
+        PISTONBELLOWS("pistonbellows", "pistonbellows"),
+        BLOOMERY("bloomery", "bloomery");
 
         private String unlocalizedName;
         private String registryName;
