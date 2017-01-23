@@ -28,7 +28,8 @@ public class ModInfo {
 
     public enum ForgecraftItems {
         TEST("test", "ItemTest"),
-        BELLOWSHANDLE("bellowshandle", "bellowshandle");
+        BELLOWSHANDLE("bellowshandle", "bellowshandle"),
+        SOFTCRUCIBLE("softcrucible", "softcrucible");
 
         private String unlocalizedName;
         private String registryName;

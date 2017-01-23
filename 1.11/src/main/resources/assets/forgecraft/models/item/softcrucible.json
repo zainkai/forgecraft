@@ -1,8 +1,8 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/e_particle",
-		"texture": "blocks/clay"
+		"particle": "forgecraft:items/clay",
+		"texture": "forgecraft:items/clay"
 	},
 	"elements": [
 		{
@@ -122,5 +122,23 @@
 				"east": { "uv": [ 4, 10, 5, 11 ], "texture": "#texture" }
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation":  [ 0.1, 1.1, -2.35 ]
+		},
+		"firstperson_righthand": {
+			"translation":  [ 0, 4, 0 ]
+		},
+		"gui": {
+			"translation":  [ 0, 4, 0 ]
+		},
+		"ground": {
+			"translation":  [ 0, 4, 0 ]
+		},
+		"fixed": {
+			"rotation":  [ 45, 45, 0 ],
+			"translation":  [ 0, 4, 0 ]
+		}
+	}
 }

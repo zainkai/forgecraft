@@ -1,12 +1,17 @@
 To-Dos
 
-- [x] Fix Firebox model to have more of a bowl shape
-- [x] Redo piston bellows if statements to match the new directional (should match the same directions)
-- [X] Fix PistonBellows Bounding Boxes to match the direction
-- [ ] Add wood variants for piston bellows
+- [ ] Forging Recipe Handler
+  - [ ] Iron Temp Min
+  - [ ] Iron Temp Max
+  - [ ] Iron Ideal Time
+  - [ ] Iron Time Modifier
+  - [ ] Iron Failure Modifier
+  - [ ] Iron Pre-Fail Output
+  - [ ] Iron Success Output
+  - [ ] Iron Post Fail Output
 
 - [ ] Crucible
-  - [ ] Model
+  - [x] Model
   - [ ] Block
   - [ ] Tile
 
