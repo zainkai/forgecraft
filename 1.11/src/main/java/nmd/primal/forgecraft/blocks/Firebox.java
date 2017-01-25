@@ -117,6 +117,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                             if(tileItem.getCount() < 64){
                                 if(tileItem.getCount() + pItem.getCount() <= 64){
                                     tileItem.grow(pItem.getCount());
+                                    player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                                     tile.markDirty();
                                     tile.updateBlock();
                                     return true;

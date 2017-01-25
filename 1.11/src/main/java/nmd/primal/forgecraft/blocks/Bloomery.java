@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 
@@ -65,6 +66,7 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
             if (tile != null) {
                 ItemStack pItem = player.inventory.getCurrentItem();
                 ItemStack tileItem = tile.getSlotStack(0);
+                ItemStack tileItem1 = tile.getSlotStack(1);
                 if(pItem.isEmpty()) {
                     /*if (player.isSneaking()) {
                         if (!tileItem.isEmpty()) {
@@ -101,6 +103,7 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                             if(tileItem.getCount() < 64){
                                 if(tileItem.getCount() + pItem.getCount() <= 64){
                                     tileItem.grow(pItem.getCount());
+                                    player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                                     tile.markDirty();
                                     tile.updateBlock();
                                     return true;
@@ -121,6 +124,18 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                         return true;
                     }
                 }
+
+                if((!pItem.isEmpty()) && tile.isItemValidForSlot(1, pItem)) {
+                    if (!tileItem1.isEmpty()) {
+                        return false;
+                    }
+                    if(tileItem1.isEmpty()){
+                        ItemStack tempItem = new ItemStack(ModItems.softcrucible, 1);
+                        tile.setSlotStack(1, tempItem);
+                        pItem.shrink(1);
+                    }
+                }
+
                 if(!pItem.isEmpty()) {
                     if(pItem.getItem() == Item.getItemFromBlock(Blocks.STONE_SLAB)){
                         world.setBlockState(pos, state.withProperty(COVERED, true), 2);

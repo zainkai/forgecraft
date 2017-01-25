@@ -52,7 +52,8 @@ public class ModInfo {
     public enum ForgecraftBlocks {
         FIREBOX("firebox", "firebox"),
         PISTONBELLOWS("pistonbellows", "pistonbellows"),
-        BLOOMERY("bloomery", "bloomery");
+        BLOOMERY("bloomery", "bloomery"),
+        EMPTYCRUCIBLE("emptycrucible", "emptycrucible");
 
         private String unlocalizedName;
         private String registryName;

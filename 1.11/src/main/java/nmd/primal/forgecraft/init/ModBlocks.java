@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.blocks.Bloomery;
+import nmd.primal.forgecraft.blocks.EmptyCrucible;
 import nmd.primal.forgecraft.blocks.Firebox;
 import nmd.primal.forgecraft.blocks.PistonBellows;
 
@@ -24,6 +25,7 @@ public class ModBlocks {
     public static Block pistonbellowsspruce;
     public static Block pistonbellowsdarkoak;
     public static Block pistonbellowsacacia;
+    public static Block emptycrucible;
 
 
     public static void init() {
@@ -36,6 +38,7 @@ public class ModBlocks {
         pistonbellowsdarkoak = new PistonBellows(Material.WOOD, "pistonbellowsdarkoak");
         pistonbellowsacacia = new PistonBellows(Material.WOOD, "pistonbellowsacacia");
         bloomery = new Bloomery(Material.ROCK, "bloomery");
+        emptycrucible = new EmptyCrucible(Material.ROCK, "emptycrucible");
     }
 
     public static void register() {
@@ -47,6 +50,7 @@ public class ModBlocks {
         registerBlock(pistonbellowsdarkoak);
         registerBlock(pistonbellowsacacia);
         registerBlock(bloomery);
+        registerBlock(emptycrucible);
     }
 
     public static void registerRenders() {
@@ -58,6 +62,7 @@ public class ModBlocks {
         registerRender(pistonbellowsdarkoak);
         registerRender(pistonbellowsacacia);
         registerRender(bloomery);
+        registerRender(emptycrucible);
     }
 
     private static void registerBlock(Block block) {

@@ -32,29 +32,40 @@ public class TileBloomeryRender extends TileEntitySpecialRenderer<TileBloomery>
         int bright = tile.getWorld().getCombinedLight(pos.up(), 0);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, bright % 65536, bright / 65536);
 
-        ItemStack stack1 = tile.getSlotStack(0);
+        ItemStack stack0 = tile.getSlotStack(0);
+        ItemStack stack1 = tile.getSlotStack(1);
 
-        boolean is_block = stack1.getItem() instanceof ItemBlock;
-        float scale = is_block ? 0.1725F : 0.3F;
-        double xTrans = is_block ? -1.6D : -0.45D;
-        double yTrans = is_block ? -1.26D : -0.7D;
 
-        if (!stack1.isEmpty()) {
-            int stackRotation = stack1.getCount();
+        if (!stack0.isEmpty()) {
+
+            boolean is_block = stack0.getItem() instanceof ItemBlock;
+            float scale = is_block ? 0.1725F : 0.3F;
+            double xTrans = is_block ? -1.6D : -0.45D;
+            double yTrans = is_block ? -1.26D : -0.7D;
+            int stackRotation = stack0.getCount();
+
             GL11.glPushMatrix();
             GL11.glScalef(scale, scale, scale);
             GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-            renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+            renderItem.renderItem(stack0, renderItem.getItemModelMesher().getItemModel(stack0));
             GL11.glPopMatrix();
+
             for(int i = 0; i < Math.ceil(stackRotation/8) + 1; i++){
                 GL11.glPushMatrix();
                 GL11.glScalef(scale, scale, scale);
                 GL11.glRotated(45.0F * i, 0.0F, 1.0F, 0.0F);
                 GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glTranslated(xTrans, yTrans, 0.0D);
-                renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+                renderItem.renderItem(stack0, renderItem.getItemModelMesher().getItemModel(stack0));
                 GL11.glPopMatrix();
             }
+        }
+
+        if(!stack1.isEmpty()){
+            GL11.glPushMatrix();
+            GL11.glTranslated(0, 0.50D, 0);
+                renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+            GL11.glPopMatrix();
         }
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);

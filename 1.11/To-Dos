@@ -10,12 +10,13 @@ To-Dos
   - [ ] Iron Success Output
   - [ ] Iron Post Fail Output
 
-- [ ] Crucible
+- [X] Soft Crucible
   - [x] Model
-  - [ ] Block
-  - [ ] Tile
+  - [x] Item
 
-- [ ] Tongs
-  - [ ] Model
-  - [ ] Item(s)
+
+- [x] Tongs
+  - [x] Model
+  - [x] Item(s)
+  - [ ] Functionality
 

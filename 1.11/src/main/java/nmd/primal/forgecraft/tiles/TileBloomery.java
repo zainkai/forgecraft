@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.Firebox;
+import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
@@ -40,19 +41,31 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
-                    if(this.getSlotStack(0) != ItemStack.EMPTY) {
-                        Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
-                        if(decrInt == 0) {
-                            decrInt = 1;
-                        }
-                        if (world.rand.nextInt(decrInt) == 0) {
-                            this.decrStackSize(0, 1);
-                            this.markDirty();
-                            this.updateBlock();
-                        }
-                    }
+                    slotZeroManager(world);
+
                 }
                 this.heatManager(this.getHeat(), state, this.getSlotStack(0));
+            }
+        }
+    }
+
+    //Insert Slot 1 manager for crafting
+
+    private void slotZeroManager(World world){
+        if(this.getSlotStack(0) != ItemStack.EMPTY) {
+            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
+            if(decrInt == 0) {
+                decrInt = 1;
+            }
+            if (world.rand.nextInt(decrInt) == 0) {
+                this.decrStackSize(0, 1);
+                this.markDirty();
+                this.updateBlock();
+            }
+            if (this.getSlotStack(0).getCount() == 1){
+                this.decrStackSize(0, 1);
+                this.markDirty();
+                this.updateBlock();
             }
         }
     }
@@ -112,6 +125,11 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(stack.getMetadata() == 1) {
                     return true;
                 }
+            }
+        }
+        if(index == 1){
+            if (stack.getItem() == ModItems.softcrucible) {
+                return true;
             }
         }
         return false;
