@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.blocks;
 
+import javafx.scene.effect.Bloom;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -26,6 +27,7 @@ import nmd.primal.forgecraft.tiles.TileFirebox;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 1/1/17.
@@ -389,8 +391,15 @@ public class PistonBellows extends CustomContainerFacing {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
-
+                if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
+                    TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.EAST)) {
+                        makeEmbers(world, tempPos, world.rand);
+                    }
+                }
             }
+
+
             if (state.getValue(PistonBellows.FACING) == EnumFacing.SOUTH) {
                 BlockPos tempPos = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ());
                 if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
@@ -399,8 +408,15 @@ public class PistonBellows extends CustomContainerFacing {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
-
+                if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
+                    TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.WEST)) {
+                        makeEmbers(world, tempPos, world.rand);
+                    }
+                }
             }
+
+
             if (state.getValue(PistonBellows.FACING) == EnumFacing.EAST) {
                 BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
                 if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
@@ -409,13 +425,26 @@ public class PistonBellows extends CustomContainerFacing {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
-
+                if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
+                    TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.SOUTH)) {
+                        makeEmbers(world, tempPos, world.rand);
+                    }
+                }
             }
+
+
             if (state.getValue(PistonBellows.FACING) == EnumFacing.WEST) {
                 BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
                 if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
                     TileFirebox tile = (TileFirebox) world.getTileEntity(tempPos);
                     if ((world.getBlockState(tempPos).getValue(Firebox.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Firebox.FACING) == EnumFacing.NORTH)) {
+                        makeEmbers(world, tempPos, world.rand);
+                    }
+                }
+                if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
+                    TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
+                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.NORTH)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
@@ -427,23 +456,24 @@ public class PistonBellows extends CustomContainerFacing {
         double d1 = (double)pos.getY() + 0.96D;
         double d2 = (double)pos.getZ() + 0.5D;
         double d3 = 0.52D;
-        double d4 = rand.nextDouble() * 0.6D - 0.3D;
+        double d4 = ThreadLocalRandom.current().nextDouble(0.175, 0.35);
+        double ySpeed = 0.1D;
 
         if(rand.nextInt(3) == 0){
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
         }
         if(rand.nextInt(3) == 1){
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, 0.1D, 0.0D, new int[0]);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, ySpeed, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
         }
         if(rand.nextInt(3) == 2){
-            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
         }
         if(rand.nextInt(3) == 3){
-            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, 0.1D, 0.0D, new int[0]);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.1D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, ySpeed, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
         }
     }
 

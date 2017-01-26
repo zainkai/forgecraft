@@ -95,9 +95,9 @@ public class BloomeryCrafting {
         return this.ideal_time;
     }
 
-    public float getHeat_variance(){return this.heat_variance; }
+    public float getHeatVariance(){return this.heat_variance; }
 
-    public float getTime_variance(){return this.time_variance; }
+    public float getTimeVariance(){return this.time_variance; }
 
     ///
     //  end

@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.Firebox;
+import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
@@ -25,6 +26,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
     private int iteration = 0;
     private int heat;
+    private int cookCounter;
 
     @Override
     public void update () {
@@ -46,10 +48,49 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 }
                 this.heatManager(this.getHeat(), state, this.getSlotStack(0));
             }
+            slotOneManager();
         }
     }
 
-    //Insert Slot 1 manager for crafting
+    private void slotOneManager(){
+        BloomeryCrafting recipe = BloomeryCrafting.getRecipe(this.getSlotStack(1));
+        if(recipe != null){
+            System.out.println(recipe.getInput() + " : " + recipe.getOutput() + " : " + recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
+            System.out.println(this.getSlotStack(1) + " : " + this.cookCounter + " : " + this.getHeat());
+            if(this.getHeat() >= recipe.getHeatThreshold()){
+                cookCounter++;
+               //System.out.println(cookCounter);
+            }
+            if(cookCounter >= recipe.getIdealTime()){
+                if(this.getSlotStack(1) == recipe.getInput()) {
+                    this.setSlotStack(1, recipe.getOutput());
+                    System.out.print(" :Success: " + this.getSlotStack(1));
+                    this.updateBlock();
+                    this.markDirty();
+                }
+            }
+            if( cookCounter > recipe.getIdealTime() + (recipe.getIdealTime() * recipe.getTimeVariance())){
+                if(this.getSlotStack(1) == recipe.getInput()) {
+                    this.setSlotStack(1, recipe.getOutputFailed());
+                    this.cookCounter = 0;
+                    System.out.print(" :Failure Time: " + this.getSlotStack(1));
+                    this.updateBlock();
+                    this.markDirty();
+                }
+
+            }
+            if(this.getHeat() > recipe.getHeatThreshold() + (recipe.getHeatThreshold() * recipe.getHeatVariance())){
+                this.setSlotStack(1, recipe.getOutputFailed());
+                this.cookCounter = 0;
+                System.out.print(" :Failure Heat: " + this.getSlotStack(1));
+                this.updateBlock();
+                this.markDirty();
+            }
+            if (this.getSlotStack(1).isEmpty()){
+                this.cookCounter=0;
+            }
+        }
+    }
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
@@ -143,6 +184,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     {
         super.readNBT(nbt);
         this.heat = nbt.getInteger("heat");
+        this.cookCounter = nbt.getInteger("cook");
         return nbt;
     }
 
@@ -150,6 +192,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     public NBTTagCompound writeNBT(NBTTagCompound nbt)
     {
         nbt.setInteger("heat", this.heat);
+        nbt.setInteger("cook", this.cookCounter);
         super.writeNBT(nbt);
         return nbt;
     }

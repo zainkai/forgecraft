@@ -33,6 +33,7 @@ import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 1/21/17.
@@ -433,7 +434,8 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
             double d1 = (double)pos.getY() + 0.2D;
             double d2 = (double)pos.getZ() + 0.5D;
             double d3 = 0.52D;
-            double d4 = rand.nextDouble() * 0.6D - 0.3D;
+            //double d4 = rand.nextDouble() * 0.6D - 0.3D;
+            double d4 = ThreadLocalRandom.current().nextDouble(0.15, 0.35);
 
             if (rand.nextDouble() < 0.1D)
             {

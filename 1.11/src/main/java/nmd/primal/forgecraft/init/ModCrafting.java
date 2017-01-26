@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.init;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.blocks.Bloomery;
@@ -37,12 +38,12 @@ public class ModCrafting {
         //DryingRecipe.addRecipe(new ItemStack(Items.FISH, 1, 0), new ItemStack(PrimalItems.FISH_COD_DRIED), new ItemStack(PrimalItems.FISH_COD_ROTTEN), 25, 0.006F);
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModItems.softcrucible, 1),
-                new ItemStack(ModBlocks.emptycrucible, 1),
+                new ItemStack(Item.getItemFromBlock(ModBlocks.emptycrucible), 1),
                 //new ItemStack(ModItems.crackedcrucible, 1),
                 new ItemStack(Items.STICK, 1),
-                2100,
-                2400,
-                0.25f,
+                500,
+                500,
+                1.25f,
                 1.0f);
     }
 }
