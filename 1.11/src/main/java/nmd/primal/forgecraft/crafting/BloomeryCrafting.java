@@ -38,9 +38,9 @@ public class BloomeryCrafting {
     // ***************************************************************************** //
     //  Recipe Methods
     // ***************************************************************************** //
-    public static void addRecipe(ItemStack input, ItemStack output, ItemStack output_failed, int heat_threshold, int ideal_time, float heat_variance, float time_variance)
+    public static void addRecipe(ItemStack input, ItemStack output, ItemStack failed, int heat_threshold, int ideal_time, float heat_variance, float time_variance)
     {
-        bloomeryRecipes.add(new BloomeryCrafting(input, output, output_failed, heat_threshold, ideal_time, heat_variance, time_variance));
+        bloomeryRecipes.add(new BloomeryCrafting(input, output, failed, heat_threshold, ideal_time, heat_variance, time_variance));
     }
 
     public static boolean isRecipeItem(ItemStack stack)

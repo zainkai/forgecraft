@@ -30,12 +30,18 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     @Override
     public void update () {
+        World world = this.getWorld();
         if(!world.isRemote){
-            World world = this.getWorld();
+            IBlockState state = world.getBlockState(this.pos);
+            if(state.getValue(Bloomery.ACTIVE) == true){
+                if(this.getHeat() < 400){
+                    this.setHeat(400);
+                }
+            }
             this.iteration ++;
             if(this.iteration == 300 ) {
                 this.iteration = 0;
-                IBlockState state = world.getBlockState(this.pos);
+                //IBlockState state = world.getBlockState(this.pos);
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
                 if (world.getBlockState(this.getPos()).getValue(Bloomery.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
@@ -44,7 +50,6 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
                     slotZeroManager(world);
-
                 }
                 this.heatManager(this.getHeat(), state, this.getSlotStack(0));
             }
@@ -55,21 +60,22 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     private void slotOneManager(){
         BloomeryCrafting recipe = BloomeryCrafting.getRecipe(this.getSlotStack(1));
         if(recipe != null){
-            System.out.println(recipe.getInput() + " : " + recipe.getOutput() + " : " + recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
-            System.out.println(this.getSlotStack(1) + " : " + this.cookCounter + " : " + this.getHeat());
+            System.out.println(recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
+            System.out.println(this.cookCounter + " : " + this.getHeat());
+            System.out.println("====================");
             if(this.getHeat() >= recipe.getHeatThreshold()){
                 cookCounter++;
-               //System.out.println(cookCounter);
             }
-            if(cookCounter >= recipe.getIdealTime()){
-                if(this.getSlotStack(1) == recipe.getInput()) {
+            if(cookCounter >= recipe.getIdealTime() ){
+                if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutput());
+                    this.cookCounter = 0;
                     System.out.print(" :Success: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }
             }
-            if( cookCounter > recipe.getIdealTime() + (recipe.getIdealTime() * recipe.getTimeVariance())){
+            if(cookCounter > recipe.getIdealTime() + (recipe.getIdealTime() * recipe.getTimeVariance())){
                 if(this.getSlotStack(1) == recipe.getInput()) {
                     this.setSlotStack(1, recipe.getOutputFailed());
                     this.cookCounter = 0;
@@ -77,7 +83,6 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.updateBlock();
                     this.markDirty();
                 }
-
             }
             if(this.getHeat() > recipe.getHeatThreshold() + (recipe.getHeatThreshold() * recipe.getHeatVariance())){
                 this.setSlotStack(1, recipe.getOutputFailed());
@@ -129,9 +134,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(h > 400) {
                     this.setHeat(h - 25);
                 }
-                if(h < 400){
+                /*if(h < 400){
                     this.setHeat(400);
-                }
+                }*/
             }
             if(stack.isEmpty()){
                 if(h > 50){
