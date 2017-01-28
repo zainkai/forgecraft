@@ -76,7 +76,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 }
             }
             if(cookCounter > recipe.getIdealTime() + (recipe.getIdealTime() * recipe.getTimeVariance())){
-                if(this.getSlotStack(1) == recipe.getInput()) {
+                if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutputFailed());
                     this.cookCounter = 0;
                     System.out.print(" :Failure Time: " + this.getSlotStack(1));
@@ -85,11 +85,13 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 }
             }
             if(this.getHeat() > recipe.getHeatThreshold() + (recipe.getHeatThreshold() * recipe.getHeatVariance())){
-                this.setSlotStack(1, recipe.getOutputFailed());
-                this.cookCounter = 0;
-                System.out.print(" :Failure Heat: " + this.getSlotStack(1));
-                this.updateBlock();
-                this.markDirty();
+                if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
+                    this.setSlotStack(1, recipe.getOutputFailed());
+                    this.cookCounter = 0;
+                    System.out.print(" :Failure Heat: " + this.getSlotStack(1));
+                    this.updateBlock();
+                    this.markDirty();
+                }
             }
             if (this.getSlotStack(1).isEmpty()){
                 this.cookCounter=0;

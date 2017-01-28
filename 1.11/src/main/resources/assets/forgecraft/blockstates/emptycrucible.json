@@ -1,8 +1,5 @@
 {
   "variants": {
-    "size=0": { "model": "forgecraft:emptycrucible" },
-    "size=1": { "model": "forgecraft:emptycruciblehot" },
-    "size=2": { "model": "forgecraft:emptycruciblecracked" }
-    "size=3": { "model": "forgecraft:emptycruciblecrackedhot" }
+    "normal": { "model": "forgecraft:emptycrucible" }
   }
 }

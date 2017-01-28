@@ -38,17 +38,17 @@ public class ModCrafting {
         //DryingRecipe.addRecipe(new ItemStack(Items.FISH, 1, 0), new ItemStack(PrimalItems.FISH_COD_DRIED), new ItemStack(PrimalItems.FISH_COD_ROTTEN), 25, 0.006F);
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModItems.softcrucible, 1),
+                new ItemStack(ModBlocks.emptycruciblehot, 1),
                 new ItemStack(ModBlocks.emptycrucible, 1),
-                new ItemStack(Items.STICK, 1),
-                2100,
-                2400,
+                500,
+                1200,
                 0.25f,
                 0.25f);
 
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModBlocks.emptycrucible, 1),
-                new ItemStack(Items.STICK, 1),
-                new ItemStack(Items.STICK, 1),
+                new ItemStack(Items.STICK, 1, 3),
+                new ItemStack(Items.STICK, 1, 3),
                 2700,
                 9000,
                 0.0f,

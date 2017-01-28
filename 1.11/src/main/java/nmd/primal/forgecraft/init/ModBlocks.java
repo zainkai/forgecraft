@@ -26,6 +26,9 @@ public class ModBlocks {
     public static Block pistonbellowsdarkoak;
     public static Block pistonbellowsacacia;
     public static Block emptycrucible;
+    public static Block emptycruciblehot;
+    public static Block emptycruciblecracked;
+    public static Block emptycruciblecrackedhot;
 
 
     public static void init() {
@@ -39,6 +42,9 @@ public class ModBlocks {
         pistonbellowsacacia = new PistonBellows(Material.WOOD, "pistonbellowsacacia");
         bloomery = new Bloomery(Material.ROCK, "bloomery");
         emptycrucible = new EmptyCrucible(Material.ROCK, "emptycrucible");
+        emptycruciblehot = new EmptyCrucible(Material.ROCK, "emptycruciblehot");
+        emptycruciblecracked = new EmptyCrucible(Material.ROCK, "emptycruciblecracked");
+        emptycruciblecrackedhot = new EmptyCrucible(Material.ROCK, "emptycruciblecrackedhot");
     }
 
     public static void register() {
@@ -51,6 +57,9 @@ public class ModBlocks {
         registerBlock(pistonbellowsacacia);
         registerBlock(bloomery);
         registerBlock(emptycrucible);
+        registerBlock(emptycruciblehot);
+        registerBlock(emptycruciblecracked);
+        registerBlock(emptycruciblecrackedhot);
     }
 
     public static void registerRenders() {
@@ -63,6 +72,9 @@ public class ModBlocks {
         registerRender(pistonbellowsacacia);
         registerRender(bloomery);
         registerRender(emptycrucible);
+        registerRender(emptycruciblehot);
+        registerRender(emptycruciblecracked);
+        registerRender(emptycruciblecrackedhot);
     }
 
     private static void registerBlock(Block block) {

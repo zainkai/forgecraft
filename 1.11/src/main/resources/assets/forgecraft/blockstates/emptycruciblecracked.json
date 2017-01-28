@@ -1,0 +1,12 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "forgecraft:blocks/stone_slab_cracked",
+      "texture": "forgecraft:blocks/stone_slab_cracked"
+    }
+  },
+  "variants": {
+    "normal": { "model": "forgecraft:emptycrucible" }
+  }
+}

@@ -8,15 +8,20 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.tiles.TileFirebox;
 
 /**
  * Created by mminaie on 1/24/17.
@@ -25,21 +30,54 @@ public class EmptyCrucible extends Block {
 
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(4/16D, 0.0D, 4/16D, 12/16D, 7/16D, 12/16D);
 
-    public static final PropertyInteger SIZE =  PropertyInteger.create("size", 0, 3);
+    //public static final PropertyInteger SIZE =  PropertyInteger.create("size", 0, 3);
 
     public EmptyCrucible(Material material, String registryName) {
         super(material);
         setUnlocalizedName(ModInfo.ForgecraftBlocks.EMPTYCRUCIBLE.getUnlocalizedName());
+        //setUnlocalizedName("emptycrucible");
         setRegistryName(registryName);
         //setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setHardness(3.0f);
-        this.blockState.getBaseState().withProperty(SIZE, Integer.valueOf(0));
+        //this.blockState.getBaseState().withProperty(SIZE, Integer.valueOf(0));
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        /*if (!world.isRemote) {
+            System.out.println(state.getValue(SIZE));
+            //TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+            //if (tile != null) {
+                ItemStack pItem = player.inventory.getCurrentItem();
+                if(pItem.isEmpty()) {
+                    if (player.isSneaking()) {
+                        CommonUtils.spawnItemEntity(world, player, new ItemStack(this, 1, this.getMetaFromState(state)));
+                    }
+                }
+
+            if(state.getValue(SIZE) == 3){
+                world.setBlockState(pos, state.withProperty(SIZE, 0), 2);
+                return true;
+            } else
+            world.setBlockState(pos, state.withProperty(SIZE, state.getValue(SIZE) + 1), 2);
+            return true;
+        }
+        if(player.isSneaking()){
+
+        }*/
+        return false;
     }
 
     // ***************************************************************************** //
     //  BlockState
     // ***************************************************************************** //
+    /*@Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        worldIn.setBlockState(pos, state.withProperty(SIZE, 0), 2);
+    }
+
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
@@ -88,7 +126,7 @@ public class EmptyCrucible extends Block {
             return i;
         }
         return i;
-    }
+    }*/
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
