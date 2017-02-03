@@ -34,11 +34,14 @@ public class ForgeCraft
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+
         ModItems.init();
         ModBlocks.init();
         ModItems.register();
         ModBlocks.register();
         ModTiles.registerTileEntities();
+//        ModItems.registerRenders();
+        proxy.preInit();
     }
 
     @EventHandler
@@ -47,6 +50,7 @@ public class ForgeCraft
         //this.proxy.init(event);
         proxy.init();
         ModCrafting.register();
+        //proxy.registerModelBakeryVariants();
     }
 
     @EventHandler

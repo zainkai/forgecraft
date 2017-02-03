@@ -19,4 +19,12 @@ To-Dos
   - [x] Model
   - [x] Item(s)
   - [ ] Functionality
+  - [ ] Item NBT
+  - [ ] Modify Model via NBT
+  - [ ] Remove hot things from bloomery / firebox and place in world or anvil to cool
+
+- [ ] Anvil
+  - [ ] Anvil Recipe Handler
+
+- [ ] Update Forge Version 11.2
 

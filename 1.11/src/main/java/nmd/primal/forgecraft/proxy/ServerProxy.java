@@ -5,8 +5,17 @@ package nmd.primal.forgecraft.proxy;
  */
 public class ServerProxy implements CommonProxy {
 
+
     @Override
-    public void init() {
+    public void preInit() {
+
+    }
+
+    public void init(){
+
+    }
+
+    public void registerModelBakeryVariants(){
 
     }
 }

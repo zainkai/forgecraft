@@ -1,7 +1,8 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "forgecraft:stonetongs.obj"
+    //"model": "forgecraft:stonetongs.obj"
+    "model": "forgecraft:item/stonetongs"
   },
   "variants": {
     "inventory": [
@@ -41,3 +42,6 @@
     ]
   }
 }
+
+
+

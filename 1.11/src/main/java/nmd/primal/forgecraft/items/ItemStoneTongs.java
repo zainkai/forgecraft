@@ -1,31 +1,76 @@
 package nmd.primal.forgecraft.items;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.tiles.TileBloomery;
+import nmd.primal.forgecraft.handler.EnumHandler.TongTypes;
+
+import java.util.List;
 
 /**
  * Created by mminaie on 1/23/17.
  */
-public class ItemStoneTongs extends BaseItem {
+public class ItemStoneTongs extends Item {
 
-    public ItemStoneTongs() {
-        setUnlocalizedName(ModInfo.ForgecraftItems.STONETONGS.getUnlocalizedName());
-        //setRegistryName();
-        setRegistryName(new ResourceLocation(ModInfo.MOD_ID, ModInfo.ForgecraftItems.STONETONGS.getRegistryName()));
-        setMaxDamage(100);
-        setNoRepair();
-        setMaxStackSize(1);
+    public ItemStoneTongs(String unlocalizedName) {
+        setUnlocalizedName(unlocalizedName);
+        this.setRegistryName(unlocalizedName);
+        //this.setMaxDamage(0);
+        //this.setHasSubtypes(true);  //This just says the item has metadata
+        this.setMaxStackSize(1);
+        this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
+
+
+    public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
+        if (!item.hasTagCompound()) {
+            item.setTagCompound(new NBTTagCompound());
+            //this.setDamage(item, 1000);
+            item.getTagCompound().setInteger("type", 0);
+            //item.getTagCompound().setBoolean("active", false);
+        }
+    }
+
+    /* //For Subtypes
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        for(int i = 0; i < TongTypes.values().length; i++) {
+            if(stack.getItemDamage() == i) {
+                return this.getUnlocalizedName() + "." + TongTypes.values()[i].getName();
+            }
+            else {
+                continue;
+            }
+        }
+        return this.getUnlocalizedName() + "." + TongTypes.DEFAULT.getName();
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> items) {
+        for(int i = 0; i < TongTypes.values().length; i++) {
+            items.add(new ItemStack(item, 1, i));
+        }
+    }
+    */
 
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -35,7 +80,7 @@ public class ItemStoneTongs extends BaseItem {
         if (world.getBlockState(pos).getBlock() == ModBlocks.bloomery) {
             TileBloomery tile = (TileBloomery) world.getTileEntity(pos);
             System.out.println(tile.getSlotStack(1));
-            itemstack.damageItem(1, player);
+            //itemstack.damageItem(1, player);
             return EnumActionResult.SUCCESS;
         } else return EnumActionResult.FAIL;
     }
