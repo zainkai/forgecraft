@@ -49,18 +49,22 @@ public class ModItems {
     }
 
     public static void registerCustomRenders(){
-        ModelBakery.registerItemVariants(ModItems.stonetongs, ModItems.stonetongs.getRegistryName(), new ResourceLocation(ModInfo.MOD_ID, "stonetongs"));
+        ModelBakery.registerItemVariants(ModItems.stonetongs, ModItems.stonetongs.getRegistryName(),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_default"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhot"));
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
                 if (stack.hasTagCompound()) {
-                    //if (stack.getTagCompound().getInteger("type")) {
-                      if (stack.getTagCompound().getInteger("type") == 0 ){
-                        return new ModelResourceLocation(stack.getItem().getRegistryName() + "_default");
-                    } else {
-                          return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
-                    }
+                  if (stack.getTagCompound().getInteger("type") == 0 ){
+                    return new ModelResourceLocation(stack.getItem().getRegistryName() + "_default", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 1 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_emptyhot", "inventory");
+                  }
+                  else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }
                 return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
             }

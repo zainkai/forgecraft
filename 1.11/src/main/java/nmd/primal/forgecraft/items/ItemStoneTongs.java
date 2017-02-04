@@ -49,29 +49,6 @@ public class ItemStoneTongs extends Item {
         }
     }
 
-    /* //For Subtypes
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        for(int i = 0; i < TongTypes.values().length; i++) {
-            if(stack.getItemDamage() == i) {
-                return this.getUnlocalizedName() + "." + TongTypes.values()[i].getName();
-            }
-            else {
-                continue;
-            }
-        }
-        return this.getUnlocalizedName() + "." + TongTypes.DEFAULT.getName();
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> items) {
-        for(int i = 0; i < TongTypes.values().length; i++) {
-            items.add(new ItemStack(item, 1, i));
-        }
-    }
-    */
-
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         //pos = pos.offset(facing);
@@ -81,7 +58,11 @@ public class ItemStoneTongs extends Item {
             TileBloomery tile = (TileBloomery) world.getTileEntity(pos);
             System.out.println(tile.getSlotStack(1));
             //itemstack.damageItem(1, player);
-            return EnumActionResult.SUCCESS;
+            if(tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.emptycruciblehot))){
+                itemstack.getTagCompound().setInteger("type", 1);
+                tile.setSlotStack(1, ItemStack.EMPTY);
+                return EnumActionResult.SUCCESS;
+            } else return EnumActionResult.FAIL;
         } else return EnumActionResult.FAIL;
     }
 
