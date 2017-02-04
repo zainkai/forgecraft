@@ -52,7 +52,8 @@ public class ModItems {
         ModelBakery.registerItemVariants(ModItems.stonetongs, ModItems.stonetongs.getRegistryName(),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_default"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhot"));
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhot"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhotcracked"));
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
             @Override
@@ -63,6 +64,9 @@ public class ModItems {
                   }
                   else if (stack.getTagCompound().getInteger("type") == 1 ) {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_emptyhot", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 2 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_emptyhotcracked", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

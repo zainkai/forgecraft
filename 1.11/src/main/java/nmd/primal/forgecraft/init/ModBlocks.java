@@ -7,10 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import nmd.primal.forgecraft.blocks.Bloomery;
-import nmd.primal.forgecraft.blocks.EmptyCrucible;
-import nmd.primal.forgecraft.blocks.Firebox;
-import nmd.primal.forgecraft.blocks.PistonBellows;
+import nmd.primal.forgecraft.blocks.*;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -42,9 +39,9 @@ public class ModBlocks {
         pistonbellowsacacia = new PistonBellows(Material.WOOD, "pistonbellowsacacia");
         bloomery = new Bloomery(Material.ROCK, "bloomery");
         emptycrucible = new EmptyCrucible(Material.ROCK, "emptycrucible");
-        emptycruciblehot = new EmptyCrucible(Material.ROCK, "emptycruciblehot");
+        emptycruciblehot = new EmptyCrucibleHot(Material.ROCK, "emptycruciblehot");
         emptycruciblecracked = new EmptyCrucible(Material.ROCK, "emptycruciblecracked");
-        emptycruciblecrackedhot = new EmptyCrucible(Material.ROCK, "emptycruciblecrackedhot");
+        emptycruciblecrackedhot = new EmptyCrucibleHot(Material.ROCK, "emptycruciblecrackedhot");
     }
 
     public static void register() {

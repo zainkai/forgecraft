@@ -137,12 +137,12 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                     }
                 }
 
-                if(!pItem.isEmpty()) {
+                /*if(!pItem.isEmpty()) {
                     if(pItem.getItem() == Item.getItemFromBlock(Blocks.STONE_SLAB)){
                         world.setBlockState(pos, state.withProperty(COVERED, true), 2);
                         return true;
                     }
-                }
+                }*/
             }
         }
         return false;

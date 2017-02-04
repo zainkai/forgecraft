@@ -39,18 +39,22 @@ public class ModCrafting {
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModItems.softcrucible, 1),
                 new ItemStack(ModBlocks.emptycruciblehot, 1),
+                new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
                 new ItemStack(ModBlocks.emptycrucible, 1),
-                500,
-                1200,
+                2100,
+                1600,
+                600,
                 0.25f,
                 0.25f);
 
         BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.emptycrucible, 1),
-                new ItemStack(Items.STICK, 1, 3),
-                new ItemStack(Items.STICK, 1, 3),
+                new ItemStack(ModBlocks.emptycruciblehot, 1),
+                new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
+                new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
+                new ItemStack(ModBlocks.emptycruciblecracked, 1),
                 2700,
                 9000,
+                600,
                 0.0f,
                 0.0f);
     }
