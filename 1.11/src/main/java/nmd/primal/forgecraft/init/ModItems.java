@@ -11,8 +11,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.handler.EnumHandler;
 import nmd.primal.forgecraft.items.ItemBellowsHandle;
+import nmd.primal.forgecraft.items.ItemForgingManual;
 import nmd.primal.forgecraft.items.ItemSoftCrucible;
 import nmd.primal.forgecraft.items.ItemStoneTongs;
 
@@ -22,30 +22,29 @@ import nmd.primal.forgecraft.items.ItemStoneTongs;
 public class ModItems {
 
     public static Item pistonbellows;
-    public static Item test;
     public static Item softcrucible;
     public static Item stonetongs;
-    //public static Item stonetongsemptyhot;
-    //public static Item stonetongsfilledhot;
-    //public static Item
+    //public static Item forgingmanual;
 
     public static void init() {
         OBJLoader.INSTANCE.addDomain(ModInfo.MOD_ID);
         pistonbellows = new ItemBellowsHandle();
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
+        //forgingmanual = new ItemForgingManual();
     }
 
     public static void register() {
         GameRegistry.register(pistonbellows);
         GameRegistry.register(softcrucible);
         GameRegistry.register(stonetongs);
+        //GameRegistry.register(forgingmanual);
     }
 
     public static void registerRenders() {
         registerRender(pistonbellows);
         registerRender(softcrucible);
-
+        //registerRender(forgingmanual);
     }
 
     public static void registerCustomRenders(){

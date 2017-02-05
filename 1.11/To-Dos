@@ -1,14 +1,14 @@
 To-Dos
 
-- [ ] Forging Recipe Handler
-  - [ ] Iron Temp Min
-  - [ ] Iron Temp Max
-  - [ ] Iron Ideal Time
-  - [ ] Iron Time Modifier
-  - [ ] Iron Failure Modifier
-  - [ ] Iron Pre-Fail Output
-  - [ ] Iron Success Output
-  - [ ] Iron Post Fail Output
+- [x] Forging Recipe Handler
+  - [x] Iron Temp Min
+  - [x] Iron Temp Max
+  - [x] Iron Ideal Time
+  - [x] Iron Time Modifier
+  - [x] Iron Failure Modifier
+  - [x] Iron Pre-Fail Output
+  - [x] Iron Success Output
+  - [x] Iron Post Fail Output
 
 - [X] Soft Crucible
   - [x] Model
@@ -18,13 +18,29 @@ To-Dos
 - [x] Tongs
   - [x] Model
   - [x] Item(s)
-  - [ ] Functionality
-  - [ ] Item NBT
-  - [ ] Modify Model via NBT
-  - [ ] Remove hot things from bloomery / firebox and place in world or anvil to cool
+  - [x] Functionality
+  - [x] Item NBT
+  - [x] Modify Model via NBT
+  - [x] Remove hot things from bloomery / firebox and place in world or anvil to cool
+
+- [x] Update Forge Version 11.2
+
+*** Priority ***
+- [ ] Wrought Iron Ingot model
+- [ ] Crafting for filled crucible
+- [ ] Crafting Recipe for filled iron crucible
+- [ ] Crafting Recipe for hot iron crucible
+- [ ] Crafting Recipe for hot cooked iron crucible
+- [ ] Item Drop for failed crucible
+
+
 
 - [ ] Anvil
   - [ ] Anvil Recipe Handler
 
-- [ ] Update Forge Version 11.2
+- [ ] Casting Table
+  - [ ] Block
+  - [ ] Gui
+  - [ ] Crafting recipes
 
+- [ ] Casting Bloomery

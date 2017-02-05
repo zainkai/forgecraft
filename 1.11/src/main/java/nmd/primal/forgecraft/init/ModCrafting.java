@@ -34,6 +34,8 @@ public class ModCrafting {
         /***Bellows Handle***/
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.pistonbellows),  "X X", "X X", " X ", 'X', Items.STICK);
 
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.stonetongs, 1), "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
+
         /***Bloomery Crafting***/
         //DryingRecipe.addRecipe(new ItemStack(Items.FISH, 1, 0), new ItemStack(PrimalItems.FISH_COD_DRIED), new ItemStack(PrimalItems.FISH_COD_ROTTEN), 25, 0.006F);
         BloomeryCrafting.addRecipe(

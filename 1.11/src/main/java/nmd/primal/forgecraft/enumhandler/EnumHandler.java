@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.handler;
+package nmd.primal.forgecraft.enumhandler;
 
 import net.minecraft.util.IStringSerializable;
 

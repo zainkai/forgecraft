@@ -7,6 +7,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import nmd.primal.forgecraft.gui.GuiHandler;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModCrafting;
 import nmd.primal.forgecraft.init.ModItems;
@@ -27,13 +30,16 @@ public class ForgeCraft
 {
     @Instance
     public static ForgeCraft instance;
-
+    public static SimpleNetworkWrapper NETWORK;
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static CommonProxy proxy;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+
+        NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.MOD_CHANNEL);
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
         ModItems.init();
         ModBlocks.init();

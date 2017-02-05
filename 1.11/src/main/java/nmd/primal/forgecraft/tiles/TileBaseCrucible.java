@@ -22,11 +22,11 @@ public class TileBaseCrucible extends BaseTile implements ITickable {
             World world = this.getWorld();
             IBlockState state = world.getBlockState(this.pos);
             iteration++;
-            System.out.println(iteration);
+            //System.out.println(iteration);
             if(iteration == 100 ){
                 iteration = 0;
                 countdown += 100;
-                System.out.println(countdown);
+                //System.out.println(countdown);
                 BloomeryCrafting recipe = BloomeryCrafting.getRecipeFromOutput(new ItemStack(state.getBlock(), 1));
                 if(recipe != null){
                     if (countdown > recipe.getCooldown()){
