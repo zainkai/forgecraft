@@ -37,7 +37,8 @@ public class ModCrafting {
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.stonetongs, 1), "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
         /***Bloomery Crafting***/
-        //DryingRecipe.addRecipe(new ItemStack(Items.FISH, 1, 0), new ItemStack(PrimalItems.FISH_COD_DRIED), new ItemStack(PrimalItems.FISH_COD_ROTTEN), 25, 0.006F);
+
+//Makes the Empty Crucible
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModItems.softcrucible, 1),
                 new ItemStack(ModBlocks.emptycruciblehot, 1),
@@ -49,6 +50,7 @@ public class ModCrafting {
                 0.25f,
                 0.25f);
 
+//Makes the Cracked Crucible
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModBlocks.emptycruciblehot, 1),
                 new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
@@ -59,5 +61,32 @@ public class ModCrafting {
                 600,
                 0.0f,
                 0.0f);
+
+//Makes the Hot Iron Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawironcrucible, 1),
+                new ItemStack(ModBlocks.hotironcrucible, 1),
+                new ItemStack(ModBlocks.hotironcrucible, 1),
+                new ItemStack(ModBlocks.rawironcrucible, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+                );
+
+//Makes the Finished Hot Iron Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotironcrucible, 1),
+                new ItemStack(ModBlocks.hotcookedironcrucible, 1),
+                new ItemStack(ModBlocks.failedironcruciblehot, 1),
+                new ItemStack(ModBlocks.coolironcrucible, 1),
+                1550,
+                1200,
+                800,
+                0.33f,
+                0.5f
+        );
+
     }
 }

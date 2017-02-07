@@ -90,6 +90,7 @@ public class Crucible extends Block {
 
         if(!world.isRemote){
             spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.emptycrucible, 1));
+            //Insert Null Check
             if (checkDrops(this.getUnlocalizedName()).equals(this.getUnlocalizedName())){
                 spawnItemEntityFromWorld(world, pos, new ItemStack(getItemFromName(this.getUnlocalizedName()), 1));
             }
@@ -107,7 +108,7 @@ public class Crucible extends Block {
 
     private Item getItemFromName(String name){
         if(name.equals(getUnlocalizedName())){
-            return Items.IRON_INGOT;
+            return Item.getItemFromBlock(ModBlocks.ironball);
         } else return Items.AIR;
     }
 

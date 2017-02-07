@@ -34,6 +34,9 @@ public class ModBlocks {
     public static Block failedironcrucible;
     public static Block failedironcruciblehot;
 
+    public static Block ironball;
+
+
     public static void init() {
 
         firebox = new Firebox(Material.ROCK);
@@ -58,6 +61,8 @@ public class ModBlocks {
         coolironcrucible = new Crucible(Material.ROCK, "coolironcrucible");
         failedironcrucible = new Crucible(Material.ROCK, "failedironcrucible");
         failedironcruciblehot = new Crucible(Material.ROCK, "failedironcruciblehot");
+
+        ironball = new IngotBall(Material.IRON, "ironball", 5.0F);
 
     }
 
@@ -84,6 +89,7 @@ public class ModBlocks {
         registerBlock(failedironcrucible);
         registerBlock(failedironcruciblehot);
 
+        registerBlock(ironball);
     }
 
     public static void registerRenders() {
@@ -106,6 +112,8 @@ public class ModBlocks {
         registerRender(coolironcrucible);
         registerRender(failedironcrucible);
         registerRender(failedironcruciblehot);
+
+        registerRender(ironball);
 
     }
 
