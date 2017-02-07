@@ -88,5 +88,18 @@ public class ModCrafting {
                 0.5f
         );
 
+//Remakes the Burnt Hot Iron Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.failedironcruciblehot, 1),
+                new ItemStack(ModBlocks.failedironcruciblehot, 1),
+                new ItemStack(ModBlocks.failedironcruciblehot, 1),
+                new ItemStack(ModBlocks.failedironcrucible, 1),
+                5000,
+                5000,
+                800,
+                0.0f,
+                0.0f
+        );
+
     }
 }

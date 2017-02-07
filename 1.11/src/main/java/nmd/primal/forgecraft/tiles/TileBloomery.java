@@ -4,6 +4,7 @@ import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -14,6 +15,7 @@ import net.minecraft.world.World;
 import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.Firebox;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
@@ -177,6 +179,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         }
         if(index == 1){
             if (stack.getItem() == ModItems.softcrucible) {
+                return true;
+            }
+            if(stack.getItem() == Item.getItemFromBlock(ModBlocks.rawironcrucible)){
                 return true;
             }
         }

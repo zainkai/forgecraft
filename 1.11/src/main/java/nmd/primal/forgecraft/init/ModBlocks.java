@@ -60,7 +60,7 @@ public class ModBlocks {
         hotcookedironcrucible = new CrucibleHot(Material.ROCK, "hotcookedironcrucible");
         coolironcrucible = new Crucible(Material.ROCK, "coolironcrucible");
         failedironcrucible = new Crucible(Material.ROCK, "failedironcrucible");
-        failedironcruciblehot = new Crucible(Material.ROCK, "failedironcruciblehot");
+        failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
 
         ironball = new IngotBall(Material.IRON, "ironball", 5.0F);
 

@@ -131,18 +131,12 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                         return false;
                     }
                     if(tileItem1.isEmpty()){
-                        ItemStack tempItem = new ItemStack(ModItems.softcrucible, 1);
+                        ItemStack tempItem = new ItemStack(pItem.getItem(), 1);
                         tile.setSlotStack(1, tempItem);
                         pItem.shrink(1);
-                    }
-                }
-
-                /*if(!pItem.isEmpty()) {
-                    if(pItem.getItem() == Item.getItemFromBlock(Blocks.STONE_SLAB)){
-                        world.setBlockState(pos, state.withProperty(COVERED, true), 2);
                         return true;
                     }
-                }*/
+                }
             }
         }
         return false;

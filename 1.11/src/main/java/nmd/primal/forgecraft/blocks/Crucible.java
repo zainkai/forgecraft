@@ -90,9 +90,10 @@ public class Crucible extends Block {
 
         if(!world.isRemote){
             spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.emptycrucible, 1));
-            //Insert Null Check
-            if (checkDrops(this.getUnlocalizedName()).equals(this.getUnlocalizedName())){
-                spawnItemEntityFromWorld(world, pos, new ItemStack(getItemFromName(this.getUnlocalizedName()), 1));
+            if(StringUtils.isEmpty(this.getUnlocalizedName()) == false) {
+                if (checkDrops(this.getUnlocalizedName()).equals(this.getUnlocalizedName())) {
+                    spawnItemEntityFromWorld(world, pos, new ItemStack(getItemFromName(this.getUnlocalizedName()), 1));
+                }
             }
         }
     }
