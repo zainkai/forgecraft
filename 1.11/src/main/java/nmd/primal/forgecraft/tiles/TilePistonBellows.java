@@ -23,18 +23,18 @@ public class TilePistonBellows extends BaseTile implements ITickable{
             IBlockState state = world.getBlockState(this.pos);
             if (world.getBlockState(this.getPos()).getValue(PistonBellows.ACTIVE)) {
                 iteration++;
-                if(iteration <= 35){
+                if(iteration <= 30){
                     animateIteration++;
                     //
                 }
-                if(iteration > 35){
-                    animateIteration = 35 - (iteration - 35);
+                if(iteration > 30){
+                    animateIteration = 30 - (iteration - 30);
                     if(animateIteration < 0){
                         animateIteration = 0;
                     }
                     //
                 }
-                if(iteration > 71){
+                if(iteration > 61){
                     iteration = 0;
                     animateIteration = 0;
                     world.setBlockState(this.getPos(), state.withProperty(PistonBellows.ACTIVE, false), 3);

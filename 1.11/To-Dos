@@ -1,11 +1,22 @@
 To-Dos
 
 *** Priority ***
-- [ ] Tongs Extract from bloomery for Hot Iron
-- [ ] Tongs Extract from bloomery for Hot Iron Finished
-- [ ] Item Drop for failed crucible
-- [ ] Try Submodel
+- [ ] Block Drop for failed crucible
+- [ ] Fix Bloomery Lit Texture
+- [ ] Tile Firebox Heat Manager
+- [ ] oreDictionary ingotBall to ingotIron
+- [ ] Crafting Recipes
 
+
+- [x] Bellows break texture
+- [x] Bellows Pump Speed
+- [x] Break IronCrucible gives back Ore
+- [x] Tile Bloomery Heat Manager
+- [x] Tongs Model for hotIron
+- [x] Tongs Model for hotIronCooked
+- [x] Tongs Model for hotIronBurnt
+- [x] Tongs Extract from bloomery for Hot Iron
+- [x] Tongs Extract from bloomery for Hot Iron Finished
 
 - [ ] Anvil
   - [ ] Anvil Recipe Handler

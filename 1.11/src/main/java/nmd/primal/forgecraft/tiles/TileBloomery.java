@@ -53,7 +53,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     }
                     slotZeroManager(world);
                 }
-                this.heatManager(this.getHeat(), state, this.getSlotStack(0));
+                this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
             }
             slotOneManager();
         }
@@ -62,9 +62,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     private void slotOneManager(){
         BloomeryCrafting recipe = BloomeryCrafting.getRecipe(this.getSlotStack(1));
         if(recipe != null){
-            //System.out.println(recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
-            //System.out.println(this.cookCounter + " : " + this.getHeat());
-            //System.out.println("====================");
+            System.out.println(recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
+            System.out.println(this.cookCounter + " : " + this.getHeat());
+            System.out.println("====================");
             if(this.getHeat() >= recipe.getHeatThreshold()){
                 cookCounter++;
             }
@@ -72,7 +72,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutput());
                     this.cookCounter = 0;
-                    //System.out.print(" :Success: " + this.getSlotStack(1));
+                    System.out.print(" :Success: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }
@@ -81,7 +81,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutputFailed());
                     this.cookCounter = 0;
-                    //System.out.print(" :Failure Time: " + this.getSlotStack(1));
+                    System.out.print(" :Failure Time: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }
@@ -90,7 +90,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutputFailed());
                     this.cookCounter = 0;
-                    //System.out.print(" :Failure Heat: " + this.getSlotStack(1));
+                    System.out.print(" :Failure Heat: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }
@@ -132,31 +132,26 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         return 1;
     }
 
-    private void heatManager(Integer h, IBlockState state, ItemStack stack){
+    private void heatManager(Integer h, IBlockState state, ItemStack stack, World world, BlockPos pos){
         if(state.getValue(Bloomery.ACTIVE) == true){
             if(!stack.isEmpty()) {
-                if(h > 400) {
+                if(h > 0) {
                     this.setHeat(h - 25);
                 }
-                /*if(h < 400){
-                    this.setHeat(400);
-                }*/
+                if(h < 10 ){
+                    world.setBlockState(pos, state.withProperty(Bloomery.ACTIVE, false), 2);
+                }
             }
             if(stack.isEmpty()){
-                if(h > 50){
-                    this.setHeat(h - 25);
-                    if(this.getHeat() < 50){
-                        this.setHeat(50);
-                    }
-                }
+                world.setBlockState(pos, state.withProperty(Bloomery.ACTIVE, false), 2);
             }
         }
         if(state.getValue(Bloomery.ACTIVE) == false){
             if(h > 50){
                 this.setHeat(h - 50);
-                if(this.getHeat() < 50){
-                    this.setHeat(50);
-                }
+            }
+            if(h < 0){
+                this.setHeat(0);
             }
         }
         this.updateBlock();

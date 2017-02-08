@@ -52,7 +52,11 @@ public class ModItems {
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_default"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhotcracked"));
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhotcracked"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotiron"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironcooked"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironfailed")
+                );
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
             @Override
@@ -66,6 +70,15 @@ public class ModItems {
                   }
                   else if (stack.getTagCompound().getInteger("type") == 2 ) {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_emptyhotcracked", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 3 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotiron", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 4 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotironcooked", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 5 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotironfailed", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

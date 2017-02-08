@@ -40,7 +40,7 @@ public class TilePistonBellowsRender extends TileEntitySpecialRenderer<TilePisto
             GL11.glRotated(0, 0.0F, 1.0F, 0.0F);
             if(state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE){
                 //System.out.println(tile.getAnimation());
-                GL11.glTranslated(0.0D, 0, (double) tile.getAnimation()/80);
+                GL11.glTranslated(0.0D, 0, (double) tile.getAnimation()/75);
             }
             ItemStack stackToRender = new ItemStack(ModItems.pistonbellows, 1);
             renderItem.renderItem(stackToRender, renderItem.getItemModelMesher().getItemModel(stackToRender));

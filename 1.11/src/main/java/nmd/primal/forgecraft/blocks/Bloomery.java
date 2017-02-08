@@ -93,6 +93,7 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                     if ((pItem.getItem() == Items.FLINT_AND_STEEL) //|| (pItem.getItem() == PrimalItems.FIRE_BOW)
                             || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
                         world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
+                        tile.setHeat(400);
                         tile.markDirty();
                         tile.updateBlock();
                         return true;

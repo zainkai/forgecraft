@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,6 +32,8 @@ import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileFirebox;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -91,8 +94,10 @@ public class Crucible extends Block {
         if(!world.isRemote){
             spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.emptycrucible, 1));
             if(StringUtils.isEmpty(this.getUnlocalizedName()) == false) {
-                if (checkDrops(this.getUnlocalizedName()).equals(this.getUnlocalizedName())) {
-                    spawnItemEntityFromWorld(world, pos, new ItemStack(getItemFromName(this.getUnlocalizedName()), 1));
+                if(checkDrops(this.getUnlocalizedName()) != null) {
+                    if (checkDrops(this.getUnlocalizedName()).equals(this.getUnlocalizedName())) {
+                        spawnItemEntityFromWorld(world, pos, new ItemStack(getItemFromName(this.getUnlocalizedName()), 1));
+                    }
                 }
             }
         }
@@ -104,13 +109,20 @@ public class Crucible extends Block {
         if(name.equals("tile.coolironcrucible")){
             string = this.getUnlocalizedName();
         }
+        if(name.equals("tile.rawironcrucible")){
+            string = this.getUnlocalizedName();
+        }
+
         return string;
     }
 
     private Item getItemFromName(String name){
-        if(name.equals(getUnlocalizedName())){
+        if(name.equals("tile.coolironcrucible")){
             return Item.getItemFromBlock(ModBlocks.ironball);
-        } else return Items.AIR;
+        } else if (name.equals("tile.rawironcrucible")){
+            return Item.getItemFromBlock(Blocks.IRON_ORE);
+        }
+        else return Items.AIR;
     }
 
     @Override
