@@ -2,12 +2,11 @@ To-Dos
 
 *** Priority ***
 - [ ] Block Drop for failed crucible
-- [ ] Fix Bloomery Lit Texture
-- [ ] Tile Firebox Heat Manager
 - [ ] oreDictionary ingotBall to ingotIron
-- [ ] Crafting Recipes
 
 
+- [x] Tile Firebox Heat Manager
+- [x] Fix Bloomery Lit Texture
 - [x] Bellows break texture
 - [x] Bellows Pump Speed
 - [x] Break IronCrucible gives back Ore
@@ -17,6 +16,7 @@ To-Dos
 - [x] Tongs Model for hotIronBurnt
 - [x] Tongs Extract from bloomery for Hot Iron
 - [x] Tongs Extract from bloomery for Hot Iron Finished
+- [x] Crafting Recipes
 
 - [ ] Anvil
   - [ ] Anvil Recipe Handler

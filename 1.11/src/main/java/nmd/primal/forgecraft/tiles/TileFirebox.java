@@ -68,7 +68,7 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
                         }
                     }
                 }
-                this.heatManager(this.getHeat(), state, this.getSlotStack(0));
+                this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
             }
         }
     }
@@ -85,31 +85,26 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
         return 1;
     }
 
-    private void heatManager(Integer h, IBlockState state, ItemStack stack){
+    private void heatManager(Integer h, IBlockState state, ItemStack stack, World world, BlockPos pos){
         if(state.getValue(Firebox.ACTIVE) == true){
             if(!stack.isEmpty()) {
-                if(h > 400) {
+                if(h > 0) {
                     this.setHeat(h - 25);
                 }
-                if(h < 400){
-                    this.setHeat(400);
+                if(h < 10 ){
+                    world.setBlockState(pos, state.withProperty(Firebox.ACTIVE, false), 2);
                 }
             }
             if(stack.isEmpty()){
-                if(h > 50){
-                    this.setHeat(h - 25);
-                    if(this.getHeat() < 50){
-                        this.setHeat(50);
-                    }
-                }
+                world.setBlockState(pos, state.withProperty(Firebox.ACTIVE, false), 2);
             }
         }
         if(state.getValue(Firebox.ACTIVE) == false){
             if(h > 50){
                 this.setHeat(h - 50);
-                if(this.getHeat() < 50){
-                    this.setHeat(50);
-                }
+            }
+            if(h < 0){
+                this.setHeat(0);
             }
         }
         this.updateBlock();

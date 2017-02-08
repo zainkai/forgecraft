@@ -62,9 +62,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     private void slotOneManager(){
         BloomeryCrafting recipe = BloomeryCrafting.getRecipe(this.getSlotStack(1));
         if(recipe != null){
-            System.out.println(recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
-            System.out.println(this.cookCounter + " : " + this.getHeat());
-            System.out.println("====================");
+            //System.out.println(recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
+            //System.out.println(this.cookCounter + " : " + this.getHeat());
+            //System.out.println("====================");
             if(this.getHeat() >= recipe.getHeatThreshold()){
                 cookCounter++;
             }
@@ -72,7 +72,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutput());
                     this.cookCounter = 0;
-                    System.out.print(" :Success: " + this.getSlotStack(1));
+                    //System.out.print(" :Success: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }
@@ -81,7 +81,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutputFailed());
                     this.cookCounter = 0;
-                    System.out.print(" :Failure Time: " + this.getSlotStack(1));
+                    //System.out.print(" :Failure Time: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }
@@ -90,7 +90,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutputFailed());
                     this.cookCounter = 0;
-                    System.out.print(" :Failure Heat: " + this.getSlotStack(1));
+                    //System.out.print(" :Failure Heat: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }

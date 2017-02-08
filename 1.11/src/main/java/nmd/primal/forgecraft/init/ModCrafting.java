@@ -34,7 +34,11 @@ public class ModCrafting {
         /***Bellows Handle***/
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.pistonbellows),  "X X", "X X", " X ", 'X', Items.STICK);
 
+        /***Tongs***/
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.stonetongs, 1), "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
+
+        /***Iron Crucible***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.rawironcrucible, 1), " X ", " Y ", 'X', Blocks.IRON_ORE, 'Y', ModBlocks.emptycrucible);
 
         /***Bloomery Crafting***/
 

@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import nmd.primal.forgecraft.compat.ModDictionary;
 import nmd.primal.forgecraft.gui.GuiHandler;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModCrafting;
@@ -55,7 +56,9 @@ public class ForgeCraft
     {
         //this.proxy.init(event);
         proxy.init();
+        ModDictionary.registerDictionaryNames();
         ModCrafting.register();
+
         //proxy.registerModelBakeryVariants();
     }
 
