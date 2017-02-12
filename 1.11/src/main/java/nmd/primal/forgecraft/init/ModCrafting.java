@@ -14,7 +14,7 @@ import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 public class ModCrafting {
 
     public static void register() {
-        /***Firebox***/
+        /***Forge***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),  "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
 
         /***Wooden PistonBellows***/

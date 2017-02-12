@@ -1,13 +1,11 @@
 package nmd.primal.forgecraft.blocks;
 
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
@@ -26,11 +23,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileBloomery;
-import nmd.primal.forgecraft.tiles.TileFirebox;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -143,53 +137,6 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
         return false;
     }
 
-    /*@Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent)
-    {
-        if (!world.isRemote)
-        {
-            if(ent instanceof EntityItem){
-                //System.out.println("collision");
-                EntityItem itemEnt = (EntityItem) ent;
-                ItemStack stack = itemEnt.getEntityItem();
-                //System.out.println(stack);
-                TileFirebox tile = (TileFirebox)world.getTileEntity(pos);
-                if (tile != null) {
-                    if(!tile.getSlotStack(0).isEmpty()) {
-                        if(tile.getSlotStack(0).getItem() == stack.getItem()) {
-                            int entStackSize = stack.getCount();
-                            int tileStackSize = tile.getSlotStack(0).getCount();
-                            int tileSizeRemaining = 64 - tileStackSize;
-                            if (tileStackSize < 64) {
-                                if (entStackSize <= tileSizeRemaining) {
-                                    tile.incrementStackSize(tile.getSlotList(), 0, entStackSize);
-                                    //tile.setSlotStack(0, new ItemStack(stack.getItem(), tileStackSize + entStackSize, stack.getItemDamage()));
-                                    ent.setDead();
-                                    world.notifyBlockUpdate(pos, state, state, 3);
-                                    tile.updateBlock();
-                                }
-                                if (entStackSize > tileSizeRemaining) {
-                                    tile.getSlotStack(0).setCount(64);
-                                    stack.setCount(64 - entStackSize);
-                                }
-                            }
-                        }
-                    }
-                    if (tile.getSlotStack(0).isEmpty()) {
-                        //int entStackSize = stack.getCount();
-                        tile.setSlotStack(0, itemEnt.getEntityItem());
-                        itemEnt.setDead();
-                        world.notifyBlockUpdate(pos, state, state, 3);
-                        tile.updateBlock();
-                    }
-                }
-            }
-        }
-    }
-*/
-    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
-
-    }
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)

@@ -9,7 +9,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.tiles.TileBloomery;
-import nmd.primal.forgecraft.tiles.TileFirebox;
 import org.lwjgl.opengl.GL11;
 
 /**

@@ -1,19 +1,16 @@
 package nmd.primal.forgecraft.tiles;
 
-import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.blocks.Bloomery;
-import nmd.primal.forgecraft.blocks.Firebox;
+import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
@@ -47,7 +44,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
                 if (world.getBlockState(this.getPos()).getValue(Bloomery.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
-                        world.setBlockState(this.getPos(), state.withProperty(Firebox.ACTIVE, false), 2);
+                        world.setBlockState(this.getPos(), state.withProperty(Forge.ACTIVE, false), 2);
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }

@@ -39,7 +39,7 @@ public class ModBlocks {
 
     public static void init() {
 
-        firebox = new Firebox(Material.ROCK);
+        firebox = new Forge(Material.ROCK);
 
         bloomery = new Bloomery(Material.ROCK, "bloomery");
 

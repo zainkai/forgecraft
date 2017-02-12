@@ -8,18 +8,18 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import nmd.primal.forgecraft.tiles.TileFirebox;
+import nmd.primal.forgecraft.tiles.TileForge;
 import org.lwjgl.opengl.GL11;
 
 /**
  * Created by kitsu on 12/4/2016.
  */
-public class TileFireboxRender extends TileEntitySpecialRenderer<TileFirebox>
+public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
 {
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     @Override
-    public void renderTileEntityAt(TileFirebox tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void renderTileEntityAt(TileForge tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
         GL11.glPushMatrix();
         GL11.glTranslated(x + 0.5D, y + 0.95D, z + 0.5D);

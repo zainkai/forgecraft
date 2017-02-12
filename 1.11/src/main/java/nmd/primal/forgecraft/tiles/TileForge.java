@@ -11,14 +11,14 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nmd.primal.forgecraft.blocks.Firebox;
+import nmd.primal.forgecraft.blocks.Forge;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
 /**
  * Created by mminaie on 11/30/16.
  */
-public class TileFirebox extends TileBaseSlot implements ITickable {
+public class TileForge extends TileBaseSlot implements ITickable {
 
     private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
     //private ItemStack[] inventory = new ItemStack [0];
@@ -35,10 +35,10 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
                 this.iteration = 0;
                 IBlockState state = world.getBlockState(this.pos);
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
-                IBlockState aboveState = world.getBlockState(abovePos);
-                if (world.getBlockState(this.getPos()).getValue(Firebox.ACTIVE)) {
+
+                if (world.getBlockState(this.getPos()).getValue(Forge.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
-                        world.setBlockState(this.getPos(), state.withProperty(Firebox.ACTIVE, false), 2);
+                        world.setBlockState(this.getPos(), state.withProperty(Forge.ACTIVE, false), 2);
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
@@ -52,25 +52,55 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
                             this.markDirty();
                             this.updateBlock();
                         }
-                        if(world.getBlockState(abovePos).getBlock() instanceof BlockFurnace){
-                            //System.out.println("Trying to set Block Furnace State active");
-                            IBlockState iblockstate = world.getBlockState(abovePos);
-                            TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(abovePos);
-
-                            if(world.getBlockState(abovePos).getBlock() == Blocks.LIT_FURNACE){
-                                tileFurnace.setField(0,1000);
-                            }
-                            if(world.getBlockState(abovePos).getBlock() == Blocks.FURNACE){
-                                BlockFurnace.setState(true, world, abovePos);
-                                //world.setBlockState(abovePos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-                                tileFurnace.setField(0,1000);
-                            }
-                        }
+                        this.furnaceManager(abovePos);
                     }
                 }
                 this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
             }
         }
+    }
+
+    private void forgeRecipeManager(){
+
+    }
+
+    private void furnaceManager(BlockPos abovePos){
+        if(world.getBlockState(abovePos).getBlock() instanceof BlockFurnace){
+            TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(abovePos);
+            if(world.getBlockState(abovePos).getBlock() == Blocks.LIT_FURNACE){
+                tileFurnace.setField(0,1000);
+            }
+            if(world.getBlockState(abovePos).getBlock() == Blocks.FURNACE){
+                BlockFurnace.setState(true, world, abovePos);
+                tileFurnace.setField(0,1000);
+            }
+        }
+    }
+
+    private void heatManager(Integer h, IBlockState state, ItemStack stack, World world, BlockPos pos){
+        if(state.getValue(Forge.ACTIVE) == true){
+            if(!stack.isEmpty()) {
+                if(h > 0) {
+                    this.setHeat(h - 25);
+                }
+                if(h < 10 ){
+                    world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
+                }
+            }
+            if(stack.isEmpty()){
+                world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
+            }
+        }
+        if(state.getValue(Forge.ACTIVE) == false){
+            if(h > 50){
+                this.setHeat(h - 50);
+            }
+            if(h < 0){
+                this.setHeat(0);
+            }
+        }
+        this.updateBlock();
+        this.markDirty();
     }
 
     public int getHeat(){
@@ -83,32 +113,6 @@ public class TileFirebox extends TileBaseSlot implements ITickable {
     @Override
     public int getSlotLimit() {
         return 1;
-    }
-
-    private void heatManager(Integer h, IBlockState state, ItemStack stack, World world, BlockPos pos){
-        if(state.getValue(Firebox.ACTIVE) == true){
-            if(!stack.isEmpty()) {
-                if(h > 0) {
-                    this.setHeat(h - 25);
-                }
-                if(h < 10 ){
-                    world.setBlockState(pos, state.withProperty(Firebox.ACTIVE, false), 2);
-                }
-            }
-            if(stack.isEmpty()){
-                world.setBlockState(pos, state.withProperty(Firebox.ACTIVE, false), 2);
-            }
-        }
-        if(state.getValue(Firebox.ACTIVE) == false){
-            if(h > 50){
-                this.setHeat(h - 50);
-            }
-            if(h < 0){
-                this.setHeat(0);
-            }
-        }
-        this.updateBlock();
-        this.markDirty();
     }
 
     public ItemStack removeStackFromSlot(int index) {

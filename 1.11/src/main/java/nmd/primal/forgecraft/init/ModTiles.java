@@ -4,7 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileBloomery;
-import nmd.primal.forgecraft.tiles.TileFirebox;
+import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
 
 /**
@@ -13,7 +13,7 @@ import nmd.primal.forgecraft.tiles.TilePistonBellows;
 public class ModTiles {
 
     public static void registerTileEntities () {
-        registerTileEntity(TileFirebox.class, "firebox");
+        registerTileEntity(TileForge.class, "firebox");
         registerTileEntity(TilePistonBellows.class, "pistonbellows");
         registerTileEntity(TileBloomery.class, "bloomery");
         registerTileEntity(TileBaseCrucible.class, "basecrucible");

@@ -1,21 +1,13 @@
 package nmd.primal.forgecraft.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -28,13 +20,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
-import nmd.primal.forgecraft.tiles.TileBaseCrucible;
-import nmd.primal.forgecraft.tiles.TileFirebox;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.annotation.CheckForNull;
-import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 import static nmd.primal.forgecraft.CommonUtils.spawnItemEntityFromWorld;

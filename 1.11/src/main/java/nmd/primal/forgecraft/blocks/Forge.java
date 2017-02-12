@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 //import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.tiles.TileFirebox;
+import nmd.primal.forgecraft.tiles.TileForge;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -38,13 +38,13 @@ import java.util.Random;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class Firebox extends CustomContainerFacing implements ITileEntityProvider/*, ITextComponent*/ {
+public class Forge extends CustomContainerFacing implements ITileEntityProvider/*, ITextComponent*/ {
 
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
     protected static final AxisAlignedBB collideBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.99D, 1.0D);
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
-    public Firebox(Material material) {
+    public Forge(Material material) {
         super(material);
         setUnlocalizedName(ModInfo.ForgecraftBlocks.FIREBOX.getUnlocalizedName());
         setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
@@ -56,7 +56,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileFirebox();
+        return new TileForge();
     }
 
     @Nullable
@@ -75,7 +75,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote) {
-            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+            TileForge tile = (TileForge) world.getTileEntity(pos);
             if (tile != null) {
                 ItemStack pItem = player.inventory.getCurrentItem();
                 ItemStack tileItem = tile.getSlotStack(0);
@@ -102,11 +102,6 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                 }
                 if((pItem.getItem() == Items.FLINT_AND_STEEL) /*|| (pItem.getItem() == PrimalItems.FIRE_BOW)*/ || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
                     world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
-                    BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-                    if(world.getBlockState(tempPos).getBlock() == Blocks.AIR) {
-                        world.setBlockState(tempPos, Blocks.FIRE.getDefaultState(), 2);
-                    }
-
                     tile.markDirty();
                     tile.updateBlock();
                     return true;
@@ -153,7 +148,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
                 EntityItem itemEnt = (EntityItem) ent;
                 ItemStack stack = itemEnt.getEntityItem();
                 //System.out.println(stack);
-                TileFirebox tile = (TileFirebox)world.getTileEntity(pos);
+                TileForge tile = (TileForge)world.getTileEntity(pos);
                 if (tile != null) {
                     if(!tile.getSlotStack(0).isEmpty()) {
                         if(tile.getSlotStack(0).getItem() == stack.getItem()) {
@@ -216,7 +211,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
         if (side == EnumFacing.UP)
         {
             if(!world.isRemote){
-                TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+                TileForge tile = (TileForge) world.getTileEntity(pos);
                 if(tile.getSlotStack(0) != ItemStack.EMPTY){
                     if(world.getBlockState(pos).getValue(ACTIVE)==true){
                         return true;
@@ -235,7 +230,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     {
         if (!world.isRemote && world.getGameRules().getBoolean("doTileDrops"))
         {
-            TileFirebox tile = (TileFirebox) world.getTileEntity(pos);
+            TileForge tile = (TileForge) world.getTileEntity(pos);
             if (tile !=null)
             {
                 for (ItemStack stack : tile.getSlotList())
@@ -397,7 +392,7 @@ public class Firebox extends CustomContainerFacing implements ITileEntityProvide
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if(state.getValue(Firebox.ACTIVE) == true)
+        if(state.getValue(Forge.ACTIVE) == true)
         {
             double d0 = (double)pos.getX() + 0.5D;
             double d1 = (double)pos.getY() + 0.96D;
