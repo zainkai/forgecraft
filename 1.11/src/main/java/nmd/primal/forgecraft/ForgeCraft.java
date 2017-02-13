@@ -42,10 +42,12 @@ public class ForgeCraft
         NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.MOD_CHANNEL);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        ModItems.init();
+
         ModBlocks.init();
-        ModItems.register();
         ModBlocks.register();
+        ModItems.init();
+        ModItems.register();
+
         ModTiles.registerTileEntities();
 //        ModItems.registerRenders();
         proxy.preInit();

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -15,6 +16,7 @@ import nmd.primal.forgecraft.items.ItemBellowsHandle;
 import nmd.primal.forgecraft.items.ItemForgingManual;
 import nmd.primal.forgecraft.items.ItemSoftCrucible;
 import nmd.primal.forgecraft.items.ItemStoneTongs;
+import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -24,6 +26,7 @@ public class ModItems {
     public static Item pistonbellows;
     public static Item softcrucible;
     public static Item stonetongs;
+    public static ItemBlock ironingotball;
     //public static Item forgingmanual;
 
     public static void init() {
@@ -31,6 +34,7 @@ public class ModItems {
         pistonbellows = new ItemBellowsHandle();
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
+        ironingotball = new ItemBlockIngotBall(ModBlocks.ironball.setRegistryName(ModBlocks.ironball.getRegistryName()));
         //forgingmanual = new ItemForgingManual();
     }
 
@@ -38,12 +42,14 @@ public class ModItems {
         GameRegistry.register(pistonbellows);
         GameRegistry.register(softcrucible);
         GameRegistry.register(stonetongs);
+        GameRegistry.register(ironingotball);
         //GameRegistry.register(forgingmanual);
     }
 
     public static void registerRenders() {
         registerRender(pistonbellows);
         registerRender(softcrucible);
+        registerRenderItemBlock(ironingotball);
         //registerRender(forgingmanual);
     }
 
@@ -90,6 +96,11 @@ public class ModItems {
     private static void registerRender(Item item) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
+
+    private static void registerRenderItemBlock(ItemBlock item){
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+    }
+
     /*public static void registerRender(Item item, int meta, String fileName) {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(fileName), "inventory"));
 
