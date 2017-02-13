@@ -26,7 +26,7 @@ public class ModItems {
     public static Item pistonbellows;
     public static Item softcrucible;
     public static Item stonetongs;
-    public static ItemBlock ironingotball;
+    //public static ItemBlock ironingotball;
     //public static Item forgingmanual;
 
     public static void init() {
@@ -34,7 +34,7 @@ public class ModItems {
         pistonbellows = new ItemBellowsHandle();
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
-        ironingotball = new ItemBlockIngotBall(ModBlocks.ironball.setRegistryName(ModBlocks.ironball.getRegistryName()));
+        //ironingotball = new ItemBlockIngotBall(ModBlocks.ironball.setRegistryName(ModBlocks.ironball.getRegistryName()));
         //forgingmanual = new ItemForgingManual();
     }
 
@@ -42,14 +42,14 @@ public class ModItems {
         GameRegistry.register(pistonbellows);
         GameRegistry.register(softcrucible);
         GameRegistry.register(stonetongs);
-        GameRegistry.register(ironingotball);
+        //GameRegistry.register(ironingotball);
         //GameRegistry.register(forgingmanual);
     }
 
     public static void registerRenders() {
         registerRender(pistonbellows);
         registerRender(softcrucible);
-        registerRenderItemBlock(ironingotball);
+        //registerRenderItemBlock(ironingotball);
         //registerRender(forgingmanual);
     }
 

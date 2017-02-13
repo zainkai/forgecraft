@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.blocks.*;
+import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -35,6 +36,7 @@ public class ModBlocks {
     public static Block failedironcruciblehot;
 
     public static Block ironball;
+    public static ItemBlock ironballitem;
 
 
     public static void init() {
@@ -63,6 +65,7 @@ public class ModBlocks {
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
 
         ironball = new IngotBall(Material.IRON, "ironball", 5.0F);
+        ironballitem = new ItemBlockIngotBall(ironball);
 
     }
 
@@ -89,7 +92,7 @@ public class ModBlocks {
         registerBlock(failedironcrucible);
         registerBlock(failedironcruciblehot);
 
-        registerBlock(ironball);
+        registerBlockSubType(ironball, ironballitem);
     }
 
     public static void registerRenders() {
@@ -120,6 +123,13 @@ public class ModBlocks {
     private static void registerBlock(Block block) {
         GameRegistry.register(block);
         ItemBlock item = new ItemBlock(block);
+        item.setRegistryName(block.getRegistryName());
+        GameRegistry.register(item);
+    }
+
+    private static void registerBlockSubType(Block block, ItemBlock itemBlock){
+        GameRegistry.register(block);
+        ItemBlock item = itemBlock;
         item.setRegistryName(block.getRegistryName());
         GameRegistry.register(item);
     }
