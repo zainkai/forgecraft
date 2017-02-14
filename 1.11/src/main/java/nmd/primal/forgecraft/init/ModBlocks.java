@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
@@ -117,6 +118,8 @@ public class ModBlocks {
         registerRender(failedironcruciblehot);
 
         registerRender(ironball);
+        registerRenderCustom(ironballitem, 0, new ModelResourceLocation(ironballitem.getUnlocalizedName() + "_0"));
+        registerRenderCustom(ironballitem, 1, new ModelResourceLocation(ironballitem.getUnlocalizedName() + "_1"));
 
     }
 
@@ -137,4 +140,9 @@ public class ModBlocks {
     private static void registerRender(Block block) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
     }
+
+    private static void registerRenderCustom(ItemBlock item, Integer meta, ModelResourceLocation model){
+        ModelLoader.setCustomModelResourceLocation(item, meta, model);
+    }
+
 }
