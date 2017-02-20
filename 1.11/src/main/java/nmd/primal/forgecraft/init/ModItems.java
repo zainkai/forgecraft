@@ -4,18 +4,25 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.items.ItemBellowsHandle;
-import nmd.primal.forgecraft.items.ItemForgingManual;
-import nmd.primal.forgecraft.items.ItemSoftCrucible;
-import nmd.primal.forgecraft.items.ItemStoneTongs;
+import nmd.primal.forgecraft.blocks.IngotBall;
+import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 
 /**
@@ -26,15 +33,32 @@ public class ModItems {
     public static Item pistonbellows;
     public static Item softcrucible;
     public static Item stonetongs;
-    //public static ItemBlock ironingotball;
+    //public static Item ironingotballcool;
+    public static Item ironingotballhot;
     //public static Item forgingmanual;
 
     public static void init() {
-        OBJLoader.INSTANCE.addDomain(ModInfo.MOD_ID);
+        //OBJLoader.INSTANCE.addDomain(ModInfo.MOD_ID);
         pistonbellows = new ItemBellowsHandle();
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
-        //ironingotball = new ItemBlockIngotBall(ModBlocks.ironball.setRegistryName(ModBlocks.ironball.getRegistryName()));
+        //ironingotballcool = new BaseMultiItem("ironingotcool") {};
+        ironingotballhot = new BaseMultiItem("ironingothot") {
+            public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+                if(!world.isRemote) {
+                    ItemStack itemstack = player.getHeldItem(hand);
+                    if (world.getBlockState(pos).getBlock() != ModBlocks.firebox) {
+                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+                        if(world.getBlockState(tempPos).getBlock() == Blocks.AIR){
+                            world.setBlockState(tempPos, ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
+                            itemstack.shrink(1);
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                }
+                return EnumActionResult.FAIL;
+            }
+        };
         //forgingmanual = new ItemForgingManual();
     }
 
@@ -42,17 +66,21 @@ public class ModItems {
         GameRegistry.register(pistonbellows);
         GameRegistry.register(softcrucible);
         GameRegistry.register(stonetongs);
-        //GameRegistry.register(ironingotball);
+        //GameRegistry.register(ironingotballcool);
+        GameRegistry.register(ironingotballhot);
         //GameRegistry.register(forgingmanual);
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(pistonbellows);
         registerRender(softcrucible);
-        //registerRenderItemBlock(ironingotball);
+        //registerRender(ironingotballcool);
+        registerRender(ironingotballhot);
         //registerRender(forgingmanual);
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerCustomRenders(){
         ModelBakery.registerItemVariants(ModItems.stonetongs, ModItems.stonetongs.getRegistryName(),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs"),
@@ -61,7 +89,8 @@ public class ModItems {
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhotcracked"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotiron"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironcooked"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironfailed")
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironfailed"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_ingot")
                 );
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
@@ -85,6 +114,9 @@ public class ModItems {
                   }
                   else if (stack.getTagCompound().getInteger("type") == 5 ) {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotironfailed", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 6 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_ingot", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

@@ -8,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 
@@ -37,7 +39,8 @@ public class ModBlocks {
     public static Block failedironcruciblehot;
 
     public static Block ironball;
-    public static ItemBlock ironballitem;
+    //public static ItemBlock ironballitemcool;
+    //public static ItemBlock ironballitemhot;
 
 
     public static void init() {
@@ -66,9 +69,11 @@ public class ModBlocks {
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
 
         ironball = new IngotBall(Material.IRON, "ironball", 5.0F);
-        ironballitem = new ItemBlockIngotBall(ironball);
+        //ironballitemcool = new ItemBlockIngotBall(ironball);
+        //ironballitemhot = new ItemBlockIngotBall(ironball);
 
     }
+
 
     public static void register() {
         registerBlock(firebox);
@@ -93,9 +98,12 @@ public class ModBlocks {
         registerBlock(failedironcrucible);
         registerBlock(failedironcruciblehot);
 
-        registerBlockSubType(ironball, ironballitem);
+        registerBlock(ironball);
+        //registerBlockSubType(ironball, ironballitemcool, "ironcool");
+        //registerBlockSubType(ironball, ironballitemhot, "ironhot");
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(firebox);
         registerRender(pistonbellowsoak);
@@ -118,8 +126,8 @@ public class ModBlocks {
         registerRender(failedironcruciblehot);
 
         registerRender(ironball);
-        registerRenderCustom(ironballitem, 0, new ModelResourceLocation(ironballitem.getUnlocalizedName() + "_0"));
-        registerRenderCustom(ironballitem, 1, new ModelResourceLocation(ironballitem.getUnlocalizedName() + "_1"));
+        //registerRenderCustom(ironballitemcool, 0, new ModelResourceLocation(ironballitemcool.getUnlocalizedName()));
+        //registerRenderCustom(ironballitemhot, 1, new ModelResourceLocation(ironballitemhot.getUnlocalizedName()));
 
     }
 
@@ -130,10 +138,10 @@ public class ModBlocks {
         GameRegistry.register(item);
     }
 
-    private static void registerBlockSubType(Block block, ItemBlock itemBlock){
+    private static void registerBlockSubType(Block block, ItemBlock itemBlock, String registryName){
         GameRegistry.register(block);
         ItemBlock item = itemBlock;
-        item.setRegistryName(block.getRegistryName());
+        item.setRegistryName(registryName);
         GameRegistry.register(item);
     }
 

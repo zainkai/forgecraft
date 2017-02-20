@@ -37,7 +37,9 @@ public class IngotBall extends BlockCustomBase {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
+        //System.out.println(stack.getItemDamage());
         worldIn.setBlockState(pos, state.withProperty(ACTIVE, Boolean.valueOf(false)), 2);
+        //System.out.println(state.getValue(ACTIVE));
     }
 
     @Override
