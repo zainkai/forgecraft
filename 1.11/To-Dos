@@ -1,14 +1,27 @@
 To-Dos
 
 *** Priority ***
-- [ ] Block Drop for failed crucible
-- [x] oreDictionary ingotBall to ingotIron
-- [ ] Forging Recipe Handler
+- [ ] Forge Recipe Handler
 - [ ] Hot Iron Ingot Recipe
 - [ ] Casting Bloomery
 
+*** Backlog ***
+- [ ] Anvil
+  - [ ] Anvil Recipe Handler
 
+- [ ] Casting Table
+  - [ ] Block
+  - [ ] Gui
+  - [ ] Crafting recipes
 
+- [ ] Sounds
+  - [ ] Bellows Sounds
+  - [ ] Bloomery Sound?
+  - [ ] Forge Sound?
+
+*** Completed ***
+- [x] Block Drop for failed crucible
+- [x] oreDictionary ingotBall to ingotIron
 - [x] Tile Firebox Heat Manager
 - [x] Fix Bloomery Lit Texture
 - [x] Bellows break texture
@@ -22,17 +35,4 @@ To-Dos
 - [x] Tongs Extract from bloomery for Hot Iron Finished
 - [x] Crafting Recipes
 
-- [ ] Anvil
-  - [ ] Anvil Recipe Handler
 
-- [ ] Casting Table
-  - [ ] Block
-  - [ ] Gui
-  - [ ] Crafting recipes
-
-
-
-- [ ] Sounds
-  - [ ] Bellows Sounds
-  - [ ] Bloomery Sound?
-  - [ ] Forge Sound?
