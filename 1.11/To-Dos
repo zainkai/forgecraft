@@ -2,7 +2,11 @@ To-Dos
 
 *** Priority ***
 - [ ] Block Drop for failed crucible
-- [ ] oreDictionary ingotBall to ingotIron
+- [x] oreDictionary ingotBall to ingotIron
+- [ ] Forging Recipe Handler
+- [ ] Hot Iron Ingot Recipe
+- [ ] Casting Bloomery
+
 
 
 - [x] Tile Firebox Heat Manager
@@ -26,7 +30,7 @@ To-Dos
   - [ ] Gui
   - [ ] Crafting recipes
 
-- [ ] Casting Bloomery
+
 
 - [ ] Sounds
   - [ ] Bellows Sounds
