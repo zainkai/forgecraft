@@ -1,12 +1,16 @@
 package nmd.primal.forgecraft.init;
 
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.blocks.Bloomery;
+import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
+import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
 /**
  * Created by kitsu on 11/30/2016.
@@ -15,7 +19,8 @@ public class ModCrafting {
 
     public static void register() {
         /***Forge***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),  "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),
+                "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
 
         /***Wooden PistonBellows***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsoak),  "XXX", "X Y", "XXX",
@@ -32,13 +37,16 @@ public class ModCrafting {
                 'X', new ItemStack(Blocks.PLANKS, 1, 5), 'Y', ModItems.pistonbellows);
 
         /***Bellows Handle***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.pistonbellows),  "X X", "X X", " X ", 'X', Items.STICK);
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.pistonbellows),
+                "X X", "X X", " X ", 'X', Items.STICK);
 
         /***Tongs***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.stonetongs, 1), "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.stonetongs, 1),
+                "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
         /***Iron Crucible***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.rawironcrucible, 1), " X ", " Y ", 'X', Blocks.IRON_ORE, 'Y', ModBlocks.emptycrucible);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.rawironcrucible, 1),
+                " X ", " Y ", 'X', Blocks.IRON_ORE, 'Y', ModBlocks.emptycrucible);
 
         /***Bloomery Crafting***/
 
@@ -103,6 +111,14 @@ public class ModCrafting {
                 800,
                 0.33f,
                 0.5f
+        );
+
+//Makes a Hot Iron Ingot
+        ForgeCrafting.addRecipe(
+                ModBlocks.ironball,
+
+
+
         );
 
     }
