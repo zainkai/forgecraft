@@ -116,9 +116,15 @@ public class ModCrafting {
 //Makes a Hot Iron Ingot
         ForgeCrafting.addRecipe(
                 ModBlocks.ironball,
-
-
-
+                ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, true),
+                new ItemStack(ModBlocks.ironball, 1),
+                ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                800,
+                200,
+                500,
+                1.0f,
+                1.0f
         );
 
     }
