@@ -13,7 +13,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.blocks.Forge;
+import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import org.omg.PortableInterceptor.ACTIVE;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
@@ -36,6 +38,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
             this.iteration ++;
             IBlockState state = world.getBlockState(this.pos);
             BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
+            IBlockState aboveState = world.getBlockState(abovePos);
             Block block = world.getBlockState(abovePos).getBlock();
             if(this.iteration == 300 ) {
                 this.iteration = 0;
@@ -62,12 +65,8 @@ public class TileForge extends TileBaseSlot implements ITickable {
                 }
                 this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
             }
-            craftingManager(block, world, abovePos);
+            craftingManager(block, world, abovePos, aboveState);
         }
-    }
-
-    private void forgeRecipeManager(){
-
     }
 
     private void furnaceManager(BlockPos abovePos){
@@ -110,19 +109,25 @@ public class TileForge extends TileBaseSlot implements ITickable {
     }
 
 
-    private void craftingManager(Block block, World world, BlockPos pos){
+    private void craftingManager(Block block, World world, BlockPos pos, IBlockState state){
         ForgeCrafting recipe = ForgeCrafting.getRecipe(block);
         if(recipe != null){
-            if(this.getHeat() >= recipe.getHeatThreshold()){
+            if(this.getHeat() >= recipe.getHeatThreshold() && recipe.getStartState().equals(state) ){
                 cookCounter++;
             }
             if(this.getHeat() < recipe.getHeatThreshold() && cookCounter > 0){
                 cookCounter--;
             }
             if(cookCounter >= recipe.getIdealTime() ){
-                world.setBlockState(pos, recipe.getCoolOutput(), 3);
+                world.setBlockState(pos, recipe.getOutput(), 3);
                 cookCounter = 0;
             }
+            /*
+            System.out.println(state.getValue(IngotBall.ACTIVE) + " : " + recipe.getStartState());
+            System.out.println(cookCounter + " : " + recipe.getIdealTime());
+            System.out.println(this.heat + " : " + recipe.getHeatThreshold());
+            System.out.println("========");
+             */
         }
     }
 

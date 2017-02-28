@@ -98,6 +98,8 @@ public class ForgeCrafting {
             return this.input;
         }
 
+        public IBlockState getStartState() {return this.start_state;}
+
         public IBlockState getOutput()
         {
             return this.end_state;
