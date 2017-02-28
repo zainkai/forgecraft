@@ -1,9 +1,7 @@
 To-Dos
 
 *** Priority ***
-- [ ] Forge Recipe Handler
-- [ ] Hot Iron Ingot Recipe
-- [ ] Casting Bloomery
+- [ ] Stone Anvil
 
 *** Backlog ***
 - [ ] Anvil
@@ -20,6 +18,9 @@ To-Dos
   - [ ] Forge Sound?
 
 *** Completed ***
+- [x] Forge Recipe Handler
+- [x] Hot Iron Ingot Recipe
+
 - [x] Block Drop for failed crucible
 - [x] oreDictionary ingotBall to ingotIron
 - [x] Tile Firebox Heat Manager
