@@ -1,7 +1,18 @@
 To-Dos
 
 *** Priority ***
-- [ ] Stone Anvil
+- [x] Stone Anvil
+  - [x] Stone Anvil Inventory
+  - [x] Stone Anvil Tile
+  - [ ] Stone Anvil Crafting
+  - [ ] Stone Anvil Bounding Box
+
+- [ ] StoneTongs Iron Chunks
+
+- [ ] Hammer Crafting
+- [ ] Iron Chunking
+
+
 
 *** Backlog ***
 - [ ] Anvil

@@ -71,7 +71,7 @@ public class ItemStoneTongs extends Item {
                             itemstack.getTagCompound().setInteger("type", 6);
                             //itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
                             world.setBlockToAir(pos);
-                            System.out.println(itemstack.getTagCompound().getInteger("type"));
+                            //System.out.println(itemstack.getTagCompound().getInteger("type"));
                             return EnumActionResult.SUCCESS;
                         }
                     }

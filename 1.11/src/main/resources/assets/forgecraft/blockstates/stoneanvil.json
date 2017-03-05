@@ -1,0 +1,18 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "forgecraft:blocks/stone",
+      "texture": "forgecraft:blocks/stone",
+      "texture1": "forgecraft:blocks/anvil_base",
+      "texture2": "forgecraft:blocks/anvil_base_top"
+    },
+    "parent": "forgecraft:stoneanvil"
+  },
+  "variants": {
+    "facing=north": { "model": "forgecraft:stoneanvil" },
+    "facing=east":  { "model": "forgecraft:stoneanvil", "y": 90 },
+    "facing=south": { "model": "forgecraft:stoneanvil", "y": 180 },
+    "facing=west":  { "model": "forgecraft:stoneanvil", "y": 270 }
+  }
+}

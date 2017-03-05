@@ -20,6 +20,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class CommonUtils {
 
+    public static void print(Object object){
+        System.out.println(object);
+    }
+
     public static int getVanillaItemBurnTime(ItemStack stack)
     {
         if (stack == null)

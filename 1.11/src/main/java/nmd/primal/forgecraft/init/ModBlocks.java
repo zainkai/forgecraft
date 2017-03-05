@@ -39,8 +39,11 @@ public class ModBlocks {
     public static Block failedironcruciblehot;
 
     public static Block ironball;
+    public static Block ironchunk;
     //public static ItemBlock ironballitemcool;
     //public static ItemBlock ironballitemhot;
+
+    public static Block stoneanvil;
 
 
     public static void init() {
@@ -69,6 +72,9 @@ public class ModBlocks {
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
 
         ironball = new IngotBall(Material.IRON, "ironball", 5.0F);
+        ironchunk = new IngotBall(Material.IRON, "ironchunk", 5.0F);
+
+        stoneanvil = new Anvil(Material.ROCK, "stoneanvil", 5.0f);
         //ironballitemcool = new ItemBlockIngotBall(ironball);
         //ironballitemhot = new ItemBlockIngotBall(ironball);
 
@@ -99,8 +105,11 @@ public class ModBlocks {
         registerBlock(failedironcruciblehot);
 
         registerBlock(ironball);
+        registerBlock(ironchunk);
         //registerBlockSubType(ironball, ironballitemcool, "ironcool");
         //registerBlockSubType(ironball, ironballitemhot, "ironhot");
+
+        registerBlock(stoneanvil);
     }
 
     @SideOnly(Side.CLIENT)
@@ -126,8 +135,11 @@ public class ModBlocks {
         registerRender(failedironcruciblehot);
 
         registerRender(ironball);
+        registerRender(ironchunk);
         //registerRenderCustom(ironballitemcool, 0, new ModelResourceLocation(ironballitemcool.getUnlocalizedName()));
         //registerRenderCustom(ironballitemhot, 1, new ModelResourceLocation(ironballitemhot.getUnlocalizedName()));
+
+        registerRender(stoneanvil);
 
     }
 

@@ -2,10 +2,7 @@ package nmd.primal.forgecraft.init;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import nmd.primal.forgecraft.tiles.TileBaseCrucible;
-import nmd.primal.forgecraft.tiles.TileBloomery;
-import nmd.primal.forgecraft.tiles.TileForge;
-import nmd.primal.forgecraft.tiles.TilePistonBellows;
+import nmd.primal.forgecraft.tiles.*;
 
 /**
  * Created by kitsu on 12/2/2016.
@@ -17,6 +14,7 @@ public class ModTiles {
         registerTileEntity(TilePistonBellows.class, "pistonbellows");
         registerTileEntity(TileBloomery.class, "bloomery");
         registerTileEntity(TileBaseCrucible.class, "basecrucible");
+        registerTileEntity(TileAnvil.class, "anvil");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> tile_class, String baseName) {
