@@ -3,9 +3,11 @@ package nmd.primal.forgecraft.proxy;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.renders.TileAnvilRender;
 import nmd.primal.forgecraft.renders.TileBloomeryRender;
 import nmd.primal.forgecraft.renders.TileForgeRender;
 import nmd.primal.forgecraft.renders.TilePistonBellowsRender;
+import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
@@ -36,6 +38,7 @@ public class ClientProxy implements CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileForge.class, new TileForgeRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePistonBellows.class, new TilePistonBellowsRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileBloomery.class, new TileBloomeryRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileAnvil.class, new TileAnvilRender());
     }
 
     @Override

@@ -17,6 +17,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalBlocks;
+import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
@@ -28,9 +30,34 @@ import nmd.primal.forgecraft.tiles.TileForge;
  */
 public class Anvil extends CustomContainerFacing {
 
+
+    double[] normalMin = {0.0625,0.25,0.4375,0.625,0.8125};
+
+    public double getNormalMin(Integer x) {
+        return normalMin[x];
+    }
+
+    double[] normalMax = {0.1875,0.375,0.5625,0.75,0.9375};
+
+    public double getNormalMax(Integer x) {
+        return normalMax[x];
+    }
+
+    double[] reverseMin = {0.8125,0.625,0.4375,0.25,0.0625};
+
+    public double getReverseMin(Integer x) {
+        return reverseMin[x];
+    }
+
+    double[] reverseMax = {0.9375,0.75,0.5625,0.375,0.1875};
+
+    public double getReverseMax(Integer x) {
+        return reverseMax[x];
+    }
+
     public Anvil(Material material, String registryName, Float hardness) {
         super(material);
-        setUnlocalizedName(ModInfo.ForgecraftBlocks.BLOOMERY.getUnlocalizedName());
+        setUnlocalizedName(registryName);
         setRegistryName(registryName);
         //setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
@@ -45,93 +72,197 @@ public class Anvil extends CustomContainerFacing {
             TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
             if (tile != null) {
                 ItemStack pItem = player.inventory.getCurrentItem();
+
+                // ***************************************************************************** //
+                //  Crafting
+                // ***************************************************************************** //
+                if(pItem.getItem() == PrimalItems.STONE_GALLAGHER){
+                    /*
+                    Loop through stacks in slot and create unique id from slots with stacks
+                    if unique ID matches then do crafting
+                     */
+                }
+
+
+                // ***************************************************************************** //
+                //  Adding and Removing Inventory
+                // ***************************************************************************** //
+
                 if(pItem.getItem().equals(ModItems.stonetongs)){
-                    if(pItem.getTagCompound().getInteger("type") == 6){
+                    if( (pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 0) ) {
 
 
-                        if(state.getValue(FACING) == EnumFacing.NORTH){
-                            for(int i = 1; i < 15; i+=3){
-                                if(hitx >= (double)i/16.0) {
-                                    if(hitx <= (double)(i+3)/16.0){
-                                        for(int a = 1; a < 15; a+=3) {
-                                            if(hitz >= (double)a/16.0) {
-                                                if(hitz <= (double)(a+3)/16.0) {
-                                                    int row = (int)(((i-1.0)/3.0));
-                                                    int column = (int)(((a-1.0)/3.0)*5);
-                                                    //System.out.println(row+column);
-                                                    tile.setSlotStack((row+column), new ItemStack(ModItems.ironingotballhot, 1));
+                        if(state.getValue(FACING) == EnumFacing.NORTH) {
+                            int counter = 0;
+                            for(int z=0; z<5; z++){
+                                for(int x=0; x<5; x++){
+                                    if(hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)){
+                                        if(hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
+                                            if(!tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 0) {
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironingotballhot)){
+                                                        pItem.getTagCompound().setInteger("type", 6);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        return true;
+                                                    }
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironchunkhot)){
+                                                        pItem.getTagCompound().setInteger("type", 7);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        System.out.println(counter);
+                                                        return true;
+                                                    }
+                                                }
+                                            }
+
+                                            if(tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 6) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
                                                     pItem.getTagCompound().setInteger("type", 0);
-                                                    System.out.println(tile.getSlotStack(row+column));
+                                                    return true;
+                                                }
+                                                if (pItem.getTagCompound().getInteger("type") == 7) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
+                                                    pItem.getTagCompound().setInteger("type", 0);
+                                                    System.out.println(counter);
                                                     return true;
                                                 }
                                             }
                                         }
                                     }
+                                    counter++;
                                 }
                             }
                         }
-                        if(state.getValue(FACING) == EnumFacing.SOUTH){
-                            for(int i = 1; i < 15; i+=3){
-                                if(hitx >= (double)i/16.0) {
-                                    if(hitx <= (double)(i+3)/16.0){
-                                        for(int a = 1; a < 15; a+=3) {
-                                            if(hitz >= (double)a/16.0) {
-                                                if(hitz <= (double)(a+3)/16.0) {
-                                                    int row = (int)(((i-1.0)/3.0));
-                                                    int column = (int)(((a-1.0)/3.0)*5);
-                                                    System.out.println((int)Math.abs(24-(row+column)));
+                        if(state.getValue(FACING) == EnumFacing.SOUTH) {
+                            int counter = 0;
+                            for(int z=0; z<5; z++){
+                                for(int x=0; x<5; x++){
+                                    if(hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)){
+                                        if(hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
+                                            if(!tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 0) {
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironingotballhot)){
+                                                        pItem.getTagCompound().setInteger("type", 6);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        return true;
+                                                    }
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironchunkhot)){
+                                                        pItem.getTagCompound().setInteger("type", 7);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        System.out.println(counter);
+                                                        return true;
+                                                    }
+                                                }
+                                            }
+
+                                            if(tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 6) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
+                                                    pItem.getTagCompound().setInteger("type", 0);
+                                                    return true;
+                                                }
+                                                if (pItem.getTagCompound().getInteger("type") == 7) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
+                                                    pItem.getTagCompound().setInteger("type", 0);
+                                                    System.out.println(counter);
                                                     return true;
                                                 }
                                             }
                                         }
                                     }
+                                    counter++;
                                 }
                             }
                         }
-                        if(state.getValue(FACING) == EnumFacing.WEST){
-                            for(int i = 1; i < 15; i+=3){
-                                if(hitz >= (double)i/16.0) {
-                                    if(hitz <= (double)(i+3)/16.0){
-                                        for(int a = 1; a < 15; a+=3) {
-                                            if(hitx >= (double)a/16.0) {
-                                                if(hitx <= (double)(a+3)/16.0) {
-                                                    int row = (int)Math.abs(((i-1.0)/3.0)-4);
-                                                    int column = (int)(((a-1.0)/3.0)*5);
-                                                    System.out.println("Row: " + row + " | Column: " + column);
-                                                    System.out.println(row+column);
+                        if(state.getValue(FACING) == EnumFacing.WEST) {
+                            int counter = 0;
+                            for(int x=0; x<5; x++){
+                                for(int z=0; z<5; z++){
+                                    if(hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)){
+                                        if(hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
+                                            if(!tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 0) {
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironingotballhot)){
+                                                        pItem.getTagCompound().setInteger("type", 6);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        return true;
+                                                    }
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironchunkhot)){
+                                                        pItem.getTagCompound().setInteger("type", 7);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        System.out.println(counter);
+                                                        return true;
+                                                    }
+                                                }
+                                            }
+
+                                            if(tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 6) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
+                                                    pItem.getTagCompound().setInteger("type", 0);
+                                                    return true;
+                                                }
+                                                if (pItem.getTagCompound().getInteger("type") == 7) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
+                                                    pItem.getTagCompound().setInteger("type", 0);
+                                                    System.out.println(counter);
                                                     return true;
                                                 }
                                             }
                                         }
                                     }
+                                    counter++;
                                 }
                             }
                         }
-                        if(state.getValue(FACING) == EnumFacing.EAST){
-                            for(int i = 1; i < 15; i+=3){
-                                if(hitz >= (double)i/16.0) {
-                                    if(hitz <= (double)(i+3)/16.0){
-                                        for(int a = 1; a < 15; a+=3) {
-                                            if(hitx >= (double)a/16.0) {
-                                                if(hitx <= (double)(a+3)/16.0) {
-                                                    int row = (int)(((i-1.0)/3.0));
-                                                    int column = (int)(Math.abs(((a-1.0)/3.0)-4)*5);
-                                                    System.out.println("Row: " + row + " | Column: " + column);
-                                                    System.out.println(row+column);
+                        if(state.getValue(FACING) == EnumFacing.EAST) {
+                            int counter = 0;
+                            for(int x=0; x<5; x++){
+                                for(int z=0; z<5; z++){
+                                    if(hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)){
+                                        if(hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
+                                            if(!tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 0) {
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironingotballhot)){
+                                                        pItem.getTagCompound().setInteger("type", 6);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        return true;
+                                                    }
+                                                    if(tile.getSlotStack(counter).getItem().equals(ModItems.ironchunkhot)){
+                                                        pItem.getTagCompound().setInteger("type", 7);
+                                                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                        System.out.println(counter);
+                                                        return true;
+                                                    }
+                                                }
+                                            }
+
+                                            if(tile.getSlotStack(counter).isEmpty()) {
+                                                if (pItem.getTagCompound().getInteger("type") == 6) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
+                                                    pItem.getTagCompound().setInteger("type", 0);
+                                                    return true;
+                                                }
+                                                if (pItem.getTagCompound().getInteger("type") == 7) {
+                                                    tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
+                                                    pItem.getTagCompound().setInteger("type", 0);
+                                                    System.out.println(counter);
                                                     return true;
                                                 }
                                             }
                                         }
                                     }
+                                    counter++;
                                 }
                             }
                         }
                     }
                 }
+
+
                 return false;
             }
         }
-
         return false;
     }
 

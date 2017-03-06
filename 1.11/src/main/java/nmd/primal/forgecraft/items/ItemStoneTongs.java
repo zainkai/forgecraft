@@ -54,7 +54,8 @@ public class ItemStoneTongs extends Item {
         4 | Hot Cooked Iron Crucible
         5 | Hot Failed Iron Crucible
         6 | Hot Iron Ingot
-        7 |
+        7 | Hit Iron Chunk
+        8 |
          */
 
         if(!world.isRemote) {
@@ -69,6 +70,15 @@ public class ItemStoneTongs extends Item {
                     if (world.getBlockState(pos).getBlock() == ModBlocks.ironball) {
                         if(world.getBlockState(pos).getValue(IngotBall.ACTIVE) == true) {
                             itemstack.getTagCompound().setInteger("type", 6);
+                            //itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                            world.setBlockToAir(pos);
+                            //System.out.println(itemstack.getTagCompound().getInteger("type"));
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.ironchunk) {
+                        if(world.getBlockState(pos).getValue(IngotBall.ACTIVE) == true) {
+                            itemstack.getTagCompound().setInteger("type", 7);
                             //itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
                             world.setBlockToAir(pos);
                             //System.out.println(itemstack.getTagCompound().getInteger("type"));
@@ -168,6 +178,10 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 7:
+                                world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 8:
                                 return EnumActionResult.FAIL;
                         }
                     }
@@ -204,9 +218,11 @@ public class ItemStoneTongs extends Item {
 
             }
             else return EnumActionResult.FAIL;
-            System.out.println(itemstack.getTagCompound().getInteger("type"));
+            //System.out.println(itemstack.getTagCompound().getInteger("type"));
         }
-        return EnumActionResult.FAIL;
+        //System.out.println(player.getHeldItem(hand).getTagCompound().getInteger("type"));
+        return EnumActionResult.SUCCESS;
+
     }
 
 }

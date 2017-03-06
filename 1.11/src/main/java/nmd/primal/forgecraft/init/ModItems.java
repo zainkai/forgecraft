@@ -35,6 +35,7 @@ public class ModItems {
     public static Item stonetongs;
     //public static Item ironingotballcool;
     public static Item ironingotballhot;
+    public static Item ironchunkhot;
     //public static Item forgingmanual;
 
     public static void init() {
@@ -59,6 +60,22 @@ public class ModItems {
                 return EnumActionResult.FAIL;
             }
         };
+        ironchunkhot = new BaseMultiItem("ironchunkhot") {
+            public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+                if(!world.isRemote) {
+                    ItemStack itemstack = player.getHeldItem(hand);
+                    if (world.getBlockState(pos).getBlock() != ModBlocks.firebox) {
+                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+                        if(world.getBlockState(tempPos).getBlock() == Blocks.AIR){
+                            world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
+                            itemstack.shrink(1);
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                }
+                return EnumActionResult.FAIL;
+            }
+        };
         //forgingmanual = new ItemForgingManual();
     }
 
@@ -68,6 +85,7 @@ public class ModItems {
         GameRegistry.register(stonetongs);
         //GameRegistry.register(ironingotballcool);
         GameRegistry.register(ironingotballhot);
+        GameRegistry.register(ironchunkhot);
         //GameRegistry.register(forgingmanual);
     }
 
@@ -77,6 +95,7 @@ public class ModItems {
         registerRender(softcrucible);
         //registerRender(ironingotballcool);
         registerRender(ironingotballhot);
+        registerRender(ironchunkhot);
         //registerRender(forgingmanual);
     }
 
@@ -90,7 +109,8 @@ public class ModItems {
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotiron"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironcooked"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironfailed"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_ingot")
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_ingot"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_chunk")
                 );
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
@@ -117,6 +137,9 @@ public class ModItems {
                   }
                   else if (stack.getTagCompound().getInteger("type") == 6 ) {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_ingot", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 7 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_chunk", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

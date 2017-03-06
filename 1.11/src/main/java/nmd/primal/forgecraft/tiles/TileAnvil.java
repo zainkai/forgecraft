@@ -8,6 +8,31 @@ import net.minecraft.util.NonNullList;
  */
 public class TileAnvil extends TileBaseSlot {
 
-    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(25, ItemStack.EMPTY);
+    double[] normalX = {0.125,0.3125,0.5,0.6875,0.875};
+
+    public double getNormalX(Integer x) {
+        return normalX[x];
+    }
+
+    double[] normalZ = {0.125,0.3125,0.5,0.6875,0.875};
+
+    public double getNormalZ(Integer z) {
+        return normalZ[z];
+    }
+
+    double[] reverseX = {0.875,0.6875,0.5,0.3125,0.125};
+
+    public double getReverseX(Integer x) {
+        return reverseX[x];
+    }
+
+    double[] reverseZ = {0.875,0.6875,0.5,0.3125,0.125};
+
+    public double getReverseZ(Integer z) {
+        return reverseZ[z];
+    }
+
+
+    public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(100, ItemStack.EMPTY);
 
 }

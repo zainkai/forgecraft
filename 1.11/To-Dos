@@ -5,9 +5,12 @@ To-Dos
   - [x] Stone Anvil Inventory
   - [x] Stone Anvil Tile
   - [ ] Stone Anvil Crafting
-  - [ ] Stone Anvil Bounding Box
+  - [x] TESR Inventory Rendering for Anvil
 
-- [ ] StoneTongs Iron Chunks
+- [x] Iron Chunk Item Model
+- [x] Anvil Item Model
+
+- [x] StoneTongs Iron Chunks
 
 - [ ] Hammer Crafting
 - [ ] Iron Chunking
@@ -15,8 +18,8 @@ To-Dos
 
 
 *** Backlog ***
-- [ ] Anvil
-  - [ ] Anvil Recipe Handler
+
+  - [ ] Stone Anvil Bounding Box
 
 - [ ] Casting Table
   - [ ] Block

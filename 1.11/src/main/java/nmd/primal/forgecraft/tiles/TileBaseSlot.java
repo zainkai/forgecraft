@@ -12,7 +12,7 @@ import java.util.List;
  */
 public abstract class TileBaseSlot extends BaseTile {
 
-    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
+    public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(100, ItemStack.EMPTY);
 
     // ***************************************************************************** //
     //  Controls

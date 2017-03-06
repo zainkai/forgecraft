@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.IngotBall;
+import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
@@ -113,6 +114,10 @@ public class ModCrafting {
                 0.5f
         );
 
+        // ***************************************************************************** //
+        //  FORGING
+        // ***************************************************************************** //
+
 //Makes a Hot Iron Ingot
         ForgeCrafting.addRecipe(
                 ModBlocks.ironball,
@@ -126,6 +131,33 @@ public class ModCrafting {
                 1.0f,
                 1.0f
         );
+
+        //Makes a Hot Iron Chunk
+        ForgeCrafting.addRecipe(
+                ModBlocks.ironchunk,
+                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true),
+                new ItemStack(ModBlocks.ironchunk, 1),
+                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                800,
+                170,
+                400,
+                1.0f,
+                1.0f
+        );
+
+        // ***************************************************************************** //
+        //  ANVILING
+        // ***************************************************************************** //
+
+        AnvilCrafting.addRecipe(6781014, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+                ItemStack.EMPTY, new ItemStack(ModItems.ironchunkhot, 1), new ItemStack(ModItems.ironchunkhot, 1), new ItemStack(ModItems.ironchunkhot, 1), ItemStack.EMPTY,
+                ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,
+                ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,
+                ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,
+                new ItemStack(Blocks.OBSIDIAN, 1)
+
+                );
 
     }
 }
