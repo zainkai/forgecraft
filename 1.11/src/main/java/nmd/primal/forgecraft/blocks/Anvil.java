@@ -21,6 +21,7 @@ import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileForge;
@@ -77,10 +78,29 @@ public class Anvil extends CustomContainerFacing {
                 //  Crafting
                 // ***************************************************************************** //
                 if(pItem.getItem() == PrimalItems.STONE_GALLAGHER){
-                    /*
-                    Loop through stacks in slot and create unique id from slots with stacks
-                    if unique ID matches then do crafting
-                     */
+                    System.out.println("Use the ghallegher");
+                    StringBuilder craftingIDBuilder = new StringBuilder();
+                    //craftingIDBuilder.append("");
+                    int craftingID = 0;
+                    for(int i=0; i<tile.getSlotListSize(); i++){
+                        if(!tile.getSlotStack(i).isEmpty()){
+                            craftingIDBuilder.append(i);
+                        }
+                    }
+
+                    craftingID = Integer.parseInt(craftingIDBuilder.toString());
+                    System.out.println(craftingID);
+                    AnvilCrafting recipe = AnvilCrafting.getRecipe(craftingID);
+                    if(recipe != null){
+                        CommonUtils.spawnItemEntity(world, player, recipe.getOutput());
+                        for(int i=0; i<tile.getSlotListSize(); i++){
+                            if(!tile.getSlotStack(i).isEmpty()){
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+
+                            }
+                        }
+                        return true;
+                    }
                 }
 
 

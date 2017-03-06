@@ -150,14 +150,7 @@ public class ModCrafting {
         //  ANVILING
         // ***************************************************************************** //
 
-        AnvilCrafting.addRecipe(6781014, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-                ItemStack.EMPTY, new ItemStack(ModItems.ironchunkhot, 1), new ItemStack(ModItems.ironchunkhot, 1), new ItemStack(ModItems.ironchunkhot, 1), ItemStack.EMPTY,
-                ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,
-                ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,
-                ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,
-                new ItemStack(Blocks.OBSIDIAN, 1)
-
-                );
+        AnvilCrafting.addRecipe(6781014, new ItemStack(Blocks.OBSIDIAN, 1));
 
     }
 }
