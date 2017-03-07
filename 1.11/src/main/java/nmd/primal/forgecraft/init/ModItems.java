@@ -31,7 +31,7 @@ import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 public class ModItems {
 
     public static Item pistonbellows;
-    public static Item heavytoolhandle;
+    public static Item forgehammer = new ForgeHammer("forgehammer");
     public static Item softcrucible;
     public static Item stonetongs;
     //public static Item ironingotballcool;
@@ -84,7 +84,7 @@ public class ModItems {
         GameRegistry.register(pistonbellows);
         GameRegistry.register(softcrucible);
         GameRegistry.register(stonetongs);
-        //GameRegistry.register(ironingotballcool);
+        GameRegistry.register(forgehammer);
         GameRegistry.register(ironingotballhot);
         GameRegistry.register(ironchunkhot);
         //GameRegistry.register(forgingmanual);
@@ -94,7 +94,7 @@ public class ModItems {
     public static void registerRenders() {
         registerRender(pistonbellows);
         registerRender(softcrucible);
-        //registerRender(ironingotballcool);
+        registerRender(forgehammer);
         registerRender(ironingotballhot);
         registerRender(ironchunkhot);
         //registerRender(forgingmanual);

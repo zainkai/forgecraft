@@ -154,7 +154,16 @@ public class ModCrafting {
         //  ANVILING
         // ***************************************************************************** //
 
-
+        //Makes a ForgeHammer
+        AnvilCrafting.addRecipe(
+                new Integer[] {
+                        1,1,1,1,0,
+                        0,0,1,0,0,
+                        0,0,1,0,0,
+                        0,0,1,0,0,
+                        0,0,1,0,0 },
+                new ItemStack(ModItems.forgehammer, 1)
+        );
 
         //Makes a Pickaxe Head
         AnvilCrafting.addRecipe(

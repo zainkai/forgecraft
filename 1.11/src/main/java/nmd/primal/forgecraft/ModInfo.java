@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModItems;
 //import nmd.primal.forgecraft.Item.ModItems;
 
 /**
@@ -79,7 +80,7 @@ public class ModInfo {
         @Override
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem() {
-            return new ItemStack(ModBlocks.firebox);
+            return new ItemStack(ModItems.forgehammer);
         }
     };
 
