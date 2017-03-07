@@ -4,7 +4,7 @@ To-Dos
 - [x] Stone Anvil
   - [x] Stone Anvil Inventory
   - [x] Stone Anvil Tile
-  - [ ] Stone Anvil Crafting
+  - [x] Stone Anvil Crafting
   - [x] TESR Inventory Rendering for Anvil
 
 - [x] Iron Chunk Item Model
@@ -13,8 +13,10 @@ To-Dos
 - [x] StoneTongs Iron Chunks
 
 - [ ] Hammer Crafting
-- [ ] Iron Chunking
-
+- [x] Iron Chunking
+- [ ] Toolhead Recipes
+- [ ] WeaponHead recipes
+- [ ] Add forgehammer to oreDict
 
 
 *** Backlog ***

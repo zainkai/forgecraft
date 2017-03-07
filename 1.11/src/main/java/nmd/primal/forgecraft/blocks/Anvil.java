@@ -87,6 +87,7 @@ public class Anvil extends CustomContainerFacing {
                     AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
                     if(recipe != null) {
                         CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
+                        world.playEvent(1031, pos, 0);
                         for (int i = 0; i < tile.getSlotListSize(); i++) {
                             if (!tile.getSlotStack(i).isEmpty()) {
                                 tile.setSlotStack(i, ItemStack.EMPTY);

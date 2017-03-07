@@ -24,6 +24,7 @@ import nmd.primal.core.common.blocks.PrimalBlock;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
+import nmd.primal.forgecraft.tiles.TileAnvil;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -91,7 +92,7 @@ public class ModBlocks {
                     Item pItem = player.getHeldItem(hand).getItem();
                     BlockPos belowPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
 
-                    if(pItem.equals(PrimalItems.STONE_GALLAGHER) && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)){
+                    if (pItem.equals(PrimalItems.STONE_GALLAGHER) && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                         world.setBlockState(belowPos, ModBlocks.stoneanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
@@ -99,6 +100,36 @@ public class ModBlocks {
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
                     }
+                    if (pItem.equals(PrimalItems.STONE_GALLAGHER) && world.getBlockState(belowPos).getBlock().equals(ModBlocks.stoneanvil)) {
+                        TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
+
+
+                        if (tile.getSlotStack(6).isEmpty() &&
+                                tile.getSlotStack(7).isEmpty() &&
+                                tile.getSlotStack(8).isEmpty() &&
+                                tile.getSlotStack(11).isEmpty() &&
+                                tile.getSlotStack(12).isEmpty() &&
+                                tile.getSlotStack(13).isEmpty() &&
+                                tile.getSlotStack(16).isEmpty() &&
+                                tile.getSlotStack(17).isEmpty() &&
+                                tile.getSlotStack(18).isEmpty()
+                                ) {
+                            player.swingArm(hand);
+                            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                            tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                            world.playEvent(1031, pos, 0);
+                            return true;
+                        }
+                    }
+
                 }
                 return false;
             }

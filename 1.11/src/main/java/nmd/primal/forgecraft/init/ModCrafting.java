@@ -150,25 +150,13 @@ public class ModCrafting {
                 1.0f
         );
 
-        //Makes a Charred Tool Handle
-        ForgeCrafting.addRecipe(
-                ModBlocks.ironchunk,
-                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
-                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true),
-                new ItemStack(ModBlocks.ironchunk, 1),
-                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
-                800,
-                170,
-                400,
-                1.0f,
-                1.0f
-        );
-
         // ***************************************************************************** //
         //  ANVILING
         // ***************************************************************************** //
 
-        //AnvilCrafting.addRecipe(6781014, new ItemStack(Blocks.OBSIDIAN, 1));
+
+
+        //Makes a Pickaxe Head
         AnvilCrafting.addRecipe(
         new Integer[] { 0,0,0,0,0,
                         0,1,1,1,0,
