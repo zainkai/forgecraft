@@ -16,7 +16,7 @@ import nmd.primal.forgecraft.ModInfo;
  */
 public class BlockCustomBase extends BlockBase {
 
-    protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+    public AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
     public BlockCustomBase(Material material, String registryName, Float hardness) {
         super(material, registryName, hardness);

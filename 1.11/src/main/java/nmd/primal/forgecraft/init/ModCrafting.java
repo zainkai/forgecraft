@@ -7,6 +7,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.crafting.ToolRecipe;
+import nmd.primal.core.common.items.tools.PrimalTool;
 import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
@@ -19,6 +22,7 @@ import nmd.primal.forgecraft.crafting.ForgeCrafting;
 public class ModCrafting {
 
     public static void register() {
+
         /***Forge***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),
                 "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
@@ -146,11 +150,33 @@ public class ModCrafting {
                 1.0f
         );
 
+        //Makes a Charred Tool Handle
+        ForgeCrafting.addRecipe(
+                ModBlocks.ironchunk,
+                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true),
+                new ItemStack(ModBlocks.ironchunk, 1),
+                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                800,
+                170,
+                400,
+                1.0f,
+                1.0f
+        );
+
         // ***************************************************************************** //
         //  ANVILING
         // ***************************************************************************** //
 
-        AnvilCrafting.addRecipe(6781014, new ItemStack(Blocks.OBSIDIAN, 1));
+        //AnvilCrafting.addRecipe(6781014, new ItemStack(Blocks.OBSIDIAN, 1));
+        AnvilCrafting.addRecipe(
+        new Integer[] { 0,0,0,0,0,
+                        0,1,1,1,0,
+                        1,0,0,0,1,
+                        0,0,0,0,0,
+                        0,0,0,0,0 },
+        new ItemStack(Blocks.OBSIDIAN, 1)
+        );
 
     }
 }

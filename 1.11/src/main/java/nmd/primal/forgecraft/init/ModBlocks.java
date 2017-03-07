@@ -2,14 +2,26 @@ package nmd.primal.forgecraft.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.blocks.PrimalBlock;
+import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 
@@ -71,8 +83,28 @@ public class ModBlocks {
         failedironcrucible = new Crucible(Material.ROCK, "failedironcrucible");
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
 
-        ironball = new IngotBall(Material.IRON, "ironball", 5.0F);
-        ironchunk = new IngotBall(Material.IRON, "ironchunk", 5.0F);
+        ironball = new IngotBall(Material.IRON, "ironball", 5.0F, "ingot") {
+            @Override
+            public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
+            {
+                if(!world.isRemote){
+                    Item pItem = player.getHeldItem(hand).getItem();
+                    BlockPos belowPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
+
+                    if(pItem.equals(PrimalItems.STONE_GALLAGHER) && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)){
+                        player.swingArm(hand);
+                        world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                        world.setBlockState(belowPos, ModBlocks.stoneanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.playEvent(1031, pos, 0);
+                        //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
+
+        ironchunk = new IngotBall(Material.IRON, "ironchunk", 5.0F, "chunk");
 
         stoneanvil = new Anvil(Material.ROCK, "stoneanvil", 5.0f);
         //ironballitemcool = new ItemBlockIngotBall(ironball);

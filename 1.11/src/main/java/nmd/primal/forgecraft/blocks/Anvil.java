@@ -75,28 +75,21 @@ public class Anvil extends CustomContainerFacing {
                 ItemStack pItem = player.inventory.getCurrentItem();
 
                 // ***************************************************************************** //
-                //  Crafting
+                //  Crafting Anvil Recipes
                 // ***************************************************************************** //
                 if(pItem.getItem() == PrimalItems.STONE_GALLAGHER){
-                    System.out.println("Use the ghallegher");
-                    StringBuilder craftingIDBuilder = new StringBuilder();
-                    //craftingIDBuilder.append("");
-                    int craftingID = 0;
-                    for(int i=0; i<tile.getSlotListSize(); i++){
+                    Integer[] tempArray = new Integer[25];
+                    for(int i=0; i < 25 ; i++){
                         if(!tile.getSlotStack(i).isEmpty()){
-                            craftingIDBuilder.append(i);
-                        }
+                            tempArray[i] = 1;
+                        } else tempArray[i] = 0;
                     }
-
-                    craftingID = Integer.parseInt(craftingIDBuilder.toString());
-                    System.out.println(craftingID);
-                    AnvilCrafting recipe = AnvilCrafting.getRecipe(craftingID);
-                    if(recipe != null){
-                        CommonUtils.spawnItemEntity(world, player, recipe.getOutput());
-                        for(int i=0; i<tile.getSlotListSize(); i++){
-                            if(!tile.getSlotStack(i).isEmpty()){
+                    AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
+                    if(recipe != null) {
+                        CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
+                        for (int i = 0; i < tile.getSlotListSize(); i++) {
+                            if (!tile.getSlotStack(i).isEmpty()) {
                                 tile.setSlotStack(i, ItemStack.EMPTY);
-
                             }
                         }
                         return true;

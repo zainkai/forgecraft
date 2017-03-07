@@ -6,31 +6,43 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nmd.primal.core.api.PrimalItems;
+import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModBlocks;
 
 /**
  * Created by mminaie on 2/6/17.
  */
 public class IngotBall extends BlockCustomBase {
 
-    protected static final AxisAlignedBB boundBox = new AxisAlignedBB(7/16D, 0.0D, 7/16D, 9/16D, 2/16D, 9/16D);
+    protected static AxisAlignedBB boundBoxLarge = new AxisAlignedBB(6/16D, 0.0D, 6/16D, 10/16D, 4/16D, 10/16D);
+    protected static AxisAlignedBB boundBoxSmall = new AxisAlignedBB(7/16D, 0.0D, 7/16D, 9/16D, 2/16D, 9/16D);
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
+    private String type;
 
-    public IngotBall(Material material, String registryName, Float hardness){
+    public IngotBall(Material material, String registryName, Float hardness, String type){
         super(material, registryName, hardness);
-
+        this.type = type;
     }
+
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return boundBox;
+        if(this.type.equals("chunk")){
+            return boundBoxSmall;
+        }else
+        return boundBoxLarge;
     }
 
 

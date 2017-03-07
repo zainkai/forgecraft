@@ -31,6 +31,7 @@ import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 public class ModItems {
 
     public static Item pistonbellows;
+    public static Item heavytoolhandle;
     public static Item softcrucible;
     public static Item stonetongs;
     //public static Item ironingotballcool;

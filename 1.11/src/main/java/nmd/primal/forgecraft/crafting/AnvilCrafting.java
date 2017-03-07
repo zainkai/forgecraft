@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 import static javax.swing.UIManager.put;
@@ -20,48 +21,15 @@ public class AnvilCrafting {
 
     private static ArrayList<AnvilCrafting> anvilRecipes = new ArrayList<>();
 
-    private static int input;
+    private Integer[] input = new Integer[25];
 
     private static ItemStack slot0, slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24;
 
     private static ItemStack [] slots = {slot0, slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24};
 
-    private static int[] craftingIDs = {6781014};
-
-    public static int getCraftingIDs(Integer x) {
-        return craftingIDs[x];
-    }
-
-    public static int[] getCraftingIDArray() {
-        return craftingIDs;
-    }
-
-    private static ItemStack[] craftable = {new ItemStack(Blocks.OBSIDIAN, 1)};
-
-    public static ItemStack getCraftable(Integer x) {
-        return craftable[x];
-    }
-
-
-    /*public static Hashtable<Integer, ItemStack> anvilReference = new Hashtable<Integer, ItemStack>(){{
-
-        put(6781014, new ItemStack(Blocks.OBSIDIAN, 1));
-
-        //put(3, ModItems.battleAxe);
-
-    }};*/
-
-    public static ItemStack getSlots(Integer x) {
-        return slots[x];
-    }
-
-    public static ItemStack[] getSlots() {
-        return slots;
-    }
-
     private ItemStack output;
 
-    public AnvilCrafting(Integer input, ItemStack output){
+    public AnvilCrafting(Integer[] input, ItemStack output){
 
         this.input = input;
         this.output = output;
@@ -72,29 +40,25 @@ public class AnvilCrafting {
     //  Recipe Methods
     // ***************************************************************************** //
 
-    public static void addRecipe(Integer input, ItemStack output)
+    public static void addRecipe(Integer[] input, ItemStack output)
     {
         anvilRecipes.add(new AnvilCrafting(input, output));
     }
 
-    public static boolean isRecipeItem(Integer craftingID)
+    public static boolean isRecipe(Integer[] array)
     {
         for(AnvilCrafting recipe : anvilRecipes) {
-            for(int i=0; i < AnvilCrafting.craftingIDs.length ; i++){
-                if (craftingID.equals(getCraftingIDs(i)))
-                    return true;
-            }
+            if (Arrays.equals(array, recipe.input))
+                return true;
         }
         return false;
     }
 
-    public static AnvilCrafting getRecipe(Integer id)
+    public static AnvilCrafting getRecipe(Integer[] array)
     {
         for(AnvilCrafting recipe : anvilRecipes) {
-            for (int i = 0; i < AnvilCrafting.craftingIDs.length; i++) {
-                if (id.equals(getCraftingIDs(i)))
-                    return recipe;
-            }
+            if (Arrays.equals(array, recipe.input))
+                return recipe;
         }
         return null;
     }
