@@ -11,7 +11,7 @@ public class ForgeHammer extends Item {
     public ForgeHammer(String unlocalizedName) {
         setUnlocalizedName(unlocalizedName);
         this.setRegistryName(unlocalizedName);
-        //this.setMaxDamage(1000);
+        this.setMaxDamage(1000);
         //this.setHasSubtypes(true);  //This just says the item has metadata
         this.setMaxStackSize(1);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);

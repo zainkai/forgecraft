@@ -77,7 +77,7 @@ public class Anvil extends CustomContainerFacing {
                 // ***************************************************************************** //
                 //  Crafting Anvil Recipes
                 // ***************************************************************************** //
-                if(pItem.getItem() == PrimalItems.STONE_GALLAGHER){
+                if((pItem.getItem().equals(PrimalItems.STONE_GALLAGHER)) || (pItem.getItem() == ModItems.forgehammer)){
                     Integer[] tempArray = new Integer[25];
                     for(int i=0; i < 25 ; i++){
                         if(!tile.getSlotStack(i).isEmpty()){
@@ -86,6 +86,12 @@ public class Anvil extends CustomContainerFacing {
                     }
                     AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
                     if(recipe != null) {
+                        if(pItem.getItem().equals(PrimalItems.STONE_GALLAGHER)) {
+                            pItem.damageItem(15, player);
+                        }
+                        if(pItem.getItem().equals(ModItems.forgehammer)) {
+                            pItem.damageItem(1, player);
+                        }
                         CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
                         world.playEvent(1031, pos, 0);
                         for (int i = 0; i < tile.getSlotListSize(); i++) {
