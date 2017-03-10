@@ -1,23 +1,18 @@
 To-Dos
 
 *** Priority ***
-- [x] Stone Anvil
-  - [x] Stone Anvil Inventory
-  - [x] Stone Anvil Tile
-  - [x] Stone Anvil Crafting
-  - [x] TESR Inventory Rendering for Anvil
-
-- [x] Iron Chunk Item Model
-- [x] Anvil Item Model
-
-- [x] StoneTongs Iron Chunks
-
-- [ ] Hammer Crafting
-- [x] Iron Chunking
+- [ ] Tool Rendering
 - [ ] Toolhead Recipes
 - [ ] WeaponHead recipes
 - [ ] Add forgehammer to oreDict
 
+
+
+Only modifiable bit is the tool head or weapon blade
+
+The modifier is a product of the tagCompounds are the material type
+
+the modifiers are transfered to the crafted item via NBT
 
 *** Backlog ***
 
@@ -34,6 +29,21 @@ To-Dos
   - [ ] Forge Sound?
 
 *** Completed ***
+
+- [x] Stone Anvil
+  - [x] Stone Anvil Inventory
+  - [x] Stone Anvil Tile
+  - [x] Stone Anvil Crafting
+  - [x] TESR Inventory Rendering for Anvil
+
+- [x] Iron Chunk Item Model
+- [x] Anvil Item Model
+
+- [x] StoneTongs Iron Chunks
+
+- [x] Hammer Crafting
+- [x] Iron Chunking
+
 - [x] Forge Recipe Handler
 - [x] Hot Iron Ingot Recipe
 

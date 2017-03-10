@@ -2,5 +2,13 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "forgecraft:items/test"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "test": 1
+      },
+      "model": "forgecraft:item/softcrucible"
+    }
+  ]
 }

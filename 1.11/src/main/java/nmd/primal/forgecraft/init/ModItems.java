@@ -30,11 +30,11 @@ import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
  */
 public class ModItems {
 
+    public static Item test;
     public static Item pistonbellows;
     public static Item forgehammer = new ForgeHammer("forgehammer");
     public static Item softcrucible;
     public static Item stonetongs;
-    //public static Item ironingotballcool;
     public static Item ironingotballhot;
     public static Item ironchunkhot;
     //public static Item forgingmanual;
@@ -45,6 +45,7 @@ public class ModItems {
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
         //ironingotballcool = new BaseMultiItem("ironingotcool") {};
+        test = new ItemTest();
         ironingotballhot = new BaseMultiItem("ironingothot") {
             public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
                 if(!world.isRemote) {
@@ -87,6 +88,7 @@ public class ModItems {
         GameRegistry.register(forgehammer);
         GameRegistry.register(ironingotballhot);
         GameRegistry.register(ironchunkhot);
+        GameRegistry.register(test);
         //GameRegistry.register(forgingmanual);
     }
 
@@ -97,6 +99,7 @@ public class ModItems {
         registerRender(forgehammer);
         registerRender(ironingotballhot);
         registerRender(ironchunkhot);
+        registerRender(test);
         //registerRender(forgingmanual);
     }
 
