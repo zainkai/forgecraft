@@ -26,8 +26,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 //import nmd.primal.core.api.PrimalBlocks;
+import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.toolparts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
 
 import javax.annotation.Nullable;
@@ -78,15 +82,31 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
             TileForge tile = (TileForge) world.getTileEntity(pos);
             if (tile != null) {
                 ItemStack pItem = player.inventory.getCurrentItem();
-                ItemStack tileItem = tile.getSlotStack(0);
+                ItemStack fuelItem = tile.getSlotStack(0);
+                /*
+                System.out.println(tile.getSlotStack(0));
+                System.out.println(tile.getSlotStack(1));
+                System.out.println(tile.getSlotStack(2));
+                System.out.println(tile.getSlotStack(3));
+                System.out.println(tile.getSlotStack(4));
+                System.out.println(tile.getSlotStack(5));
+                System.out.println(tile.getSlotStack(6));
+                */
+
+                /***********************
+                FUEL SLOT CODE
+                 ***********************/
                 if(pItem.isEmpty()) {
                     if (player.isSneaking()) {
-                        if (!tileItem.isEmpty()) {
-                            CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(0));
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                            tile.markDirty();
-                            tile.updateBlock();
-                            return true;
+                        if (!fuelItem.isEmpty()) {
+                            if(facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH || facing == EnumFacing.EAST || facing == EnumFacing.WEST ) {
+                            //System.out.println();
+                                CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(0));
+                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                tile.markDirty();
+                                tile.updateBlock();
+                                return true;
+                            }
                         }
                     }
                     if(!player.isSneaking()){
@@ -100,7 +120,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                         }
                     }
                 }
-                if((pItem.getItem() == Items.FLINT_AND_STEEL) /*|| (pItem.getItem() == PrimalItems.FIRE_BOW)*/ || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
+                if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
                     world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                     tile.setHeat(100);
                     tile.markDirty();
@@ -108,19 +128,19 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                     return true;
                 }
                 if((!pItem.isEmpty()) && tile.isItemValidForSlot(0, pItem)) {
-                    if (!tileItem.isEmpty()){
-                        if(pItem.getItem() == tileItem.getItem()){
-                            if(tileItem.getCount() < 64){
-                                if(tileItem.getCount() + pItem.getCount() <= 64){
-                                    tileItem.grow(pItem.getCount());
+                    if (!fuelItem.isEmpty()){
+                        if(pItem.getItem() == fuelItem.getItem()){
+                            if(fuelItem.getCount() < 64){
+                                if(fuelItem.getCount() + pItem.getCount() <= 64){
+                                    fuelItem.grow(pItem.getCount());
                                     player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                                     tile.markDirty();
                                     tile.updateBlock();
                                     return true;
                                 }
-                                if(tileItem.getCount() + pItem.getCount() > 64){
+                                if(fuelItem.getCount() + pItem.getCount() > 64){
                                     pItem.setCount(64-pItem.getCount());
-                                    tileItem.setCount(64);
+                                    fuelItem.setCount(64);
                                     tile.markDirty();
                                     tile.updateBlock();
                                     return true;
@@ -128,11 +148,94 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                             }
                         }
                     }
-                    if(tileItem.isEmpty()) {
+                    if(fuelItem.isEmpty()) {
                         tile.setSlotStack(0, pItem);
                         player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                         return true;
                     }
+                }
+                /***********************
+                 FORGING SLOTS CODE
+                 ***********************/
+                //REMOVE COOL INGOT
+                if(facing == EnumFacing.UP ) {
+                    if (pItem.isEmpty()) {
+                        for (int i = 2; i < tile.getSlotListSize(); i++) {
+                            System.out.println(i);
+                            if (!tile.getSlotStack(i).isEmpty()) {
+                                if (tile.getSlotStack(i).getItem().equals(new ItemStack(ModBlocks.ironchunk).getItem())) {
+                                    CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
+                                    tile.setSlotStack(i, ItemStack.EMPTY);
+                                    return true;
+                                }
+                                if (tile.getSlotStack(i).getItem().equals(new ItemStack(ModBlocks.ironball).getItem())) {
+                                    CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
+                                    tile.setSlotStack(i, ItemStack.EMPTY);
+                                    return true;
+                                }
+                                if(tile.getSlotStack(i).hasTagCompound() == true){
+                                    if (tile.getSlotStack(i).getTagCompound().getBoolean("hot") == false) {
+                                        CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
+                                        tile.setSlotStack(i, ItemStack.EMPTY);
+                                        return true;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+
+                    if (pItem.getItem().equals(new ItemStack(ModBlocks.ironchunk).getItem())) {
+                        //System.out.println("Activating");
+                        for (int i = 2; i <= tile.getSlotListSize(); i++) {
+                            if (tile.getSlotStack(i).isEmpty()) {
+                                tile.setSlotStack(i, new ItemStack(pItem.getItem(), 1));
+                                pItem.shrink(1);
+                                return true;
+                            }
+                        }
+                    }
+                    if (pItem.getItem().equals(new ItemStack(ModBlocks.ironball).getItem())) {
+                        for (int i = 2; i < tile.getSlotListSize(); i++) {
+                            if (tile.getSlotStack(i).isEmpty()) {
+                                tile.setSlotStack(i, new ItemStack(pItem.getItem(), 1));
+                                pItem.shrink(1);
+                                return true;
+                            }
+                        }
+                    }
+
+
+                    if (pItem.getItem().equals(ModItems.stonetongs)) {
+                        if (pItem.getTagCompound().getInteger("type") == 0) {
+                            for (int i = 2; i < tile.getSlotListSize(); i++) {
+                                if (tile.getSlotStack(i).getItem().equals(ModItems.ironchunkhot)) {
+                                    tile.setSlotStack(i, ItemStack.EMPTY);
+                                    pItem.getTagCompound().setInteger("type", 7);
+                                    return true;
+                                }
+                                if (tile.getSlotStack(i).getItem().equals(ModItems.ironingotballhot)) {
+                                    tile.setSlotStack(i, ItemStack.EMPTY);
+                                    pItem.getTagCompound().setInteger("type", 6);
+                                    return true;
+                                }
+                                /*
+                                 To-Do
+                                 Insert StoneTongs Code for ToolPart Hot
+                                */
+                            }
+                        }
+                    }
+
+                    if(pItem.getItem() instanceof ToolPart){
+                        if(tile.getSlotStack(4).isEmpty()){
+                            tile.setSlotStack(4, pItem);
+                            pItem.shrink(1);
+                            return true;
+                        }
+                    }
+
                 }
             }
         }

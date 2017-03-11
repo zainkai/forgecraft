@@ -4,17 +4,5 @@
     "particle": "forgecraft:blocks/iron_ingot",
     "texture": "blocks/planks_oak",
     "texture1": "forgecraft:blocks/iron_ingot"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "type": 0.0
-      },
-      "model": "forgecraft:item/ironpickaxehead_0"
-    }
-  ]
+  }
 }
-
-
-
-

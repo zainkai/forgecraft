@@ -1,9 +1,9 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "forgecraft:blocks/iron_ingot",
+		"particle": "blocks/iron_ingot",
 		"texture": "blocks/planks_oak",
-		"texture1": "forgecraft:blocks/iron_ingot"
+		"texture1": "blocks/iron_ingot"
 	},
 	"elements": [
 		{

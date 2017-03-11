@@ -5,6 +5,7 @@ import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -24,12 +25,12 @@ import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
  */
 public class TileForge extends TileBaseSlot implements ITickable {
 
-    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     //private ItemStack[] inventory = new ItemStack [0];
     //private String customName;
     private int iteration = 0;
     private int heat;
-    private int cookCounter;
+    private int cookCounter2, cookCounter3, cookCounter4, cookCounter5, cookCounter6;
 
     @Override
     public void update () {
@@ -40,6 +41,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
             BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
             IBlockState aboveState = world.getBlockState(abovePos);
             Block block = world.getBlockState(abovePos).getBlock();
+
             if(this.iteration == 300 ) {
                 this.iteration = 0;
 
@@ -60,25 +62,11 @@ public class TileForge extends TileBaseSlot implements ITickable {
                             this.markDirty();
                             this.updateBlock();
                         }
-                        this.furnaceManager(abovePos);
                     }
                 }
                 this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
             }
-            craftingManager(block, world, abovePos, aboveState);
-        }
-    }
-
-    private void furnaceManager(BlockPos abovePos){
-        if(world.getBlockState(abovePos).getBlock() instanceof BlockFurnace){
-            TileEntityFurnace tileFurnace = (TileEntityFurnace) world.getTileEntity(abovePos);
-            if(world.getBlockState(abovePos).getBlock() == Blocks.LIT_FURNACE){
-                tileFurnace.setField(0,1000);
-            }
-            if(world.getBlockState(abovePos).getBlock() == Blocks.FURNACE){
-                BlockFurnace.setState(true, world, abovePos);
-                tileFurnace.setField(0,1000);
-            }
+            craftingManager();
         }
     }
 
@@ -109,72 +97,83 @@ public class TileForge extends TileBaseSlot implements ITickable {
     }
 
 
-    private void craftingManager(Block block, World world, BlockPos pos, IBlockState state){
-        ForgeCrafting recipe = ForgeCrafting.getRecipe(block);
-        if(recipe != null){
-            if(this.getHeat() >= recipe.getHeatThreshold() && recipe.getStartState().equals(state) ){
-                cookCounter++;
-            }
-            if(this.getHeat() < recipe.getHeatThreshold() && cookCounter > 0){
-                cookCounter--;
-            }
-            if(cookCounter >= recipe.getIdealTime() ){
-                world.setBlockState(pos, recipe.getOutput(), 3);
-                cookCounter = 0;
-            }
+    private void craftingManager() {
+
+        for (int i = 2; i < this.getSlotListSize(); i++) {
+            Item itemTest = this.getSlotStack(i).getItem();
+            ForgeCrafting recipe = ForgeCrafting.getRecipe(itemTest);
+            if (recipe != null) {
+
+                if(i == 2){
+                    if (this.getHeat() >= recipe.getHeatThreshold()) {
+                        cookCounter2++;
+                    }
+                    if (this.getHeat() < recipe.getHeatThreshold() && cookCounter2 > 0) {
+                        cookCounter2--;
+                    }
+                    if (cookCounter2 >= recipe.getIdealTime()) {
+                        this.setSlotStack(i, new ItemStack(recipe.getOutput(), 1));
+                        cookCounter2 = 0;
+                    }
+                }
+                if(i == 3){
+                    if (this.getHeat() >= recipe.getHeatThreshold()) {
+                        cookCounter3++;
+                    }
+                    if (this.getHeat() < recipe.getHeatThreshold() && cookCounter3 > 0) {
+                        cookCounter3--;
+                    }
+                    if (cookCounter3 >= recipe.getIdealTime()) {
+                        this.setSlotStack(i, new ItemStack(recipe.getOutput(), 1));
+                        cookCounter3 = 0;
+                    }
+                }
+                if(i == 4){
+                    if (this.getHeat() >= recipe.getHeatThreshold()) {
+                        cookCounter4++;
+                    }
+                    if (this.getHeat() < recipe.getHeatThreshold() && cookCounter4 > 0) {
+                        cookCounter4--;
+                    }
+                    if (cookCounter4 >= recipe.getIdealTime()) {
+                        this.setSlotStack(i, new ItemStack(recipe.getOutput(), 1));
+                        cookCounter4 = 0;
+                    }
+                }
+                if(i == 5){
+                    if (this.getHeat() >= recipe.getHeatThreshold()) {
+                        cookCounter5++;
+                    }
+                    if (this.getHeat() < recipe.getHeatThreshold() && cookCounter5 > 0) {
+                        cookCounter5--;
+                    }
+                    if (cookCounter5 >= recipe.getIdealTime()) {
+                        this.setSlotStack(i, new ItemStack(recipe.getOutput(), 1));
+                        cookCounter5 = 0;
+                    }
+                }
+                if(i == 6){
+                    if (this.getHeat() >= recipe.getHeatThreshold()) {
+                        cookCounter6++;
+                    }
+                    if (this.getHeat() < recipe.getHeatThreshold() && cookCounter6 > 0) {
+                        cookCounter6--;
+                    }
+                    if (cookCounter6 >= recipe.getIdealTime()) {
+                        this.setSlotStack(i, new ItemStack(recipe.getOutput(), 1));
+                        cookCounter6 = 0;
+                    }
+                }
+
             /*
             System.out.println(state.getValue(IngotBall.ACTIVE) + " : " + recipe.getStartState());
             System.out.println(cookCounter + " : " + recipe.getIdealTime());
             System.out.println(this.heat + " : " + recipe.getHeatThreshold());
             System.out.println("========");
              */
-        }
-    }
-
-
-    /*
-       private void slotOneManager(){
-        BloomeryCrafting recipe = BloomeryCrafting.getRecipe(this.getSlotStack(1));
-        if(recipe != null){
-            //System.out.println(recipe.getIdealTime() + " : " + recipe.getHeatThreshold());
-            //System.out.println(this.cookCounter + " : " + this.getHeat());
-            //System.out.println("====================");
-            if(this.getHeat() >= recipe.getHeatThreshold()){
-                cookCounter++;
-            }
-            if(cookCounter >= recipe.getIdealTime() ){
-                if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
-                    this.setSlotStack(1, recipe.getOutput());
-                    this.cookCounter = 0;
-                    //System.out.print(" :Success: " + this.getSlotStack(1));
-                    this.updateBlock();
-                    this.markDirty();
-                }
-            }
-            if(cookCounter > recipe.getIdealTime() + (recipe.getIdealTime() * recipe.getTimeVariance())){
-                if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
-                    this.setSlotStack(1, recipe.getOutputFailed());
-                    this.cookCounter = 0;
-                    //System.out.print(" :Failure Time: " + this.getSlotStack(1));
-                    this.updateBlock();
-                    this.markDirty();
-                }
-            }
-            if(this.getHeat() > recipe.getHeatThreshold() + (recipe.getHeatThreshold() * recipe.getHeatVariance())){
-                if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
-                    this.setSlotStack(1, recipe.getOutputFailed());
-                    this.cookCounter = 0;
-                    //System.out.print(" :Failure Heat: " + this.getSlotStack(1));
-                    this.updateBlock();
-                    this.markDirty();
-                }
-            }
-            if (this.getSlotStack(1).isEmpty()){
-                this.cookCounter=0;
             }
         }
     }
-     */
 
 
     public int getHeat(){
@@ -203,6 +202,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
                 }
             }
         }
+
         return false;
     }
 

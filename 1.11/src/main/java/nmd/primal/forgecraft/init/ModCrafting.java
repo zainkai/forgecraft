@@ -143,11 +143,8 @@ public class ModCrafting {
 
 //Makes a Hot Iron Ingot
         ForgeCrafting.addRecipe(
-                ModBlocks.ironball,
-                ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, false),
-                ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, true),
-                new ItemStack(ModBlocks.ironball, 1),
-                ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                Item.getItemFromBlock(ModBlocks.ironball),
+                ModItems.ironingotballhot,
                 800,
                 200,
                 500,
@@ -157,13 +154,10 @@ public class ModCrafting {
 
         //Makes a Hot Iron Chunk
         ForgeCrafting.addRecipe(
-                ModBlocks.ironchunk,
-                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
-                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true),
-                new ItemStack(ModBlocks.ironchunk, 1),
-                ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, false),
+                Item.getItemFromBlock(ModBlocks.ironchunk),
+                ModItems.ironchunkhot,
                 800,
-                170,
+                160,
                 400,
                 1.0f,
                 1.0f

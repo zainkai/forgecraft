@@ -3,15 +3,16 @@ To-Dos
 *** Priority ***
 
 - [ ] Allow redstone, lapis, and shards in the anvil
-- [ ] Fix renderings in the anvil
+- [ ] Fix renderings in the Anvil
+- [ ] Fix Renderings in the Forge
 - [ ] Create toolHead Item
   - [ ] Give toolHead item NBT
   - [x] Create pickaxehead Item
-    - [ ] Create pickaxehead SubNBTs
+    - [x] Create pickaxehead SubNBTs
 - [ ] Create Forging Recipe for toolHeads
 - [ ] Create Anvil recipe for toolHeads
 
-- [ ] Create Slot for Firebox to accept toolheads
+- [ ] Create Slot for Forge to accept toolheads in slot 4
 
 - [ ] Add forgehammer to oreDict
 
