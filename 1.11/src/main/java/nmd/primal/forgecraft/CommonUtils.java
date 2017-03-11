@@ -61,7 +61,7 @@ public class CommonUtils {
     }
 
     public static void spawnItemEntityFromWorld(World world, BlockPos pos, ItemStack stack){
-        EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack); // player.posY - 1.0D
+        EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), stack); // player.posY - 1.0D
         world.spawnEntity(entityitem);
     }
 

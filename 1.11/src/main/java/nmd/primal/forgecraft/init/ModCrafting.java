@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.common.crafting.ToolRecipe;
@@ -16,12 +17,17 @@ import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Created by kitsu on 11/30/2016.
  */
 public class ModCrafting {
 
     public static void register() {
+
+        Random rand = new Random();
 
         /***Forge***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),
@@ -50,8 +56,21 @@ public class ModCrafting {
                 "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
         /***Iron Crucible***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.rawironcrucible, 1),
+
+        ItemStack iron0 = new ItemStack(ModBlocks.rawironcrucible, 1);
+        //iron0.getTagCompound().setBoolean("mod", false);
+        ///iron0.getTagCompound().setInteger("speed", 0);
+        //iron0.getTagCompound().setInteger("fortune", 0);
+        //iron0.getTagCompound().setInteger("durability", 0);
+        //iron0.getTagCompound().setBoolean("silk", false);
+
+        //Regular Iron Ore
+        GameRegistry.addShapedRecipe(iron0,
                 " X ", " Y ", 'X', Blocks.IRON_ORE, 'Y', ModBlocks.emptycrucible);
+
+        //Iron Ore speed +1
+
+
 
         /***Bloomery Crafting***/
 
@@ -154,26 +173,61 @@ public class ModCrafting {
         //  ANVILING
         // ***************************************************************************** //
 
+        String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
+        String hotChunk = ModItems.ironchunkhot.getRegistryName().toString();
+        String diamond = Items.DIAMOND.getRegistryName().toString();
+        String emerald = Items.EMERALD.getRegistryName().toString();
+
+        /*
+        Empty = 0
+        hotChunk = 1
+        diamond = 2
+         */
+
         //Makes a ForgeHammer
         AnvilCrafting.addRecipe(
-                new Integer[] {
-                        0,1,1,1,0,
-                        0,1,1,0,0,
-                        0,0,1,0,0,
-                        0,0,1,0,0,
-                        0,0,1,0,0 },
+                new String [] {
+                        empty,hotChunk,hotChunk,hotChunk,empty,
+                        empty,hotChunk,hotChunk,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,hotChunk,empty,empty },
                 new ItemStack(ModItems.forgehammer, 1)
+        );
+
+        //Makes flaked diamond
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamond,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(PrimalItems.DIAMOND_KNAPP, 1)
+        );
+
+        //Makes flaked emerald
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emerald,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(PrimalItems.EMERALD_KNAPP, 1)
         );
 
         //Makes a Pickaxe Head
         AnvilCrafting.addRecipe(
-        new Integer[] { 0,0,0,0,0,
-                        0,1,1,1,0,
-                        1,0,0,0,1,
-                        0,0,0,0,0,
-                        0,0,0,0,0 },
-        new ItemStack(Blocks.OBSIDIAN, 1)
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,hotChunk,hotChunk,hotChunk,empty,
+                        hotChunk,empty,empty,empty,hotChunk,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(Blocks.OBSIDIAN, 1)
         );
+
 
     }
 }

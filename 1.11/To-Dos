@@ -1,20 +1,42 @@
 To-Dos
 
 *** Priority ***
-- [ ] Tool Rendering
-- [ ] Toolhead Recipes
-- [ ] WeaponHead recipes
+
+- [ ] Allow redstone, lapis, and shards in the anvil
+- [ ] Fix renderings in the anvil
+- [ ] Create toolHead Item
+  - [ ] Give toolHead item NBT
+  - [x] Create pickaxehead Item
+    - [ ] Create pickaxehead SubNBTs
+- [ ] Create Forging Recipe for toolHeads
+- [ ] Create Anvil recipe for toolHeads
+
+- [ ] Create Slot for Firebox to accept toolheads
+
 - [ ] Add forgehammer to oreDict
 
 
 
-Only modifiable bit is the tool head or weapon blade
+Make Iron like normal
+make tool heads like normal
+put tool heads in forge to get hot
+take hot tool head and put in anvil
+put upgrade material (redstone, lapis, emerald, diamond) above pick
+hammer a few times to get cooled toolhead with new NBT changes
 
-The modifier is a product of the tagCompounds are the material type
+Repeat the above process to add-on or add-new upgrade
 
-the modifiers are transfered to the crafted item via NBT
+
+Tools are crafted in a workbench type block
+The block takes an input toolhead and toolrod
+when the block is right-clicked crafting is attempted.
+
 
 *** Backlog ***
+
+- [ ] Tool Rendering
+- [ ] Toolhead Recipes
+- [ ] WeaponHead recipes
 
   - [ ] Stone Anvil Bounding Box
 

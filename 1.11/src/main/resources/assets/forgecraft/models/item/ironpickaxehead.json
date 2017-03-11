@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "forgecraft:items/ironpickaxehead"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "type": 0.0
+      },
+      "model": "forgecraft:item/pickaxehead"
+    }
+  ]
+}
