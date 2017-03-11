@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -25,6 +26,7 @@ import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.toolparts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileForge;
 
@@ -96,7 +98,39 @@ public class Anvil extends CustomContainerFacing {
                         if(pItem.getItem().equals(ModItems.forgehammer)) {
                             pItem.damageItem(1, player);
                         }
-                        CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
+
+                        if(recipe.getOutput().getItem() instanceof ToolPart){
+                            NBTTagCompound tempNBT = tile.getSlotStack(12).getSubCompound("tags");
+                            ItemStack outputStack = recipe.getOutput();
+                            outputStack.getTagCompound().setTag("tags", tempNBT);
+                            outputStack.getSubCompound("tags").setBoolean("hot", false);
+
+                            if(outputStack.getSubCompound("tags").getInteger("modifiers") < 3){
+
+                                //Upgrade Redstone
+                                if(recipe.getUpgrade() == "redstone"){
+                                    outputStack.getSubCompound("tags").setInteger("redstone",
+                                            (outputStack.getSubCompound("tags").getInteger("redstone") + 1) );
+                                    outputStack.getSubCompound("tags").setInteger("modifiers",
+                                            (outputStack.getSubCompound("tags").getInteger("modifiers") + 1) );
+                                }
+
+                            }
+                            CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+
+                        } else {
+                            CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
+                        }
+
+                        /*
+                            NBTTagCompound tempNBT = this.getSlotStack(i).getSubCompound("tags");
+                            ItemStack outputStack = recipe.getOutput();
+                            outputStack.getTagCompound().setTag("tags", tempNBT);
+                            outputStack.getSubCompound("tags").setBoolean("hot", true);
+                            this.setSlotStack(i, outputStack);
+                         */
+
+
                         world.playEvent(1031, pos, 0);
                         for (int i = 0; i < tile.getSlotListSize(); i++) {
                             if (!tile.getSlotStack(i).isEmpty()) {
@@ -138,6 +172,7 @@ public class Anvil extends CustomContainerFacing {
                                                             //System.out.println(counter);
                                                             return true;
                                                         }
+
                                                     }
                                                 }
 
@@ -149,6 +184,15 @@ public class Anvil extends CustomContainerFacing {
                                                     }
                                                     if (pItem.getTagCompound().getInteger("type") == 7) {
                                                         tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        //System.out.println(counter);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 8) {
+                                                        ItemStack tempStack = new ItemStack (ModItems.pickaxehead, 1);
+                                                        //tempStack.
+
+                                                        //tile.setSlotStack((counter), new ItemStack);
                                                         pItem.getTagCompound().setInteger("type", 0);
                                                         //System.out.println(counter);
                                                         return true;

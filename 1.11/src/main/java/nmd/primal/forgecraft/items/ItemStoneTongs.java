@@ -39,6 +39,18 @@ public class ItemStoneTongs extends Item {
             //this.setDamage(item, 1000);
             item.getTagCompound().setInteger("type", 0);
             item.getTagCompound().setInteger("cooldown", 0);
+
+            //item.getTagCompound().setTag("toolpart", );
+
+            //item.getTagCompound().setBoolean("hot", false);
+
+            //item.getTagCompound().setBoolean("emerald", false);
+            //item.getTagCompound().setInteger("diamond", 0);
+            //item.getTagCompound().setInteger("redstone", 0);
+            //item.getTagCompound().setInteger("lapis", 0);
+
+            //item.getTagCompound().setInteger("modifiers", 0);
+
             //item.getTagCompound().setBoolean("active", false);
         }
     }
@@ -47,15 +59,18 @@ public class ItemStoneTongs extends Item {
     {
 
         /*
-        0 | Default StoneTongs
-        1 | Empty Crucible Hot
-        2 | Empty Crucible Cracked Hot
-        3 | Hot Iron Crucible
-        4 | Hot Cooked Iron Crucible
-        5 | Hot Failed Iron Crucible
-        6 | Hot Iron Ingot
-        7 | Hit Iron Chunk
-        8 |
+         0 | Default StoneTongs
+         1 | Empty Crucible Hot
+         2 | Empty Crucible Cracked Hot
+         3 | Hot Iron Crucible
+         4 | Hot Cooked Iron Crucible
+         5 | Hot Failed Iron Crucible
+         6 | Hot Iron Ingot
+         7 | Hot Iron Chunk
+         8 | Hot Pickaxe Head
+         9 | Hot Shovel Head
+        10 | Hot Axe Head
+        11 | Hot Hoe Head
          */
 
         if(!world.isRemote) {
@@ -181,7 +196,7 @@ public class ItemStoneTongs extends Item {
                                 world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
-                            case 8:
+                            case 9:
                                 return EnumActionResult.FAIL;
                         }
                     }
@@ -217,6 +232,7 @@ public class ItemStoneTongs extends Item {
                 }
 
             }
+
             else return EnumActionResult.FAIL;
             //System.out.println(itemstack.getTagCompound().getInteger("type"));
         }

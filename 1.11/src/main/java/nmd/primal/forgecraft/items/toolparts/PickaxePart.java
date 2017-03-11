@@ -200,14 +200,18 @@ public class PickaxePart extends ToolPart {
 
         if (!item.hasTagCompound()) {
             item.setTagCompound(new NBTTagCompound());
-            item.getTagCompound().setBoolean("hot", false);
+            NBTTagCompound tags = new NBTTagCompound();
 
-            item.getTagCompound().setBoolean("emerald", false);
-            item.getTagCompound().setInteger("diamond", 0);
-            item.getTagCompound().setInteger("redstone", 0);
-            item.getTagCompound().setInteger("lapis", 0);
+            item.getTagCompound().setTag("tags", tags);
 
-            item.getTagCompound().setInteger("modifiers", 0);
+            item.getSubCompound("tags").setBoolean("hot", false);
+
+            item.getSubCompound("tags").setBoolean("emerald", false);
+            item.getSubCompound("tags").setInteger("diamond", 0);
+            item.getSubCompound("tags").setInteger("redstone", 0);
+            item.getSubCompound("tags").setInteger("lapis", 0);
+
+            item.getSubCompound("tags").setInteger("modifiers", 0);
         }
 
     }
@@ -216,14 +220,18 @@ public class PickaxePart extends ToolPart {
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         if (!item.hasTagCompound()) {
             item.setTagCompound(new NBTTagCompound());
-            item.getTagCompound().setBoolean("hot", false);
+            NBTTagCompound tags = new NBTTagCompound();
 
-            item.getTagCompound().setBoolean("emerald", false);
-            item.getTagCompound().setInteger("diamond", 0);
-            item.getTagCompound().setInteger("redstone", 0);
-            item.getTagCompound().setInteger("lapis", 0);
+            item.getTagCompound().setTag("tags", tags);
 
-            item.getTagCompound().setInteger("modifiers", 0);
+            item.getSubCompound("tags").setBoolean("hot", false);
+
+            item.getSubCompound("tags").setBoolean("emerald", false);
+            item.getSubCompound("tags").setInteger("diamond", 0);
+            item.getSubCompound("tags").setInteger("redstone", 0);
+            item.getSubCompound("tags").setInteger("lapis", 0);
+
+            item.getSubCompound("tags").setInteger("modifiers", 0);
         }
     }
 

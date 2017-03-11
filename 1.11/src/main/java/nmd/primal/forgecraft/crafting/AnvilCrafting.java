@@ -22,22 +22,17 @@ public class AnvilCrafting {
 
     private static ArrayList<AnvilCrafting> anvilRecipes = new ArrayList<>();
 
-    //private Integer[] input = new Integer[25];
-
     private String[] input = new String[25];
 
-    //private ItemStack inputItem;
-
-    //private static Item slot0, slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24;
-
-    //private static Item[] input = {slot0, slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24};
+    private String upgradeType;
 
     private ItemStack output;
 
-    public AnvilCrafting(String[] input, ItemStack output){
+    public AnvilCrafting(String[] input, ItemStack output, String upgrade){
 
         this.input = input;
         this.output = output;
+        this.upgradeType = upgrade;
 
     }
 
@@ -45,9 +40,9 @@ public class AnvilCrafting {
     //  Recipe Methods
     // ***************************************************************************** //
 
-    public static void addRecipe(String[] input, ItemStack output)
+    public static void addRecipe(String[] input, ItemStack output, String upgrade)
     {
-        anvilRecipes.add(new AnvilCrafting(input, output));
+        anvilRecipes.add(new AnvilCrafting(input, output, upgrade));
     }
 
     public static boolean isRecipe(String[] array)
@@ -72,5 +67,7 @@ public class AnvilCrafting {
     public String[] getInput() {return this.input;}
 
     public ItemStack getOutput() {return this.output;}
+
+    public String getUpgrade() {return this.upgradeType; }
 
 }

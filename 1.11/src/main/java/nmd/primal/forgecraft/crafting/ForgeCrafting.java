@@ -18,14 +18,14 @@ public class ForgeCrafting {
         private static ArrayList<ForgeCrafting> forgeRecipes = new ArrayList<>();
 
         private Item input;
-        private Item output;
+        private ItemStack output;
 
         private int heat_threshold;
         private int ideal_time;
         private int cooldown;
 
 
-        public ForgeCrafting(Item input, Item output, int heat_threshold, int ideal_time, int cooldown, float heat_variance, float time_variance)
+        public ForgeCrafting(Item input, ItemStack output, int heat_threshold, int ideal_time, int cooldown, float heat_variance, float time_variance)
         {
             this.input = input;
             this.output = output;
@@ -38,7 +38,7 @@ public class ForgeCrafting {
         // ***************************************************************************** //
         //  Recipe Methods
         // ***************************************************************************** //
-        public static void addRecipe(Item input, Item output, int heat_threshold, int ideal_time, int cooldown, float heat_variance, float time_variance)
+        public static void addRecipe(Item input, ItemStack output, int heat_threshold, int ideal_time, int cooldown, float heat_variance, float time_variance)
         {
             forgeRecipes.add(new ForgeCrafting(input, output, heat_threshold, ideal_time, cooldown, heat_variance, time_variance));
         }
@@ -61,21 +61,21 @@ public class ForgeCrafting {
             return null;
         }
 
-        public static ForgeCrafting getRecipeFromOutput(Item item)
+        /*public static ForgeCrafting getRecipeFromOutput(Item item)
         {
             for(ForgeCrafting recipe : forgeRecipes) {
                 if (item.equals(recipe.output))
                     return recipe;
             }
             return null;
-        }
+        }*/
 
         public Item getInput()
         {
             return this.input;
         }
 
-        public Item getOutput() {return this.output; }
+        public ItemStack getOutput() {return this.output; }
 
         public int getHeatThreshold()
         {

@@ -137,14 +137,14 @@ public class ModCrafting {
                 0.5f
         );
 
-        // ***************************************************************************** //
-        //  FORGING
-        // ***************************************************************************** //
+        /******************************************************************************
+          FORGING
+         ******************************************************************************/
 
 //Makes a Hot Iron Ingot
         ForgeCrafting.addRecipe(
                 Item.getItemFromBlock(ModBlocks.ironball),
-                ModItems.ironingotballhot,
+                new ItemStack(ModItems.ironingotballhot, 1),
                 800,
                 200,
                 500,
@@ -152,10 +152,10 @@ public class ModCrafting {
                 1.0f
         );
 
-        //Makes a Hot Iron Chunk
+//Makes a Hot Iron Chunk
         ForgeCrafting.addRecipe(
                 Item.getItemFromBlock(ModBlocks.ironchunk),
-                ModItems.ironchunkhot,
+                new ItemStack(ModItems.ironchunkhot,1),
                 800,
                 160,
                 400,
@@ -163,9 +163,21 @@ public class ModCrafting {
                 1.0f
         );
 
-        // ***************************************************************************** //
-        //  ANVILING
-        // ***************************************************************************** //
+//Makes a Hot PickaxeHead
+        ForgeCrafting.addRecipe(
+                ModItems.pickaxehead,
+                new ItemStack(ModItems.pickaxehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+
+
+        /******************************************************************************
+               ANVILING
+         ******************************************************************************/
 
         String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
         String hotChunk = ModItems.ironchunkhot.getRegistryName().toString();
@@ -186,7 +198,8 @@ public class ModCrafting {
                         empty,empty,hotChunk,empty,empty,
                         empty,empty,hotChunk,empty,empty,
                         empty,empty,hotChunk,empty,empty },
-                new ItemStack(ModItems.forgehammer, 1)
+                new ItemStack(ModItems.forgehammer, 1),
+                "null"
         );
 
         //Makes flaked diamond
@@ -197,7 +210,8 @@ public class ModCrafting {
                         empty,empty,diamond,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.DIAMOND_KNAPP, 1)
+                new ItemStack(PrimalItems.DIAMOND_KNAPP, 1),
+                "null"
         );
 
         //Makes flaked emerald
@@ -208,7 +222,8 @@ public class ModCrafting {
                         empty,empty,emerald,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.EMERALD_KNAPP, 1)
+                new ItemStack(PrimalItems.EMERALD_KNAPP, 1),
+                "null"
         );
 
         //Makes a Pickaxe Head
@@ -219,9 +234,20 @@ public class ModCrafting {
                         hotChunk,empty,empty,empty,hotChunk,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(Blocks.OBSIDIAN, 1)
+                new ItemStack(ModItems.pickaxehead, 1),
+                "null"
         );
-
+        //Makes a Redstone Upgrade to Pickaxe Head
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.pickaxehead, 1),
+                "redstone"
+        );
 
     }
 }
