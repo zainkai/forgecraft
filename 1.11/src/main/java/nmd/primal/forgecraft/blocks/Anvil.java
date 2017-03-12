@@ -78,9 +78,9 @@ public class Anvil extends CustomContainerFacing {
             if (tile != null) {
                 ItemStack pItem = player.inventory.getCurrentItem();
 
-                // ***************************************************************************** //
-                //  Crafting Anvil Recipes
-                // ***************************************************************************** //
+                /******************************************************************************
+                        Crafting Anvil Recipes
+                 *****************************************************************************/
                 if((pItem.getItem().equals(PrimalItems.STONE_GALLAGHER)) || (pItem.getItem() == ModItems.forgehammer)){
                     String [] tempArray = new String[25];
                     for(int i=0; i < 25 ; i++){
@@ -102,17 +102,44 @@ public class Anvil extends CustomContainerFacing {
                         if(recipe.getOutput().getItem() instanceof ToolPart){
                             NBTTagCompound tempNBT = tile.getSlotStack(12).getSubCompound("tags");
                             ItemStack outputStack = recipe.getOutput();
+                            outputStack.setTagCompound(new NBTTagCompound());
                             outputStack.getTagCompound().setTag("tags", tempNBT);
                             outputStack.getSubCompound("tags").setBoolean("hot", false);
 
                             if(outputStack.getSubCompound("tags").getInteger("modifiers") < 3){
 
-                                //Upgrade Redstone
+                                //Upgrade emerald
+                                if(recipe.getUpgrade() == "emerald"){
+                                    outputStack.getSubCompound("tags").setInteger("emerald",
+                                            (outputStack.getSubCompound("tags").getInteger("emerald") + 1) );
+                                    outputStack.getSubCompound("tags").setInteger("modifiers",
+                                            (outputStack.getSubCompound("tags").getInteger("modifiers") + 1) );
+                                }
+
+                                //Upgrade diamond
+                                if(recipe.getUpgrade() == "diamond"){
+                                    outputStack.getSubCompound("tags").setInteger("diamond",
+                                            (outputStack.getSubCompound("tags").getInteger("diamond") + 1) );
+                                    outputStack.getSubCompound("tags").setInteger("modifiers",
+                                            (outputStack.getSubCompound("tags").getInteger("modifiers") + 1) );
+                                }
+
+                                //Upgrade redstone
                                 if(recipe.getUpgrade() == "redstone"){
                                     outputStack.getSubCompound("tags").setInteger("redstone",
                                             (outputStack.getSubCompound("tags").getInteger("redstone") + 1) );
                                     outputStack.getSubCompound("tags").setInteger("modifiers",
                                             (outputStack.getSubCompound("tags").getInteger("modifiers") + 1) );
+                                }
+
+                                //Upgrade lapis
+                                if(recipe.getUpgrade() == "lapis"){
+                                    if(outputStack.getSubCompound("tags").getInteger("emerald") == 0 ) {
+                                        outputStack.getSubCompound("tags").setInteger("lapis",
+                                                (outputStack.getSubCompound("tags").getInteger("lapis") + 1));
+                                        outputStack.getSubCompound("tags").setInteger("modifiers",
+                                                (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                    }
                                 }
 
                             }
@@ -142,9 +169,9 @@ public class Anvil extends CustomContainerFacing {
                 }
 
 
-                // ***************************************************************************** //
-                //  Adding and Removing Inventory With Tongs
-                // ***************************************************************************** //
+                /*****************************************************************************
+                  Adding and Removing Inventory With Tongs
+                 *****************************************************************************/
 
 
                 if( (pItem.getItem() != PrimalItems.STONE_GALLAGHER) || (pItem.getItem() != ModItems.forgehammer) ) {
@@ -157,7 +184,7 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 0)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8)|| (pItem.getTagCompound().getInteger("type") == 0)) {
 
                                                 if (!tile.getSlotStack(counter).isEmpty()) {
                                                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -190,11 +217,21 @@ public class Anvil extends CustomContainerFacing {
                                                     }
                                                     if (pItem.getTagCompound().getInteger("type") == 8) {
                                                         ItemStack tempStack = new ItemStack (ModItems.pickaxehead, 1);
-                                                        //tempStack.
+                                                        tempStack.setTagCompound(new NBTTagCompound());
+                                                        NBTTagCompound tempNBT = pItem.getSubCompound("tags");
+                                                        tempStack.getTagCompound().setTag("tags", tempNBT);
 
-                                                        //tile.setSlotStack((counter), new ItemStack);
+                                                        tile.setSlotStack((counter), tempStack);
                                                         pItem.getTagCompound().setInteger("type", 0);
-                                                        //System.out.println(counter);
+
+                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
+
+                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
+                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
+                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
+                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
+
+                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
                                                         return true;
                                                     }
                                                 }
@@ -207,6 +244,35 @@ public class Anvil extends CustomContainerFacing {
                                                 tile.setSlotStack(counter, ItemStack.EMPTY);
                                                 return true;
                                             }
+                                            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(Items.EMERALD)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(Items.REDSTONE)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+
+
+                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)) {
+                                                if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
+                                                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                    return true;
+                                                }
+                                            }
                                         }
 
                                         if (pItem.getItem().equals(Items.DIAMOND)) {
@@ -217,6 +283,48 @@ public class Anvil extends CustomContainerFacing {
                                             }
                                         }
 
+                                        if (pItem.getItem().equals(Items.EMERALD)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(Items.REDSTONE)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.equals(new ItemStack(Items.DYE, 1, 4))) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+
+                                        //4
                                     }
                                 }
                                 counter++;
@@ -231,7 +339,7 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 0)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8)|| (pItem.getTagCompound().getInteger("type") == 0)) {
 
                                                 if (!tile.getSlotStack(counter).isEmpty()) {
                                                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -295,7 +403,7 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 0)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8) || (pItem.getTagCompound().getInteger("type") == 0)) {
 
                                                 if (!tile.getSlotStack(counter).isEmpty()) {
                                                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -359,7 +467,7 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 0)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8) || (pItem.getTagCompound().getInteger("type") == 0)) {
 
                                                 if (!tile.getSlotStack(counter).isEmpty()) {
                                                     if (pItem.getTagCompound().getInteger("type") == 0) {

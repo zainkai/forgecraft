@@ -184,6 +184,13 @@ public class ModCrafting {
         String diamond = Items.DIAMOND.getRegistryName().toString();
         String emerald = Items.EMERALD.getRegistryName().toString();
 
+        String emeraldShard = PrimalItems.EMERALD_KNAPP.getRegistryName().toString();
+        String diamondShard = PrimalItems.DIAMOND_KNAPP.getRegistryName().toString();
+        String redstone = Items.REDSTONE.getRegistryName().toString();
+        String lapis = Items.DYE.getRegistryName().toString();
+
+        String pickaxehead = ModItems.pickaxehead.getRegistryName().toString();
+
         /*
         Empty = 0
         hotChunk = 1
@@ -237,16 +244,53 @@ public class ModCrafting {
                 new ItemStack(ModItems.pickaxehead, 1),
                 "null"
         );
+
+        //Makes a emerald Upgrade to Pickaxe Head
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,pickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.pickaxehead, 1),
+                "emerald"
+        );
+
+        //Makes a diamond Upgrade to Pickaxe Head
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,pickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.pickaxehead, 1),
+                "diamond"
+        );
+
         //Makes a Redstone Upgrade to Pickaxe Head
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
-                        empty,empty,empty,empty,empty,
-                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,pickaxehead,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
                 new ItemStack(ModItems.pickaxehead, 1),
                 "redstone"
+        );
+
+        //Makes a lapis Upgrade to Pickaxe Head
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,pickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.pickaxehead, 1),
+                "lapis"
         );
 
     }

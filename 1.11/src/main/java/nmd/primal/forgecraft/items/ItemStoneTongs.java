@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.items;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,13 +11,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.Crucible;
 import nmd.primal.forgecraft.blocks.CrucibleHot;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileBloomery;
+import nmd.primal.forgecraft.tiles.TileForge;
+
+import java.util.List;
 
 /**
  * Created by mminaie on 1/23/17.
@@ -36,24 +43,25 @@ public class ItemStoneTongs extends Item {
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         if (!item.hasTagCompound()) {
             item.setTagCompound(new NBTTagCompound());
+            NBTTagCompound tags = new NBTTagCompound();
             //this.setDamage(item, 1000);
             item.getTagCompound().setInteger("type", 0);
             item.getTagCompound().setInteger("cooldown", 0);
 
-            //item.getTagCompound().setTag("toolpart", );
+            item.getTagCompound().setTag("tags", tags);
 
-            //item.getTagCompound().setBoolean("hot", false);
+            item.getSubCompound("tags").setBoolean("hot", false);
 
-            //item.getTagCompound().setBoolean("emerald", false);
-            //item.getTagCompound().setInteger("diamond", 0);
-            //item.getTagCompound().setInteger("redstone", 0);
-            //item.getTagCompound().setInteger("lapis", 0);
+            item.getSubCompound("tags").setBoolean("emerald", false);
+            item.getSubCompound("tags").setInteger("diamond", 0);
+            item.getSubCompound("tags").setInteger("redstone", 0);
+            item.getSubCompound("tags").setInteger("lapis", 0);
+            item.getSubCompound("tags").setInteger("modifiers", 0);
 
-            //item.getTagCompound().setInteger("modifiers", 0);
-
-            //item.getTagCompound().setBoolean("active", false);
         }
     }
+
+
 
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -75,6 +83,8 @@ public class ItemStoneTongs extends Item {
 
         if(!world.isRemote) {
             ItemStack itemstack = player.getHeldItem(hand);
+            System.out.println(itemstack.getTagCompound().getInteger("type"));
+            System.out.println(itemstack.getSubCompound("tags"));
 
             /*****
              Picks Up Hot Ingots from the Ground
@@ -233,12 +243,52 @@ public class ItemStoneTongs extends Item {
 
             }
 
+/*****
+ Pulls the Tool Parts from the Forge
+ *****/
+            if(itemstack.getTagCompound().getInteger("type") == 0){
+                if (world.getBlockState(pos).getBlock() == ModBlocks.firebox) {
+                    TileForge tile = (TileForge) world.getTileEntity(pos);
+                    for (int i = 2; i < tile.getSlotListSize(); i++) {
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.ironchunkhot)) {
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            itemstack.getTagCompound().setInteger("type", 7);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.ironingotballhot)) {
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            itemstack.getTagCompound().setInteger("type", 6);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.pickaxehead)) {
+                            itemstack.getTagCompound().setInteger("type", 8);
+
+                            NBTTagCompound tempNBT = tile.getSlotStack(i).getSubCompound("tags");
+                            itemstack.getTagCompound().setTag("tags", tempNBT);
+                            itemstack.getSubCompound("tags").setBoolean("hot", true);
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                }
+            }
+
+
+
             else return EnumActionResult.FAIL;
             //System.out.println(itemstack.getTagCompound().getInteger("type"));
         }
         //System.out.println(player.getHeldItem(hand).getTagCompound().getInteger("type"));
         return EnumActionResult.SUCCESS;
 
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
+    {
+        tooltip.add(ChatFormatting.BLUE + "NBT: " + item.getSubCompound("tags"));
+        //tooltip.add(ChatFormatting.RED + "Consumes sticks");
     }
 
 }

@@ -113,11 +113,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     }
                     if (cookCounter2 >= recipe.getIdealTime()) {
                         if(this.getSlotStack(i).hasTagCompound()){
-                            NBTTagCompound tempNBT = this.getSlotStack(i).getSubCompound("tags");
-                            ItemStack outputStack = recipe.getOutput();
-                            outputStack.getTagCompound().setTag("tags", tempNBT);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                            this.setSlotStack(i, outputStack);
+                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
                         cookCounter2 = 0;
                     }
@@ -131,11 +127,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     }
                     if (cookCounter3 >= recipe.getIdealTime()) {
                         if(this.getSlotStack(i).hasTagCompound()){
-                            NBTTagCompound tempNBT = this.getSlotStack(i).getSubCompound("tags");
-                            ItemStack outputStack = recipe.getOutput();
-                            outputStack.getTagCompound().setTag("tags", tempNBT);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                            this.setSlotStack(i, outputStack);
+                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
                         cookCounter3 = 0;
                     }
@@ -149,11 +141,8 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     }
                     if (cookCounter4 >= recipe.getIdealTime()) {
                         if(this.getSlotStack(i).hasTagCompound()){
-                            NBTTagCompound tempNBT = this.getSlotStack(i).getSubCompound("tags");
-                            ItemStack outputStack = recipe.getOutput();
-                            outputStack.getTagCompound().setTag("tags", tempNBT);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                            this.setSlotStack(i, outputStack);
+                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
+                            System.out.println("its hot now");
                         } else this.setSlotStack(i, recipe.getOutput());
                         cookCounter4 = 0;
                     }
@@ -167,11 +156,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     }
                     if (cookCounter5 >= recipe.getIdealTime()) {
                         if(this.getSlotStack(i).hasTagCompound()){
-                            NBTTagCompound tempNBT = this.getSlotStack(i).getSubCompound("tags");
-                            ItemStack outputStack = recipe.getOutput();
-                            outputStack.getTagCompound().setTag("tags", tempNBT);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                            this.setSlotStack(i, outputStack);
+                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
                         cookCounter5 = 0;
                     }
@@ -185,11 +170,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     }
                     if (cookCounter6 >= recipe.getIdealTime()) {
                         if(this.getSlotStack(i).hasTagCompound()){
-                            NBTTagCompound tempNBT = this.getSlotStack(i).getSubCompound("tags");
-                            ItemStack outputStack = recipe.getOutput();
-                            outputStack.getTagCompound().setTag("tags", tempNBT);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                            this.setSlotStack(i, outputStack);
+                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
                         cookCounter6 = 0;
                     }

@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.items.toolparts;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by mminaie on 3/11/17.
@@ -33,157 +35,157 @@ public class PickaxePart extends ToolPart {
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
                 if (item.hasTagCompound()) {
-                    if (item.getTagCompound().getBoolean("hot") == true) {
+                    if (item.getSubCompound("tags").getBoolean("hot") == true) {
                         return 1.0F;
                     }
 
-                    if (item.getTagCompound().getBoolean("hot") == false) {
-                        if (item.getTagCompound().getInteger("modifiers") == 0) {
+                    if (item.getSubCompound("tags").getBoolean("hot") == false) {
+                        if (item.getSubCompound("tags").getInteger("modifiers") == 0) {
                             return 0.0F;
                         }
                     }
 
-                    if (item.getTagCompound().getBoolean("hot") == false) {
-                        if (item.getTagCompound().getInteger("modifiers") != 0) {
-                            if ((item.getTagCompound().getBoolean("emerald") == true) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                    if (item.getSubCompound("tags").getBoolean("hot") == false) {
+                        if (item.getSubCompound("tags").getInteger("modifiers") != 0) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.1F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == true) &&
-                                    (item.getTagCompound().getInteger("diamond") == 1) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.11F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == true) &&
-                                    (item.getTagCompound().getInteger("diamond") == 2) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 2) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.12F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == true) &&
-                                    (item.getTagCompound().getInteger("diamond") == 1) &&
-                                    (item.getTagCompound().getInteger("redstone") == 1) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.111F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == true) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 2) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.102F;
                             }
 
                             // ============
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 1) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.01F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 2) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 2) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.02F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 3) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 3) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.03F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 1) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.001F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 2) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.002F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 3) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 3) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.003F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 1)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 1)) {
                                 return 0.0001F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 2)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
                                 return 0.0002F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 3)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 3)) {
                                 return 0.0003F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 1) &&
-                                    (item.getTagCompound().getInteger("redstone") == 1) &&
-                                    (item.getTagCompound().getInteger("lapis") == 1)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 1)) {
                                 return 0.0111F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 2) &&
-                                    (item.getTagCompound().getInteger("redstone") == 1) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 2) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.021F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 1) &&
-                                    (item.getTagCompound().getInteger("redstone") == 2) &&
-                                    (item.getTagCompound().getInteger("lapis") == 0)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
                                 return 0.012F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 1) &&
-                                    (item.getTagCompound().getInteger("lapis") == 2)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
                                 return 0.012F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 0) &&
-                                    (item.getTagCompound().getInteger("redstone") == 1) &&
-                                    (item.getTagCompound().getInteger("lapis") == 2)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
                                 return 0.0012F;
                             }
 
-                            if ((item.getTagCompound().getBoolean("emerald") == false) &&
-                                    (item.getTagCompound().getInteger("diamond") == 1) &&
-                                    (item.getTagCompound().getInteger("redstone") == 0) &&
-                                    (item.getTagCompound().getInteger("lapis") == 2)) {
+                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
+                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
+                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
                                 return 0.0102F;
                             }
                         }
@@ -235,5 +237,12 @@ public class PickaxePart extends ToolPart {
         }
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
+    {
+        tooltip.add(ChatFormatting.BLUE + "NBT: " + item.getSubCompound("tags"));
+        //tooltip.add(ChatFormatting.RED + "Consumes sticks");
+    }
 
 }

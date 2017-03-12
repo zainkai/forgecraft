@@ -15,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -83,15 +84,10 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
             if (tile != null) {
                 ItemStack pItem = player.inventory.getCurrentItem();
                 ItemStack fuelItem = tile.getSlotStack(0);
-                /*
-                System.out.println(tile.getSlotStack(0));
-                System.out.println(tile.getSlotStack(1));
-                System.out.println(tile.getSlotStack(2));
-                System.out.println(tile.getSlotStack(3));
-                System.out.println(tile.getSlotStack(4));
-                System.out.println(tile.getSlotStack(5));
-                System.out.println(tile.getSlotStack(6));
-                */
+                //System.out.println(pItem.getItem().getRegistryName().toString());
+
+
+
 
                 /***********************
                 FUEL SLOT CODE
@@ -206,38 +202,25 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                         }
                     }
 
-
-                    if (pItem.getItem().equals(ModItems.stonetongs)) {
-                        if (pItem.getTagCompound().getInteger("type") == 0) {
-                            for (int i = 2; i < tile.getSlotListSize(); i++) {
-                                if (tile.getSlotStack(i).getItem().equals(ModItems.ironchunkhot)) {
-                                    tile.setSlotStack(i, ItemStack.EMPTY);
-                                    pItem.getTagCompound().setInteger("type", 7);
-                                    return true;
-                                }
-                                if (tile.getSlotStack(i).getItem().equals(ModItems.ironingotballhot)) {
-                                    tile.setSlotStack(i, ItemStack.EMPTY);
-                                    pItem.getTagCompound().setInteger("type", 6);
-                                    return true;
-                                }
-                                /*
-                                 To-Do
-                                 Insert StoneTongs Code for ToolPart Hot
-                                */
-                            }
-                        }
-                    }
-
                     if(pItem.getItem() instanceof ToolPart){
                         if(tile.getSlotStack(4).isEmpty()){
+                            System.out.println("Adding player Item to slot");
                             tile.setSlotStack(4, pItem);
-                            pItem.shrink(1);
+                            System.out.println(tile.getSlotStack(4));
+                            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                             return true;
                         }
                     }
 
                 }
             }
+            System.out.println(tile.getSlotStack(0));
+            System.out.println(tile.getSlotStack(1));
+            System.out.println(tile.getSlotStack(2));
+            System.out.println(tile.getSlotStack(3));
+            System.out.println(tile.getSlotStack(4));
+            System.out.println(tile.getSlotStack(5));
+            System.out.println(tile.getSlotStack(6));
         }
         return false;
     }

@@ -2,36 +2,13 @@ To-Dos
 
 *** Priority ***
 
-- [ ] Allow redstone, lapis, and shards in the anvil
 - [ ] Fix renderings in the Anvil
 - [ ] Fix Renderings in the Forge
-- [ ] Create toolHead Item
-  - [ ] Give toolHead item NBT
-  - [x] Create pickaxehead Item
-    - [x] Create pickaxehead SubNBTs
-- [ ] Create Forging Recipe for toolHeads
-- [ ] Create Anvil recipe for toolHeads
-
-- [ ] Create Slot for Forge to accept toolheads in slot 4
-
+- [ ] Fix StoneTongs rendering for NBT 8
 - [ ] Add forgehammer to oreDict
 
-
-
-Make Iron like normal
-make tool heads like normal
-put tool heads in forge to get hot
-take hot tool head and put in anvil
-put upgrade material (redstone, lapis, emerald, diamond) above pick
-hammer a few times to get cooled toolhead with new NBT changes
-
-Repeat the above process to add-on or add-new upgrade
-
-
-Tools are crafted in a workbench type block
-The block takes an input toolhead and toolrod
-when the block is right-clicked crafting is attempted.
-
+- [ ] Create Crafting Block for Tools and Weapons
+- [ ] Create PickAxe Tool which ingests NBT
 
 *** Backlog ***
 
@@ -52,6 +29,17 @@ when the block is right-clicked crafting is attempted.
   - [ ] Forge Sound?
 
 *** Completed ***
+
+- [x] Allow redstone, lapis, and shards in the anvil
+
+- [x] Create toolHead Item
+  - [x] Give toolHead item NBT
+  - [x] Create pickaxehead Item
+    - [x] Create pickaxehead SubNBTs
+- [x] Create Forging Recipe for toolHeads
+- [x] Create Anvil recipe for toolHeads
+
+- [x] Create Slot for Forge to accept toolheads in slot 4
 
 - [x] Stone Anvil
   - [x] Stone Anvil Inventory
