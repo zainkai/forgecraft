@@ -128,7 +128,7 @@ public class ModItems {
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironfailed"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_ingot"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_chunk"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_pickaxe")
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_pickaxe_hot")
                 );
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
@@ -160,7 +160,7 @@ public class ModItems {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_chunk", "inventory");
                   }
                   else if (stack.getTagCompound().getInteger("type") == 8 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_pickaxe", "inventory");
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_pickaxe_hot", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

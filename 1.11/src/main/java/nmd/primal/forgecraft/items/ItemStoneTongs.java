@@ -59,6 +59,8 @@ public class ItemStoneTongs extends Item {
             item.getSubCompound("tags").setInteger("modifiers", 0);
 
         }
+
+
     }
 
 
@@ -83,8 +85,8 @@ public class ItemStoneTongs extends Item {
 
         if(!world.isRemote) {
             ItemStack itemstack = player.getHeldItem(hand);
-            System.out.println(itemstack.getTagCompound().getInteger("type"));
-            System.out.println(itemstack.getSubCompound("tags"));
+            //System.out.println(itemstack.getTagCompound().getInteger("type"));
+            //System.out.println(itemstack.getSubCompound("tags"));
 
             /*****
              Picks Up Hot Ingots from the Ground
@@ -261,13 +263,14 @@ public class ItemStoneTongs extends Item {
                             return EnumActionResult.SUCCESS;
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.pickaxehead)) {
-                            itemstack.getTagCompound().setInteger("type", 8);
-
-                            NBTTagCompound tempNBT = tile.getSlotStack(i).getSubCompound("tags");
-                            itemstack.getTagCompound().setTag("tags", tempNBT);
-                            itemstack.getSubCompound("tags").setBoolean("hot", true);
-                            tile.setSlotStack(i, ItemStack.EMPTY);
-                            return EnumActionResult.SUCCESS;
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 8);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
                         }
                     }
                 }

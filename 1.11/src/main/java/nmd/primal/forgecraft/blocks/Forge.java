@@ -157,7 +157,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                 if(facing == EnumFacing.UP ) {
                     if (pItem.isEmpty()) {
                         for (int i = 2; i < tile.getSlotListSize(); i++) {
-                            System.out.println(i);
+                            //System.out.println(i);
                             if (!tile.getSlotStack(i).isEmpty()) {
                                 if (tile.getSlotStack(i).getItem().equals(new ItemStack(ModBlocks.ironchunk).getItem())) {
                                     CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
@@ -204,9 +204,9 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
 
                     if(pItem.getItem() instanceof ToolPart){
                         if(tile.getSlotStack(4).isEmpty()){
-                            System.out.println("Adding player Item to slot");
+                            //System.out.println("Adding player Item to slot");
                             tile.setSlotStack(4, pItem);
-                            System.out.println(tile.getSlotStack(4));
+                            //System.out.println(tile.getSlotStack(4));
                             player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                             return true;
                         }
@@ -214,13 +214,13 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
 
                 }
             }
-            System.out.println(tile.getSlotStack(0));
-            System.out.println(tile.getSlotStack(1));
-            System.out.println(tile.getSlotStack(2));
-            System.out.println(tile.getSlotStack(3));
-            System.out.println(tile.getSlotStack(4));
-            System.out.println(tile.getSlotStack(5));
-            System.out.println(tile.getSlotStack(6));
+            //System.out.println(tile.getSlotStack(0));
+            //System.out.println(tile.getSlotStack(1));
+            //System.out.println(tile.getSlotStack(2));
+            //System.out.println(tile.getSlotStack(3));
+            //System.out.println(tile.getSlotStack(4));
+            //System.out.println(tile.getSlotStack(5));
+            //System.out.println(tile.getSlotStack(6));
         }
         return false;
     }

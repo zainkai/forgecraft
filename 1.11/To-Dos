@@ -2,18 +2,15 @@ To-Dos
 
 *** Priority ***
 
-- [ ] Fix renderings in the Anvil
-- [ ] Fix Renderings in the Forge
-- [ ] Fix StoneTongs rendering for NBT 8
-- [ ] Add forgehammer to oreDict
-
+- [ ] Create all the textures for all the NBT types
 - [ ] Create Crafting Block for Tools and Weapons
 - [ ] Create PickAxe Tool which ingests NBT
 
+
 *** Backlog ***
 
-- [ ] Tool Rendering
-- [ ] Toolhead Recipes
+- [ ] Add forgehammer to oreDict
+- [ ] Finish Toolhead Recipes
 - [ ] WeaponHead recipes
 
   - [ ] Stone Anvil Bounding Box
@@ -27,9 +24,15 @@ To-Dos
   - [ ] Bellows Sounds
   - [ ] Bloomery Sound?
   - [ ] Forge Sound?
+- [ ] Fix Flame creator from Forge and Bloomery
 
 *** Completed ***
 
+- [x] Check for if the pickaxe head is hot before removing from forge
+- [x] fix rotation rendering for Anvil
+- [x] Fix renderings in the Anvil
+- [x] Fix Renderings in the Forge
+- [x] Fix StoneTongs rendering for NBT 8
 - [x] Allow redstone, lapis, and shards in the anvil
 
 - [x] Create toolHead Item

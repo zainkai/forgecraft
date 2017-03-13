@@ -4,15 +4,20 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.blocks.Anvil;
 import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import org.lwjgl.opengl.GL11;
@@ -44,7 +49,6 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
         IBlockState state = this.getWorld().getBlockState(pos);
         int bright = tile.getWorld().getCombinedLight(pos.up(), 0);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, bright % 65536, bright / 65536);
-
 
         /*
         NORTH
@@ -80,21 +84,34 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
         24   | 14/16 | 14/16
          */
 
-
-
-
-
         if(state.getValue(Anvil.FACING) == EnumFacing.NORTH){
             int counter = 0;
             for(int i=0; i < 5; i++){
                 for(int a=0; a<5; a++){
                     if(!tile.getSlotStack(counter).isEmpty()){
-                        GL11.glPushMatrix();
+
+                        if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
+                                (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                ){
+                            GL11.glPushMatrix();
+
+                            GL11.glTranslated( tile.getNormalX(a), -0.49D, tile.getNormalZ(i) );
+                            GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
+                            GL11.glScaled(0.25D, 0.25D, 0.25D);
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+                        if(tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)){
+                            GL11.glPushMatrix();
                             double scale = 1.0D;
                             GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getNormalX(a), 0.0D, tile.getNormalZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), renderItem.getItemModelMesher().getItemModel(tile.getSlotStack(counter)));
-                        GL11.glPopMatrix();
+                            GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+
                     }
                     counter++;
                 }
@@ -105,12 +122,28 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
             for(int i=0; i < 5; i++){
                 for(int a=0; a<5; a++){
                     if(!tile.getSlotStack(counter).isEmpty()){
-                        GL11.glPushMatrix();
-                        double scale = 1.0D;
-                        GL11.glScaled(scale, scale, scale);
-                        GL11.glTranslated( tile.getReverseX(a), 0.0D, tile.getReverseZ(i) );
-                        renderItem.renderItem(tile.getSlotStack(counter), renderItem.getItemModelMesher().getItemModel(tile.getSlotStack(counter)));
-                        GL11.glPopMatrix();
+
+                        if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
+                                (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                ){
+                            GL11.glPushMatrix();
+                            GL11.glTranslated( tile.getReverseX(a), -0.49D, tile.getReverseZ(i) );
+                            GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
+                            GL11.glScaled(0.25D, 0.25D, 0.25D);
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+                        if(tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)){
+                            GL11.glPushMatrix();
+                            double scale = 1.0D;
+                            GL11.glScaled(scale, scale, scale);
+                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getReverseZ(i) );
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+
                     }
                     counter++;
                 }
@@ -121,12 +154,30 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
             for(int a=0; a < 5; a++){
                 for(int i=0; i<5; i++){
                     if(!tile.getSlotStack(counter).isEmpty()){
-                        GL11.glPushMatrix();
-                        double scale = 1.0D;
-                        GL11.glScaled(scale, scale, scale);
-                        GL11.glTranslated( tile.getNormalX(a), 0.0D, tile.getReverseZ(i) );
-                        renderItem.renderItem(tile.getSlotStack(counter), renderItem.getItemModelMesher().getItemModel(tile.getSlotStack(counter)));
-                        GL11.glPopMatrix();
+
+                        if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
+                                (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                ){
+                            GL11.glPushMatrix();
+                            GL11.glTranslated( tile.getNormalX(a), -0.49D, tile.getReverseZ(i) );
+                            GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
+                            GL11.glScaled(0.25D, 0.25D, 0.25D);
+                            GL11.glRotated(-90.0F, 0.0F, 0.0F, 1.0F);
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+                        if(tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)){
+                            GL11.glPushMatrix();
+                            double scale = 1.0D;
+                            GL11.glScaled(scale, scale, scale);
+                            GL11.glTranslated( tile.getNormalX(a), -0.435D, tile.getReverseZ(i) );
+                            GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+
                     }
                     counter++;
                 }
@@ -137,60 +188,37 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
             for(int a=0; a < 5; a++){
                 for(int i=0; i<5; i++){
                     if(!tile.getSlotStack(counter).isEmpty()){
-                        GL11.glPushMatrix();
-                        double scale = 1.0D;
-                        GL11.glScaled(scale, scale, scale);
-                        GL11.glTranslated( tile.getReverseX(a), 0.0D, tile.getNormalZ(i) );
-                        renderItem.renderItem(tile.getSlotStack(counter), renderItem.getItemModelMesher().getItemModel(tile.getSlotStack(counter)));
-                        GL11.glPopMatrix();
+
+                        //GL11.glTranslated( tile.getReverseX(a), 0.0D, tile.getNormalZ(i) );
+                        if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
+                                (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                ){
+                            GL11.glPushMatrix();
+                            GL11.glTranslated( tile.getReverseX(a), -0.49D, tile.getNormalZ(i) );
+                            GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
+                            GL11.glScaled(0.25D, 0.25D, 0.25D);
+                            GL11.glRotated(-90.0F, 0.0F, 0.0F, 1.0F);
+                            //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+                        if(tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)){
+                            GL11.glPushMatrix();
+                            double scale = 1.0D;
+                            GL11.glScaled(scale, scale, scale);
+                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getNormalZ(i) );
+                            GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
+                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                            GL11.glPopMatrix();
+                        }
+
                     }
                     counter++;
                 }
             }
         }
-
-
-
-        /*if(!stack0.isEmpty()){
-            GL11.glPushMatrix();
-            //System.out.println("Should render " + stack0.getItem());
-            double scale = 1.0D;
-            GL11.glScaled(scale, scale, scale);
-            GL11.glTranslated( (double)2/(double)16, 0.0D, (double)2/(double)16 );
-            renderItem.renderItem(stack0, renderItem.getItemModelMesher().getItemModel(stack0));
-            GL11.glPopMatrix();
-        }
-        /*if (!stack0.isEmpty()) {
-
-            boolean is_block = stack0.getItem() instanceof ItemBlock;
-            float scale = is_block ? 0.1725F : 0.3F;
-            double xTrans = is_block ? -1.6D : -0.45D;
-            double yTrans = is_block ? -1.26D : -0.7D;
-            int stackRotation = stack0.getCount();
-
-            GL11.glPushMatrix();
-            GL11.glScalef(scale, scale, scale);
-            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-            renderItem.renderItem(stack0, renderItem.getItemModelMesher().getItemModel(stack0));
-            GL11.glPopMatrix();
-
-            for(int i = 0; i < Math.ceil(stackRotation/8) + 1; i++){
-                GL11.glPushMatrix();
-                GL11.glScalef(scale, scale, scale);
-                GL11.glRotated(45.0F * i, 0.0F, 1.0F, 0.0F);
-                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glTranslated(xTrans, yTrans, 0.0D);
-                renderItem.renderItem(stack0, renderItem.getItemModelMesher().getItemModel(stack0));
-                GL11.glPopMatrix();
-            }
-        }
-
-        if(!stack1.isEmpty()){
-            GL11.glPushMatrix();
-            GL11.glTranslated(0, 0.50D, 0);
-            renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
-            GL11.glPopMatrix();
-        }*/
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
         GL11.glPopMatrix();

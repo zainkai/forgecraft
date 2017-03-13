@@ -3,6 +3,7 @@ package nmd.primal.forgecraft.renders;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
@@ -55,6 +56,53 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                 GL11.glPopMatrix();
             }
         }
+
+        for(int i=2; i < tile.getSlotListSize(); i++){
+            if(!tile.getSlotStack(i).isEmpty()){
+                GL11.glPushMatrix();
+                float tempScale = 0.8F;
+                GL11.glScalef(tempScale, tempScale, tempScale);
+                GL11.glTranslated(0.0F, 0.1D, 0.0F);
+                if(i == 2){
+                    GL11.glTranslated(-0.3, -0.05D, -0.3D);
+                }
+                if(i == 3){
+                    GL11.glTranslated(-0.3, -0.05D, 0.3D);
+                }
+                if(i == 4){
+                    //GL11.glScalef(0.6F, 0.6F, 0.6F);
+                    GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
+                }
+                if(i == 5){
+                    GL11.glTranslated(0.3, -0.05D, -0.3D);
+                }
+                if(i == 6){
+                    GL11.glTranslated(0.3, -0.05D, 0.3D);
+                }
+
+                renderItem.renderItem(tile.getSlotStack(i), ItemCameraTransforms.TransformType.FIXED);
+                //renderItem.renderItem(tile.getSlotStack(i), renderItem.getItemModelMesher().getItemModel(tile.getSlotStack(i)));
+                GL11.glPopMatrix();
+            }
+        }
+
+        /*if (!stack1.isEmpty()) {
+            int stackRotation = stack1.getCount();
+            GL11.glPushMatrix();
+            GL11.glScalef(scale, scale, scale);
+            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+            renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+            GL11.glPopMatrix();
+            for(int i = 0; i < Math.ceil(stackRotation/8) + 1; i++){
+                GL11.glPushMatrix();
+                GL11.glScalef(scale, scale, scale);
+                GL11.glRotated(45.0F * i, 0.0F, 1.0F, 0.0F);
+                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glTranslated(xTrans, yTrans, 0.0D);
+                renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+                GL11.glPopMatrix();
+            }
+        }*/
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
         GL11.glPopMatrix();
