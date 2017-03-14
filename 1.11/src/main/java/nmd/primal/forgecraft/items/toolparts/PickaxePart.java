@@ -36,31 +36,12 @@ public class PickaxePart extends ToolPart {
             {
                 if (item.hasTagCompound()) {
                     if (item.getSubCompound("tags").getBoolean("hot") == true) {
-                        if (item.getSubCompound("tags").getInteger("modifiers") >= 0) {
-                            if ( (item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") >= 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") >= 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") >= 0)) {
-                                return 1.0F;
-                            }
-                            if ( item.getSubCompound("tags").getBoolean("emerald") == true &&
-                                    (item.getSubCompound("tags").getInteger("diamond") >= 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") >= 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") >= 0)) {
-                                return 1.0F;
-                            }
-                        }
+                        return 1.0F;
                     }
 
                     if (item.getSubCompound("tags").getBoolean("hot") == false) {
-                        if (item.getSubCompound("tags").getInteger("modifiers") >= 0) {
-                            if ( (item.getSubCompound("tags").getBoolean("emerald") == false) ||
-                                    (item.getSubCompound("tags").getBoolean("emerald") == true) &&
-                                            (item.getSubCompound("tags").getInteger("diamond") >= 0) &&
-                                            (item.getSubCompound("tags").getInteger("redstone") >= 0) &&
-                                            (item.getSubCompound("tags").getInteger("lapis") >= 0)) {
-                                return 0.0F;
-                            }
+                        if (item.getSubCompound("tags").getInteger("modifiers") == 0) {
+                            return 0.0F;
                         }
                     }
 
