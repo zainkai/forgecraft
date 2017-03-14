@@ -22,8 +22,8 @@ import nmd.primal.forgecraft.proxy.CommonProxy;
 @Mod(   modid = ModInfo.MOD_ID,
         name = ModInfo.MOD_NAME,
         version = ModInfo.MOD_VERSION,
-        acceptedMinecraftVersions = ModInfo.MC_VERSIONS
-        //dependencies = ModInfo.DEPENDENCIES,
+        acceptedMinecraftVersions = ModInfo.MC_VERSIONS,
+        dependencies = ModInfo.DEPENDENCIES
         //guiFactory = ModInfo.GUI_FACTORY,
         //updateJSON = ModInfo.UPDATE_JSON
 )

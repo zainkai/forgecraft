@@ -1,13 +1,14 @@
 {
   "parent": "forgecraft:item/pickaxehead",
   "textures": {
-    "particle": "forgecraft:blocks/iron_ingot",
+    "particle": "forgecraft:items/iron_ingot",
     "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:blocks/iron_ingot"
+    "texture1": "forgecraft:items/iron_ingot"
   },
   "overrides": [
     {"predicate": {"type": 0.0},"model": "forgecraft:item/ironpickaxehead_0"},
-    {"predicate": {"type": 1.0},"model": "forgecraft:item/ironpickaxehead_1"}
+    {"predicate": {"type": 1.0},"model": "forgecraft:item/ironpickaxehead_1"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/ironpickaxehead_2"}
   ]
 }
 

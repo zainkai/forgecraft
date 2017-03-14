@@ -3,6 +3,11 @@ To-Dos
 *** Priority ***
 
 - [ ] Create all the textures for all the NBT types
+- [ ] Create the axe Model
+- [ ] Create the shovel model
+- [ ] Create the hoe model
+- [ ] Create the Sword Model
+
 - [ ] Create Crafting Block for Tools and Weapons
 - [ ] Create PickAxe Tool which ingests NBT
 
