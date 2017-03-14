@@ -1,5 +1,22 @@
 To-Dos
 
+
+
+
+
+{
+  "parent": "forgecraft:item/pickaxehead",
+  "textures": {
+    "particle": "forgecraft:items/iron_ingot",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/iron_ingot_emerald1_diamond1"
+  }
+}
+
+
+ironpickaxehead_1
+
+
 *** Priority ***
 
 - [ ] Create all the textures for all the NBT types
@@ -13,7 +30,7 @@ To-Dos
 
 
 *** Backlog ***
-
+- [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
 - [ ] Finish Toolhead Recipes
 - [ ] WeaponHead recipes

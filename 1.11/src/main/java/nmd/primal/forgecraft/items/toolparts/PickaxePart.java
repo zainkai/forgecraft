@@ -22,7 +22,8 @@ public class PickaxePart extends ToolPart {
 
     /***
 
-     Hot . Emerald . Diamond . Redstone . lapis
+     hot . emerald . diamond . redstone . lapis
+      0  .    0    .    0    .     0    .   0
 
      ***/
 
@@ -35,15 +36,7 @@ public class PickaxePart extends ToolPart {
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
                 if (item.hasTagCompound()) {
-                    if (item.getSubCompound("tags").getBoolean("hot") == true) {
-                        return 1.0F;
-                    }
 
-                    if (item.getSubCompound("tags").getBoolean("hot") == false) {
-                        if (item.getSubCompound("tags").getInteger("modifiers") == 0) {
-                            return 0.0F;
-                        }
-                    }
 
                     if (item.getSubCompound("tags").getBoolean("hot") == false) {
                         if (item.getSubCompound("tags").getInteger("modifiers") != 0) {
@@ -105,6 +98,8 @@ public class PickaxePart extends ToolPart {
                                 return 0.03F;
                             }
 
+                            //=======
+
                             if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
                                     (item.getSubCompound("tags").getInteger("diamond") == 0) &&
                                     (item.getSubCompound("tags").getInteger("redstone") == 1) &&
@@ -126,6 +121,8 @@ public class PickaxePart extends ToolPart {
                                 return 0.003F;
                             }
 
+                            //=========
+
                             if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
                                     (item.getSubCompound("tags").getInteger("diamond") == 0) &&
                                     (item.getSubCompound("tags").getInteger("redstone") == 0) &&
@@ -146,6 +143,8 @@ public class PickaxePart extends ToolPart {
                                     (item.getSubCompound("tags").getInteger("lapis") == 3)) {
                                 return 0.0003F;
                             }
+
+                            //=======
 
                             if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
                                     (item.getSubCompound("tags").getInteger("diamond") == 1) &&
@@ -172,14 +171,14 @@ public class PickaxePart extends ToolPart {
                                     (item.getSubCompound("tags").getInteger("diamond") == 0) &&
                                     (item.getSubCompound("tags").getInteger("redstone") == 1) &&
                                     (item.getSubCompound("tags").getInteger("lapis") == 2)) {
-                                return 0.012F;
+                                return 0.0012F;
                             }
 
                             if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
                                     (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
-                                return 0.0012F;
+                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
+                                    (item.getSubCompound("tags").getInteger("lapis") == 1)) {
+                                return 0.0021F;
                             }
 
                             if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
@@ -188,6 +187,15 @@ public class PickaxePart extends ToolPart {
                                     (item.getSubCompound("tags").getInteger("lapis") == 2)) {
                                 return 0.0102F;
                             }
+                        }
+                    }
+                    if (item.getSubCompound("tags").getBoolean("hot") == true) {
+                        return 1.0F;
+                    }
+
+                    if (item.getSubCompound("tags").getBoolean("hot") == false) {
+                        if (item.getSubCompound("tags").getInteger("modifiers") == 0) {
+                            return 0.0F;
                         }
                     }
                 }
