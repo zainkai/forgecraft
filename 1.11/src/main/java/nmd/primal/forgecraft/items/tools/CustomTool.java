@@ -15,7 +15,11 @@ public abstract class CustomTool extends Item {
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
+
+
+
     }
+
     @Override
     public boolean isRepairable()
     {

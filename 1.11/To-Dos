@@ -1,25 +1,7 @@
 To-Dos
 
-
-
-
-
-{
-  "parent": "forgecraft:item/pickaxehead",
-  "textures": {
-    "particle": "forgecraft:items/iron_ingot",
-    "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:items/iron_ingot_emerald1_diamond1"
-  }
-}
-
-
-ironpickaxehead_1
-
-
 *** Priority ***
 
-- [ ] Create all the textures for all the NBT types
 - [ ] Create the axe Model
 - [ ] Create the shovel model
 - [ ] Create the hoe model
@@ -50,6 +32,7 @@ ironpickaxehead_1
 
 *** Completed ***
 
+- [x] Create all the textures for all the NBT types
 - [x] Check for if the pickaxe head is hot before removing from forge
 - [x] fix rotation rendering for Anvil
 - [x] Fix renderings in the Anvil

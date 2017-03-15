@@ -30,7 +30,7 @@ public class PickaxePart extends ToolPart {
     public PickaxePart(String name) {
         super(name);
 
-        this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
+        /*this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
         {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
@@ -201,11 +201,11 @@ public class PickaxePart extends ToolPart {
                 }
                 return 0.0F;
             }
-        });
+        });*/
 
     }
 
-    @Override
+    /*@Override
     public void onCreated(ItemStack item, World worldIn, EntityPlayer playerIn) {
 
         if (!item.hasTagCompound()) {
@@ -249,8 +249,11 @@ public class PickaxePart extends ToolPart {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
     {
-        tooltip.add(ChatFormatting.BLUE + "NBT: " + item.getSubCompound("tags"));
-        //tooltip.add(ChatFormatting.RED + "Consumes sticks");
-    }
+        tooltip.add(ChatFormatting.BLACK + "Upgrades");
+        tooltip.add(ChatFormatting.DARK_GREEN + "Emerald: " + item.getSubCompound("tags").getBoolean("emerald"));
+        tooltip.add(ChatFormatting.AQUA + "Diamond: " + item.getSubCompound("tags").getInteger("diamond"));
+        tooltip.add(ChatFormatting.RED + "Redstone: " + item.getSubCompound("tags").getInteger("redstone"));
+        tooltip.add(ChatFormatting.BLUE + "Lapis: " + item.getSubCompound("tags").getInteger("lapis"));
+    }*/
 
 }
