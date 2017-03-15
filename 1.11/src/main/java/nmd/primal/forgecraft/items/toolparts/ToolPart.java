@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.items.toolparts;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.enchantment.EnchantmentDigging;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by mminaie on 3/9/17.
  */
-public abstract class ToolPart extends Item {
+public class ToolPart extends Item {
 
     public ToolPart(String name) {
         this.setUnlocalizedName(name);
@@ -30,6 +31,14 @@ public abstract class ToolPart extends Item {
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
         {
+
+            /***
+
+             hot . emerald . diamond . redstone . lapis
+             0  .    0    .    0    .     0    .   0
+
+             ***/
+
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
@@ -248,24 +257,31 @@ public abstract class ToolPart extends Item {
 
             item.getSubCompound("tags").setInteger("modifiers", 0);
         }
+
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
     {
-        tooltip.add(ChatFormatting.BLACK + "Upgrades");
-        if(item.getSubCompound("tags").getBoolean("emerald") == true){
-            tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
-        }
-        if(item.getSubCompound("tags").getInteger("diamond") > 0){
-            tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + item.getSubCompound("tags").getInteger("diamond"));
-        }
-        if(item.getSubCompound("tags").getInteger("redstone") > 0){
-            tooltip.add(ChatFormatting.RED + "Redstone Level: " + item.getSubCompound("tags").getInteger("redstone"));
-        }
-        if(item.getSubCompound("tags").getInteger("lapis") > 0){
-            tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + item.getSubCompound("tags").getInteger("lapis"));
+        if(player.getEntityWorld().isRemote) {
+
+            if(item.hasTagCompound()) {
+
+                tooltip.add(ChatFormatting.GRAY + "Upgrades");
+                if (item.getSubCompound("tags").getBoolean("emerald") == true) {
+                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+                }
+                if (item.getSubCompound("tags").getInteger("diamond") > 0) {
+                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + item.getSubCompound("tags").getInteger("diamond"));
+                }
+                if (item.getSubCompound("tags").getInteger("redstone") > 0) {
+                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + item.getSubCompound("tags").getInteger("redstone"));
+                }
+                if (item.getSubCompound("tags").getInteger("lapis") > 0) {
+                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + item.getSubCompound("tags").getInteger("lapis"));
+                }
+            }
         }
 
 

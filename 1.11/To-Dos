@@ -1,7 +1,8 @@
 To-Dos
 
 *** Priority ***
-
+- [ ] Create a Harvest Drops event
+- [ ] Create getter and setter for itemNBT
 - [ ] Create the axe Model
 - [ ] Create the shovel model
 - [ ] Create the hoe model

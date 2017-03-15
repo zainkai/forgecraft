@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.init;
 
+import javafx.scene.paint.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -25,6 +26,8 @@ import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 import nmd.primal.forgecraft.items.toolparts.PickaxePart;
+import nmd.primal.forgecraft.items.toolparts.ToolPart;
+import nmd.primal.forgecraft.items.tools.CustomPickaxe;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -41,6 +44,9 @@ public class ModItems {
 
     public static Item pickaxehead;
 
+
+    public static Item ironpickaxe;
+
     //public static Item forgingmanual;
 
     public static void init() {
@@ -48,13 +54,17 @@ public class ModItems {
         pistonbellows = new ItemBellowsHandle();
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
+        pickaxehead = new ToolPart("ironpickaxehead");
 
-        pickaxehead = new PickaxePart("ironpickaxehead");
+
+        ironpickaxe = new CustomPickaxe("ironpickaxe", Item.ToolMaterial.IRON);
 
 
 
         //ironingotballcool = new BaseMultiItem("ironingotcool") {};
         //test = new ItemTest();
+
+
         ironingotballhot = new BaseMultiItem("ironingothot") {
             public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
                 if(!world.isRemote) {
@@ -100,6 +110,7 @@ public class ModItems {
         //GameRegistry.register(test);
         GameRegistry.register(pickaxehead);
 
+        GameRegistry.register(ironpickaxe);
 
         //GameRegistry.register(forgingmanual);
     }
@@ -113,6 +124,8 @@ public class ModItems {
         registerRender(ironchunkhot);
         //registerRender(test);
         registerRender(pickaxehead);
+
+        registerRender(ironpickaxe);
         //registerRender(forgingmanual);
     }
 
