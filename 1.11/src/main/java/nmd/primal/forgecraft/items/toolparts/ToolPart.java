@@ -44,163 +44,162 @@ public class ToolPart extends Item {
             {
                 if (item.hasTagCompound()) {
 
-
-                    if (item.getSubCompound("tags").getBoolean("hot") == false) {
-                        if (item.getSubCompound("tags").getInteger("modifiers") != 0) {
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                    if (getHot(item) == false) {
+                        if (getModifiers(item) != 0) {
+                            if ( (getEmerald(item) == true) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.1F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == true) &&
+                                    (getDiamondLevel(item) == 1) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.11F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 2) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == true) &&
+                                    (getDiamondLevel(item) == 2) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.12F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == true) &&
+                                    (getDiamondLevel(item) == 1) &&
+                                    (getRedstoneLevel(item) == 1) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.111F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == true) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == true) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 2) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.102F;
                             }
 
                             // ============
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 1) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.01F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 2) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 2) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.02F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 3) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 3) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.03F;
                             }
 
                             //=======
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 1) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.001F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 2) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.002F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 3) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 3) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.003F;
                             }
 
                             //=========
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 1)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 1)) {
                                 return 0.0001F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 2)) {
                                 return 0.0002F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 3)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 3)) {
                                 return 0.0003F;
                             }
 
                             //=======
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 1)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 1) &&
+                                    (getRedstoneLevel(item) == 1) &&
+                                    (getLapisLevel(item) == 1)) {
                                 return 0.0111F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 2) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 2) &&
+                                    (getRedstoneLevel(item) == 1) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.021F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 0)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 1) &&
+                                    (getRedstoneLevel(item) == 2) &&
+                                    (getLapisLevel(item) == 0)) {
                                 return 0.012F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 1) &&
+                                    (getLapisLevel(item) == 2)) {
                                 return 0.0012F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 2) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 1)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 2) &&
+                                    (getLapisLevel(item) == 1)) {
                                 return 0.0021F;
                             }
 
-                            if ((item.getSubCompound("tags").getBoolean("emerald") == false) &&
-                                    (item.getSubCompound("tags").getInteger("diamond") == 1) &&
-                                    (item.getSubCompound("tags").getInteger("redstone") == 0) &&
-                                    (item.getSubCompound("tags").getInteger("lapis") == 2)) {
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 1) &&
+                                    (getRedstoneLevel(item) == 0) &&
+                                    (getLapisLevel(item) == 2) ) {
                                 return 0.0102F;
                             }
                         }
                     }
-                    if (item.getSubCompound("tags").getBoolean("hot") == true) {
+                    if (getHot(item) == true) {
                         return 1.0F;
                     }
 
-                    if (item.getSubCompound("tags").getBoolean("hot") == false) {
+                    if (getHot(item) == false) {
                         if (item.getSubCompound("tags").getInteger("modifiers") == 0) {
                             return 0.0F;
                         }
@@ -212,6 +211,53 @@ public class ToolPart extends Item {
 
     }
 
+    public boolean getHot(ItemStack stack){
+        return stack.getSubCompound("tags").getBoolean("hot");
+    }
+    public void setHot(ItemStack stack, Boolean bool){
+        stack.getSubCompound("tags").setBoolean("hot", bool);
+    }
+
+    public int getModifiers(ItemStack stack) {
+        return stack.getSubCompound("tags").getInteger("modifiers");
+    }
+    public void setModifiers(ItemStack stack, Integer mods){
+        stack.getSubCompound("tags").setInteger("modifiers", mods);
+    }
+
+    public boolean getEmerald(ItemStack stack){
+        return stack.getSubCompound("tags").getBoolean("emerald");
+    }
+    public void setEmerald(ItemStack stack, Boolean bool){
+        stack.getSubCompound("keys").setBoolean("emerald", bool);
+    }
+
+    public int getDiamondLevel(ItemStack stack) {
+        return stack.getSubCompound("tags").getInteger("diamond");
+    }
+
+    public void setDiamondLevel(ItemStack stack, Integer level){
+        stack.getSubCompound("tags").setInteger("diamond", level);
+    }
+
+
+    public int getRedstoneLevel(ItemStack stack) {
+        return stack.getSubCompound("tags").getInteger("redstone");
+    }
+    public void setRedstoneLevel(ItemStack stack, Integer level){
+        stack.getSubCompound("tags").setInteger("redstone", level);
+    }
+
+    public int getLapisLevel(ItemStack stack) {
+        return stack.getSubCompound("tags").getInteger("lapis");
+    }
+    public void setLapisLevel(ItemStack stack, Integer level){
+        stack.getSubCompound("tags").setInteger("lapis", level);
+    }
+
+    public NBTTagCompound getTags(ItemStack stack){
+        return stack.getSubCompound("tags");
+    }
 
 
     public static boolean isHidden()
@@ -269,23 +315,23 @@ public class ToolPart extends Item {
             if(item.hasTagCompound()) {
 
                 tooltip.add(ChatFormatting.GRAY + "Upgrades");
-                if (item.getSubCompound("tags").getBoolean("emerald") == true) {
+                if  (getEmerald(item) == true) {
                     tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
                 }
-                if (item.getSubCompound("tags").getInteger("diamond") > 0) {
-                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + item.getSubCompound("tags").getInteger("diamond"));
+                if (getDiamondLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
                 }
-                if (item.getSubCompound("tags").getInteger("redstone") > 0) {
-                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + item.getSubCompound("tags").getInteger("redstone"));
+                if (getRedstoneLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item));
                 }
-                if (item.getSubCompound("tags").getInteger("lapis") > 0) {
-                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + item.getSubCompound("tags").getInteger("lapis"));
+                if (getLapisLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item));
                 }
             }
         }
-
-
     }
+
+
 
 
 }

@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -221,31 +222,23 @@ public class CustomPickaxe extends ItemPickaxe{
         });
     }
 
-    @Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
-    {
-        if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
-        {
-            stack.damageItem(1, entityLiving);
-            if(stack.getSubCompound("tags").getInteger("lapis") > 0){
-                state.getBlock().quantityDroppedWithBonus(stack.getSubCompound("tags").getInteger("lapis"), world.rand);
-            }
-        }
 
-        return true;
+
+    public boolean getHot(ItemStack stack){
+        return stack.getSubCompound("tags").getBoolean("hot");
     }
-
-
-
-
-
-
-
-
-
-
-
-
+    public boolean getEmerald(ItemStack stack){
+        return stack.getSubCompound("tags").getBoolean("emerald");
+    }
+    public int getDiamondLevel(ItemStack stack) {
+        return stack.getSubCompound("tags").getInteger("diamond");
+    }
+    public int getRedstoneLevel(ItemStack stack) {
+        return stack.getSubCompound("tags").getInteger("redstone");
+    }
+    public int getLapisLevel(ItemStack stack) {
+        return stack.getSubCompound("tags").getInteger("lapis");
+    }
 
     public static boolean isHidden()
     {
@@ -266,11 +259,10 @@ public class CustomPickaxe extends ItemPickaxe{
             item.getSubCompound("tags").setBoolean("emerald", false);
             item.getSubCompound("tags").setInteger("diamond", 0);
             item.getSubCompound("tags").setInteger("redstone", 0);
-            item.getSubCompound("tags").setInteger("lapis", 3);
+            item.getSubCompound("tags").setInteger("lapis", 0);
 
             item.getSubCompound("tags").setInteger("modifiers", 0);
         }
-
     }
 
     @Override
@@ -289,6 +281,9 @@ public class CustomPickaxe extends ItemPickaxe{
             item.getSubCompound("tags").setInteger("lapis", 3);
 
             item.getSubCompound("tags").setInteger("modifiers", 0);
+            if(!world.isRemote){
+                //item.addEnchantment(Enchantment.getEnchantmentByID(35), 3);
+            }
         }
     }
 
@@ -299,8 +294,6 @@ public class CustomPickaxe extends ItemPickaxe{
     public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
     {
         if(player.getEntityWorld().isRemote) {
-
-
 
             if(item.hasTagCompound()) {
 
@@ -321,6 +314,44 @@ public class CustomPickaxe extends ItemPickaxe{
         }
 
 
+    }
+
+    @Override
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player)
+    {
+        if(!player.world.isRemote){
+            World world = player.getEntityWorld();
+            System.out.println(world.getBlockState(pos).getBlock());
+            if(itemstack.getItem() instanceof CustomPickaxe){
+                if ( ((CustomPickaxe) itemstack.getItem()).getLapisLevel(itemstack) > 0) {
+                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), ((CustomPickaxe) itemstack.getItem()).getLapisLevel(itemstack));
+                }
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    {
+        if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
+        {
+
+                stack.getTagCompound().removeTag("ench");
+                //System.out.println(stack.getTagCompound());
+
+            stack.damageItem(1, entityLiving);
+        }
+
+        return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean hasEffect(ItemStack stack)
+    {
+        return false;
     }
 
     @Override

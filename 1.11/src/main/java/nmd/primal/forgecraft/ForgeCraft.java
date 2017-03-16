@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import nmd.primal.forgecraft.init.ModEvents;
 import nmd.primal.forgecraft.compat.ModDictionary;
 import nmd.primal.forgecraft.gui.GuiHandler;
 import nmd.primal.forgecraft.init.ModBlocks;
@@ -49,6 +50,9 @@ public class ForgeCraft
         ModItems.register();
 
         ModTiles.registerTileEntities();
+
+        ModEvents.registerCommonEvents();
+        ModEvents.registerClientEvents();
 //        ModItems.registerRenders();
         proxy.preInit();
     }

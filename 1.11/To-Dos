@@ -2,7 +2,7 @@ To-Dos
 
 *** Priority ***
 - [ ] Create a Harvest Drops event
-- [ ] Create getter and setter for itemNBT
+
 - [ ] Create the axe Model
 - [ ] Create the shovel model
 - [ ] Create the hoe model
@@ -10,15 +10,13 @@ To-Dos
 
 - [ ] Create Crafting Block for Tools and Weapons
 - [ ] Create PickAxe Tool which ingests NBT
-
+- [ ] Copy Heat Handler for Forge to Bloomery
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
 - [ ] Finish Toolhead Recipes
 - [ ] WeaponHead recipes
-
-  - [ ] Stone Anvil Bounding Box
 
 - [ ] Casting Table
   - [ ] Block
@@ -33,6 +31,7 @@ To-Dos
 
 *** Completed ***
 
+- [x] Create getter and setter for itemNBT
 - [x] Create all the textures for all the NBT types
 - [x] Check for if the pickaxe head is hot before removing from forge
 - [x] fix rotation rendering for Anvil
