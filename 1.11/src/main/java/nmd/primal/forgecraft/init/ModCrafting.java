@@ -176,6 +176,17 @@ public class ModCrafting {
                 1.0f
         );
 
+        //Makes a Hot AxeHead
+        ForgeCrafting.addRecipe(
+                ModItems.ironaxehead,
+                new ItemStack(ModItems.ironaxehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+
 
         /******************************************************************************
                ANVILING

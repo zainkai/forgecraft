@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileForge;
 import org.lwjgl.opengl.GL11;
 
@@ -71,7 +72,13 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                 }
                 if(i == 4){
                     //GL11.glScalef(0.6F, 0.6F, 0.6F);
-                    GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
+                    if(tile.getSlotStack(i).getItem() == ModItems.pickaxehead) {
+                        GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
+                    }
+                    if(tile.getSlotStack(i).getItem() == ModItems.ironaxehead) {
+                        GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    }
+
                 }
                 if(i == 5){
                     GL11.glTranslated(0.3, -0.05D, -0.3D);

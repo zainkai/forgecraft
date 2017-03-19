@@ -54,6 +54,7 @@ public class ModItems {
         pistonbellows = new ItemBellowsHandle();
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
+
         pickaxehead = new ToolPart("ironpickaxehead");
         ironaxehead = new ToolPart("ironaxehead");
 
@@ -127,6 +128,7 @@ public class ModItems {
         registerRender(ironchunkhot);
         //registerRender(test);
         registerRender(pickaxehead);
+        registerRender(ironaxehead);
 
         registerRender(ironpickaxe);
         //registerRender(forgingmanual);
@@ -144,7 +146,8 @@ public class ModItems {
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironfailed"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_ingot"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_chunk"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_pickaxe_hot")
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_pickaxe_hot"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_axe_hot")
                 );
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
@@ -177,6 +180,9 @@ public class ModItems {
                   }
                   else if (stack.getTagCompound().getInteger("type") == 8 ) {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_pickaxe_hot", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 9 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_axe_hot", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

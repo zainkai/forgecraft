@@ -78,8 +78,8 @@ public class ItemStoneTongs extends Item {
          6 | Hot Iron Ingot
          7 | Hot Iron Chunk
          8 | Hot Pickaxe Head
-         9 | Hot Shovel Head
-        10 | Hot Axe Head
+         9 | Hot Axe Head
+        10 | Hot Shovel Head
         11 | Hot Hoe Head
          */
 
@@ -265,6 +265,16 @@ public class ItemStoneTongs extends Item {
                         if (tile.getSlotStack(i).getItem().equals(ModItems.pickaxehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
                                 itemstack.getTagCompound().setInteger("type", 8);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.ironaxehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 9);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 //itemstack.getSubCompound("tags").setBoolean("hot", true);

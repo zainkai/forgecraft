@@ -211,7 +211,10 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8)|| (pItem.getTagCompound().getInteger("type") == 0)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 8) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 9) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 0)) {
 
                                                 if (!tile.getSlotStack(counter).isEmpty()) {
                                                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -244,6 +247,22 @@ public class Anvil extends CustomContainerFacing {
                                                     }
                                                     if (pItem.getTagCompound().getInteger("type") == 8) {
                                                         ItemStack tempStack = new ItemStack (ModItems.pickaxehead, 1);
+                                                        tempStack.setTagCompound(new NBTTagCompound());
+                                                        NBTTagCompound tags = pItem.getSubCompound("tags").copy();
+                                                        tempStack.getTagCompound().setTag("tags", tags);
+                                                        tile.setSlotStack((counter), tempStack);
+
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
+                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
+                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
+                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
+                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
+                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 9) {
+                                                        ItemStack tempStack = new ItemStack (ModItems.ironaxehead, 1);
                                                         tempStack.setTagCompound(new NBTTagCompound());
                                                         NBTTagCompound tags = pItem.getSubCompound("tags").copy();
                                                         tempStack.getTagCompound().setTag("tags", tags);

@@ -116,6 +116,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             double scale = 1.0D;
                             GL11.glScaled(scale, scale, scale);
                             GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
                             renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                             GL11.glPopMatrix();
                         }
