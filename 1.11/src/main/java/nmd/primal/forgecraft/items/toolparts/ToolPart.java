@@ -14,14 +14,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static nmd.primal.forgecraft.ToolNBT.*;
+
 /**
  * Created by mminaie on 3/9/17.
  */
-public class ToolPart extends Item {
+public class ToolPart extends Item implements ToolNBT{
 
     public ToolPart(String name) {
         this.setUnlocalizedName(name);
@@ -211,54 +214,6 @@ public class ToolPart extends Item {
 
     }
 
-    public boolean getHot(ItemStack stack){
-        return stack.getSubCompound("tags").getBoolean("hot");
-    }
-    public void setHot(ItemStack stack, Boolean bool){
-        stack.getSubCompound("tags").setBoolean("hot", bool);
-    }
-
-    public int getModifiers(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("modifiers");
-    }
-    public void setModifiers(ItemStack stack, Integer mods){
-        stack.getSubCompound("tags").setInteger("modifiers", mods);
-    }
-
-    public boolean getEmerald(ItemStack stack){
-        return stack.getSubCompound("tags").getBoolean("emerald");
-    }
-    public void setEmerald(ItemStack stack, Boolean bool){
-        stack.getSubCompound("keys").setBoolean("emerald", bool);
-    }
-
-    public int getDiamondLevel(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("diamond");
-    }
-
-    public void setDiamondLevel(ItemStack stack, Integer level){
-        stack.getSubCompound("tags").setInteger("diamond", level);
-    }
-
-
-    public int getRedstoneLevel(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("redstone");
-    }
-    public void setRedstoneLevel(ItemStack stack, Integer level){
-        stack.getSubCompound("tags").setInteger("redstone", level);
-    }
-
-    public int getLapisLevel(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("lapis");
-    }
-    public void setLapisLevel(ItemStack stack, Integer level){
-        stack.getSubCompound("tags").setInteger("lapis", level);
-    }
-
-    public NBTTagCompound getTags(ItemStack stack){
-        return stack.getSubCompound("tags");
-    }
-
 
     public static boolean isHidden()
     {
@@ -274,14 +229,12 @@ public class ToolPart extends Item {
 
             item.getTagCompound().setTag("tags", tags);
 
-            item.getSubCompound("tags").setBoolean("hot", false);
-
-            item.getSubCompound("tags").setBoolean("emerald", false);
-            item.getSubCompound("tags").setInteger("diamond", 0);
-            item.getSubCompound("tags").setInteger("redstone", 0);
-            item.getSubCompound("tags").setInteger("lapis", 0);
-
-            item.getSubCompound("tags").setInteger("modifiers", 0);
+            setHot(item, false);
+            setEmerald(item, false);
+            setDiamondLevel(item, 0);
+            setRedstoneLevel(item, 0);
+            setLapisLevel(item, 0);
+            setModifiers(item, 0);
         }
 
     }
@@ -294,14 +247,12 @@ public class ToolPart extends Item {
 
             item.getTagCompound().setTag("tags", tags);
 
-            item.getSubCompound("tags").setBoolean("hot", false);
-
-            item.getSubCompound("tags").setBoolean("emerald", false);
-            item.getSubCompound("tags").setInteger("diamond", 0);
-            item.getSubCompound("tags").setInteger("redstone", 0);
-            item.getSubCompound("tags").setInteger("lapis", 0);
-
-            item.getSubCompound("tags").setInteger("modifiers", 0);
+            setHot(item, false);
+            setEmerald(item, false);
+            setDiamondLevel(item, 0);
+            setRedstoneLevel(item, 0);
+            setLapisLevel(item, 0);
+            setModifiers(item, 0);
         }
 
     }

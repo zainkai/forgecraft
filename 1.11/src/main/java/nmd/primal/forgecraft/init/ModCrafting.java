@@ -70,7 +70,9 @@ public class ModCrafting {
 
         //Iron Ore speed +1
 
-
+        /***Pickaxe Crafting***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironpickaxe, 1),
+                " X ", " Y ", 'X', ModItems.pickaxehead, 'Y', Items.STICK);
 
         /***Bloomery Crafting***/
 
@@ -190,6 +192,7 @@ public class ModCrafting {
         String lapis = Items.DYE.getRegistryName().toString();
 
         String pickaxehead = ModItems.pickaxehead.getRegistryName().toString();
+        String ironaxehead = ModItems.ironaxehead.getRegistryName().toString();
 
         /*
         Empty = 0
@@ -197,7 +200,7 @@ public class ModCrafting {
         diamond = 2
          */
 
-        //Makes a ForgeHammer
+        /*** ForgeHammer ***/
         AnvilCrafting.addRecipe(
                 new String [] {
                         empty,hotChunk,hotChunk,hotChunk,empty,
@@ -209,7 +212,7 @@ public class ModCrafting {
                 "null"
         );
 
-        //Makes flaked diamond
+        /*** Flaked diamond ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -221,7 +224,7 @@ public class ModCrafting {
                 "null"
         );
 
-        //Makes flaked emerald
+        /*** Flaked emerald ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -233,7 +236,7 @@ public class ModCrafting {
                 "null"
         );
 
-        //Makes a Pickaxe Head
+        /***Pickaxe Head***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -245,7 +248,7 @@ public class ModCrafting {
                 "null"
         );
 
-        //Makes a emerald Upgrade to Pickaxe Head
+        /*** Emerald Upgrade to Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -257,7 +260,7 @@ public class ModCrafting {
                 "emerald"
         );
 
-        //Makes a diamond Upgrade to Pickaxe Head
+        /*** Diamond Upgrade to Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -269,7 +272,7 @@ public class ModCrafting {
                 "diamond"
         );
 
-        //Makes a Redstone Upgrade to Pickaxe Head
+        /*** Redstone Upgrade to Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -281,7 +284,7 @@ public class ModCrafting {
                 "redstone"
         );
 
-        //Makes a lapis Upgrade to Pickaxe Head
+        /*** Lapis Upgrade to Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -290,6 +293,66 @@ public class ModCrafting {
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
                 new ItemStack(ModItems.pickaxehead, 1),
+                "lapis"
+        );
+
+        /*** Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,hotChunk,hotChunk,empty,empty,
+                        empty,hotChunk,hotChunk,hotChunk,empty,
+                        empty,hotChunk,hotChunk,hotChunk,empty,
+                        empty,hotChunk,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironaxehead, 1),
+                "null"
+        );
+
+        /*** Emerald Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,ironaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironaxehead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,ironaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironaxehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,ironaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironaxehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,ironaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironaxehead, 1),
                 "lapis"
         );
 

@@ -492,20 +492,20 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                 world.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
             if(rand.nextInt(4) == 1){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
             if(rand.nextInt(4) == 2){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
             if(rand.nextInt(4) == 3){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
             if(rand.nextInt(4) == 4){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
         }
     }

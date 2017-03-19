@@ -456,19 +456,19 @@ public class PistonBellows extends CustomContainerFacing {
         double d2 = (double)pos.getZ() + 0.5D;
         double d3 = 0.52D;
         double d4 = ThreadLocalRandom.current().nextDouble(0.175, 0.35);
-        double ySpeed = 0.1D;
+        double ySpeed = (double) (((rand.nextInt(1) + 1)/10)/2);
 
         if(rand.nextInt(3) == 0){
             world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, ySpeed, 0.0D, new int[0]);
         }
         if(rand.nextInt(3) == 1){
             world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, ySpeed, 0.0D, new int[0]);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
         }
         if(rand.nextInt(3) == 2){
             world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, ySpeed, 0.0D, new int[0]);
         }
         if(rand.nextInt(3) == 3){
             world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, ySpeed, 0.0D, new int[0]);
@@ -478,3 +478,23 @@ public class PistonBellows extends CustomContainerFacing {
 
 
 }
+
+
+/*
+            if(rand.nextInt(4) == 1){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+            }
+            if(rand.nextInt(4) == 2){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+            }
+            if(rand.nextInt(4) == 3){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+            }
+            if(rand.nextInt(4) == 4){
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+            }
+ */

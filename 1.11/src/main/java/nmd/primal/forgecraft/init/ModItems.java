@@ -43,7 +43,7 @@ public class ModItems {
     public static Item ironchunkhot;
 
     public static Item pickaxehead;
-
+    public static Item ironaxehead;
 
     public static Item ironpickaxe;
 
@@ -55,7 +55,7 @@ public class ModItems {
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
         pickaxehead = new ToolPart("ironpickaxehead");
-
+        ironaxehead = new ToolPart("ironaxehead");
 
         ironpickaxe = new CustomPickaxe("ironpickaxe", Item.ToolMaterial.IRON);
 
@@ -108,7 +108,10 @@ public class ModItems {
         GameRegistry.register(ironingotballhot);
         GameRegistry.register(ironchunkhot);
         //GameRegistry.register(test);
+
         GameRegistry.register(pickaxehead);
+        GameRegistry.register(ironaxehead);
+
 
         GameRegistry.register(ironpickaxe);
 

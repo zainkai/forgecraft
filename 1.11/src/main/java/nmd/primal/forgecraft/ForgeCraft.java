@@ -52,7 +52,7 @@ public class ForgeCraft
         ModTiles.registerTileEntities();
 
         ModEvents.registerCommonEvents();
-        ModEvents.registerClientEvents();
+        //ModEvents.registerClientEvents();
 //        ModItems.registerRenders();
         proxy.preInit();
     }

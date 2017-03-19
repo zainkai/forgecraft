@@ -136,11 +136,11 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.setHeat(h - 25);
                 }
                 if(h < 10 ){
-                    world.setBlockState(pos, state.withProperty(Bloomery.ACTIVE, false), 2);
+                    world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
                 }
             }
             if(stack.isEmpty()){
-                world.setBlockState(pos, state.withProperty(Bloomery.ACTIVE, false), 2);
+                world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
             }
         }
         if(state.getValue(Bloomery.ACTIVE) == false){

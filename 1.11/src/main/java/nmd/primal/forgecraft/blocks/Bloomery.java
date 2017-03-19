@@ -370,34 +370,33 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if(state.getValue(Bloomery.ACTIVE) == true)
+        if(state.getValue(Forge.ACTIVE) == true)
         {
             double d0 = (double)pos.getX() + 0.5D;
-            double d1 = (double)pos.getY() + 0.2D;
+            double d1 = (double)pos.getY() + 0.96D;
             double d2 = (double)pos.getZ() + 0.5D;
             double d3 = 0.52D;
-            //double d4 = rand.nextDouble() * 0.6D - 0.3D;
-            double d4 = ThreadLocalRandom.current().nextDouble(0.15, 0.35);
+            double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
             if (rand.nextDouble() < 0.1D)
             {
                 world.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
             if(rand.nextInt(4) == 1){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
             if(rand.nextInt(4) == 2){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
             if(rand.nextInt(4) == 3){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
             if(rand.nextInt(4) == 4){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, 0.001D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, 0.001D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
             }
         }
     }
