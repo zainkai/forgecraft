@@ -1,5 +1,5 @@
 {
-  "parent": "forgecraft:item/pickaxehead",
+  "parent": "forgecraft:item/shovelhead",
   "textures": {
     "particle": "forgecraft:items/iron_ingot_hot",
     "texture": "blocks/planks_oak",

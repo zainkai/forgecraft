@@ -452,11 +452,11 @@ public class PistonBellows extends CustomContainerFacing {
     }
     private void makeEmbers(World world, BlockPos pos, Random rand){
         double d0 = (double)pos.getX() + 0.5D;
-        double d1 = (double)pos.getY() + 0.96D;
+        double d1 = (double)pos.getY() + 0.2D;
         double d2 = (double)pos.getZ() + 0.5D;
         double d3 = 0.52D;
-        double d4 = ThreadLocalRandom.current().nextDouble(0.175, 0.35);
-        double ySpeed = (double) (((rand.nextInt(1) + 1)/10)/2);
+        double d4 = ThreadLocalRandom.current().nextDouble(0.075, 0.25);
+        double ySpeed = ThreadLocalRandom.current().nextDouble(0.05, 0.20);
 
         if(rand.nextInt(3) == 0){
             world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, ySpeed, 0.0D, new int[0]);

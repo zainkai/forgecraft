@@ -1,23 +1,16 @@
 package nmd.primal.forgecraft.items.tools;
 
-import com.google.common.collect.Sets;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentDigging;
-import net.minecraft.enchantment.EnchantmentUntouching;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -30,11 +23,11 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 /**
- * Created by mminaie on 3/14/17.
+ * Created by mminaie on 3/20/17.
  */
-public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
+public class CustomAxe extends ItemAxe implements ToolNBT {
 
-    public CustomPickaxe(String name, Item.ToolMaterial material) {
+    public CustomAxe(String name, Item.ToolMaterial material) {
         super(material);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
@@ -310,7 +303,7 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
                 }
                 if( getDiamondLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
-                    itemstack.getItem().setHarvestLevel("pickaxe", 3);
+                    itemstack.getItem().setHarvestLevel("axe", 3);
                 }
                 if( getRedstoneLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));
@@ -330,8 +323,8 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
         if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
         {
 
-                stack.getTagCompound().removeTag("ench");
-                //System.out.println(stack.getTagCompound());
+            stack.getTagCompound().removeTag("ench");
+            //System.out.println(stack.getTagCompound());
 
             stack.damageItem(1, entityLiving);
         }

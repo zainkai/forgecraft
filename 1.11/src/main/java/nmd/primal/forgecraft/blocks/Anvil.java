@@ -211,7 +211,217 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
+                                            //System.out.println("Level 1");
                                             if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 8) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 9) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 10) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 0)) {
+
+                                                if (!tile.getSlotStack(counter).isEmpty()) {
+                                                    if (pItem.getTagCompound().getInteger("type") == 0) {
+                                                        if (tile.getSlotStack(counter).getItem().equals(ModItems.ironingotballhot)) {
+                                                            pItem.getTagCompound().setInteger("type", 6);
+                                                            tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                            return true;
+                                                        }
+                                                        if (tile.getSlotStack(counter).getItem().equals(ModItems.ironchunkhot)) {
+                                                            pItem.getTagCompound().setInteger("type", 7);
+                                                            tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                            //System.out.println(counter);
+                                                            return true;
+                                                        }
+
+                                                    }
+                                                }
+
+                                                if (tile.getSlotStack(counter).isEmpty()) {
+                                                    //System.out.println("Activating");
+                                                    if (pItem.getTagCompound().getInteger("type") == 6) {
+                                                        tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 7) {
+                                                        tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        //System.out.println(counter);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 8) {
+                                                        ItemStack tempStack = new ItemStack (ModItems.pickaxehead, 1);
+                                                        tempStack.setTagCompound(new NBTTagCompound());
+                                                        NBTTagCompound tags = pItem.getSubCompound("tags").copy();
+                                                        tempStack.getTagCompound().setTag("tags", tags);
+                                                        tile.setSlotStack((counter), tempStack);
+
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
+                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
+                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
+                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
+                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
+                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 9) {
+                                                        ItemStack tempStack = new ItemStack (ModItems.ironaxehead, 1);
+                                                        tempStack.setTagCompound(new NBTTagCompound());
+                                                        NBTTagCompound tags = pItem.getSubCompound("tags").copy();
+                                                        tempStack.getTagCompound().setTag("tags", tags);
+                                                        tile.setSlotStack((counter), tempStack);
+
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
+                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
+                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
+                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
+                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
+                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 10) {
+                                                        ItemStack tempStack = new ItemStack (ModItems.ironshovelhead, 1);
+                                                        tempStack.setTagCompound(new NBTTagCompound());
+                                                        NBTTagCompound tags = pItem.getSubCompound("tags").copy();
+                                                        tempStack.getTagCompound().setTag("tags", tags);
+                                                        tile.setSlotStack((counter), tempStack);
+
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
+                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
+                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
+                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
+                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
+                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                                                        return true;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        //System.out.println("1" + pItem);
+
+                                        if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
+
+                                            if (tile.getSlotStack(counter).getItem().equals(Items.DIAMOND)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(Items.EMERALD)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(Items.REDSTONE)) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+
+                                            if (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                return true;
+                                            }
+
+
+                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)) {
+                                                if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
+                                                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                    return true;
+                                                }
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.ironaxehead)) {
+                                                if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
+                                                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                    return true;
+                                                }
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.ironshovelhead)) {
+                                                if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
+                                                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                    return true;
+                                                }
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(Items.DIAMOND)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(Items.EMERALD)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(Items.REDSTONE)) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+
+                                        if (pItem.getItem().equals(Items.DYE) && pItem.getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
+                                            if (tile.getSlotStack(counter).isEmpty()) {
+                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                                                pItem.shrink(1);
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                }
+                                counter++;
+                            }
+                        }
+                    }
+                    if (state.getValue(FACING) == EnumFacing.SOUTH) {
+                        int counter = 0;
+                        for (int z = 0; z < 5; z++) {
+                            for (int x = 0; x < 5; x++) {
+                                if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
+                                    if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
+
+                                        if (pItem.getItem().equals(ModItems.stonetongs)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 7) ||
                                                     (pItem.getTagCompound().getInteger("type") == 8) ||
                                                     (pItem.getTagCompound().getInteger("type") == 9) ||
                                                     (pItem.getTagCompound().getInteger("type") == 0)) {
@@ -324,157 +534,7 @@ public class Anvil extends CustomContainerFacing {
                                                     return true;
                                                 }
                                             }
-                                        }
-
-                                        if (pItem.getItem().equals(Items.DIAMOND)) {
-                                            if (tile.getSlotStack(counter).isEmpty()) {
-                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                                                pItem.shrink(1);
-                                                return true;
-                                            }
-                                        }
-
-                                        if (pItem.getItem().equals(Items.EMERALD)) {
-                                            if (tile.getSlotStack(counter).isEmpty()) {
-                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                                                pItem.shrink(1);
-                                                return true;
-                                            }
-                                        }
-
-                                        if (pItem.getItem().equals(PrimalItems.EMERALD_KNAPP)) {
-                                            if (tile.getSlotStack(counter).isEmpty()) {
-                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                                                pItem.shrink(1);
-                                                return true;
-                                            }
-                                        }
-
-                                        if (pItem.getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
-                                            if (tile.getSlotStack(counter).isEmpty()) {
-                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                                                pItem.shrink(1);
-                                                return true;
-                                            }
-                                        }
-
-                                        if (pItem.getItem().equals(Items.REDSTONE)) {
-                                            if (tile.getSlotStack(counter).isEmpty()) {
-                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                                                pItem.shrink(1);
-                                                return true;
-                                            }
-                                        }
-
-                                        if (pItem.getItem().equals(Items.DYE) && pItem.getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
-                                            if (tile.getSlotStack(counter).isEmpty()) {
-                                                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
-                                                pItem.shrink(1);
-                                                return true;
-                                            }
-                                        }
-                                    }
-                                }
-                                counter++;
-                            }
-                        }
-                    }
-                    if (state.getValue(FACING) == EnumFacing.SOUTH) {
-                        int counter = 0;
-                        for (int z = 0; z < 5; z++) {
-                            for (int x = 0; x < 5; x++) {
-                                if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
-                                    if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
-
-                                        if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8)|| (pItem.getTagCompound().getInteger("type") == 0)) {
-
-                                                if (!tile.getSlotStack(counter).isEmpty()) {
-                                                    if (pItem.getTagCompound().getInteger("type") == 0) {
-                                                        if (tile.getSlotStack(counter).getItem().equals(ModItems.ironingotballhot)) {
-                                                            pItem.getTagCompound().setInteger("type", 6);
-                                                            tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                            return true;
-                                                        }
-                                                        if (tile.getSlotStack(counter).getItem().equals(ModItems.ironchunkhot)) {
-                                                            pItem.getTagCompound().setInteger("type", 7);
-                                                            tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                            //System.out.println(counter);
-                                                            return true;
-                                                        }
-
-                                                    }
-                                                }
-
-                                                if (tile.getSlotStack(counter).isEmpty()) {
-                                                    if (pItem.getTagCompound().getInteger("type") == 6) {
-                                                        tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
-                                                        pItem.getTagCompound().setInteger("type", 0);
-                                                        return true;
-                                                    }
-                                                    if (pItem.getTagCompound().getInteger("type") == 7) {
-                                                        tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
-                                                        pItem.getTagCompound().setInteger("type", 0);
-                                                        //System.out.println(counter);
-                                                        return true;
-                                                    }
-                                                    if (pItem.getTagCompound().getInteger("type") == 8) {
-                                                        ItemStack tempStack = new ItemStack (ModItems.pickaxehead, 1);
-                                                        tempStack.setTagCompound(new NBTTagCompound());
-                                                        NBTTagCompound tags = pItem.getSubCompound("tags").copy();
-                                                        tempStack.getTagCompound().setTag("tags", tags);
-                                                        tile.setSlotStack((counter), tempStack);
-
-                                                        pItem.getTagCompound().setInteger("type", 0);
-                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
-                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
-                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
-                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
-                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
-                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
-                                                        return true;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        //System.out.println("1" + pItem);
-
-                                        if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
-
-                                            if (tile.getSlotStack(counter).getItem().equals(Items.DIAMOND)) {
-                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                                                tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                return true;
-                                            }
-                                            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
-                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                                                tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                return true;
-                                            }
-                                            if (tile.getSlotStack(counter).getItem().equals(Items.EMERALD)) {
-                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                                                tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                return true;
-                                            }
-                                            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP)) {
-                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                                                tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                return true;
-                                            }
-                                            if (tile.getSlotStack(counter).getItem().equals(Items.REDSTONE)) {
-                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                                                tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                return true;
-                                            }
-
-                                            if (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
-                                                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                                                tile.setSlotStack(counter, ItemStack.EMPTY);
-                                                return true;
-                                            }
-
-
-                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)) {
+                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.ironaxehead)) {
                                                 if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
                                                     CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
                                                     tile.setSlotStack(counter, ItemStack.EMPTY);
@@ -545,7 +605,11 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8)|| (pItem.getTagCompound().getInteger("type") == 0)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 7) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 8) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 9) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 0)) {
 
                                                 if (!tile.getSlotStack(counter).isEmpty()) {
                                                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -578,6 +642,22 @@ public class Anvil extends CustomContainerFacing {
                                                     }
                                                     if (pItem.getTagCompound().getInteger("type") == 8) {
                                                         ItemStack tempStack = new ItemStack (ModItems.pickaxehead, 1);
+                                                        tempStack.setTagCompound(new NBTTagCompound());
+                                                        NBTTagCompound tags = pItem.getSubCompound("tags").copy();
+                                                        tempStack.getTagCompound().setTag("tags", tags);
+                                                        tile.setSlotStack((counter), tempStack);
+
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
+                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
+                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
+                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
+                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
+                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 9) {
+                                                        ItemStack tempStack = new ItemStack (ModItems.ironaxehead, 1);
                                                         tempStack.setTagCompound(new NBTTagCompound());
                                                         NBTTagCompound tags = pItem.getSubCompound("tags").copy();
                                                         tempStack.getTagCompound().setTag("tags", tags);
@@ -633,6 +713,13 @@ public class Anvil extends CustomContainerFacing {
 
 
                                             if (tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)) {
+                                                if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
+                                                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                    return true;
+                                                }
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.ironaxehead)) {
                                                 if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
                                                     CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
                                                     tile.setSlotStack(counter, ItemStack.EMPTY);
@@ -703,7 +790,11 @@ public class Anvil extends CustomContainerFacing {
                                     if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
                                         if (pItem.getItem().equals(ModItems.stonetongs)) {
-                                            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) || (pItem.getTagCompound().getInteger("type") == 8)|| (pItem.getTagCompound().getInteger("type") == 0)) {
+                                            if ((pItem.getTagCompound().getInteger("type") == 6) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 7) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 8) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 9) ||
+                                                    (pItem.getTagCompound().getInteger("type") == 0)) {
 
                                                 if (!tile.getSlotStack(counter).isEmpty()) {
                                                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -736,6 +827,22 @@ public class Anvil extends CustomContainerFacing {
                                                     }
                                                     if (pItem.getTagCompound().getInteger("type") == 8) {
                                                         ItemStack tempStack = new ItemStack (ModItems.pickaxehead, 1);
+                                                        tempStack.setTagCompound(new NBTTagCompound());
+                                                        NBTTagCompound tags = pItem.getSubCompound("tags").copy();
+                                                        tempStack.getTagCompound().setTag("tags", tags);
+                                                        tile.setSlotStack((counter), tempStack);
+
+                                                        pItem.getTagCompound().setInteger("type", 0);
+                                                        pItem.getSubCompound("tags").setBoolean("hot", false);
+                                                        pItem.getSubCompound("tags").setBoolean("emerald", false);
+                                                        pItem.getSubCompound("tags").setInteger("diamond", 0);
+                                                        pItem.getSubCompound("tags").setInteger("redstone", 0);
+                                                        pItem.getSubCompound("tags").setInteger("lapis", 0);
+                                                        pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                                                        return true;
+                                                    }
+                                                    if (pItem.getTagCompound().getInteger("type") == 9) {
+                                                        ItemStack tempStack = new ItemStack (ModItems.ironaxehead, 1);
                                                         tempStack.setTagCompound(new NBTTagCompound());
                                                         NBTTagCompound tags = pItem.getSubCompound("tags").copy();
                                                         tempStack.getTagCompound().setTag("tags", tags);
@@ -791,6 +898,13 @@ public class Anvil extends CustomContainerFacing {
 
 
                                             if (tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)) {
+                                                if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
+                                                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                                                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                                                    return true;
+                                                }
+                                            }
+                                            if (tile.getSlotStack(counter).getItem().equals(ModItems.ironaxehead)) {
                                                 if(tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false){
                                                     CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
                                                     tile.setSlotStack(counter, ItemStack.EMPTY);

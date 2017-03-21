@@ -51,9 +51,26 @@ public class CommonEvents implements ToolNBT{
                             tempTag = a.getSubCompound("tags").copy();
                             event.crafting.getTagCompound().setTag("tags", tempTag);
                             event.crafting.getItem().updateItemStackNBT(event.crafting.getTagCompound());
-                            if( getDiamondLevel(event.crafting) > 0 ){
-                                event.crafting.getItem().setHarvestLevel("Iron", 3);
-                            }
+                            //if( getDiamondLevel(event.crafting) > 0 ){
+                            //    event.crafting.getItem().setHarvestLevel("pickaxe", 3);
+                            //}
+                        }
+                    }
+                }
+            }
+            if (event.crafting.getItem() == ModItems.ironaxe) {
+                NBTTagCompound tempTag = new NBTTagCompound();
+                for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++) { // Checks all the slots
+
+                    if (event.craftMatrix.getStackInSlot(i) != null) { // If there is an item
+                        ItemStack a = event.craftMatrix.getStackInSlot(i); // Gets the item
+                        if (a.getItem() instanceof ToolPart) {
+                            tempTag = a.getSubCompound("tags").copy();
+                            event.crafting.getTagCompound().setTag("tags", tempTag);
+                            event.crafting.getItem().updateItemStackNBT(event.crafting.getTagCompound());
+                            //if( getDiamondLevel(event.crafting) > 0 ){
+                            //    event.crafting.getItem().setHarvestLevel("pickaxe", 3);
+                            //}
                         }
                     }
                 }

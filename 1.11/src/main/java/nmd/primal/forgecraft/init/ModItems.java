@@ -17,16 +17,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.items.*;
-import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
-import nmd.primal.forgecraft.items.toolparts.PickaxePart;
 import nmd.primal.forgecraft.items.toolparts.ToolPart;
+import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomPickaxe;
 
 /**
@@ -44,8 +42,10 @@ public class ModItems {
 
     public static Item pickaxehead;
     public static Item ironaxehead;
+    public static Item ironshovelhead;
 
     public static Item ironpickaxe;
+    public static Item ironaxe;
 
     //public static Item forgingmanual;
 
@@ -57,9 +57,10 @@ public class ModItems {
 
         pickaxehead = new ToolPart("ironpickaxehead");
         ironaxehead = new ToolPart("ironaxehead");
+        ironshovelhead = new ToolPart("ironshovelhead");
 
         ironpickaxe = new CustomPickaxe("ironpickaxe", Item.ToolMaterial.IRON);
-
+        ironaxe = new CustomAxe("ironaxe", Item.ToolMaterial.IRON);
 
 
         //ironingotballcool = new BaseMultiItem("ironingotcool") {};
@@ -112,9 +113,11 @@ public class ModItems {
 
         GameRegistry.register(pickaxehead);
         GameRegistry.register(ironaxehead);
+        GameRegistry.register(ironshovelhead);
 
 
         GameRegistry.register(ironpickaxe);
+        GameRegistry.register(ironaxe);
 
         //GameRegistry.register(forgingmanual);
     }
@@ -129,8 +132,10 @@ public class ModItems {
         //registerRender(test);
         registerRender(pickaxehead);
         registerRender(ironaxehead);
+        registerRender(ironshovelhead);
 
         registerRender(ironpickaxe);
+        registerRender(ironaxe);
         //registerRender(forgingmanual);
     }
 
@@ -147,7 +152,8 @@ public class ModItems {
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_ingot"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_chunk"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_pickaxe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_axe_hot")
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_axe_hot"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_shovel_hot")
                 );
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
@@ -183,6 +189,9 @@ public class ModItems {
                   }
                   else if (stack.getTagCompound().getInteger("type") == 9 ) {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_axe_hot", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 10 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_shovel_hot", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

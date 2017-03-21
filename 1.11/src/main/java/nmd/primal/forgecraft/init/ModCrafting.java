@@ -74,6 +74,10 @@ public class ModCrafting {
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironpickaxe, 1),
                 " X ", " Y ", 'X', ModItems.pickaxehead, 'Y', Items.STICK);
 
+        /***Axe Crafting***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironaxe, 1),
+                " X ", " Y ", 'X', ModItems.ironaxehead, 'Y', Items.STICK);
+
         /***Bloomery Crafting***/
 
 //Makes the Empty Crucible
@@ -186,6 +190,16 @@ public class ModCrafting {
                 1.0f,
                 1.0f
         );
+        //Makes a Hot ShovelHead
+        ForgeCrafting.addRecipe(
+                ModItems.ironshovelhead,
+                new ItemStack(ModItems.ironshovelhead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
 
 
         /******************************************************************************
@@ -204,6 +218,7 @@ public class ModCrafting {
 
         String pickaxehead = ModItems.pickaxehead.getRegistryName().toString();
         String ironaxehead = ModItems.ironaxehead.getRegistryName().toString();
+        String ironshovelhead = ModItems.ironshovelhead.getRegistryName().toString();
 
         /*
         Empty = 0
@@ -366,6 +381,67 @@ public class ModCrafting {
                 new ItemStack(ModItems.ironaxehead, 1),
                 "lapis"
         );
+
+        /*** Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,hotChunk,hotChunk,hotChunk,empty,
+                        empty,hotChunk,hotChunk,hotChunk,empty,
+                        empty,hotChunk,empty,hotChunk,empty },
+                new ItemStack(ModItems.ironshovelhead, 1),
+                "null"
+        );
+
+        /*** Emerald Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,ironshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironshovelhead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,ironshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironshovelhead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,ironshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironshovelhead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,ironshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironshovelhead, 1),
+                "lapis"
+        );
+
 
     }
 }
