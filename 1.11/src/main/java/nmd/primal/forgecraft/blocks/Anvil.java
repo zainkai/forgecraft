@@ -73,11 +73,11 @@ public class Anvil extends CustomContainerFacing {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
-        if (world.isRemote) {
-            if (!player.isSwingInProgress) {
-                player.swingArm(hand);
-            }
+
+        if (!player.isSwingInProgress) {
+            player.swingArm(hand);
         }
+
 
         /******************************************************************************
          Crafting Anvil Recipes
