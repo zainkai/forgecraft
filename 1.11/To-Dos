@@ -2,9 +2,9 @@ To-Dos
 
 *** Priority ***
 - [ ] Create the hoe Item
-- [x] Create the axe Item
-- [ ] Create the shovel Item
+
 - [ ] Create the Sword Model
+- [ ] Add randomInt to anvil
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
@@ -25,6 +25,8 @@ To-Dos
 
 *** Completed ***
 
+- [x] Create the axe Item
+- [x] Create the shovel Item
 - [x] Create the axe Model
 - [x] Create the shovel model
 - [x] Create the hoe model

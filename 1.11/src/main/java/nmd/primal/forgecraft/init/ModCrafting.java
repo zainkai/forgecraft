@@ -78,6 +78,14 @@ public class ModCrafting {
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironaxe, 1),
                 " X ", " Y ", 'X', ModItems.ironaxehead, 'Y', Items.STICK);
 
+        /***Shovel Crafting***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironshovel, 1),
+                " X ", " Y ", 'X', ModItems.ironshovelhead, 'Y', Items.STICK);
+
+        /***Hoe Crafting***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironhoe, 1),
+                " X ", " Y ", 'X', ModItems.ironhoehead, 'Y', Items.STICK);
+
         /***Bloomery Crafting***/
 
 //Makes the Empty Crucible
@@ -200,6 +208,16 @@ public class ModCrafting {
                 1.0f,
                 1.0f
         );
+        //Makes a Hot HoeHead
+        ForgeCrafting.addRecipe(
+                ModItems.ironhoehead,
+                new ItemStack(ModItems.ironhoehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
 
 
         /******************************************************************************
@@ -219,6 +237,7 @@ public class ModCrafting {
         String pickaxehead = ModItems.pickaxehead.getRegistryName().toString();
         String ironaxehead = ModItems.ironaxehead.getRegistryName().toString();
         String ironshovelhead = ModItems.ironshovelhead.getRegistryName().toString();
+        String ironhoehead = ModItems.ironhoehead.getRegistryName().toString();
 
         /*
         Empty = 0
@@ -439,6 +458,66 @@ public class ModCrafting {
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
                 new ItemStack(ModItems.ironshovelhead, 1),
+                "lapis"
+        );
+
+        /*** Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,hotChunk,hotChunk,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,hotChunk,empty,empty,empty,
+                        hotChunk,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironhoehead, 1),
+                "null"
+        );
+
+        /*** Emerald Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,ironhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironhoehead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,ironhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironhoehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,ironhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironhoehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,ironhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironhoehead, 1),
                 "lapis"
         );
 

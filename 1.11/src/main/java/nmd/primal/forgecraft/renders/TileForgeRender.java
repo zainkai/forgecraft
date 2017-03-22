@@ -81,6 +81,10 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                     if(tile.getSlotStack(i).getItem() == ModItems.ironshovelhead) {
                         GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
                     }
+                    if(tile.getSlotStack(i).getItem() == ModItems.ironhoehead) {
+                        GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
+                        GL11.glTranslated(0.0, 0.025D, 0.0D);
+                    }
 
                 }
                 if(i == 5){

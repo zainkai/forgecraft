@@ -1,10 +1,10 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/e_particle",
-		"texture": "items/iron_ingot",
-		"texture1": "blocks/e_texture",
-		"texture2": "blocks/iron_ingot_hot"
+		"particle": "blocks/planks_oak",
+		"texture": "blocks/planks_oak",
+		"texture1": "forgecraft:blocks/stone_slab",
+		"texture2": "forgecraft:blocks/iron_ingot_hot"
 	},
 	"elements": [
 		{

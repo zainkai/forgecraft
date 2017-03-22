@@ -292,6 +292,16 @@ public class ItemStoneTongs extends Item {
                                 return EnumActionResult.SUCCESS;
                             }
                         }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.ironhoehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 11);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
                     }
                 }
             }
