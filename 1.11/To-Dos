@@ -1,15 +1,16 @@
 To-Dos
 
 *** Priority ***
-- [ ] Create the hoe Item
-
+- [ ] Sound Handler
+- [ ] OreDict Stuff
 - [ ] Create the Sword Model
-- [ ] Add randomInt to anvil
+- [ ] Sword Item
+- [ ] Sword Json
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
-- [ ] Finish Toolhead Recipes
+
 - [ ] WeaponHead recipes
 
 - [ ] Casting Table
@@ -25,6 +26,9 @@ To-Dos
 
 *** Completed ***
 
+- [x] Create the hoe Item
+- [x] Finish Toolhead Recipes
+- [x] Add randomInt to anvil
 - [x] Create the axe Item
 - [x] Create the shovel Item
 - [x] Create the axe Model
