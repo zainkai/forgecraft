@@ -74,7 +74,10 @@ public class PistonBellows extends CustomContainerFacing {
             if(state.getValue(this.ACTIVE) == false) {
                 world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                 //world.playSound(pos, ForgecraftSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                world.playSound((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
+                //world.playSound((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
+                world.playSound(null, pos, ModSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                //playSound(@Nullable EntityPlayer player, double x, double y, double z, SoundEvent soundIn, SoundCategory category, float volume, float pitch)
+
 
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
                     BlockPos tempPos = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
