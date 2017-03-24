@@ -1,6 +1,6 @@
 {
   "piston_bellows": {
-    "category": "player",
+    "category": "blocks",
     "sounds": [
       "forgecraft:piston_bellows"
     ],

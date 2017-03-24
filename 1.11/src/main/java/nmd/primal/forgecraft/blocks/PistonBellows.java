@@ -9,10 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -21,6 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
@@ -74,6 +72,7 @@ public class PistonBellows extends CustomContainerFacing {
             //System.out.println(state.getValue(PistonBellows.FACING));
             if(state.getValue(this.ACTIVE) == false) {
                 world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
+                world.playSound(player, pos, ModSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
                     BlockPos tempPos = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
                     if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
