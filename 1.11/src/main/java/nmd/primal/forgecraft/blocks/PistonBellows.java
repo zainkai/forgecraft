@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.api.ForgecraftSounds;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.tiles.TileBloomery;
@@ -72,7 +73,9 @@ public class PistonBellows extends CustomContainerFacing {
             //System.out.println(state.getValue(PistonBellows.FACING));
             if(state.getValue(this.ACTIVE) == false) {
                 world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
-                world.playSound(player, pos, ModSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                //world.playSound(pos, ForgecraftSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                world.playSound((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModSounds.PISTON_BELLOWS, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
+
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
                     BlockPos tempPos = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
                     if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {

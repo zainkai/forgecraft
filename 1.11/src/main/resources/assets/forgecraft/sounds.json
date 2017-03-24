@@ -1,9 +1,7 @@
 {
   "piston_bellows": {
-    "category": "blocks",
-    "sounds": [
-      "forgecraft:piston_bellows"
-    ],
-    "subtitle": "forgecraft.subtitle.piston_bellows"
+    "category": "block",
+    "subtitle": "forgecraft.subtitle.piston_bellows",
+    "sounds": [ "forgecraft:piston_bellows" ]
   }
 }
