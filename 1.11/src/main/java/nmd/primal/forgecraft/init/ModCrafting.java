@@ -269,6 +269,18 @@ public class ModCrafting {
                 "null"
         );
 
+        /*** Temp Iron Sword ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,hotChunk,hotChunk,hotChunk,empty,
+                        empty,empty,hotChunk,empty,empty },
+                new ItemStack(ModItems.ironsword, 1),
+                "null"
+        );
+
         /*** Flaked emerald ***/
         AnvilCrafting.addRecipe(
                 new String[] {

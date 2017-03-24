@@ -19,25 +19,11 @@ import javax.annotation.Nullable;
  */
 public class ItemTest extends BaseItem {
 
-    public ItemTest() {
-        setUnlocalizedName(ModInfo.ForgecraftItems.TEST.getUnlocalizedName());
-        setRegistryName(ModInfo.ForgecraftItems.TEST.getRegistryName());
+    public ItemTest(String string) {
+        setUnlocalizedName(string);
+        setRegistryName(string);
 
-        this.addPropertyOverride(new ResourceLocation("test"), new IItemPropertyGetter()
-        {
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
-            {
-                if (entityIn == null)
-                {
-                    return 0.0F;
-                }
-                else
-                {
-                    return 1.0F;
-                }
-            }
-        });
+
     }
 
 }

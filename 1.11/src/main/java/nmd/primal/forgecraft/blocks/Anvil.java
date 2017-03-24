@@ -9,7 +9,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -21,15 +20,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.items.toolparts.ToolPart;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
-import nmd.primal.forgecraft.tiles.TileForge;
 
 /**
  * Created by mminaie on 3/4/17.
@@ -74,19 +71,20 @@ public class Anvil extends CustomContainerFacing {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
-        if (!player.isSwingInProgress) {
+        /*if (!player.isSwingInProgress) {
             player.swingArm(hand);
-        }
+        }*/
 
 
         /******************************************************************************
          Crafting Anvil Recipes
          *****************************************************************************/
         if (!world.isRemote) {
-            if ((player.inventory.getCurrentItem().getItem().equals(PrimalItems.STONE_GALLAGHER)) || (player.inventory.getCurrentItem().getItem() == ModItems.forgehammer)) {
-                TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
-                ItemStack pItem = player.inventory.getCurrentItem();
-                if (tile != null) {
+            ItemStack pItem = player.inventory.getCurrentItem();
+            TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
+            if (tile != null) {
+                if ((player.inventory.getCurrentItem().getItem().equals(PrimalItems.STONE_GALLAGHER)) || (player.inventory.getCurrentItem().getItem() == ModItems.forgehammer)) {
+
 
                     if ((pItem.getItem().equals(PrimalItems.STONE_GALLAGHER)) || (pItem.getItem() == ModItems.forgehammer)) {
 
@@ -199,95 +197,91 @@ public class Anvil extends CustomContainerFacing {
                 }
 
 
-
-
-
-        /*****************************************************************************
-         Adding and Removing Inventory With Tongs
-         *****************************************************************************/
-
-
+                /*****************************************************************************
+                 Adding and Removing Inventory With Tongs
+                 *****************************************************************************/
 
 
                 if ((pItem.getItem() != PrimalItems.STONE_GALLAGHER) || (pItem.getItem() != ModItems.forgehammer)) {
+                    if (pItem.getItem().equals(ModItems.stonetongs)) {
+                        if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) ||
+                                (pItem.getTagCompound().getInteger("type") == 8) ||
+                                (pItem.getTagCompound().getInteger("type") == 9) ||
+                                (pItem.getTagCompound().getInteger("type") == 10) ||
+                                (pItem.getTagCompound().getInteger("type") == 11) ||
+                                (pItem.getTagCompound().getInteger("type") == 0)) {
+                            if (state.getValue(FACING) == EnumFacing.NORTH) {
+                                int counter = 0;
+                                for (int z = 0; z < 5; z++) {
+                                    for (int x = 0; x < 5; x++) {
+                                        if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
+                                            if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
-                    if (state.getValue(FACING) == EnumFacing.NORTH) {
-                        int counter = 0;
-                        for (int z = 0; z < 5; z++) {
-                            for (int x = 0; x < 5; x++) {
-                                if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
-                                    if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
-
-                                        return doWork(pItem, counter, tile, world, pos, player);
+                                                doWork(pItem, counter, tile, world, pos, player);
+                                                //System.out.println("Doing work");
+                                            }
+                                        }
+                                        counter++;
                                     }
                                 }
-                                counter++;
                             }
-                        }
-                    }
-                    if (state.getValue(FACING) == EnumFacing.SOUTH) {
-                        int counter = 0;
-                        for (int z = 0; z < 5; z++) {
-                            for (int x = 0; x < 5; x++) {
-                                if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
-                                    if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
+                            if (state.getValue(FACING) == EnumFacing.SOUTH) {
+                                int counter = 0;
+                                for (int z = 0; z < 5; z++) {
+                                    for (int x = 0; x < 5; x++) {
+                                        if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
+                                            if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
 
-                                        return doWork(pItem, counter, tile, world, pos, player);
+                                                doWork(pItem, counter, tile, world, pos, player);
 
+                                            }
+                                        }
+                                        counter++;
                                     }
                                 }
-                                counter++;
                             }
-                        }
-                    }
-                    if (state.getValue(FACING) == EnumFacing.WEST) {
-                        int counter = 0;
-                        for (int x = 0; x < 5; x++) {
-                            for (int z = 0; z < 5; z++) {
-                                if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
-                                    if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
+                            if (state.getValue(FACING) == EnumFacing.WEST) {
+                                int counter = 0;
+                                for (int x = 0; x < 5; x++) {
+                                    for (int z = 0; z < 5; z++) {
+                                        if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
+                                            if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
 
-                                        return doWork(pItem, counter, tile, world, pos, player);
+                                                doWork(pItem, counter, tile, world, pos, player);
 
+                                            }
+                                        }
+                                        counter++;
                                     }
                                 }
-                                counter++;
                             }
-                        }
-                    }
-                    if (state.getValue(FACING) == EnumFacing.EAST) {
-                        int counter = 0;
-                        for (int x = 0; x < 5; x++) {
-                            for (int z = 0; z < 5; z++) {
-                                if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
-                                    if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
+                            if (state.getValue(FACING) == EnumFacing.EAST) {
+                                int counter = 0;
+                                for (int x = 0; x < 5; x++) {
+                                    for (int z = 0; z < 5; z++) {
+                                        if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
+                                            if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
-                                        return doWork(pItem, counter, tile, world, pos, player);
+                                                doWork(pItem, counter, tile, world, pos, player);
 
+                                            }
+                                        }
+                                        counter++;
                                     }
                                 }
-                                counter++;
                             }
                         }
                     }
                 }
-                return false;
             }
+            return false;
         }
-
-
         return false;
     }
 
     private boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
         if (pItem.getItem().equals(ModItems.stonetongs)) {
             //System.out.println("Level 1");
-            if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) ||
-                    (pItem.getTagCompound().getInteger("type") == 8) ||
-                    (pItem.getTagCompound().getInteger("type") == 9) ||
-                    (pItem.getTagCompound().getInteger("type") == 10) ||
-                    (pItem.getTagCompound().getInteger("type") == 11) ||
-                    (pItem.getTagCompound().getInteger("type") == 0)) {
 
                 if (!tile.getSlotStack(counter).isEmpty()) {
                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -385,7 +379,7 @@ public class Anvil extends CustomContainerFacing {
                     }
                 }
             }
-        }
+
         //System.out.println("1" + pItem);
 
         if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {

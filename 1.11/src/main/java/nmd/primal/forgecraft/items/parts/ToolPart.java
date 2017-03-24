@@ -1,7 +1,6 @@
-package nmd.primal.forgecraft.items.toolparts;
+package nmd.primal.forgecraft.items.parts;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.enchantment.EnchantmentDigging;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +17,6 @@ import nmd.primal.forgecraft.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import static nmd.primal.forgecraft.ToolNBT.*;
 
 /**
  * Created by mminaie on 3/9/17.

@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.init;
 
-import javafx.scene.paint.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -23,18 +22,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.items.*;
-import nmd.primal.forgecraft.items.toolparts.ToolPart;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
 import nmd.primal.forgecraft.items.tools.CustomPickaxe;
 import nmd.primal.forgecraft.items.tools.CustomShovel;
+import nmd.primal.forgecraft.items.weapons.CustomSword;
 
 /**
  * Created by kitsu on 11/26/2016.
  */
 public class ModItems {
 
-    public static Item test;
+    //public static Item test;
     public static Item pistonbellows;
     public static Item forgehammer = new ForgeHammer("forgehammer");
     public static Item softcrucible;
@@ -51,6 +51,8 @@ public class ModItems {
     public static Item ironaxe;
     public static Item ironshovel;
     public static Item ironhoe;
+
+    public static Item ironsword;
 
     //public static Item forgingmanual;
 
@@ -70,8 +72,9 @@ public class ModItems {
         ironshovel = new CustomShovel("ironshovel", Item.ToolMaterial.IRON);
         ironhoe = new CustomHoe("ironhoe", Item.ToolMaterial.IRON);
 
+        ironsword = new CustomSword("ironsword", Item.ToolMaterial.IRON);
         //ironingotballcool = new BaseMultiItem("ironingotcool") {};
-        //test = new ItemTest();
+        //test = new ItemTest("ironsword");
 
 
         ironingotballhot = new BaseMultiItem("ironingothot") {
@@ -128,6 +131,8 @@ public class ModItems {
         GameRegistry.register(ironshovel);
         GameRegistry.register(ironhoe);
 
+        GameRegistry.register(ironsword);
+
         //GameRegistry.register(forgingmanual);
     }
 
@@ -148,6 +153,8 @@ public class ModItems {
         registerRender(ironaxe);
         registerRender(ironshovel);
         registerRender(ironhoe);
+
+        registerRender(ironsword);
         //registerRender(forgingmanual);
     }
 

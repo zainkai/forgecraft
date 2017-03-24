@@ -9,14 +9,20 @@ import net.minecraft.nbt.NBTTagCompound;
 public interface ToolNBT {
 
     default boolean getHot(ItemStack stack){
-        return stack.getSubCompound("tags").getBoolean("hot");
+        if(stack.hasTagCompound()){
+            return stack.getSubCompound("tags").getBoolean("hot");
+        }
+        return false;
     }
     default void setHot(ItemStack stack, Boolean bool){
         stack.getSubCompound("tags").setBoolean("hot", bool);
     }
 
     default int getModifiers(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("modifiers");
+        if(stack.hasTagCompound()) {
+            return stack.getSubCompound("tags").getInteger("modifiers");
+        }
+        return 0;
     }
     default void setModifiers(ItemStack stack, Integer mods){
         stack.getSubCompound("tags").setInteger("modifiers", mods);
