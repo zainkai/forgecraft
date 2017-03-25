@@ -1,7 +1,34 @@
 itemGroup.forgecraft=ForgeCraft
 
-item.test.name=test
-item.pistonbellows=Bellows Handle
 
 tile.firebox.name=Forge
+tile.bloomery.name=Bloomery
 tile.pistonbellows.name=Wooden Piston Bellows
+tile.emptycrucible.name=Empty Crucible
+tile.emptycruciblehit.name=Hot Empty Crucible
+tile.emptycruciblecracked.name= Cracked Empty Crucible
+tile.emptycruciblecrackedhot.name=Cracked Hot Empty Crucible
+tile.rawironcrucible.name=Filled Iron Crucible
+tile.hotironcrucible.name=Hot Iron Crucible
+tile.hotcookedironcrucible.name=Hot Cooked Iron Crucible
+tile.coolironcrucible.name=Cool Iron Crucible
+tile.failedironcrucible.name=Failed Iron Crucible
+tile.failedironcruciblehot.name=Failed Iron Crucible Hot
+tile.ironball.name=Raw Iron Ingot
+tile.ironchunk.name=Iron Chunk
+
+item.bellowshandle.name=Bellows Handle
+item.softcrucible.name=Soft Crucible
+item.stonetongs.name=Stone Tongs
+item.forgehammer.name=Forge Hammer
+item.ironingothot.name=Iron Ingot Hot
+item.ironchunkhot.name=Iron Chunk Hot
+item.ironpickaxehead.name=Iron Pickaxe Head
+item.ironaxehead.name=Iron Axe Head
+item.ironshovelhead.name=Iron Shovel Head
+item.ironhoehead.name=Iron Hoe Head
+item.ironpickaxe.name=Iron Pickaxe
+item.ironaxe.name=Iron Axe
+item.ironshovel.name=Iron Shovel
+item.ironhoe.name=Iron Hoe
+item.ironsword.name=Iron Sword

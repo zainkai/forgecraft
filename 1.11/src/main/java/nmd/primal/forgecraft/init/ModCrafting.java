@@ -36,6 +36,14 @@ public class ModCrafting {
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.bloomery),
                 "X X", "X X", "XXX", 'X', Items.BRICK);
 
+        /*** Soft Crucible ***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.softcrucible),
+                "X X", "X X", "XXX", 'X', Items.CLAY_BALL);
+
+        /*** Soft Crucible ***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModItems.softcrucible),
+                "X X", "X X", "XXX", 'X', PrimalItems.MUD_CLUMP);
+
         /***Wooden PistonBellows***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsoak),  "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 0), 'Y', ModItems.pistonbellows);
@@ -70,8 +78,6 @@ public class ModCrafting {
         //Regular Iron Ore
         GameRegistry.addShapedRecipe(iron0,
                 " X ", " Y ", 'X', Blocks.IRON_ORE, 'Y', ModBlocks.emptycrucible);
-
-        //Iron Ore speed +1
 
         /***Pickaxe Crafting***/
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironpickaxe, 1),
@@ -257,6 +263,30 @@ public class ModCrafting {
                         empty,empty,hotChunk,empty,empty,
                         empty,empty,hotChunk,empty,empty },
                 new ItemStack(ModItems.forgehammer, 1),
+                "null"
+        );
+
+        /*** Bucket ***/
+        AnvilCrafting.addRecipe(
+                new String [] {
+                        empty,empty,empty,empty,empty,
+                        empty,hotChunk,empty,hotChunk,empty,
+                        empty,hotChunk,empty,hotChunk,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(Items.BUCKET, 1),
+                "null"
+        );
+
+        /*** Primal Plate ***/
+        AnvilCrafting.addRecipe(
+                new String [] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,hotChunk,hotChunk,empty,empty,
+                        empty,hotChunk,hotChunk,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(PrimalItems.IRON_PLATE, 1),
                 "null"
         );
 

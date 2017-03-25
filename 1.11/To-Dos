@@ -4,6 +4,8 @@ To-Dos
 
 - [ ] OreDict Stuff
 - [ ] Use Primal Brick instead of clay brick
+- [ ] Iron Plate Recipe
+- [ ] Bucket Crafting
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
