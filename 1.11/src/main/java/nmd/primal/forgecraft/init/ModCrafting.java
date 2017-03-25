@@ -32,6 +32,9 @@ public class ModCrafting {
         /***Forge***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),
                 "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
+        /***Bloomery***/
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.bloomery),
+                "X X", "X X", "XXX", 'X', Items.BRICK);
 
         /***Wooden PistonBellows***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsoak),  "XXX", "X Y", "XXX",

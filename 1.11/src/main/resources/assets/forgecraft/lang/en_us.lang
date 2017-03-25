@@ -1,5 +1,7 @@
+itemGroup.forgecraft=ForgeCraft
+
 item.test.name=test
 item.pistonbellows=Bellows Handle
-tile.firebox.name=Firebox
+
+tile.firebox.name=Forge
 tile.pistonbellows.name=Wooden Piston Bellows
-itemGroup.forgecraft=ForgeCraft

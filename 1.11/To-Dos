@@ -1,11 +1,9 @@
 To-Dos
 
 *** Priority ***
-- [ ] Sound Handler
+
 - [ ] OreDict Stuff
-- [ ] Create the Sword Model
-- [ ] Sword Item
-- [ ] Sword Json
+- [ ] Use Primal Brick instead of clay brick
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
