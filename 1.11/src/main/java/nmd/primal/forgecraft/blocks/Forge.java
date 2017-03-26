@@ -199,6 +199,16 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                             }
                         }
                     }
+                    //Needs Ore Dictionary Compat
+                    if (pItem.getItem().equals(new ItemStack(Items.IRON_INGOT).getItem())) {
+                        for (int i = 2; i < 7; i++) {
+                            if (tile.getSlotStack(i).isEmpty()) {
+                                tile.setSlotStack(i, new ItemStack(Items.IRON_INGOT, 1));
+                                pItem.shrink(1);
+                                return true;
+                            }
+                        }
+                    }
 
                     if(pItem.getItem() instanceof ToolPart){
                         if(tile.getSlotStack(4).isEmpty()){

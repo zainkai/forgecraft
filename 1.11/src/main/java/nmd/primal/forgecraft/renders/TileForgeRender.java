@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -66,11 +67,23 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                 GL11.glTranslated(0.0F, 0.1D, 0.0F);
                 if(i == 2){
                     GL11.glTranslated(-0.3, -0.05D, -0.3D);
+                    if(tile.getSlotStack(i).getItem() == Items.IRON_INGOT){
+                        GL11.glScalef(0.5f, 0.5f, 0.5f);
+                        GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
+                    }
                 }
                 if(i == 3){
                     GL11.glTranslated(-0.3, -0.05D, 0.3D);
+                    if(tile.getSlotStack(i).getItem() == Items.IRON_INGOT){
+                        GL11.glScalef(0.5f, 0.5f, 0.5f);
+                        GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
+                    }
                 }
                 if(i == 4){
+                    if(tile.getSlotStack(i).getItem() == Items.IRON_INGOT){
+                        GL11.glScalef(0.5f, 0.5f, 0.5f);
+                        GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
+                    }
                     //GL11.glScalef(0.6F, 0.6F, 0.6F);
                     if(tile.getSlotStack(i).getItem() == ModItems.pickaxehead) {
                         GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
@@ -89,9 +102,17 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                 }
                 if(i == 5){
                     GL11.glTranslated(0.3, -0.05D, -0.3D);
+                    if(tile.getSlotStack(i).getItem() == Items.IRON_INGOT){
+                        GL11.glScalef(0.5f, 0.5f, 0.5f);
+                        GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
+                    }
                 }
                 if(i == 6){
                     GL11.glTranslated(0.3, -0.05D, 0.3D);
+                    if(tile.getSlotStack(i).getItem() == Items.IRON_INGOT){
+                        GL11.glScalef(0.5f, 0.5f, 0.5f);
+                        GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
+                    }
                 }
 
                 renderItem.renderItem(tile.getSlotStack(i), ItemCameraTransforms.TransformType.FIXED);
@@ -99,24 +120,6 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                 GL11.glPopMatrix();
             }
         }
-
-        /*if (!stack1.isEmpty()) {
-            int stackRotation = stack1.getCount();
-            GL11.glPushMatrix();
-            GL11.glScalef(scale, scale, scale);
-            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-            renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
-            GL11.glPopMatrix();
-            for(int i = 0; i < Math.ceil(stackRotation/8) + 1; i++){
-                GL11.glPushMatrix();
-                GL11.glScalef(scale, scale, scale);
-                GL11.glRotated(45.0F * i, 0.0F, 1.0F, 0.0F);
-                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glTranslated(xTrans, yTrans, 0.0D);
-                renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
-                GL11.glPopMatrix();
-            }
-        }*/
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
         GL11.glPopMatrix();

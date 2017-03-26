@@ -86,7 +86,7 @@ public class PistonBellows extends CustomContainerFacing {
                         if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.EAST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 tile.updateBlock();
                                 tile.markDirty();
                                 return true;
@@ -99,9 +99,9 @@ public class PistonBellows extends CustomContainerFacing {
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.EAST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
-                                    tile.setHeat(tile.getHeat() + 25);
+                                    tile.setHeat(tile.getHeat() + 50);
                                 }
                                 tile.updateBlock();
                                 tile.markDirty();
@@ -117,7 +117,7 @@ public class PistonBellows extends CustomContainerFacing {
                         if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.WEST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 tile.updateBlock();
                                 tile.markDirty();
                                 return true;
@@ -130,9 +130,9 @@ public class PistonBellows extends CustomContainerFacing {
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.WEST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
-                                    tile.setHeat(tile.getHeat() + 25);
+                                    tile.setHeat(tile.getHeat() + 50);
                                 }
                                 tile.updateBlock();
                                 tile.markDirty();
@@ -148,7 +148,7 @@ public class PistonBellows extends CustomContainerFacing {
                         if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.SOUTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 tile.updateBlock();
                                 tile.markDirty();
                                 return true;
@@ -161,9 +161,9 @@ public class PistonBellows extends CustomContainerFacing {
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.SOUTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
-                                    tile.setHeat(tile.getHeat() + 25);
+                                    tile.setHeat(tile.getHeat() + 50);
                                 }
                                 tile.updateBlock();
                                 tile.markDirty();
@@ -179,7 +179,7 @@ public class PistonBellows extends CustomContainerFacing {
                         if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.NORTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 tile.updateBlock();
                                 tile.markDirty();
                                 return true;
@@ -192,9 +192,9 @@ public class PistonBellows extends CustomContainerFacing {
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.NORTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
-                                tile.setHeat(tile.getHeat() + 25);
+                                tile.setHeat(tile.getHeat() + 50);
                                 if(world.getBlockState(tempPos).getValue(Bloomery.COVERED) == true){
-                                    tile.setHeat(tile.getHeat() + 25);
+                                    tile.setHeat(tile.getHeat() + 50);
                                 }
                                 tile.updateBlock();
                                 tile.markDirty();

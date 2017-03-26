@@ -25,6 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 
 import java.util.Random;
@@ -77,9 +78,27 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                     }
                     if(!player.isSneaking()){
                         if(world.getBlockState(pos).getValue(ACTIVE) == true){
-                            Integer tempInt = tile.getHeat();
-                            String tempString = tempInt.toString();
-                            ITextComponent itextcomponent = new TextComponentString(tempString);
+                            Integer bloomeryHeat = tile.getHeat();
+                            Integer idealTemp = null;
+                            Integer cookCounter = tile.getCookCounter();
+                            Integer idealCookTime = null;
+                            Integer remainingTime =  null;
+
+                            String stringBloomeryHeat = bloomeryHeat.toString();
+                            String stringIdealTemp = "";
+                            String stringRemainingTime = "";
+
+                            BloomeryCrafting recipe = BloomeryCrafting.getRecipe(tile.getSlotStack(1));
+                            if(recipe != null) {
+                                idealTemp = recipe.getHeatThreshold();
+                                idealCookTime = recipe.getIdealTime();
+                                stringIdealTemp = idealTemp.toString();
+                                remainingTime = idealCookTime - cookCounter;
+                                stringRemainingTime = remainingTime.toString();
+
+                            }
+
+                            ITextComponent itextcomponent = new TextComponentString("Current Temp: " + stringBloomeryHeat + " Ideal Temp: " + stringIdealTemp + " Ticks Remaining: " + stringRemainingTime);
                             player.sendStatusMessage(itextcomponent, true);
                             //System.out.println(pos);
                             return true;

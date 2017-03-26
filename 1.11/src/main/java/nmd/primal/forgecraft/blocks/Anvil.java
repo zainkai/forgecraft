@@ -301,19 +301,19 @@ public class Anvil extends CustomContainerFacing {
                 }
 
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    System.out.println("Activating");
+                    //System.out.println("Activating");
                     if (pItem.getTagCompound().getInteger("type") == 6) {
-                        System.out.println("Tongs meta = 6");
+                        //System.out.println("Tongs meta = 6");
                         tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
                         pItem.getTagCompound().setInteger("type", 0);
                         //return true;
                     }
                     if (pItem.getTagCompound().getInteger("type") == 7) {
-                        System.out.println("Tongs meta = 7");
+                        //System.out.println("Tongs meta = 7");
                         tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
                         pItem.getTagCompound().setInteger("type", 0);
-                        System.out.println(counter);
-                        System.out.println(tile.getSlotStack(counter));
+                        ///System.out.println(counter);
+                        //System.out.println(tile.getSlotStack(counter));
                         //return true;
                     }
                     if (pItem.getTagCompound().getInteger("type") == 8) {
@@ -454,9 +454,9 @@ public class Anvil extends CustomContainerFacing {
         }
 
         if (pItem.getItem().equals(Items.DIAMOND)) {
-            System.out.println("It Is Diamond");
+            //System.out.println("It Is Diamond");
             if (tile.getSlotStack(counter).isEmpty()) {
-                System.out.println("Slot is empty");
+                //System.out.println("Slot is empty");
                 tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
                 pItem.shrink(1);
                 return true;
@@ -542,9 +542,9 @@ public class Anvil extends CustomContainerFacing {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        if(!worldIn.isRemote) {
+        //if(!worldIn.isRemote) {
             worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()), 2);
-        }
+        //}
     }
 
     @Override

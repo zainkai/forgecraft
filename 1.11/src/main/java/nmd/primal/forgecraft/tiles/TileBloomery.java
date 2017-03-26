@@ -124,6 +124,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     public void setHeat(int newHeat){
         this.heat = newHeat;
     }
+
+    public int getCookCounter() {return this.cookCounter; }
+
     @Override
     public int getSlotLimit() {
         return 1;

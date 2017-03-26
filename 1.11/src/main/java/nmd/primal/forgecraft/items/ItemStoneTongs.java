@@ -311,8 +311,8 @@ public class ItemStoneTongs extends Item {
             else return EnumActionResult.FAIL;
             //System.out.println(itemstack.getTagCompound().getInteger("type"));
         }
-        System.out.println(player.getHeldItem(hand).getTagCompound().getInteger("type"));
-        return EnumActionResult.FAIL;
+        //System.out.println(player.getHeldItem(hand).getTagCompound().getInteger("type"));
+        return EnumActionResult.SUCCESS;
 
     }
 
@@ -320,8 +320,8 @@ public class ItemStoneTongs extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
     {
-        tooltip.add(ChatFormatting.BLUE + "NBT: " + item.getSubCompound("tags"));
-        tooltip.add(ChatFormatting.RED + "NBT: " + item.getTagCompound().getInteger("type"));
+        //tooltip.add(ChatFormatting.BLUE + "NBT: " + item.getSubCompound("tags"));
+        //tooltip.add(ChatFormatting.RED + "NBT: " + item.getTagCompound().getInteger("type"));
     }
 
 }

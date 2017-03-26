@@ -93,7 +93,9 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                         if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
                                 (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
                                 tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
-                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.DIAMOND) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.EMERALD)
                                 ){
                             GL11.glPushMatrix();
 
@@ -169,7 +171,9 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                         if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
                                 (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
                                 tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
-                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.DIAMOND) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.EMERALD)
                                 ){
                             GL11.glPushMatrix();
                             GL11.glTranslated( tile.getReverseX(a), -0.49D, tile.getReverseZ(i) );
@@ -244,7 +248,9 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                         if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
                                 (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
                                 tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
-                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.DIAMOND) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.EMERALD)
                                 ){
                             GL11.glPushMatrix();
                             GL11.glTranslated( tile.getNormalX(a), -0.49D, tile.getReverseZ(i) );
@@ -322,7 +328,9 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                         if(tile.getSlotStack(counter).getItem().equals(Items.REDSTONE) ||
                                 (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
                                 tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP) ||
-                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)
+                                tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.DIAMOND) ||
+                                tile.getSlotStack(counter).getItem().equals(Items.EMERALD)
                                 ){
                             GL11.glPushMatrix();
                             GL11.glTranslated( tile.getReverseX(a), -0.49D, tile.getNormalZ(i) );
