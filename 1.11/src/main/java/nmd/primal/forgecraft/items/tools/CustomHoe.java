@@ -204,7 +204,7 @@ public class CustomHoe extends ItemHoe  implements ToolNBT {
                     }
 
                     if (getHot(item) == false) {
-                        if (item.getSubCompound("tags").getInteger("modifiers") == 0) {
+                        if (getModifiers(item) == 0) {
                             return 0.0F;
                         }
                     }
@@ -273,16 +273,16 @@ public class CustomHoe extends ItemHoe  implements ToolNBT {
             if(item.hasTagCompound()) {
 
                 tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (3 - getModifiers(item)) );
-                if (item.getSubCompound("tags").getBoolean("emerald") == true) {
+                if (getEmerald(item) == true) {
                     tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
                 }
-                if (item.getSubCompound("tags").getInteger("diamond") > 0) {
+                if (getDiamondLevel(item) > 0) {
                     tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
                 }
-                if (item.getSubCompound("tags").getInteger("redstone") > 0) {
+                if (getRedstoneLevel(item) > 0) {
                     tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
                 }
-                if (item.getSubCompound("tags").getInteger("lapis") > 0) {
+                if (getLapisLevel(item) > 0) {
                     tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
                 }
             }

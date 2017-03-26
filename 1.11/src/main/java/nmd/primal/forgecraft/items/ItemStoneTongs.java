@@ -312,7 +312,7 @@ public class ItemStoneTongs extends Item {
             //System.out.println(itemstack.getTagCompound().getInteger("type"));
         }
         //System.out.println(player.getHeldItem(hand).getTagCompound().getInteger("type"));
-        return EnumActionResult.SUCCESS;
+        return EnumActionResult.FAIL;
 
     }
 

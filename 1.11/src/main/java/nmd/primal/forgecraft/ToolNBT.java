@@ -9,8 +9,12 @@ import net.minecraft.nbt.NBTTagCompound;
 public interface ToolNBT {
 
     default boolean getHot(ItemStack stack){
-        if(stack.hasTagCompound()){
-            return stack.getSubCompound("tags").getBoolean("hot");
+        if(!stack.isEmpty()) {
+            if (stack.hasTagCompound()) {
+                if (stack.getSubCompound("tags") != null) {
+                    return stack.getSubCompound("tags").getBoolean("hot");
+                }
+            }
         }
         return false;
     }
@@ -19,8 +23,12 @@ public interface ToolNBT {
     }
 
     default int getModifiers(ItemStack stack) {
-        if(stack.hasTagCompound()) {
-            return stack.getSubCompound("tags").getInteger("modifiers");
+        if(!stack.isEmpty()) {
+            if (stack.hasTagCompound()) {
+                if (stack.getSubCompound("tags") != null) {
+                    return stack.getSubCompound("tags").getInteger("modifiers");
+                }
+            }
         }
         return 0;
     }
@@ -29,14 +37,28 @@ public interface ToolNBT {
     }
 
     default boolean getEmerald(ItemStack stack){
-        return stack.getSubCompound("tags").getBoolean("emerald");
+        if(!stack.isEmpty()) {
+            if (stack.hasTagCompound()) {
+                if (stack.getSubCompound("tags") != null) {
+                    return stack.getSubCompound("tags").getBoolean("emerald");
+                }
+            }
+        }
+        return false;
     }
     default void setEmerald(ItemStack stack, Boolean bool){
         stack.getSubCompound("tags").setBoolean("emerald", bool);
     }
 
     default int getDiamondLevel(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("diamond");
+        if(!stack.isEmpty()) {
+            if (stack.hasTagCompound()) {
+                if (stack.getSubCompound("tags") != null) {
+                    return stack.getSubCompound("tags").getInteger("diamond");
+                }
+            }
+        }
+        return 0;
     }
 
     default void setDiamondLevel(ItemStack stack, Integer level){
@@ -45,21 +67,42 @@ public interface ToolNBT {
 
 
     default int getRedstoneLevel(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("redstone");
+        if(!stack.isEmpty()) {
+            if (stack.hasTagCompound()) {
+                if (stack.getSubCompound("tags") != null) {
+                    return stack.getSubCompound("tags").getInteger("redstone");
+                }
+            }
+        }
+        return 0;
     }
     default void setRedstoneLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("redstone", level);
     }
 
     default int getLapisLevel(ItemStack stack) {
-        return stack.getSubCompound("tags").getInteger("lapis");
+        if(!stack.isEmpty()) {
+            if (stack.hasTagCompound()) {
+                if (stack.getSubCompound("tags") != null) {
+                    return stack.getSubCompound("tags").getInteger("lapis");
+                }
+            }
+        }
+        return 0;
     }
     default void setLapisLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("lapis", level);
     }
 
     default NBTTagCompound getTags(ItemStack stack){
-        return stack.getSubCompound("tags");
+        if(!stack.isEmpty()) {
+            if (stack.hasTagCompound()) {
+                if (stack.getSubCompound("tags") != null) {
+                    return stack.getSubCompound("tags");
+                }
+            }
+        }
+        return null;
     }
 
 }

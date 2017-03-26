@@ -3,6 +3,7 @@ itemGroup.forgecraft=ForgeCraft
 
 tile.firebox.name=Forge
 tile.bloomery.name=Bloomery
+tile.stoneanvil.name=Stone Anvil
 tile.pistonbellows.name=Wooden Piston Bellows
 tile.emptycrucible.name=Empty Crucible
 tile.emptycruciblehit.name=Hot Empty Crucible
