@@ -175,6 +175,17 @@ public class ModCrafting {
                 1.0f
         );
 
+        // Converts a Vanilla Ingot into ForgeCraft Ingot Ball
+        ForgeCrafting.addRecipe(
+                Items.IRON_INGOT,
+                new ItemStack(ModItems.ironingotballhot, 1),
+                800,
+                200,
+                500,
+                1.0f,
+                1.0f
+        );
+
 //Makes a Hot Iron Chunk
         ForgeCrafting.addRecipe(
                 Item.getItemFromBlock(ModBlocks.ironchunk),

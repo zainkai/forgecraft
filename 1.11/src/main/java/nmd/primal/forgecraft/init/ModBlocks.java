@@ -90,7 +90,7 @@ public class ModBlocks {
             {
                 if(!world.isRemote){
                     Item pItem = player.getHeldItem(hand).getItem();
-                    BlockPos belowPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
+                    BlockPos belowPos = pos.down();
                     //System.out.println("Activating");
                     if (pItem.equals(PrimalItems.STONE_GALLAGHER) && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)) {
                         player.swingArm(hand);

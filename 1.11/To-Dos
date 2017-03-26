@@ -3,9 +3,11 @@ To-Dos
 *** Priority ***
 
 - [ ] OreDict Stuff
-- [ ] Use Primal Brick instead of clay brick
-- [ ] Iron Plate Recipe
-- [ ] Bucket Crafting
+- [x] Can't remove fuel from Bloomery
+- [ ] Crafting Recipe for Iron Ingot to Iron Ball
+- [ ] Block To Read Temperature
+- [ ] Bellows Moves Faster
+
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers

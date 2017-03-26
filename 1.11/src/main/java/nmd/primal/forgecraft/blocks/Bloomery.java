@@ -23,6 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 
@@ -63,7 +64,9 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                 ItemStack tileItem = tile.getSlotStack(0);
                 ItemStack tileItem1 = tile.getSlotStack(1);
                 if(pItem.isEmpty()) {
-                    /*if (player.isSneaking()) {
+
+
+                    if (player.isSneaking()) {
                         if (!tileItem.isEmpty()) {
                             CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(0));
                             tile.setSlotStack(0, ItemStack.EMPTY);
@@ -71,7 +74,7 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                             tile.updateBlock();
                             return true;
                         }
-                    }*/
+                    }
                     if(!player.isSneaking()){
                         if(world.getBlockState(pos).getValue(ACTIVE) == true){
                             Integer tempInt = tile.getHeat();
@@ -200,7 +203,10 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(false)), 2);
+        if(!worldIn.isRemote){
+            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(false)), 2);
+        }
+
     }
 
     @Override

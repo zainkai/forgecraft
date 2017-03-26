@@ -83,6 +83,7 @@ public class Anvil extends CustomContainerFacing {
             ItemStack pItem = player.inventory.getCurrentItem();
             TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
             if (tile != null) {
+                //System.out.println("Tile is not null");
                 if ((player.inventory.getCurrentItem().getItem().equals(PrimalItems.STONE_GALLAGHER)) || (player.inventory.getCurrentItem().getItem() == ModItems.forgehammer)) {
 
 
@@ -203,22 +204,15 @@ public class Anvil extends CustomContainerFacing {
 
 
                 if ((pItem.getItem() != PrimalItems.STONE_GALLAGHER) || (pItem.getItem() != ModItems.forgehammer)) {
-                    if (pItem.getItem().equals(ModItems.stonetongs)) {
-                        if ((pItem.getTagCompound().getInteger("type") == 6) || (pItem.getTagCompound().getInteger("type") == 7) ||
-                                (pItem.getTagCompound().getInteger("type") == 8) ||
-                                (pItem.getTagCompound().getInteger("type") == 9) ||
-                                (pItem.getTagCompound().getInteger("type") == 10) ||
-                                (pItem.getTagCompound().getInteger("type") == 11) ||
-                                (pItem.getTagCompound().getInteger("type") == 0)) {
+
                             if (state.getValue(FACING) == EnumFacing.NORTH) {
                                 int counter = 0;
                                 for (int z = 0; z < 5; z++) {
                                     for (int x = 0; x < 5; x++) {
                                         if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
                                             if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
-
                                                 doWork(pItem, counter, tile, world, pos, player);
-                                                //System.out.println("Doing work");
+                                                return true;
                                             }
                                         }
                                         counter++;
@@ -231,9 +225,8 @@ public class Anvil extends CustomContainerFacing {
                                     for (int x = 0; x < 5; x++) {
                                         if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
                                             if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
-
                                                 doWork(pItem, counter, tile, world, pos, player);
-
+                                                return true;
                                             }
                                         }
                                         counter++;
@@ -246,9 +239,8 @@ public class Anvil extends CustomContainerFacing {
                                     for (int z = 0; z < 5; z++) {
                                         if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
                                             if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
-
                                                 doWork(pItem, counter, tile, world, pos, player);
-
+                                                return true;
                                             }
                                         }
                                         counter++;
@@ -261,17 +253,16 @@ public class Anvil extends CustomContainerFacing {
                                     for (int z = 0; z < 5; z++) {
                                         if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
                                             if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
-
                                                 doWork(pItem, counter, tile, world, pos, player);
-
+                                                return true;
                                             }
                                         }
                                         counter++;
                                     }
                                 }
                             }
-                        }
-                    }
+
+
                 }
             }
             return false;
@@ -280,8 +271,16 @@ public class Anvil extends CustomContainerFacing {
     }
 
     private boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
+
         if (pItem.getItem().equals(ModItems.stonetongs)) {
-            //System.out.println("Level 1");
+            if ((pItem.getTagCompound().getInteger("type") == 6) ||
+                    (pItem.getTagCompound().getInteger("type") == 7) ||
+                    (pItem.getTagCompound().getInteger("type") == 8) ||
+                    (pItem.getTagCompound().getInteger("type") == 9) ||
+                    (pItem.getTagCompound().getInteger("type") == 10) ||
+                    (pItem.getTagCompound().getInteger("type") == 11) ||
+                    (pItem.getTagCompound().getInteger("type") == 0)) {
+                //System.out.println("Level 1");
 
                 if (!tile.getSlotStack(counter).isEmpty()) {
                     if (pItem.getTagCompound().getInteger("type") == 0) {
@@ -294,6 +293,7 @@ public class Anvil extends CustomContainerFacing {
                             pItem.getTagCompound().setInteger("type", 7);
                             tile.setSlotStack(counter, ItemStack.EMPTY);
                             //System.out.println(counter);
+                            //System.out.println(counter);
                             return true;
                         }
 
@@ -301,17 +301,20 @@ public class Anvil extends CustomContainerFacing {
                 }
 
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    //System.out.println("Activating");
+                    System.out.println("Activating");
                     if (pItem.getTagCompound().getInteger("type") == 6) {
+                        System.out.println("Tongs meta = 6");
                         tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
                         pItem.getTagCompound().setInteger("type", 0);
-                        return true;
+                        //return true;
                     }
                     if (pItem.getTagCompound().getInteger("type") == 7) {
+                        System.out.println("Tongs meta = 7");
                         tile.setSlotStack((counter), new ItemStack(ModItems.ironchunkhot, 1));
                         pItem.getTagCompound().setInteger("type", 0);
-                        //System.out.println(counter);
-                        return true;
+                        System.out.println(counter);
+                        System.out.println(tile.getSlotStack(counter));
+                        //return true;
                     }
                     if (pItem.getTagCompound().getInteger("type") == 8) {
                         ItemStack tempStack = new ItemStack(ModItems.pickaxehead, 1);
@@ -379,6 +382,9 @@ public class Anvil extends CustomContainerFacing {
                     }
                 }
             }
+        }
+
+
 
         //System.out.println("1" + pItem);
 
@@ -448,7 +454,9 @@ public class Anvil extends CustomContainerFacing {
         }
 
         if (pItem.getItem().equals(Items.DIAMOND)) {
+            System.out.println("It Is Diamond");
             if (tile.getSlotStack(counter).isEmpty()) {
+                System.out.println("Slot is empty");
                 tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
                 pItem.shrink(1);
                 return true;
@@ -534,7 +542,9 @@ public class Anvil extends CustomContainerFacing {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()),2);
+        if(!worldIn.isRemote) {
+            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()), 2);
+        }
     }
 
     @Override
