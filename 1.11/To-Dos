@@ -3,10 +3,15 @@ To-Dos
 *** Priority ***
 
 - [ ] OreDict Stuff
-- [x] Can't remove fuel from Bloomery
-- [ ] Crafting Recipe for Iron Ingot to Iron Ball
-- [ ] Block To Read Temperature
-- [ ] Bellows Moves Faster
+- [ ] Hot Ingots should cool down
+- [ ] Remove hot or cool ingots and tool heads from inventories
+- [ ] Add Iron Ring Recipe
+- [ ] Add chainmail recipe
+- [ ] Add Iron Shield Recipe
+- [ ] Tool Disassembly
+- [ ] Tool Repair
+- [ ] Gold Smelting
+- [ ] Custom Tool Material
 
 
 *** Backlog ***
@@ -28,6 +33,10 @@ To-Dos
 
 *** Completed ***
 
+- [x] Can't remove fuel from Bloomery
+- [x] Crafting Recipe for Iron Ingot to Iron Ball
+- [x] Block To Read Temperature
+- [x] Bellows Moves Faster
 - [x] Create the hoe Item
 - [x] Finish Toolhead Recipes
 - [x] Add randomInt to anvil
