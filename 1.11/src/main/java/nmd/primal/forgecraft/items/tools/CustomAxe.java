@@ -307,10 +307,10 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
                 }
-                /*if( getDiamondLevel(itemstack) > 0 ){
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
+                if( getDiamondLevel(itemstack) > 0 ){
+                    //itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
                     itemstack.getItem().setHarvestLevel("pickaxe", 3);
-                }*/
+                }
                 /*if( getRedstoneLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));
                     //System.out.println(itemstack.getEnchantmentTagList());
