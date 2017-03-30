@@ -62,10 +62,10 @@ public class ModItems {
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
 
-        pickaxehead = new ToolPart("ironpickaxehead");
-        ironaxehead = new ToolPart("ironaxehead");
-        ironshovelhead = new ToolPart("ironshovelhead");
-        ironhoehead = new ToolPart("ironhoehead");
+        pickaxehead = new ToolPart("ironpickaxehead", Item.ToolMaterial.IRON);
+        ironaxehead = new ToolPart("ironaxehead", Item.ToolMaterial.IRON);
+        ironshovelhead = new ToolPart("ironshovelhead", Item.ToolMaterial.IRON);
+        ironhoehead = new ToolPart("ironhoehead", Item.ToolMaterial.IRON);
 
         ironpickaxe = new CustomPickaxe("ironpickaxe", Item.ToolMaterial.IRON);
         ironaxe = new CustomAxe("ironaxe", Item.ToolMaterial.IRON);

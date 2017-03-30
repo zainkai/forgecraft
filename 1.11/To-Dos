@@ -13,7 +13,7 @@ To-Dos
 - [ ] Gold Smelting
 - [ ] Custom Tool Material
 - [ ] Add Iron to to Empty Crucible via right click
-
+- [ ] Coal is not being removed from the forge or firebox
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers

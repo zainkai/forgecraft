@@ -303,7 +303,7 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
     {
         if(!player.world.isRemote){
             World world = player.getEntityWorld();
-            System.out.println(world.getBlockState(pos).getBlock());
+            //System.out.println(world.getBlockState(pos).getBlock());
             if(itemstack.getItem() instanceof CustomPickaxe){
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
@@ -314,6 +314,7 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
                 }
                 if( getRedstoneLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));
+                    System.out.println(itemstack.getEnchantmentTagList());
                 }
                 if ( getLapisLevel(itemstack) > 0) {
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), getLapisLevel(itemstack));

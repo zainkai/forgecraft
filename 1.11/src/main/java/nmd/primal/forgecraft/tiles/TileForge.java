@@ -143,8 +143,8 @@ public class TileForge extends TileBaseSlot implements ITickable {
                         if(this.getSlotStack(i).hasTagCompound()){
                             if( this.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == false) {
                                 this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
-                                System.out.println(this.getSlotStack(i).getSubCompound("tags"));
-                                System.out.println("its hot now");
+                                //System.out.println(this.getSlotStack(i).getSubCompound("tags"));
+                                //System.out.println("its hot now");
                                 cookCounter4 = 0;
                             }
                         } else this.setSlotStack(i, recipe.getOutput());

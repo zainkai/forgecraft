@@ -23,11 +23,13 @@ import java.util.List;
  */
 public class ToolPart extends Item implements ToolNBT{
 
-    public ToolPart(String name) {
+    public ToolPart(String name, Item.ToolMaterial material) {
+        this.setMaxDamage(material.getMaxUses());
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
+        this.setNoRepair();
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
         {

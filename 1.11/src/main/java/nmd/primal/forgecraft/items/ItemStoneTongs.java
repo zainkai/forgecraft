@@ -267,6 +267,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 8);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
                                 //itemstack.getSubCompound("tags").setBoolean("hot", true);
                                 tile.setSlotStack(i, ItemStack.EMPTY);
                                 return EnumActionResult.SUCCESS;
@@ -277,6 +278,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 9);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
                                 //itemstack.getSubCompound("tags").setBoolean("hot", true);
                                 tile.setSlotStack(i, ItemStack.EMPTY);
                                 return EnumActionResult.SUCCESS;
@@ -287,6 +289,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 10);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
                                 //itemstack.getSubCompound("tags").setBoolean("hot", true);
                                 tile.setSlotStack(i, ItemStack.EMPTY);
                                 return EnumActionResult.SUCCESS;
@@ -297,6 +300,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 11);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
                                 //itemstack.getSubCompound("tags").setBoolean("hot", true);
                                 tile.setSlotStack(i, ItemStack.EMPTY);
                                 return EnumActionResult.SUCCESS;

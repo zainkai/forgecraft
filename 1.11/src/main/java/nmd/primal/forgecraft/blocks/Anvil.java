@@ -131,12 +131,15 @@ public class Anvil extends CustomContainerFacing {
 
                                     if (tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem())) {
 
-
                                         NBTTagCompound tempNBT = tile.getSlotStack(12).getSubCompound("tags");
                                         ItemStack outputStack = recipe.getOutput();
                                         outputStack.setTagCompound(new NBTTagCompound());
                                         outputStack.getTagCompound().setTag("tags", tempNBT);
                                         outputStack.getSubCompound("tags").setBoolean("hot", false);
+
+                                        if (recipe.getUpgrade() == "repair") {
+                                            CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+                                        }
 
                                         if (outputStack.getSubCompound("tags").getInteger("modifiers") < 3) {
 
@@ -144,6 +147,7 @@ public class Anvil extends CustomContainerFacing {
                                             if (recipe.getUpgrade() == "emerald") {
                                                 if (outputStack.getSubCompound("tags").getInteger("lapis") == 0) {
                                                     if (outputStack.getSubCompound("tags").getBoolean("emerald") == false) {
+                                                        outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
                                                         outputStack.getSubCompound("tags").setInteger("emerald",
                                                                 (outputStack.getSubCompound("tags").getInteger("emerald") + 1));
                                                         outputStack.getSubCompound("tags").setInteger("modifiers",
@@ -154,6 +158,7 @@ public class Anvil extends CustomContainerFacing {
 
                                             //Upgrade diamond
                                             if (recipe.getUpgrade() == "diamond") {
+                                                outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
                                                 outputStack.getSubCompound("tags").setInteger("diamond",
                                                         (outputStack.getSubCompound("tags").getInteger("diamond") + 1));
                                                 outputStack.getSubCompound("tags").setInteger("modifiers",
@@ -162,6 +167,7 @@ public class Anvil extends CustomContainerFacing {
 
                                             //Upgrade redstone
                                             if (recipe.getUpgrade() == "redstone") {
+                                                outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
                                                 outputStack.getSubCompound("tags").setInteger("redstone",
                                                         (outputStack.getSubCompound("tags").getInteger("redstone") + 1));
                                                 outputStack.getSubCompound("tags").setInteger("modifiers",
@@ -170,6 +176,7 @@ public class Anvil extends CustomContainerFacing {
 
                                             //Upgrade lapis
                                             if (recipe.getUpgrade() == "lapis") {
+                                                outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
                                                 if (outputStack.getSubCompound("tags").getBoolean("emerald") == false) {
                                                     outputStack.getSubCompound("tags").setInteger("lapis",
                                                             (outputStack.getSubCompound("tags").getInteger("lapis") + 1));
@@ -321,6 +328,7 @@ public class Anvil extends CustomContainerFacing {
                         tempStack.setTagCompound(new NBTTagCompound());
                         NBTTagCompound tags = pItem.getSubCompound("tags").copy();
                         tempStack.getTagCompound().setTag("tags", tags);
+                        tempStack.setItemDamage(pItem.getTagCompound().getInteger("tempDamage"));
                         tile.setSlotStack((counter), tempStack);
 
                         pItem.getTagCompound().setInteger("type", 0);
@@ -330,6 +338,7 @@ public class Anvil extends CustomContainerFacing {
                         pItem.getSubCompound("tags").setInteger("redstone", 0);
                         pItem.getSubCompound("tags").setInteger("lapis", 0);
                         pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                        pItem.getTagCompound().setInteger("tempDamage", 0);
                         return true;
                     }
                     if (pItem.getTagCompound().getInteger("type") == 9) {
@@ -337,6 +346,7 @@ public class Anvil extends CustomContainerFacing {
                         tempStack.setTagCompound(new NBTTagCompound());
                         NBTTagCompound tags = pItem.getSubCompound("tags").copy();
                         tempStack.getTagCompound().setTag("tags", tags);
+                        tempStack.setItemDamage(pItem.getTagCompound().getInteger("tempDamage"));
                         tile.setSlotStack((counter), tempStack);
 
                         pItem.getTagCompound().setInteger("type", 0);
@@ -346,6 +356,7 @@ public class Anvil extends CustomContainerFacing {
                         pItem.getSubCompound("tags").setInteger("redstone", 0);
                         pItem.getSubCompound("tags").setInteger("lapis", 0);
                         pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                        pItem.getTagCompound().setInteger("tempDamage", 0);
                         return true;
                     }
                     if (pItem.getTagCompound().getInteger("type") == 10) {
@@ -353,6 +364,7 @@ public class Anvil extends CustomContainerFacing {
                         tempStack.setTagCompound(new NBTTagCompound());
                         NBTTagCompound tags = pItem.getSubCompound("tags").copy();
                         tempStack.getTagCompound().setTag("tags", tags);
+                        tempStack.setItemDamage(pItem.getTagCompound().getInteger("tempDamage"));
                         tile.setSlotStack((counter), tempStack);
 
                         pItem.getTagCompound().setInteger("type", 0);
@@ -362,6 +374,7 @@ public class Anvil extends CustomContainerFacing {
                         pItem.getSubCompound("tags").setInteger("redstone", 0);
                         pItem.getSubCompound("tags").setInteger("lapis", 0);
                         pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                        pItem.getTagCompound().setInteger("tempDamage", 0);
                         return true;
                     }
                     if (pItem.getTagCompound().getInteger("type") == 11) {
@@ -369,6 +382,7 @@ public class Anvil extends CustomContainerFacing {
                         tempStack.setTagCompound(new NBTTagCompound());
                         NBTTagCompound tags = pItem.getSubCompound("tags").copy();
                         tempStack.getTagCompound().setTag("tags", tags);
+                        tempStack.setItemDamage(pItem.getTagCompound().getInteger("tempDamage"));
                         tile.setSlotStack((counter), tempStack);
 
                         pItem.getTagCompound().setInteger("type", 0);
@@ -378,6 +392,7 @@ public class Anvil extends CustomContainerFacing {
                         pItem.getSubCompound("tags").setInteger("redstone", 0);
                         pItem.getSubCompound("tags").setInteger("lapis", 0);
                         pItem.getSubCompound("tags").setInteger("modifiers", 0);
+                        pItem.getTagCompound().setInteger("tempDamage", 0);
                         return true;
                     }
                 }

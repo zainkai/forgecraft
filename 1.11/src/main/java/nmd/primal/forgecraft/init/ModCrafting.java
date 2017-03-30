@@ -7,8 +7,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.api.PrimalSounds;
 import nmd.primal.core.common.crafting.ToolRecipe;
 import nmd.primal.core.common.items.tools.PrimalTool;
 import nmd.primal.forgecraft.blocks.Bloomery;
@@ -45,17 +50,17 @@ public class ModCrafting {
                 "X X", "X X", "XXX", 'X', PrimalItems.MUD_CLUMP);
 
         /***Wooden PistonBellows***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsoak),  "XXX", "X Y", "XXX",
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsoak), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 0), 'Y', ModItems.pistonbellows);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsspruce),  "XXX", "X Y", "XXX",
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsspruce), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 1), 'Y', ModItems.pistonbellows);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsbirch),  "XXX", "X Y", "XXX",
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsbirch), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 2), 'Y', ModItems.pistonbellows);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsjungle),  "XXX", "X Y", "XXX",
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsjungle), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 3), 'Y', ModItems.pistonbellows);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsacacia),  "XXX", "X Y", "XXX",
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsacacia), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 4), 'Y', ModItems.pistonbellows);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsdarkoak),  "XXX", "X Y", "XXX",
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsdarkoak), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 5), 'Y', ModItems.pistonbellows);
 
         /***Bellows Handle***/
@@ -84,8 +89,10 @@ public class ModCrafting {
                 " X ", " Y ", 'X', ModItems.pickaxehead, 'Y', Items.STICK);
 
         /***Axe Crafting***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironaxe, 1),
-                " X ", " Y ", 'X', ModItems.ironaxehead, 'Y', Items.STICK);
+        //GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironaxe, 1),
+                //" X ", " Y ", 'X', ModItems.ironaxehead, 'Y', Items.STICK);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", "Y", ('X'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE), ('Y'), Items.STICK));
 
         /***Shovel Crafting***/
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironshovel, 1),
@@ -94,6 +101,31 @@ public class ModCrafting {
         /***Hoe Crafting***/
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironhoe, 1),
                 " X ", " Y ", 'X', ModItems.ironhoehead, 'Y', Items.STICK);
+
+
+        /***************************************************************
+         * TEMPORARY RECIPES
+         ***************************************************************/
+        //GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+        //        "   ", " X ", "   ", 'X', ModItems.ironaxe);
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE)));
+
+        /*GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(PrimalBlocks.SOULSTONE_CHISELED, 1), true, new Object[]{"S", "S",
+                ('S'), PrimalBlocks.SLAB_SOULSTONE
+        }));*/
+
+        /***************************************************************/
 
         /***Bloomery Crafting***/
 
@@ -349,6 +381,18 @@ public class ModCrafting {
                 "null"
         );
 
+        /*** REPAIR Pickaxe Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,pickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.pickaxehead, 1),
+                "repair"
+        );
+
         /*** Emerald Upgrade to Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
@@ -407,6 +451,18 @@ public class ModCrafting {
                         empty,empty,empty,empty,empty },
                 new ItemStack(ModItems.ironaxehead, 1),
                 "null"
+        );
+
+        /*** REPAIR AXE Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,ironaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironaxehead, 1),
+                "repair"
         );
 
         /*** Emerald Upgrade to Axe Head ***/
@@ -469,6 +525,18 @@ public class ModCrafting {
                 "null"
         );
 
+        /*** REPAIR SHOVEL Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,ironshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironshovelhead, 1),
+                "repair"
+        );
+
         /*** Emerald Upgrade to Shovel Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
@@ -527,6 +595,18 @@ public class ModCrafting {
                         empty,empty,empty,empty,empty },
                 new ItemStack(ModItems.ironhoehead, 1),
                 "null"
+        );
+
+        /*** REPAIR HOE Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,ironhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.ironhoehead, 1),
+                "repair"
         );
 
         /*** Emerald Upgrade to Hoe Head ***/
