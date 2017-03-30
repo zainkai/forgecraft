@@ -21,13 +21,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.IngotBall;
+import nmd.primal.forgecraft.enumhandler.EnumHandler;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.tools.CustomAxe;
-import nmd.primal.forgecraft.items.tools.CustomHoe;
-import nmd.primal.forgecraft.items.tools.CustomPickaxe;
-import nmd.primal.forgecraft.items.tools.CustomShovel;
+import nmd.primal.forgecraft.items.tools.*;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
+import nmd.primal.forgecraft.util.ToolMaterials;
+import nmd.primal.forgecraft.items.tools.BaseTool.ForgeToolMaterial;
 
 /**
  * Created by kitsu on 11/26/2016.

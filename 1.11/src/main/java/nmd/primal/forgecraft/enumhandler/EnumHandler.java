@@ -8,35 +8,6 @@ import nmd.primal.forgecraft.util.IMetaLookup;
  */
 public class EnumHandler {
 
-    public static enum TongTypes implements IStringSerializable {
-        DEFAULT("default", 0),
-        EMPTYHOT("emptyhot", 1);
-
-        private int ID;
-        private String name;
-
-        private TongTypes(String name, int ID) {
-            this.ID = ID;
-            this.name = name;
-        }
-
-        @Override
-        public String getName() {
-            return this.name;
-        }
-
-        public int getID() {
-            return ID;
-        }
-
-        @Override
-        public String toString() {
-            return getName();
-        }
-
-    }
-
-
     public enum IngotTypes implements IMetaLookup<IngotTypes> {
         IRONCOOL, /*0*/
         IRONHOT;  /*1*/

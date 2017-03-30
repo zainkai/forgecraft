@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.items.tools;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -21,6 +22,7 @@ import nmd.primal.forgecraft.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 3/21/17.
@@ -285,6 +287,7 @@ public class CustomShovel extends ItemSpade implements ToolNBT {
                 if (getLapisLevel(item) > 0) {
                     tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
                 }
+                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
             }
         }
 
@@ -301,13 +304,14 @@ public class CustomShovel extends ItemSpade implements ToolNBT {
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
                 }
-                if( getDiamondLevel(itemstack) > 0 ){
+                /*if( getDiamondLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
-                    itemstack.getItem().setHarvestLevel("shovel", 3);
-                }
-                if( getRedstoneLevel(itemstack) > 0 ){
+                    itemstack.getItem().setHarvestLevel("pickaxe", 3);
+                }*/
+                /*if( getRedstoneLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));
-                }
+                    //System.out.println(itemstack.getEnchantmentTagList());
+                }*/
                 if ( getLapisLevel(itemstack) > 0) {
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), getLapisLevel(itemstack));
                 }
@@ -325,11 +329,30 @@ public class CustomShovel extends ItemSpade implements ToolNBT {
 
             stack.getTagCompound().removeTag("ench");
             //System.out.println(stack.getTagCompound());
-
-            stack.damageItem(1, entityLiving);
+            if(getDiamondLevel(stack) > 0) {
+                if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
+                    stack.damageItem(1, entityLiving);
+                }
+            } else stack.damageItem(1, entityLiving);
         }
 
         return true;
+    }
+
+    @Override
+    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    {
+        Material material = state.getMaterial();
+        //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
+
+        if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
+            return  super.getStrVsBlock(stack, state);
+        } else if (this.getRedstoneLevel(stack) > 0) {
+            return this.efficiencyOnProperMaterial * ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) );
+        } else {
+            return this.efficiencyOnProperMaterial;
+        }
+
     }
 
     @SideOnly(Side.CLIENT)

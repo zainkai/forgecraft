@@ -18,6 +18,7 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,9 +26,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.ToolNBT;
+import nmd.primal.forgecraft.enumhandler.EnumHandler;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 3/14/17.
@@ -41,6 +44,8 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
+
+        //this.toolClass = "pickaxe";
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
@@ -267,6 +272,9 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
 
             }
         }
+        /*if(){
+
+        }*/
     }
 
     //public void onItemTooltip(ItemTooltipEvent event){
@@ -276,7 +284,7 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
     public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
     {
         if(player.getEntityWorld().isRemote) {
-
+                //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
             if(item.hasTagCompound()) {
 
                 tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (3 - getModifiers(item)) );
@@ -292,6 +300,7 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
                 if (getLapisLevel(item) > 0) {
                     tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
                 }
+                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
             }
         }
 
@@ -308,14 +317,14 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
                 }
-                if( getDiamondLevel(itemstack) > 0 ){
+                /*if( getDiamondLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
                     itemstack.getItem().setHarvestLevel("pickaxe", 3);
-                }
-                if( getRedstoneLevel(itemstack) > 0 ){
+                }*/
+                /*if( getRedstoneLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));
-                    System.out.println(itemstack.getEnchantmentTagList());
-                }
+                    //System.out.println(itemstack.getEnchantmentTagList());
+                }*/
                 if ( getLapisLevel(itemstack) > 0) {
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), getLapisLevel(itemstack));
                 }
@@ -333,8 +342,11 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
 
                 stack.getTagCompound().removeTag("ench");
                 //System.out.println(stack.getTagCompound());
-
-            stack.damageItem(1, entityLiving);
+            if(getDiamondLevel(stack) > 0) {
+                if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
+                    stack.damageItem(1, entityLiving);
+                }
+            } else stack.damageItem(1, entityLiving);
         }
 
         return true;
@@ -356,6 +368,22 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
     public int getItemEnchantability(ItemStack stack)
     {
         return 0;
+    }
+
+    @Override
+    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    {
+        Material material = state.getMaterial();
+        //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
+
+        if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
+            return  super.getStrVsBlock(stack, state);
+        } else if (this.getRedstoneLevel(stack) > 0) {
+            return this.efficiencyOnProperMaterial * ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) );
+        } else {
+            return this.efficiencyOnProperMaterial;
+        }
+
     }
 
 }

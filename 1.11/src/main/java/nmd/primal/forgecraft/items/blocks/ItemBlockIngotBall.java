@@ -14,7 +14,7 @@ import nmd.primal.forgecraft.enumhandler.EnumHandler;
 
 import java.util.List;
 
-import static nmd.primal.forgecraft.enumhandler.EnumHandler.IngotTypes.*;
+//import static nmd.primal.forgecraft.enumhandler.EnumHandler.IngotTypes.*;
 
 /**
  * Created by mminaie on 2/12/17.

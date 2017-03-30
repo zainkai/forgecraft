@@ -7,10 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.tools.CustomAxe;
-import nmd.primal.forgecraft.items.tools.CustomHoe;
-import nmd.primal.forgecraft.items.tools.CustomPickaxe;
-import nmd.primal.forgecraft.items.tools.CustomShovel;
+import nmd.primal.forgecraft.items.tools.*;
 
 /**
  * Created by mminaie on 3/15/17.
@@ -34,9 +31,6 @@ public class CommonEvents implements ToolNBT{
                             event.crafting.getTagCompound().setTag("tags", tempTag);
                             event.crafting.getItem().updateItemStackNBT(event.crafting.getTagCompound());
                             event.crafting.setItemDamage(event.craftMatrix.getStackInSlot(i).getItemDamage());
-                            //if( getDiamondLevel(event.crafting) > 0 ){
-                            //    event.crafting.getItem().setHarvestLevel("pickaxe", 3);
-                            //}
                         }
                     }
                 }
