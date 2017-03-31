@@ -62,17 +62,17 @@ public class ModItems {
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
 
-        pickaxehead = new ToolPart("ironpickaxehead", Item.ToolMaterial.IRON);
-        ironaxehead = new ToolPart("ironaxehead", Item.ToolMaterial.IRON);
-        ironshovelhead = new ToolPart("ironshovelhead", Item.ToolMaterial.IRON);
-        ironhoehead = new ToolPart("ironhoehead", Item.ToolMaterial.IRON);
+        pickaxehead = new ToolPart("ironpickaxehead", ModMaterials.TOOL_WROUGHT_IRON);
+        ironaxehead = new ToolPart("ironaxehead", ModMaterials.TOOL_WROUGHT_IRON);
+        ironshovelhead = new ToolPart("ironshovelhead", ModMaterials.TOOL_WROUGHT_IRON);
+        ironhoehead = new ToolPart("ironhoehead", ModMaterials.TOOL_WROUGHT_IRON);
 
-        ironpickaxe = new CustomPickaxe("ironpickaxe", Item.ToolMaterial.IRON);
-        ironaxe = new CustomAxe("ironaxe", Item.ToolMaterial.IRON);
-        ironshovel = new CustomShovel("ironshovel", Item.ToolMaterial.IRON);
-        ironhoe = new CustomHoe("ironhoe", Item.ToolMaterial.IRON);
+        ironpickaxe = new CustomPickaxe("ironpickaxe", ModMaterials.TOOL_WROUGHT_IRON);
+        ironaxe = new CustomAxe("ironaxe", ModMaterials.TOOL_WROUGHT_IRON);
+        ironshovel = new CustomShovel("ironshovel", ModMaterials.TOOL_WROUGHT_IRON);
+        ironhoe = new CustomHoe("ironhoe", ModMaterials.TOOL_WROUGHT_IRON);
 
-        ironsword = new CustomSword("ironsword", Item.ToolMaterial.IRON);
+        ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
         //ironingotballcool = new BaseMultiItem("ironingotcool") {};
         //test = new ItemTest("ironsword");
 
