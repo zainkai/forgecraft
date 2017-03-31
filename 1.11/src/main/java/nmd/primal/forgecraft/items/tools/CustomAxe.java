@@ -30,7 +30,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class CustomAxe extends ItemAxe implements ToolNBT {
 
     public CustomAxe(String name, Item.ToolMaterial material) {
-        super(material);
+        super(material, 6, -3.1f);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
@@ -348,12 +348,10 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
         Material material = state.getMaterial();
         //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
 
-        if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
+        if(material != Material.WOOD && material != Material.PLANTS && material != Material.VINE){
             return  super.getStrVsBlock(stack, state);
-        } else if (this.getRedstoneLevel(stack) > 0) {
-            return this.efficiencyOnProperMaterial * ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) );
         } else {
-            return this.efficiencyOnProperMaterial;
+            return this.efficiencyOnProperMaterial * ( ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) ) + 1);
         }
 
     }

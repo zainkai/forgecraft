@@ -114,7 +114,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                         }
                     }
                 }
-                if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
+                if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)  ) {
                     world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                     tile.setHeat(100);
                     tile.markDirty();
@@ -238,40 +238,9 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
     {
         if (!world.isRemote)
         {
-            if(ent instanceof EntityItem){
-                //System.out.println("collision");
-                EntityItem itemEnt = (EntityItem) ent;
-                ItemStack stack = itemEnt.getEntityItem();
-                //System.out.println(stack);
-                TileForge tile = (TileForge)world.getTileEntity(pos);
-                if (tile != null) {
-                    if(!tile.getSlotStack(0).isEmpty()) {
-                        if(tile.getSlotStack(0).getItem() == stack.getItem()) {
-                            int entStackSize = stack.getCount();
-                            int tileStackSize = tile.getSlotStack(0).getCount();
-                            int tileSizeRemaining = 64 - tileStackSize;
-                            if (tileStackSize < 64) {
-                                if (entStackSize <= tileSizeRemaining) {
-                                    tile.incrementStackSize(tile.getSlotList(), 0, entStackSize);
-                                    //tile.setSlotStack(0, new ItemStack(stack.getItem(), tileStackSize + entStackSize, stack.getItemDamage()));
-                                    ent.setDead();
-                                    world.notifyBlockUpdate(pos, state, state, 3);
-                                    tile.updateBlock();
-                                }
-                                if (entStackSize > tileSizeRemaining) {
-                                    tile.getSlotStack(0).setCount(64);
-                                    stack.setCount(64 - entStackSize);
-                                }
-                            }
-                        }
-                    }
-                    if (tile.getSlotStack(0).isEmpty()) {
-                        //int entStackSize = stack.getCount();
-                        tile.setSlotStack(0, itemEnt.getEntityItem());
-                        itemEnt.setDead();
-                        world.notifyBlockUpdate(pos, state, state, 3);
-                        tile.updateBlock();
-                    }
+            if(ent instanceof EntityPlayer){
+                if(state.getValue(ACTIVE) == true){
+                    ent.setFire(1);
                 }
             }
         }

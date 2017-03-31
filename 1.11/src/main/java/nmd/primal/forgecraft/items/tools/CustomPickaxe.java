@@ -378,10 +378,8 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
 
         if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
             return  super.getStrVsBlock(stack, state);
-        } else if (this.getRedstoneLevel(stack) > 0) {
-            return this.efficiencyOnProperMaterial * ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) );
         } else {
-            return this.efficiencyOnProperMaterial;
+            return this.efficiencyOnProperMaterial * ( ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) ) + 1);
         }
 
     }
