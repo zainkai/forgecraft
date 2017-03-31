@@ -8,31 +8,23 @@ To-Dos
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield
-- [x] Tool Disassembly
-- [x] Tool Repair
 - [ ] Gold Smelting
-- [x] Custom Tool Material
 - [ ] Coal is not being removed from the forge or firebox
 
 *** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
-
 - [ ] WeaponHead recipes
-
 - [ ] Casting Table
   - [ ] Block
   - [ ] Gui
   - [ ] Crafting recipes
 
-- [ ] Sounds
-  - [ ] Bellows Sounds
-  - [ ] Bloomery Sound?
-  - [ ] Forge Sound?
-
-
 *** Completed ***
 
+- [x] Tool Disassembly
+- [x] Tool Repair
+- [x] Custom Tool Material
 - [x] Can't remove fuel from Bloomery
 - [x] Crafting Recipe for Iron Ingot to Iron Ball
 - [x] Block To Read Temperature
