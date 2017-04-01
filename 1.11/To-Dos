@@ -1,8 +1,12 @@
 To-Dos
 
 *** Priority ***
-
-- [ ] Update Crafting for tools to include leatherStrap
+- [ ] Make an Iron Anvil
+- [ ] Make Clean Iron Recipes and Tools
+ - [ ] Make Clean Ore Recipe
+- [ ] Make Steel Recipes and Tools
+- [ ] Make Wootz Recipes and Tools
+- [ ] Add Yew
 
 *** Backlog ***
 - [ ] Add Iron Ring Recipe
@@ -18,6 +22,9 @@ To-Dos
   - [ ] Crafting recipes
 
 *** Completed ***
+- [x] Light Forge and Firebox with Firebow or Torch
+- [x] Any gallagher can be used to make a stone anvil
+- [x] Update Crafting for tools to include leatherStrap
 - [x] Forge Setting Player on fire but not taking damage
 - [x] Forge and Bloomery make Smoke
 - [x] Remove cool ingots from inventories with Hand

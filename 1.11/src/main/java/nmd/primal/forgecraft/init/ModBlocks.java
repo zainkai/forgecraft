@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.common.blocks.PrimalBlock;
+import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
@@ -53,10 +54,15 @@ public class ModBlocks {
 
     public static Block ironball;
     public static Block ironchunk;
-    //public static ItemBlock ironballitemcool;
-    //public static ItemBlock ironballitemhot;
+    public static Block ironcleanball;
+    public static Block ironcleanchunk;
+    public static Block steelball;
+    public static Block steelchunk;
+    public static Block wootzball;
+    public static Block wootzchunk;
 
     public static Block stoneanvil;
+    public static Block ironanvil;
 
 
     public static void init() {
@@ -92,7 +98,7 @@ public class ModBlocks {
                     Item pItem = player.getHeldItem(hand).getItem();
                     BlockPos belowPos = pos.down();
                     //System.out.println("Activating");
-                    if (pItem.equals(PrimalItems.STONE_GALLAGHER) && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)) {
+                    if (pItem instanceof WorkMallet && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                         world.setBlockState(belowPos, ModBlocks.stoneanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
@@ -142,6 +148,7 @@ public class ModBlocks {
         ironchunk = new IngotBall(Material.IRON, "ironchunk", 5.0F, "chunk");
 
         stoneanvil = new Anvil(Material.ROCK, "stoneanvil", 5.0f);
+        ironanvil = new Anvil(Material.IRON, "ironanvil", 6.0f);
         //ironballitemcool = new ItemBlockIngotBall(ironball);
         //ironballitemhot = new ItemBlockIngotBall(ironball);
 

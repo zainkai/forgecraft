@@ -8,6 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
@@ -23,11 +24,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.init.ModMaterials;
+import nmd.primal.forgecraft.items.BaseMultiItem;
+import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
@@ -87,125 +92,150 @@ public class Anvil extends CustomContainerFacing {
             TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
             if (tile != null) {
                 //System.out.println("Tile is not null");
-                if ((player.inventory.getCurrentItem().getItem().equals(PrimalItems.STONE_GALLAGHER)) || (player.inventory.getCurrentItem().getItem() == ModItems.forgehammer)) {
+                //if ((player.inventory.getCurrentItem().getItem().equals(PrimalItems.STONE_GALLAGHER)) || (player.inventory.getCurrentItem().getItem() == ModItems.forgehammer)) {
+
+                if ((pItem.getItem() instanceof WorkMallet) || (pItem.getItem() == ModItems.forgehammer)) {
 
 
-                    if ((pItem.getItem().equals(PrimalItems.STONE_GALLAGHER)) || (pItem.getItem() == ModItems.forgehammer)) {
+                    String[] tempArray = new String[25];
+                    for (int i = 0; i < 25; i++) {
 
-                        String[] tempArray = new String[25];
+                        tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();
+                        //System.out.println(i + " || " + tempArray[i] + " || " + tile.getSlotStack(i).getItem());
+                    }
+
+                    if(this.getRegistryName().toString().equals("stoneanvil")){
                         for (int i = 0; i < 25; i++) {
-
-                            tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();
-                            //System.out.println(i + " || " + tempArray[i] + " || " + tile.getSlotStack(i).getItem());
+                            if (tile.getSlotStack(i).getItem() instanceof BaseMultiItem) {
+                                if(((BaseMultiItem) tile.getSlotStack(i).getItem()).getMaterial(tile.getSlotStack(i).getItem()) != ModMaterials.TOOL_WROUGHT_IRON ) {
+                                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                                    CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(PrimalItems.ROCK_STONE, 3));
+                                    CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.ironball, 1));
+                                    for (ItemStack stack : tile.getSlotList()) {
+                                        if (stack != null) {
+                                            float offset = 0.7F;
+                                            double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                                            double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                                            double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                                            EntityItem item = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack);
+                                            item.setDefaultPickupDelay();
+                                            world.spawnEntity(item);
+                                            world.removeTileEntity(pos);
+                                            world.playEvent(1031, pos, 0);
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    }
 
-                        AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
+                    AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
 
-                        if (recipe != null) {
-                            if (pItem.getItem().equals(PrimalItems.STONE_GALLAGHER)) {
-                                pItem.damageItem(15, player);
-                            }
-                            if (pItem.getItem().equals(ModItems.forgehammer)) {
-                                pItem.damageItem(1, player);
-                            }
-                            world.playEvent(1031, pos, 0);
+                    if (recipe != null) {
+                        if (pItem.getItem() instanceof WorkMallet) {
+                            pItem.damageItem(15, player);
+                        }
+                        if (pItem.getItem() instanceof ForgeHammer) {
+                            pItem.damageItem(1, player);
+                        }
+                        world.playEvent(1031, pos, 0);
 
 
-                            if (world.rand.nextBoolean()) {
+                        if (world.rand.nextBoolean()) {
 
-                                if (recipe.getOutput().getItem() instanceof ToolPart) {
+                            if (recipe.getOutput().getItem() instanceof ToolPart) {
 
-                                    if (!tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem())) {
-                                        ItemStack tempStack = recipe.getOutput();
-                                        tempStack.setTagCompound(new NBTTagCompound());
-                                        NBTTagCompound tags = new NBTTagCompound();
+                                if (!tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem())) {
+                                    ItemStack tempStack = recipe.getOutput();
+                                    tempStack.setTagCompound(new NBTTagCompound());
+                                    NBTTagCompound tags = new NBTTagCompound();
 
-                                        tempStack.getTagCompound().setTag("tags", tags);
-                                        tempStack.getSubCompound("tags").setBoolean("hot", false);
+                                    tempStack.getTagCompound().setTag("tags", tags);
+                                    tempStack.getSubCompound("tags").setBoolean("hot", false);
 
-                                        tempStack.getSubCompound("tags").setBoolean("emerald", false);
-                                        tempStack.getSubCompound("tags").setInteger("diamond", 0);
-                                        tempStack.getSubCompound("tags").setInteger("redstone", 0);
-                                        tempStack.getSubCompound("tags").setInteger("lapis", 0);
+                                    tempStack.getSubCompound("tags").setBoolean("emerald", false);
+                                    tempStack.getSubCompound("tags").setInteger("diamond", 0);
+                                    tempStack.getSubCompound("tags").setInteger("redstone", 0);
+                                    tempStack.getSubCompound("tags").setInteger("lapis", 0);
 
-                                        tempStack.getSubCompound("tags").setInteger("modifiers", 0);
-                                        CommonUtils.spawnItemEntityFromWorld(world, pos, tempStack);
+                                    tempStack.getSubCompound("tags").setInteger("modifiers", 0);
+                                    CommonUtils.spawnItemEntityFromWorld(world, pos, tempStack);
+                                }
+
+                                if (tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem())) {
+
+                                    NBTTagCompound tempNBT = tile.getSlotStack(12).getSubCompound("tags");
+                                    ItemStack outputStack = recipe.getOutput();
+                                    outputStack.setTagCompound(new NBTTagCompound());
+                                    outputStack.getTagCompound().setTag("tags", tempNBT);
+                                    outputStack.getSubCompound("tags").setBoolean("hot", false);
+
+                                    if (recipe.getUpgrade() == "repair") {
+                                        CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                                     }
 
-                                    if (tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem())) {
+                                    if (outputStack.getSubCompound("tags").getInteger("modifiers") < 3) {
 
-                                        NBTTagCompound tempNBT = tile.getSlotStack(12).getSubCompound("tags");
-                                        ItemStack outputStack = recipe.getOutput();
-                                        outputStack.setTagCompound(new NBTTagCompound());
-                                        outputStack.getTagCompound().setTag("tags", tempNBT);
-                                        outputStack.getSubCompound("tags").setBoolean("hot", false);
-
-                                        if (recipe.getUpgrade() == "repair") {
-                                            CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
-                                        }
-
-                                        if (outputStack.getSubCompound("tags").getInteger("modifiers") < 3) {
-
-                                            //Upgrade emerald
-                                            if (recipe.getUpgrade() == "emerald") {
-                                                if (outputStack.getSubCompound("tags").getInteger("lapis") == 0) {
-                                                    if (outputStack.getSubCompound("tags").getBoolean("emerald") == false) {
-                                                        outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
-                                                        outputStack.getSubCompound("tags").setInteger("emerald",
-                                                                (outputStack.getSubCompound("tags").getInteger("emerald") + 1));
-                                                        outputStack.getSubCompound("tags").setInteger("modifiers",
-                                                                (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
-                                                    }
-                                                }
-                                            }
-
-                                            //Upgrade diamond
-                                            if (recipe.getUpgrade() == "diamond") {
-                                                outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
-                                                outputStack.getSubCompound("tags").setInteger("diamond",
-                                                        (outputStack.getSubCompound("tags").getInteger("diamond") + 1));
-                                                outputStack.getSubCompound("tags").setInteger("modifiers",
-                                                        (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
-                                            }
-
-                                            //Upgrade redstone
-                                            if (recipe.getUpgrade() == "redstone") {
-                                                outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
-                                                outputStack.getSubCompound("tags").setInteger("redstone",
-                                                        (outputStack.getSubCompound("tags").getInteger("redstone") + 1));
-                                                outputStack.getSubCompound("tags").setInteger("modifiers",
-                                                        (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
-                                            }
-
-                                            //Upgrade lapis
-                                            if (recipe.getUpgrade() == "lapis") {
-                                                outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
+                                        //Upgrade emerald
+                                        if (recipe.getUpgrade() == "emerald") {
+                                            if (outputStack.getSubCompound("tags").getInteger("lapis") == 0) {
                                                 if (outputStack.getSubCompound("tags").getBoolean("emerald") == false) {
-                                                    outputStack.getSubCompound("tags").setInteger("lapis",
-                                                            (outputStack.getSubCompound("tags").getInteger("lapis") + 1));
+                                                    outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
+                                                    outputStack.getSubCompound("tags").setInteger("emerald",
+                                                            (outputStack.getSubCompound("tags").getInteger("emerald") + 1));
                                                     outputStack.getSubCompound("tags").setInteger("modifiers",
                                                             (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
                                                 }
                                             }
-
                                         }
-                                        CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
-                                    }
 
-                                } else {
-                                    CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
-                                }
-                                //world.playEvent(1031, pos, 0);
-                                for (int i = 0; i < tile.getSlotListSize(); i++) {
-                                    if (!tile.getSlotStack(i).isEmpty()) {
-                                        tile.setSlotStack(i, ItemStack.EMPTY);
+                                        //Upgrade diamond
+                                        if (recipe.getUpgrade() == "diamond") {
+                                            outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
+                                            outputStack.getSubCompound("tags").setInteger("diamond",
+                                                    (outputStack.getSubCompound("tags").getInteger("diamond") + 1));
+                                            outputStack.getSubCompound("tags").setInteger("modifiers",
+                                                    (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                        }
+
+                                        //Upgrade redstone
+                                        if (recipe.getUpgrade() == "redstone") {
+                                            outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
+                                            outputStack.getSubCompound("tags").setInteger("redstone",
+                                                    (outputStack.getSubCompound("tags").getInteger("redstone") + 1));
+                                            outputStack.getSubCompound("tags").setInteger("modifiers",
+                                                    (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                        }
+
+                                        //Upgrade lapis
+                                        if (recipe.getUpgrade() == "lapis") {
+                                            outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
+                                            if (outputStack.getSubCompound("tags").getBoolean("emerald") == false) {
+                                                outputStack.getSubCompound("tags").setInteger("lapis",
+                                                        (outputStack.getSubCompound("tags").getInteger("lapis") + 1));
+                                                outputStack.getSubCompound("tags").setInteger("modifiers",
+                                                        (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                            }
+                                        }
+
                                     }
+                                    CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                                 }
-                                return true;
+
+                            } else {
+                                CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
                             }
+                            //world.playEvent(1031, pos, 0);
+                            for (int i = 0; i < tile.getSlotListSize(); i++) {
+                                if (!tile.getSlotStack(i).isEmpty()) {
+                                    tile.setSlotStack(i, ItemStack.EMPTY);
+                                }
+                            }
+                            return true;
                         }
                     }
                 }
+                //}
 
 
                 /*****************************************************************************
@@ -213,7 +243,7 @@ public class Anvil extends CustomContainerFacing {
                  *****************************************************************************/
 
 
-                if ((pItem.getItem() != PrimalItems.STONE_GALLAGHER) || (pItem.getItem() != ModItems.forgehammer)) {
+                if ( (!(pItem.getItem() instanceof WorkMallet)) || (!(pItem.getItem() instanceof ForgeHammer)) ) {
 
                             if (state.getValue(FACING) == EnumFacing.NORTH) {
                                 int counter = 0;

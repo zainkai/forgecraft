@@ -215,7 +215,6 @@ public class ToolPart extends Item implements ToolNBT{
 
     }
 
-
     public static boolean isHidden()
     {
         return false;

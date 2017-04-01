@@ -74,11 +74,6 @@ public class ModCrafting {
         /***Iron Crucible***/
 
         ItemStack iron0 = new ItemStack(ModBlocks.rawironcrucible, 1);
-        //iron0.getTagCompound().setBoolean("mod", false);
-        ///iron0.getTagCompound().setInteger("speed", 0);
-        //iron0.getTagCompound().setInteger("fortune", 0);
-        //iron0.getTagCompound().setInteger("durability", 0);
-        //iron0.getTagCompound().setBoolean("silk", false);
 
         //Regular Iron Ore
         GameRegistry.addShapedRecipe(iron0,

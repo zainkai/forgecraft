@@ -117,7 +117,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                         }
                     }
                 }
-                if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)  ) {
+                if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == PrimalItems.TORCH_WOOD_LIT || pItem.getItem() == PrimalItems.TORCH_NETHER_LIT  ) {
                     world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                     tile.setHeat(100);
                     tile.markDirty();

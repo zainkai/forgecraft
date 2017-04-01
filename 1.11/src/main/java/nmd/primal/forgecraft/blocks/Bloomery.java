@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
@@ -120,10 +121,9 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                     }
                 }
                 if(tile.getSlotStack(0) != ItemStack.EMPTY) {
-                    if ((pItem.getItem() == Items.FLINT_AND_STEEL) //|| (pItem.getItem() == PrimalItems.FIRE_BOW)
-                            || pItem.getItem() == Item.getItemFromBlock(Blocks.TORCH)) {
+                    if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == PrimalItems.TORCH_WOOD_LIT || pItem.getItem() == PrimalItems.TORCH_NETHER_LIT  ) {
                         world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
-                        tile.setHeat(400);
+                        tile.setHeat(100);
                         tile.markDirty();
                         tile.updateBlock();
                         return true;

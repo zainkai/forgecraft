@@ -36,11 +36,14 @@ public class ModItems {
 
     //public static Item test;
     public static Item pistonbellows;
-    public static Item forgehammer = new ForgeHammer("forgehammer");
+    public static Item forgehammer;
     public static Item softcrucible;
     public static Item stonetongs;
+
     public static Item ironingotballhot;
     public static Item ironchunkhot;
+    public static Item ironcleaningotballhot;
+    public static Item ironcleanchunkhot;
 
     public static Item pickaxehead;
     public static Item ironaxehead;
@@ -61,6 +64,7 @@ public class ModItems {
         pistonbellows = new ItemBellowsHandle();
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
+        forgehammer = new ForgeHammer("forgehammer");
 
         pickaxehead = new ToolPart("ironpickaxehead", ModMaterials.TOOL_WROUGHT_IRON);
         ironaxehead = new ToolPart("ironaxehead", ModMaterials.TOOL_WROUGHT_IRON);
@@ -76,8 +80,9 @@ public class ModItems {
         //ironingotballcool = new BaseMultiItem("ironingotcool") {};
         //test = new ItemTest("ironsword");
 
-
-        ironingotballhot = new BaseMultiItem("ironingothot") {
+        ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON);
+        ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON);
+        /*ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON) {
             public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
                 if(!world.isRemote) {
                     ItemStack itemstack = player.getHeldItem(hand);
@@ -93,7 +98,7 @@ public class ModItems {
                 return EnumActionResult.FAIL;
             }
         };
-        ironchunkhot = new BaseMultiItem("ironchunkhot") {
+        ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON) {
             public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
                 if(!world.isRemote) {
                     ItemStack itemstack = player.getHeldItem(hand);
@@ -108,7 +113,7 @@ public class ModItems {
                 }
                 return EnumActionResult.FAIL;
             }
-        };
+        };*/
         //forgingmanual = new ItemForgingManual();
     }
 
