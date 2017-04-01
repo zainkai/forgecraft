@@ -85,22 +85,28 @@ public class ModCrafting {
                 " X ", " Y ", 'X', Blocks.IRON_ORE, 'Y', ModBlocks.emptycrucible);
 
         /***Pickaxe Crafting***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironpickaxe, 1),
-                " X ", " Y ", 'X', ModItems.pickaxehead, 'Y', Items.STICK);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironpickaxe), "T", "C", "S",
+                ('T'), ModItems.pickaxehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
 
         /***Axe Crafting***/
-        //GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironaxe, 1),
-                //" X ", " Y ", 'X', ModItems.ironaxehead, 'Y', Items.STICK);
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", "Y", ('X'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE), ('Y'), Items.STICK));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe), "T", "C", "S",
+                ('T'), ModItems.ironaxehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
 
         /***Shovel Crafting***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironshovel, 1),
-                " X ", " Y ", 'X', ModItems.ironshovelhead, 'Y', Items.STICK);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovel), "T", "C", "S",
+                ('T'), ModItems.ironshovelhead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
 
         /***Hoe Crafting***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironhoe, 1),
-                " X ", " Y ", 'X', ModItems.ironhoehead, 'Y', Items.STICK);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoe), "T", "C", "S",
+                ('T'), ModItems.ironhoehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
 
 
         /***************************************************************

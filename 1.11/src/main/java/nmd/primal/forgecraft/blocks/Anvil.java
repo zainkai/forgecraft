@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -9,6 +10,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -24,6 +26,7 @@ import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
@@ -437,6 +440,11 @@ public class Anvil extends CustomContainerFacing {
                 return true;
             }
 
+            if (Block.getBlockFromItem(tile.getSlotStack(counter).getItem()) instanceof IngotBall ) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                    return true;
+            }
 
             if (tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)) {
                 if (tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false) {

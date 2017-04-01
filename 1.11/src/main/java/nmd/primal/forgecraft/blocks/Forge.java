@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 //import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.PrimalCore;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
@@ -36,6 +37,8 @@ import nmd.primal.forgecraft.tiles.TileForge;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static nmd.primal.core.common.helper.CommonUtils.makeSmoke;
 
 
 /**
@@ -236,14 +239,13 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent)
     {
-        if (!world.isRemote)
-        {
+        //if (!world.isRemote){
             if(ent instanceof EntityPlayer){
                 if(state.getValue(ACTIVE) == true){
                     ent.setFire(1);
                 }
             }
-        }
+        //}
     }
 
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
@@ -452,6 +454,17 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
+    {
+        this.updateTick(world, pos, state, random);
+        if(!world.isRemote){
+            if(state.getValue(ACTIVE) == true) {
+                makeSmoke(world, pos);
+            }
+        }
     }
 
     @SideOnly(Side.CLIENT)

@@ -8,9 +8,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -19,6 +21,9 @@ import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
+
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 2/6/17.
@@ -33,6 +38,7 @@ public class IngotBall extends BlockCustomBase {
     public IngotBall(Material material, String registryName, Float hardness, String type){
         super(material, registryName, hardness);
         this.type = type;
+        this.setTickRandomly(true);
     }
 
 
@@ -86,6 +92,20 @@ public class IngotBall extends BlockCustomBase {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {ACTIVE});
+    }
+
+    @Override
+    public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
+    {
+        this.updateTick(world, pos, state, random);
+        if(!world.isRemote){
+            if ( ThreadLocalRandom.current().nextInt(0,1) == 0) {
+                if(state.getValue(ACTIVE) == true) {
+                    world.setBlockState(pos, state.withProperty(ACTIVE, Boolean.valueOf(false)), 2);
+                    world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+                }
+            }
+        }
     }
 
 }

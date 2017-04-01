@@ -6,6 +6,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +32,8 @@ import nmd.primal.forgecraft.tiles.TileBloomery;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static nmd.primal.core.common.helper.CommonUtils.makeSmoke;
+
 /**
  * Created by mminaie on 1/21/17.
  */
@@ -53,6 +56,17 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileBloomery();
+    }
+
+    @Override
+    public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
+    {
+        this.updateTick(world, pos, state, random);
+        if(!world.isRemote){
+            if(state.getValue(ACTIVE) == true) {
+                makeSmoke(world, pos);
+            }
+        }
     }
 
     @Override
@@ -189,6 +203,16 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
             }
         }
         return false;
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent)
+    {
+        if(ent instanceof EntityPlayer){
+            if(state.getValue(ACTIVE) == true){
+                ent.setFire(1);
+            }
+        }
     }
 
     /**

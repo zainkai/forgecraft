@@ -351,7 +351,7 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
         if(material != Material.WOOD && material != Material.PLANTS && material != Material.VINE){
             return  super.getStrVsBlock(stack, state);
         } else {
-            return this.efficiencyOnProperMaterial * ( ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) ) + 1);
+            return this.efficiencyOnProperMaterial * ( (this.getRedstoneLevel(stack) * 2 ) + 1);
         }
 
     }

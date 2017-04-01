@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.renders;
+package nmd.primal.forgecraft.renders.blocks;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;

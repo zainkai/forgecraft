@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.renders;
+package nmd.primal.forgecraft.renders.blocks;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

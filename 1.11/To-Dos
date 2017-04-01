@@ -2,16 +2,13 @@ To-Dos
 
 *** Priority ***
 
-- [ ] OreDict Stuff
-- [ ] Hot Ingots should cool down
-- [ ] Remove hot or cool ingots and tool heads from inventories
+- [ ] Update Crafting for tools to include leatherStrap
+
+*** Backlog ***
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield
 - [ ] Gold Smelting
-- [ ] Coal is not being removed from the forge or firebox
-
-*** Backlog ***
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
 - [ ] WeaponHead recipes
@@ -21,6 +18,13 @@ To-Dos
   - [ ] Crafting recipes
 
 *** Completed ***
+- [x] Forge Setting Player on fire but not taking damage
+- [x] Forge and Bloomery make Smoke
+- [x] Remove cool ingots from inventories with Hand
+- [x] Remove cool tools heads from inventories with Hand
+- [x] Add rendering in anvil renderer for Cool Ingots
+- [x] Hot Ingots should cool down
+- [x] Coal is not being removed from the forge or firebox
 
 - [x] Tool Disassembly
 - [x] Tool Repair

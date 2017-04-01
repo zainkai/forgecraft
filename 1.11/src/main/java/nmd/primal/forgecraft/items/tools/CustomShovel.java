@@ -1,12 +1,15 @@
 package nmd.primal.forgecraft.items.tools;
 
+import com.google.common.collect.Sets;
 import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
@@ -22,12 +25,15 @@ import nmd.primal.forgecraft.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 3/21/17.
  */
 public class CustomShovel extends ItemSpade implements ToolNBT {
+
+    private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(new Block[] {Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH});
 
     public CustomShovel(String name, Item.ToolMaterial material) {
         super(material);
@@ -342,17 +348,12 @@ public class CustomShovel extends ItemSpade implements ToolNBT {
     @Override
     public float getStrVsBlock(ItemStack stack, IBlockState state)
     {
-        Material material = state.getMaterial();
-        //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
-
-        if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
-            return  super.getStrVsBlock(stack, state);
-        } else if (this.getRedstoneLevel(stack) > 0) {
-            return this.efficiencyOnProperMaterial * ((this.getRedstoneLevel(stack) / 2) * this.getRedstoneLevel(stack) );
-        } else {
-            return this.efficiencyOnProperMaterial;
+        for (String type : getToolClasses(stack))
+        {
+            if (state.getBlock().isToolEffective(type, state))
+                return efficiencyOnProperMaterial;
         }
-
+        return this.EFFECTIVE_ON.contains(state.getBlock()) ? (this.efficiencyOnProperMaterial * ( (this.getRedstoneLevel(stack) * 2 ) + 1)) : 1.0F;
     }
 
     @SideOnly(Side.CLIENT)

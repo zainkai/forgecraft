@@ -18,14 +18,14 @@ public class ModDictionary {/***************************************************
  *      LEATHER_CORDAGE = registerItem(new PrimalItem("leather_cordage"), "cordageGeneral, cordageLeather");
  *
  */
-public static void registerDictionaryNames()
-{
-    //if (ModConfig.COMPATIBILITY_DICTIONARY_MAGMACREAM_AS_SLIME)
-        //OreDictionary.registerOre("clayball", Items.CLAY_BALL);
-        OreDictionary.registerOre("ingotIron", ModBlocks.ironball);
+        public static void registerDictionaryNames()
+        {
+            //if (ModConfig.COMPATIBILITY_DICTIONARY_MAGMACREAM_AS_SLIME)
+                //OreDictionary.registerOre("clayball", Items.CLAY_BALL);
+                OreDictionary.registerOre("ingotIron", ModBlocks.ironball);
+                OreDictionary.registerOre("nuggetIron", ModBlocks.ironchunk);
 
 
 
-
-}
+        }
 }

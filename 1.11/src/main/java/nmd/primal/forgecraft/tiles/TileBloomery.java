@@ -33,8 +33,8 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         if(!world.isRemote){
             IBlockState state = world.getBlockState(this.pos);
             if(state.getValue(Bloomery.ACTIVE) == true){
-                if(this.getHeat() < 400){
-                    this.setHeat(400);
+                if(this.getHeat() < 100){
+                    this.setHeat(100);
                 }
             }
             this.iteration ++;
