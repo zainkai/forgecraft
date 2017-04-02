@@ -8,6 +8,17 @@ To-Dos
 - [ ] Make Wootz Recipes and Tools
 - [ ] Add Yew
 
+*** Feature Musket ***
+- [ ] Create powder charge item (copper, charcoal, gunpowder)
+- [ ] Create musket round item (lead or iron nugget)
+- [ ] Create wadding item (paper)
+- [ ] Create soaked wick item (cordage, bucket of water, gunpowder)
+- [ ] Create dried wick item (soaked wick on drying rack)
+- [ ] Create lit wick item (dried wick and firebow/torch/flint&steel)
+- [ ] Create barrel item
+- [ ] Create stock item
+- [ ] Create lock assembly item
+
 *** Backlog ***
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe

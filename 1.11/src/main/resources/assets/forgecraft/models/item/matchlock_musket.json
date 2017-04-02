@@ -355,7 +355,8 @@
 			"translation":  [ -2.781, 2.0869, 0.0003 ]
 		},
 		"firstperson_lefthand": {
-			"translation":  [ 0, -1.389, 13.912 ]
+			"rotation":  [ -60, 0, 0 ],
+			"translation":  [ 0, 7.6544, 6.2598 ]
 		},
 		"gui": {
 			"rotation":  [ 90, 135, -90 ],
