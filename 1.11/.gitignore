@@ -15,6 +15,7 @@ logs
 usercache.json
 usernamecache.json
 options.txt
+screenshots/
 
 # eclipse
 bin
