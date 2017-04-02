@@ -19,7 +19,11 @@ forge-*-changelog.txt
 1.11/usernamecache.json
 1.11/options.txt
 *.DS_Store
-
+*.iml
+*.ipr
+*.iws
+1.11/eula.txt
+1.11/server.properties
 
 # eclipse
 bin

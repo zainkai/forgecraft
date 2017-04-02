@@ -106,7 +106,7 @@ public class ModBlocks {
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
                     }
-                    if (pItem.equals(PrimalItems.STONE_GALLAGHER) || pItem.equals(ModItems.forgehammer)) {
+                    if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
                         if(world.getBlockState(belowPos).getBlock().equals(ModBlocks.stoneanvil)) {
 
 
