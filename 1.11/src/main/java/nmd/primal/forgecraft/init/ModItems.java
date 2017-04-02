@@ -26,6 +26,7 @@ import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.*;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
+import nmd.primal.forgecraft.items.weapons.Musket;
 import nmd.primal.forgecraft.util.ToolMaterials;
 import nmd.primal.forgecraft.items.tools.BaseTool.ForgeToolMaterial;
 
@@ -56,6 +57,7 @@ public class ModItems {
     public static Item ironhoe;
 
     public static Item ironsword;
+    public static Item matchlockmusket;
 
     //public static Item forgingmanual;
 
@@ -79,6 +81,7 @@ public class ModItems {
         ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
         //ironingotballcool = new BaseMultiItem("ironingotcool") {};
         //test = new ItemTest("ironsword");
+        matchlockmusket = new Musket("matchlock_musket");
 
         ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON);
         ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON);
@@ -137,6 +140,7 @@ public class ModItems {
         GameRegistry.register(ironhoe);
 
         GameRegistry.register(ironsword);
+        GameRegistry.register(matchlockmusket);
 
         //GameRegistry.register(forgingmanual);
     }
@@ -161,6 +165,7 @@ public class ModItems {
 
         registerRender(ironsword);
         //registerRender(forgingmanual);
+        registerRender(matchlockmusket);
     }
 
     @SideOnly(Side.CLIENT)
