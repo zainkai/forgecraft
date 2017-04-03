@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -156,16 +157,11 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                  ***********************/
                 //REMOVE COOL INGOT
                 if(facing == EnumFacing.UP ) {
-                    if (pItem.isEmpty()) {
+                    /*if (pItem.isEmpty()) {
                         for (int i = 2; i < tile.getSlotListSize(); i++) {
                             //System.out.println(i);
                             if (!tile.getSlotStack(i).isEmpty()) {
-                                if (tile.getSlotStack(i).getItem().equals(new ItemStack(ModBlocks.ironchunk).getItem())) {
-                                    CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
-                                    tile.setSlotStack(i, ItemStack.EMPTY);
-                                    return true;
-                                }
-                                if (tile.getSlotStack(i).getItem().equals(new ItemStack(ModBlocks.ironball).getItem())) {
+                                if (Block.getBlockFromItem(tile.getSlotStack(i).getItem()) instanceof IngotBall) {
                                     CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
                                     tile.setSlotStack(i, ItemStack.EMPTY);
                                     return true;
@@ -177,24 +173,14 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                                         return true;
                                     }
                                 }
-
                             }
                         }
-                    }
+                    }*/
 
 
-                    if (pItem.getItem().equals(new ItemStack(ModBlocks.ironchunk).getItem())) {
+                    if (Block.getBlockFromItem(pItem.getItem()) instanceof IngotBall) {
                         //System.out.println("Activating");
                         for (int i = 2; i <= tile.getSlotListSize(); i++) {
-                            if (tile.getSlotStack(i).isEmpty()) {
-                                tile.setSlotStack(i, new ItemStack(pItem.getItem(), 1));
-                                pItem.shrink(1);
-                                return true;
-                            }
-                        }
-                    }
-                    if (pItem.getItem().equals(new ItemStack(ModBlocks.ironball).getItem())) {
-                        for (int i = 2; i < tile.getSlotListSize(); i++) {
                             if (tile.getSlotStack(i).isEmpty()) {
                                 tile.setSlotStack(i, new ItemStack(pItem.getItem(), 1));
                                 pItem.shrink(1);
