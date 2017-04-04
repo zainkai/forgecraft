@@ -15,6 +15,7 @@ public class ForgeHammer extends Item {
         //this.setHasSubtypes(true);  //This just says the item has metadata
         this.setMaxStackSize(1);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
+
     }
 
 }
