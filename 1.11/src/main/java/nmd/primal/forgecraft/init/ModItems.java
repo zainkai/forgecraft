@@ -79,45 +79,14 @@ public class ModItems {
         ironhoe = new CustomHoe("ironhoe", ModMaterials.TOOL_WROUGHT_IRON);
 
         ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
-        //ironingotballcool = new BaseMultiItem("ironingotcool") {};
-        //test = new ItemTest("ironsword");
+
         matchlockmusket = new Musket("matchlock_musket");
 
         ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON);
         ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON);
-        /*ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON) {
-            public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-                if(!world.isRemote) {
-                    ItemStack itemstack = player.getHeldItem(hand);
-                    if (world.getBlockState(pos).getBlock() != ModBlocks.firebox) {
-                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-                        if(world.getBlockState(tempPos).getBlock() == Blocks.AIR){
-                            world.setBlockState(tempPos, ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
-                            itemstack.shrink(1);
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-                return EnumActionResult.FAIL;
-            }
-        };
-        ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON) {
-            public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-                if(!world.isRemote) {
-                    ItemStack itemstack = player.getHeldItem(hand);
-                    if (world.getBlockState(pos).getBlock() != ModBlocks.firebox) {
-                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-                        if(world.getBlockState(tempPos).getBlock() == Blocks.AIR){
-                            world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
-                            itemstack.shrink(1);
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-                return EnumActionResult.FAIL;
-            }
-        };*/
+
         //forgingmanual = new ItemForgingManual();
+        //test = new ItemTest("ironsword");
     }
 
     public static void register() {
