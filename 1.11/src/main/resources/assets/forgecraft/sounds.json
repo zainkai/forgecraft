@@ -3,5 +3,10 @@
     "category": "block",
     "subtitle": "forgecraft.subtitle.piston_bellows",
     "sounds": [ "forgecraft:piston_bellows" ]
+  },
+  "musket_shot": {
+    "category": "block",
+    "subtitle": "forgecraft.subtitle.musket_shot",
+    "sounds": [ "forgecraft:musket_shot" ]
   }
 }

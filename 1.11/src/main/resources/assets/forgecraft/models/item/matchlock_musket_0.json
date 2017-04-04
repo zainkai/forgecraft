@@ -4,8 +4,5 @@
     "particle": "forgecraft:items/iron_ingot",
     "texture": "blocks/planks_oak",
     "texture1": "forgecraft:items/iron_ingot"
-  },
-  "overrides": [
-    {"predicate": {"type": 0.0},"model": "forgecraft:item/matchlock_musket_0"}
-  ]
+  }
 }

@@ -13,10 +13,12 @@ import nmd.primal.forgecraft.api.ForgecraftSounds;
 public class ModSounds {
 
     public static SoundEvent PISTON_BELLOWS;
+    public static SoundEvent MUSKET_SHOT;
 
     public static void registerSounds()
     {
         PISTON_BELLOWS = registerSound("piston_bellows");
+        MUSKET_SHOT = registerSound("musket_shot");
     }
 
     private static SoundEvent registerSound(String name)
