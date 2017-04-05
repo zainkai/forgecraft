@@ -51,11 +51,12 @@ public class Musket extends BaseItem{
         */
 
 
+
         if (!world.isRemote)
         {
-            world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, ModSounds.MUSKET_SHOT, SoundCategory.BLOCKS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, ModSounds.MUSKET_SHOT, SoundCategory.BLOCKS, 0.5F, 0.3F / (itemRand.nextFloat() * 0.4F + 0.8F));
             EntityMuckBall entity = new EntityMuckBall(world, player);
-            entity.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            entity.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 7.0F, 0.5F);
             world.spawnEntity(entity);
         }
 
