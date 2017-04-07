@@ -12,9 +12,9 @@ To-Dos
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
 - [ ] Create musket round item (lead or iron nugget)
 - [ ] Create wadding item (paper)
-- [ ] Create soaked wick item (cordage, bucket of water, gunpowder)
-- [ ] Create dried wick item (soaked wick on drying rack)
-- [ ] Create lit wick item (dried wick and firebow/torch/flint&steel)
+- [ ] Create soaked slow match item (cordage, bucket of water, gunpowder)
+- [ ] Create dried slow match (soaked wick on drying rack)
+- [ ] Create lit slow match (dried slow match and firebow/torch/flint&steel)
 - [ ] Create barrel item
 - [ ] Create stock item
 - [ ] Create lock assembly item

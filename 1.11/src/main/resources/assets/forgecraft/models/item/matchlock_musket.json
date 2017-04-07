@@ -6,6 +6,7 @@
     "texture1": "forgecraft:items/iron_ingot"
   },
   "overrides": [
-    {"predicate": {"type": 0.0},"model": "forgecraft:item/matchlock_musket_0"}
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/matchlock_musket_0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/matchlock_musket_1"}
   ]
 }
