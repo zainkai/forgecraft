@@ -50,10 +50,29 @@ public class ModItems {
     public static Item wootzingotballhot;
     public static Item wootzchunkhot;
 
+
+
     public static Item pickaxehead;
     public static Item ironaxehead;
     public static Item ironshovelhead;
     public static Item ironhoehead;
+
+    public static Item cleanironpickaxehead;
+    public static Item cleanironaxehead;
+    public static Item cleanironshovelhead;
+    public static Item cleanironhoehead;
+
+    public static Item steelpickaxehead;
+    public static Item steelaxehead;
+    public static Item steelshovelhead;
+    public static Item steelhoehead;
+
+    public static Item wootzpickaxehead;
+    public static Item wootzaxehead;
+    public static Item wootzshovelhead;
+    public static Item wootzhoehead;
+
+
 
     public static Item ironpickaxe;
     public static Item ironaxe;
@@ -80,6 +99,21 @@ public class ModItems {
         ironaxehead = new ToolPart("ironaxehead", ModMaterials.TOOL_WROUGHT_IRON);
         ironshovelhead = new ToolPart("ironshovelhead", ModMaterials.TOOL_WROUGHT_IRON);
         ironhoehead = new ToolPart("ironhoehead", ModMaterials.TOOL_WROUGHT_IRON);
+
+        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", ModMaterials.CLEAN_IRON);
+        cleanironaxehead = new ToolPart("cleanironaxehead", ModMaterials.CLEAN_IRON);
+        cleanironshovelhead = new ToolPart("cleanironshovelhead", ModMaterials.CLEAN_IRON);
+        cleanironhoehead = new ToolPart("cleanironhoehead", ModMaterials.CLEAN_IRON);
+
+        steelpickaxehead = new ToolPart("steelpickaxehead", ModMaterials.BASIC_STEEL);
+        steelaxehead = new ToolPart("steelaxehead", ModMaterials.BASIC_STEEL);
+        steelshovelhead = new ToolPart("steelshovelhead", ModMaterials.BASIC_STEEL);
+        steelhoehead = new ToolPart("steelhoehead", ModMaterials.BASIC_STEEL);
+
+        wootzpickaxehead = new ToolPart("wootzpickaxehead", ModMaterials.WOOTZ_STEEL);
+        wootzaxehead = new ToolPart("wootzaxehead", ModMaterials.WOOTZ_STEEL);
+        wootzshovelhead = new ToolPart("wootzshovelhead", ModMaterials.WOOTZ_STEEL);
+        wootzhoehead = new ToolPart("wootzhoehead", ModMaterials.WOOTZ_STEEL);
         /**********
          TOOLS
          **********/
