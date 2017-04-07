@@ -45,6 +45,10 @@ public class ModItems {
     public static Item ironchunkhot;
     public static Item ironcleaningotballhot;
     public static Item ironcleanchunkhot;
+    public static Item steelingotballhot;
+    public static Item steelchunkhot;
+    public static Item wootzingotballhot;
+    public static Item wootzchunkhot;
 
     public static Item pickaxehead;
     public static Item ironaxehead;
@@ -94,6 +98,12 @@ public class ModItems {
          **********/
         ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON);
         ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON);
+        ironcleaningotballhot= new BaseMultiItem("ironcleaningotballhot", ModMaterials.CLEAN_IRON);
+        ironcleanchunkhot= new BaseMultiItem("ironcleanchunkhot", ModMaterials.CLEAN_IRON);
+        steelingotballhot= new BaseMultiItem("steelingotballhot", ModMaterials.BASIC_STEEL);
+        steelchunkhot= new BaseMultiItem("steelchunkhot", ModMaterials.BASIC_STEEL);
+        wootzingotballhot= new BaseMultiItem("wootzingotballhot", ModMaterials.WOOTZ_STEEL);
+        wootzchunkhot= new BaseMultiItem("wootzchunkhot", ModMaterials.WOOTZ_STEEL);
 
         //forgingmanual = new ItemForgingManual();
         //test = new ItemTest("ironsword");
