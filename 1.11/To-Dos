@@ -2,9 +2,9 @@ To-Dos
 
 *** Bugs ***
 - [ ] Duplication Bug for Tool Repair
-- [ ] Can't remove cool ingots from Forge
 
 *** Priority ***
+- [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Make an Iron Anvil
 - [ ] Make Clean Iron Recipes and Tools
  - [ ] Make Clean Ore Recipe

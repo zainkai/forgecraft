@@ -67,21 +67,31 @@ public class ModItems {
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
+        matchlockmusket = new Musket("matchlock_musket");
 
+        /**********
+         TOOL PARTS
+         **********/
         pickaxehead = new ToolPart("ironpickaxehead", ModMaterials.TOOL_WROUGHT_IRON);
         ironaxehead = new ToolPart("ironaxehead", ModMaterials.TOOL_WROUGHT_IRON);
         ironshovelhead = new ToolPart("ironshovelhead", ModMaterials.TOOL_WROUGHT_IRON);
         ironhoehead = new ToolPart("ironhoehead", ModMaterials.TOOL_WROUGHT_IRON);
-
+        /**********
+         TOOLS
+         **********/
         ironpickaxe = new CustomPickaxe("ironpickaxe", ModMaterials.TOOL_WROUGHT_IRON);
         ironaxe = new CustomAxe("ironaxe", ModMaterials.TOOL_WROUGHT_IRON);
         ironshovel = new CustomShovel("ironshovel", ModMaterials.TOOL_WROUGHT_IRON);
         ironhoe = new CustomHoe("ironhoe", ModMaterials.TOOL_WROUGHT_IRON);
-
+        /**********
+         WEAPONS
+         **********/
         ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
 
-        matchlockmusket = new Musket("matchlock_musket");
 
+        /**********
+         INGOTS AND CHUNKS
+         **********/
         ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON);
         ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON);
 
