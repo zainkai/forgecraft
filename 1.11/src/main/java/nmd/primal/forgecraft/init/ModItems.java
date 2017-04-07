@@ -79,7 +79,26 @@ public class ModItems {
     public static Item ironshovel;
     public static Item ironhoe;
 
+    public static Item cleanironpickaxe;
+    public static Item cleanironaxe;
+    public static Item cleanironshovel;
+    public static Item cleanironhoe;
+
+    public static Item steelpickaxe;
+    public static Item steelaxe;
+    public static Item steelshovel;
+    public static Item steelhoe;
+
+    public static Item wootzpickaxe;
+    public static Item wootzaxe;
+    public static Item wootzshovel;
+    public static Item wootzhoe;
+
     public static Item ironsword;
+    public static Item cleanironsword;
+    public static Item steelsword;
+    public static Item wootzsword;
+
     public static Item matchlockmusket;
 
     //public static Item forgingmanual;
@@ -121,11 +140,29 @@ public class ModItems {
         ironaxe = new CustomAxe("ironaxe", ModMaterials.TOOL_WROUGHT_IRON);
         ironshovel = new CustomShovel("ironshovel", ModMaterials.TOOL_WROUGHT_IRON);
         ironhoe = new CustomHoe("ironhoe", ModMaterials.TOOL_WROUGHT_IRON);
+
+        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", ModMaterials.CLEAN_IRON);
+        cleanironaxe = new CustomAxe("cleanironaxe", ModMaterials.CLEAN_IRON);
+        cleanironshovel = new CustomShovel("cleanironshovel", ModMaterials.CLEAN_IRON);
+        cleanironhoe = new CustomHoe("cleanironhoe", ModMaterials.CLEAN_IRON);
+
+        steelpickaxe = new CustomPickaxe("steelpickaxe", ModMaterials.BASIC_STEEL);
+        steelaxe = new CustomAxe("steelironaxe", ModMaterials.BASIC_STEEL);
+        steelshovel = new CustomShovel("steelironshovel", ModMaterials.BASIC_STEEL);
+        steelhoe = new CustomHoe("steelironhoe", ModMaterials.BASIC_STEEL);
+
+        wootzpickaxe = new CustomPickaxe("wootzpickaxe", ModMaterials.WOOTZ_STEEL);
+        wootzaxe = new CustomAxe("wootzironaxe", ModMaterials.WOOTZ_STEEL);
+        wootzshovel = new CustomShovel("wootzironshovel", ModMaterials.WOOTZ_STEEL);
+        wootzhoe = new CustomHoe("wootzironhoe", ModMaterials.WOOTZ_STEEL);
+
         /**********
          WEAPONS
          **********/
         ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
-
+        cleanironsword = new CustomSword("ironsword", ModMaterials.CLEAN_IRON);
+        steelsword = new CustomSword("ironsword", ModMaterials.BASIC_STEEL);
+        wootzsword = new CustomSword("ironsword", ModMaterials.WOOTZ_STEEL);
 
         /**********
          INGOTS AND CHUNKS
