@@ -1,0 +1,17 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "forgecraft:blocks/anvil_base",
+      "texture": "forgecraft:blocks/anvil_base",
+      "texture1": "forgecraft:blocks/anvil_base_top"
+    },
+    "parent": "forgecraft:ironanvil"
+  },
+  "variants": {
+    "facing=north": { "model": "forgecraft:ironanvil" },
+    "facing=east":  { "model": "forgecraft:ironanvil", "y": 90 },
+    "facing=south": { "model": "forgecraft:ironanvil", "y": 180 },
+    "facing=west":  { "model": "forgecraft:ironanvil", "y": 270 }
+  }
+}

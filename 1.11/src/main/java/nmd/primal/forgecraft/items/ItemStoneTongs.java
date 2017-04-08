@@ -39,7 +39,7 @@ public class ItemStoneTongs extends Item {
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
 
-
+    @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         if (!item.hasTagCompound()) {
             item.setTagCompound(new NBTTagCompound());
@@ -64,7 +64,7 @@ public class ItemStoneTongs extends Item {
     }
 
 
-
+    @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
 

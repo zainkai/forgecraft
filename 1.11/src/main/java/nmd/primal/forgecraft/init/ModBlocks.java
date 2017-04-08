@@ -24,6 +24,7 @@ import nmd.primal.core.common.blocks.PrimalBlock;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.*;
+import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
@@ -106,12 +107,18 @@ public class ModBlocks {
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
                     }
+                    /*if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
+                        player.swingArm(hand);
+                        world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.playEvent(1031, pos, 0);
+                        //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
+                        return true;
+                    }*/
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
                         if(world.getBlockState(belowPos).getBlock().equals(ModBlocks.stoneanvil)) {
 
-
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
-
 
                             if (tile.getSlotStack(6).isEmpty() &&
                                     tile.getSlotStack(7).isEmpty() &&
@@ -144,11 +151,170 @@ public class ModBlocks {
                 return false;
             }
         };
+        ironcleanball = new IngotBall(Material.IRON, "ironcleanball", 5.0f, "ingot") {
+            @Override
+            public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
+            {
+                if(!world.isRemote){
+                    Item pItem = player.getHeldItem(hand).getItem();
+                    BlockPos belowPos = pos.down();
+                    //System.out.println("Activating");
+                    if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
+                        player.swingArm(hand);
+                        world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.playEvent(1031, pos, 0);
+                        //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
+                        return true;
+                    }
+                    if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
+                        if(world.getBlockState(belowPos).getBlock() instanceof Anvil) {
+
+                            TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
+
+                            if (tile.getSlotStack(6).isEmpty() &&
+                                    tile.getSlotStack(7).isEmpty() &&
+                                    tile.getSlotStack(8).isEmpty() &&
+                                    tile.getSlotStack(11).isEmpty() &&
+                                    tile.getSlotStack(12).isEmpty() &&
+                                    tile.getSlotStack(13).isEmpty() &&
+                                    tile.getSlotStack(16).isEmpty() &&
+                                    tile.getSlotStack(17).isEmpty() &&
+                                    tile.getSlotStack(18).isEmpty()
+                                    ) {
+                                player.swingArm(hand);
+                                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                                tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                                world.playEvent(1031, pos, 0);
+                                return true;
+                            }
+                        }
+                    }
+
+                }
+                return false;
+            }
+        };
+        steelball = new IngotBall(Material.IRON, "steelball", 6.0f, "ingot"){
+            @Override
+            public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
+            {
+                if(!world.isRemote){
+                    Item pItem = player.getHeldItem(hand).getItem();
+                    BlockPos belowPos = pos.down();
+                    //System.out.println("Activating");
+                    if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
+                        player.swingArm(hand);
+                        world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.playEvent(1031, pos, 0);
+                        //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
+                        return true;
+                    }
+                    if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
+                        if(world.getBlockState(belowPos).getBlock() instanceof Anvil) {
+
+                            TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
+
+                            if (tile.getSlotStack(6).isEmpty() &&
+                                    tile.getSlotStack(7).isEmpty() &&
+                                    tile.getSlotStack(8).isEmpty() &&
+                                    tile.getSlotStack(11).isEmpty() &&
+                                    tile.getSlotStack(12).isEmpty() &&
+                                    tile.getSlotStack(13).isEmpty() &&
+                                    tile.getSlotStack(16).isEmpty() &&
+                                    tile.getSlotStack(17).isEmpty() &&
+                                    tile.getSlotStack(18).isEmpty()
+                                    ) {
+                                player.swingArm(hand);
+                                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                                tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                                world.playEvent(1031, pos, 0);
+                                return true;
+                            }
+                        }
+                    }
+
+                }
+                return false;
+            }
+        };
+        wootzball = new IngotBall(Material.IRON, "wootzball", 6.0f, "ingot") {
+        @Override
+        public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
+        {
+            if(!world.isRemote){
+                Item pItem = player.getHeldItem(hand).getItem();
+                BlockPos belowPos = pos.down();
+                //System.out.println("Activating");
+                if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
+                    player.swingArm(hand);
+                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                    world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                    world.playEvent(1031, pos, 0);
+                    //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
+                    return true;
+                }
+                if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
+                    if(world.getBlockState(belowPos).getBlock() instanceof Anvil) {
+
+                        TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
+
+                        if (tile.getSlotStack(6).isEmpty() &&
+                                tile.getSlotStack(7).isEmpty() &&
+                                tile.getSlotStack(8).isEmpty() &&
+                                tile.getSlotStack(11).isEmpty() &&
+                                tile.getSlotStack(12).isEmpty() &&
+                                tile.getSlotStack(13).isEmpty() &&
+                                tile.getSlotStack(16).isEmpty() &&
+                                tile.getSlotStack(17).isEmpty() &&
+                                tile.getSlotStack(18).isEmpty()
+                                ) {
+                            player.swingArm(hand);
+                            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                            tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                            world.playEvent(1031, pos, 0);
+                            return true;
+                        }
+                    }
+                }
+
+            }
+            return false;
+        }
+    };
 
         ironchunk = new IngotBall(Material.IRON, "ironchunk", 5.0F, "chunk");
+        ironcleanchunk = new IngotBall(Material.IRON, "ironcleanchunk", 5.0F, "chunk");
+        steelchunk = new IngotBall(Material.IRON, "steelchunk", 6.0f, "chunk");
+        wootzchunk = new IngotBall(Material.IRON, "wootzchunk", 6.0f, "chunk");
 
-        stoneanvil = new Anvil(Material.ROCK, "stoneanvil", 5.0f);
-        ironanvil = new Anvil(Material.IRON, "ironanvil", 6.0f);
+        stoneanvil = new Anvil(Material.ANVIL, "stoneanvil", 5.0f);
+        ironanvil = new Anvil(Material.ANVIL, "ironanvil", 6.0f);
         //ironballitemcool = new ItemBlockIngotBall(ironball);
         //ironballitemhot = new ItemBlockIngotBall(ironball);
 
@@ -180,10 +346,20 @@ public class ModBlocks {
 
         registerBlock(ironball);
         registerBlock(ironchunk);
+
+        registerBlock(ironcleanball);
+        registerBlock(ironcleanchunk);
+
+        registerBlock(steelball);
+        registerBlock(steelchunk);
+
+        registerBlock(wootzball);
+        registerBlock(wootzchunk);
         //registerBlockSubType(ironball, ironballitemcool, "ironcool");
         //registerBlockSubType(ironball, ironballitemhot, "ironhot");
 
         registerBlock(stoneanvil);
+        registerBlock(ironanvil);
     }
 
     @SideOnly(Side.CLIENT)
@@ -210,10 +386,20 @@ public class ModBlocks {
 
         registerRender(ironball);
         registerRender(ironchunk);
+
+        registerRender(ironcleanball);
+        registerRender(ironcleanchunk);
+
+        registerRender(steelball);
+        registerRender(steelchunk);
+
+        registerRender(wootzball);
+        registerRender(wootzchunk);
         //registerRenderCustom(ironballitemcool, 0, new ModelResourceLocation(ironballitemcool.getUnlocalizedName()));
         //registerRenderCustom(ironballitemhot, 1, new ModelResourceLocation(ironballitemhot.getUnlocalizedName()));
 
         registerRender(stoneanvil);
+        registerRender(ironanvil);
 
     }
 

@@ -45,18 +45,60 @@ public class ModItems {
     public static Item ironchunkhot;
     public static Item ironcleaningotballhot;
     public static Item ironcleanchunkhot;
+    public static Item steelingotballhot;
+    public static Item steelchunkhot;
+    public static Item wootzingotballhot;
+    public static Item wootzchunkhot;
+
+
 
     public static Item pickaxehead;
     public static Item ironaxehead;
     public static Item ironshovelhead;
     public static Item ironhoehead;
 
+    public static Item cleanironpickaxehead;
+    public static Item cleanironaxehead;
+    public static Item cleanironshovelhead;
+    public static Item cleanironhoehead;
+
+    public static Item steelpickaxehead;
+    public static Item steelaxehead;
+    public static Item steelshovelhead;
+    public static Item steelhoehead;
+
+    public static Item wootzpickaxehead;
+    public static Item wootzaxehead;
+    public static Item wootzshovelhead;
+    public static Item wootzhoehead;
+
+
+
     public static Item ironpickaxe;
     public static Item ironaxe;
     public static Item ironshovel;
     public static Item ironhoe;
 
+    public static Item cleanironpickaxe;
+    public static Item cleanironaxe;
+    public static Item cleanironshovel;
+    public static Item cleanironhoe;
+
+    public static Item steelpickaxe;
+    public static Item steelaxe;
+    public static Item steelshovel;
+    public static Item steelhoe;
+
+    public static Item wootzpickaxe;
+    public static Item wootzaxe;
+    public static Item wootzshovel;
+    public static Item wootzhoe;
+
     public static Item ironsword;
+    public static Item cleanironsword;
+    public static Item steelsword;
+    public static Item wootzsword;
+
     public static Item matchlockmusket;
 
     //public static Item forgingmanual;
@@ -67,57 +109,75 @@ public class ModItems {
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
+        matchlockmusket = new Musket("matchlock_musket");
 
+        /**********
+         TOOL PARTS
+         **********/
         pickaxehead = new ToolPart("ironpickaxehead", ModMaterials.TOOL_WROUGHT_IRON);
         ironaxehead = new ToolPart("ironaxehead", ModMaterials.TOOL_WROUGHT_IRON);
         ironshovelhead = new ToolPart("ironshovelhead", ModMaterials.TOOL_WROUGHT_IRON);
         ironhoehead = new ToolPart("ironhoehead", ModMaterials.TOOL_WROUGHT_IRON);
 
+        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", ModMaterials.CLEAN_IRON);
+        cleanironaxehead = new ToolPart("cleanironaxehead", ModMaterials.CLEAN_IRON);
+        cleanironshovelhead = new ToolPart("cleanironshovelhead", ModMaterials.CLEAN_IRON);
+        cleanironhoehead = new ToolPart("cleanironhoehead", ModMaterials.CLEAN_IRON);
+
+        steelpickaxehead = new ToolPart("steelpickaxehead", ModMaterials.BASIC_STEEL);
+        steelaxehead = new ToolPart("steelaxehead", ModMaterials.BASIC_STEEL);
+        steelshovelhead = new ToolPart("steelshovelhead", ModMaterials.BASIC_STEEL);
+        steelhoehead = new ToolPart("steelhoehead", ModMaterials.BASIC_STEEL);
+
+        wootzpickaxehead = new ToolPart("wootzpickaxehead", ModMaterials.WOOTZ_STEEL);
+        wootzaxehead = new ToolPart("wootzaxehead", ModMaterials.WOOTZ_STEEL);
+        wootzshovelhead = new ToolPart("wootzshovelhead", ModMaterials.WOOTZ_STEEL);
+        wootzhoehead = new ToolPart("wootzhoehead", ModMaterials.WOOTZ_STEEL);
+        /**********
+         TOOLS
+         **********/
         ironpickaxe = new CustomPickaxe("ironpickaxe", ModMaterials.TOOL_WROUGHT_IRON);
         ironaxe = new CustomAxe("ironaxe", ModMaterials.TOOL_WROUGHT_IRON);
         ironshovel = new CustomShovel("ironshovel", ModMaterials.TOOL_WROUGHT_IRON);
         ironhoe = new CustomHoe("ironhoe", ModMaterials.TOOL_WROUGHT_IRON);
 
-        ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
-        //ironingotballcool = new BaseMultiItem("ironingotcool") {};
-        //test = new ItemTest("ironsword");
-        matchlockmusket = new Musket("matchlock_musket");
+        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", ModMaterials.CLEAN_IRON);
+        cleanironaxe = new CustomAxe("cleanironaxe", ModMaterials.CLEAN_IRON);
+        cleanironshovel = new CustomShovel("cleanironshovel", ModMaterials.CLEAN_IRON);
+        cleanironhoe = new CustomHoe("cleanironhoe", ModMaterials.CLEAN_IRON);
 
+        steelpickaxe = new CustomPickaxe("steelpickaxe", ModMaterials.BASIC_STEEL);
+        steelaxe = new CustomAxe("steelironaxe", ModMaterials.BASIC_STEEL);
+        steelshovel = new CustomShovel("steelironshovel", ModMaterials.BASIC_STEEL);
+        steelhoe = new CustomHoe("steelironhoe", ModMaterials.BASIC_STEEL);
+
+        wootzpickaxe = new CustomPickaxe("wootzpickaxe", ModMaterials.WOOTZ_STEEL);
+        wootzaxe = new CustomAxe("wootzironaxe", ModMaterials.WOOTZ_STEEL);
+        wootzshovel = new CustomShovel("wootzironshovel", ModMaterials.WOOTZ_STEEL);
+        wootzhoe = new CustomHoe("wootzironhoe", ModMaterials.WOOTZ_STEEL);
+
+        /**********
+         WEAPONS
+         **********/
+        ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
+        cleanironsword = new CustomSword("ironsword", ModMaterials.CLEAN_IRON);
+        steelsword = new CustomSword("ironsword", ModMaterials.BASIC_STEEL);
+        wootzsword = new CustomSword("ironsword", ModMaterials.WOOTZ_STEEL);
+
+        /**********
+         INGOTS AND CHUNKS
+         **********/
         ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON);
         ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON);
-        /*ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON) {
-            public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-                if(!world.isRemote) {
-                    ItemStack itemstack = player.getHeldItem(hand);
-                    if (world.getBlockState(pos).getBlock() != ModBlocks.firebox) {
-                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-                        if(world.getBlockState(tempPos).getBlock() == Blocks.AIR){
-                            world.setBlockState(tempPos, ModBlocks.ironball.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
-                            itemstack.shrink(1);
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-                return EnumActionResult.FAIL;
-            }
-        };
-        ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON) {
-            public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-                if(!world.isRemote) {
-                    ItemStack itemstack = player.getHeldItem(hand);
-                    if (world.getBlockState(pos).getBlock() != ModBlocks.firebox) {
-                        BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-                        if(world.getBlockState(tempPos).getBlock() == Blocks.AIR){
-                            world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
-                            itemstack.shrink(1);
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-                return EnumActionResult.FAIL;
-            }
-        };*/
+        ironcleaningotballhot= new BaseMultiItem("ironcleaningotballhot", ModMaterials.CLEAN_IRON);
+        ironcleanchunkhot= new BaseMultiItem("ironcleanchunkhot", ModMaterials.CLEAN_IRON);
+        steelingotballhot= new BaseMultiItem("steelingotballhot", ModMaterials.BASIC_STEEL);
+        steelchunkhot= new BaseMultiItem("steelchunkhot", ModMaterials.BASIC_STEEL);
+        wootzingotballhot= new BaseMultiItem("wootzingotballhot", ModMaterials.WOOTZ_STEEL);
+        wootzchunkhot= new BaseMultiItem("wootzchunkhot", ModMaterials.WOOTZ_STEEL);
+
         //forgingmanual = new ItemForgingManual();
+        //test = new ItemTest("ironsword");
     }
 
     public static void register() {
