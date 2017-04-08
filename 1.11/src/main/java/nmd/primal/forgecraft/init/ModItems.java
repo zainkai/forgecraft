@@ -109,7 +109,7 @@ public class ModItems {
         softcrucible = new ItemSoftCrucible();
         stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
-        matchlockmusket = new Musket("matchlock_musket");
+        //matchlockmusket = new Musket("matchlock_musket");
 
         /**********
          TOOL PARTS
@@ -200,7 +200,7 @@ public class ModItems {
         GameRegistry.register(ironhoe);
 
         GameRegistry.register(ironsword);
-        GameRegistry.register(matchlockmusket);
+        //GameRegistry.register(matchlockmusket);
 
         //GameRegistry.register(forgingmanual);
     }
@@ -225,7 +225,7 @@ public class ModItems {
 
         registerRender(ironsword);
         //registerRender(forgingmanual);
-        registerRender(matchlockmusket);
+        //registerRender(matchlockmusket);
     }
 
     @SideOnly(Side.CLIENT)
