@@ -1,9 +1,9 @@
 {
 	"__comment": "Designed by Captainaviator with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "items/iron_ingot",
-		"texture": "blocks/planks_oak",
-		"texture1": "items/iron_ingot"
+		"particle": "primal:blocks/ores/steel_block",
+		"texture": "blocks/planks_big_oak",
+		"texture1": "primal:blocks/ores/steel_block"
 	},
 	"elements": [
 		{

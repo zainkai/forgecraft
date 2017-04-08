@@ -1,9 +1,9 @@
 {
   "parent": "forgecraft:item/matchlock_musket_model",
   "textures": {
-    "particle": "forgecraft:items/iron_ingot",
-    "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:items/iron_ingot"
+    "particle": "primal:blocks/ores/steel_block",
+    "texture": "blocks/planks_big_oak",
+    "texture1": "primal:blocks/ores/steel_block"
   },
   "overrides": [
     {"predicate": {"type": 0.0},"model": "forgecraft:item/matchlock_musket_0"},
