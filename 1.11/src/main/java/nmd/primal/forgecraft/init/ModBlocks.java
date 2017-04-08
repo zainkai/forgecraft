@@ -202,7 +202,7 @@ public class ModBlocks {
                 }
                 return false;
             }
-        };
+        }; // clean_iron_ingot ironcleanball.json ironcleanballhot.json - done
         steelball = new IngotBall(Material.IRON, "steelball", 6.0f, "ingot"){
             @Override
             public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
@@ -254,7 +254,7 @@ public class ModBlocks {
                 }
                 return false;
             }
-        };
+        }; // steel_ingot steelball.json steelballhot.json
         wootzball = new IngotBall(Material.IRON, "wootzball", 6.0f, "ingot") {
         @Override
         public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
@@ -306,12 +306,12 @@ public class ModBlocks {
             }
             return false;
         }
-    };
+    }; //wootz_ingot wootzball.json wootzballhot.json
 
         ironchunk = new IngotBall(Material.IRON, "ironchunk", 5.0F, "chunk");
-        ironcleanchunk = new IngotBall(Material.IRON, "ironcleanchunk", 5.0F, "chunk");
-        steelchunk = new IngotBall(Material.IRON, "steelchunk", 6.0f, "chunk");
-        wootzchunk = new IngotBall(Material.IRON, "wootzchunk", 6.0f, "chunk");
+        ironcleanchunk = new IngotBall(Material.IRON, "ironcleanchunk", 5.0F, "chunk"); //Lyle to make assets clean_iron_ingot, blockstate\ironcleanchunk.json, item\ironcleanchunk.json, item\ironcleanchunkhot.json - done
+        steelchunk = new IngotBall(Material.IRON, "steelchunk", 6.0f, "chunk"); //steel_ingot steelchunk.json steelchunkhot.json - done
+        wootzchunk = new IngotBall(Material.IRON, "wootzchunk", 6.0f, "chunk"); //wootz_ingot wootzchunk.json wootzchunkhot.json - done
 
         stoneanvil = new Anvil(Material.ANVIL, "stoneanvil", 5.0f);
         ironanvil = new Anvil(Material.ANVIL, "ironanvil", 6.0f);
