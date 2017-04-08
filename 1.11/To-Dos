@@ -6,8 +6,9 @@ To-Dos
 *** Priority ***
 - [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Make an Iron Anvil
-- [ ] Make Clean Iron Recipes and Tools
- - [ ] Make Clean Ore Recipe
+  - [ ] Check Iron Anvil creation logic
+- [ ] Make New Ore Tool, Tool Part, Ingot, and Chunk Assets
+- [ ] Make New Ore Recipes
 - [ ] Make Steel Recipes and Tools
 - [ ] Make Wootz Recipes and Tools
 - [ ] Add Yew

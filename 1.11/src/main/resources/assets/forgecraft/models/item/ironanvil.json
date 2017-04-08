@@ -1,0 +1,9 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "forgecraft:blocks/anvil_base",
+    "texture": "forgecraft:blocks/anvil_base",
+    "texture1": "forgecraft:blocks/anvil_base_top"
+  },
+  "parent": "forgecraft:block/ironanvil"
+}
