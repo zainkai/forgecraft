@@ -147,14 +147,14 @@ public class ModItems {
         cleanironhoe = new CustomHoe("cleanironhoe", ModMaterials.CLEAN_IRON);
 
         steelpickaxe = new CustomPickaxe("steelpickaxe", ModMaterials.BASIC_STEEL);
-        steelaxe = new CustomAxe("steelironaxe", ModMaterials.BASIC_STEEL);
-        steelshovel = new CustomShovel("steelironshovel", ModMaterials.BASIC_STEEL);
-        steelhoe = new CustomHoe("steelironhoe", ModMaterials.BASIC_STEEL);
+        steelaxe = new CustomAxe("steelaxe", ModMaterials.BASIC_STEEL);
+        steelshovel = new CustomShovel("steelshovel", ModMaterials.BASIC_STEEL);
+        steelhoe = new CustomHoe("steelhoe", ModMaterials.BASIC_STEEL);
 
         wootzpickaxe = new CustomPickaxe("wootzpickaxe", ModMaterials.WOOTZ_STEEL);
-        wootzaxe = new CustomAxe("wootzironaxe", ModMaterials.WOOTZ_STEEL);
-        wootzshovel = new CustomShovel("wootzironshovel", ModMaterials.WOOTZ_STEEL);
-        wootzhoe = new CustomHoe("wootzironhoe", ModMaterials.WOOTZ_STEEL);
+        wootzaxe = new CustomAxe("wootzaxe", ModMaterials.WOOTZ_STEEL);
+        wootzshovel = new CustomShovel("wootzshovel", ModMaterials.WOOTZ_STEEL);
+        wootzhoe = new CustomHoe("wootzhoe", ModMaterials.WOOTZ_STEEL);
 
         /**********
          WEAPONS
@@ -189,16 +189,55 @@ public class ModItems {
         GameRegistry.register(ironchunkhot);
         //GameRegistry.register(test);
 
+        /**********
+         TOOL PARTS
+         **********/
         GameRegistry.register(pickaxehead);
         GameRegistry.register(ironaxehead);
         GameRegistry.register(ironshovelhead);
         GameRegistry.register(ironhoehead);
 
+        GameRegistry.register(cleanironpickaxehead);
+        GameRegistry.register(cleanironaxehead);
+        GameRegistry.register(cleanironshovelhead);
+        GameRegistry.register(cleanironhoehead);
+
+        GameRegistry.register(steelpickaxehead);
+        GameRegistry.register(steelaxehead);
+        GameRegistry.register(steelshovelhead);
+        GameRegistry.register(steelhoehead);
+
+        GameRegistry.register(wootzpickaxehead);
+        GameRegistry.register(wootzaxehead);
+        GameRegistry.register(wootzshovelhead);
+        GameRegistry.register(wootzhoehead);
+
+        /**********
+         TOOLS
+         **********/
         GameRegistry.register(ironpickaxe);
         GameRegistry.register(ironaxe);
         GameRegistry.register(ironshovel);
         GameRegistry.register(ironhoe);
 
+        GameRegistry.register(cleanironpickaxe);
+        GameRegistry.register(cleanironaxe);
+        GameRegistry.register(cleanironshovel);
+        GameRegistry.register(cleanironhoe);
+
+        GameRegistry.register(steelpickaxe);
+        GameRegistry.register(steelaxe);
+        GameRegistry.register(steelshovel);
+        GameRegistry.register(steelhoe);
+
+        GameRegistry.register(wootzpickaxe);
+        GameRegistry.register(wootzaxe);
+        GameRegistry.register(wootzshovel);
+        GameRegistry.register(wootzhoe);
+
+        /**********
+         WEAPONS
+         **********/
         GameRegistry.register(ironsword);
         //GameRegistry.register(matchlockmusket);
 
@@ -213,16 +252,56 @@ public class ModItems {
         registerRender(ironingotballhot);
         registerRender(ironchunkhot);
         //registerRender(test);
+
+        /**********
+         TOOL PARTS
+         **********/
         registerRender(pickaxehead);
         registerRender(ironaxehead);
         registerRender(ironshovelhead);
         registerRender(ironhoehead);
 
+        registerRender(cleanironpickaxehead);
+        registerRender(cleanironaxehead);
+        registerRender(cleanironshovelhead);
+        registerRender(cleanironhoehead);
+
+        registerRender(steelpickaxehead);
+        registerRender(steelaxehead);
+        registerRender(steelshovelhead);
+        registerRender(steelhoehead);
+
+        registerRender(wootzpickaxehead);
+        registerRender(wootzaxehead);
+        registerRender(wootzshovelhead);
+        registerRender(wootzhoehead);
+
+        /**********
+         TOOLS
+         **********/
         registerRender(ironpickaxe);
         registerRender(ironaxe);
         registerRender(ironshovel);
         registerRender(ironhoe);
 
+        registerRender(cleanironpickaxe);
+        registerRender(cleanironaxe);
+        registerRender(cleanironshovel);
+        registerRender(cleanironhoe);
+
+        registerRender(steelpickaxe);
+        registerRender(steelaxe);
+        registerRender(steelshovel);
+        registerRender(steelhoe);
+
+        registerRender(wootzpickaxe);
+        registerRender(wootzaxe);
+        registerRender(wootzshovel);
+        registerRender(wootzhoe);
+
+        /**********
+         WEAPONS
+         **********/
         registerRender(ironsword);
         //registerRender(forgingmanual);
         //registerRender(matchlockmusket);

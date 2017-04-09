@@ -38,6 +38,11 @@ To-Dos
   - [ ] Gui
   - [ ] Crafting recipes
 
+*** Tid-Bits ***
+sed -i -- 's/iron/steel/g' *
+rm *.json--
+rename s/iron/steel/ iron*
+
 *** Completed ***
 - [x] Light Forge and Firebox with Firebow or Torch
 - [x] Any gallagher can be used to make a stone anvil
