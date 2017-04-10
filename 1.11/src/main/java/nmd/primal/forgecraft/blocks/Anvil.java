@@ -36,6 +36,8 @@ import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Created by mminaie on 3/4/17.
  */
@@ -70,7 +72,6 @@ public class Anvil extends CustomContainerFacing {
         super(material);
         setUnlocalizedName(registryName);
         setRegistryName(registryName);
-        //setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setHardness(hardness);
@@ -143,7 +144,7 @@ public class Anvil extends CustomContainerFacing {
                         world.playEvent(1031, pos, 0);
 
 
-                        if (world.rand.nextBoolean()) {
+                        if (ThreadLocalRandom.current().nextInt(0, 2)==0) {
 
                             if (recipe.getOutput().getItem() instanceof ToolPart) {
 

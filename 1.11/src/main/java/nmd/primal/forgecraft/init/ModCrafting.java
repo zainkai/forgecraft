@@ -41,6 +41,9 @@ public class ModCrafting {
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.bloomery),
                 "X X", "X X", "XXX", 'X', Items.BRICK);
 
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.blockbreaker),
+                "L  ", "BSB", "BBB", 'L', Blocks.LEVER, 'B', new ItemStack(Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE), 'S', PrimalItems.SILK_CORDAGE_COILED);
+
         /*** Soft Crucible ***/
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.softcrucible),
                 "X X", "X X", "XXX", 'X', Items.CLAY_BALL);
@@ -181,7 +184,7 @@ public class ModCrafting {
         );
 
 //Makes the Finished Hot Iron Crucible
-        BloomeryCrafting.addRecipe(
+/*        BloomeryCrafting.addRecipe(
                 new ItemStack(ModBlocks.hotcookedironcrucible, 1),
                 new ItemStack(ModBlocks.failedironcruciblehot, 1),
                 new ItemStack(ModBlocks.failedironcruciblehot, 1),
@@ -192,7 +195,7 @@ public class ModCrafting {
                 0.33f,
                 0.5f
         );
-
+*/
         /******************************************************************************
           FORGING
          ******************************************************************************/

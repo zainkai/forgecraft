@@ -15,6 +15,7 @@ public class ModTiles {
         registerTileEntity(TileBloomery.class, "bloomery");
         registerTileEntity(TileBaseCrucible.class, "basecrucible");
         registerTileEntity(TileAnvil.class, "anvil");
+        registerTileEntity(TileBreaker.class, "breaker");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> tile_class, String baseName) {

@@ -35,12 +35,15 @@ public class ModBlocks {
 
     public static Block firebox;
     public static Block bloomery;
+    public static Block blockbreaker;
+
     public static Block pistonbellowsoak;
     public static Block pistonbellowsjungle;
     public static Block pistonbellowsbirch;
     public static Block pistonbellowsspruce;
     public static Block pistonbellowsdarkoak;
     public static Block pistonbellowsacacia;
+
     public static Block emptycrucible;
     public static Block emptycruciblehot;
     public static Block emptycruciblecracked;
@@ -69,8 +72,8 @@ public class ModBlocks {
     public static void init() {
 
         firebox = new Forge(Material.ROCK);
-
         bloomery = new Bloomery(Material.ROCK, "bloomery");
+        blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
         pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");
@@ -324,6 +327,7 @@ public class ModBlocks {
     public static void register() {
         registerBlock(firebox);
         registerBlock(bloomery);
+        registerBlock(blockbreaker);
 
         registerBlock(pistonbellowsoak);
         registerBlock(pistonbellowsjungle);
@@ -365,6 +369,7 @@ public class ModBlocks {
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(firebox);
+        registerRender(blockbreaker);
         registerRender(pistonbellowsoak);
         registerRender(pistonbellowsjungle);
         registerRender(pistonbellowsbirch);

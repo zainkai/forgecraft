@@ -3,14 +3,8 @@ package nmd.primal.forgecraft.proxy;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.renders.blocks.TileAnvilRender;
-import nmd.primal.forgecraft.renders.blocks.TileBloomeryRender;
-import nmd.primal.forgecraft.renders.blocks.TileForgeRender;
-import nmd.primal.forgecraft.renders.blocks.TilePistonBellowsRender;
-import nmd.primal.forgecraft.tiles.TileAnvil;
-import nmd.primal.forgecraft.tiles.TileBloomery;
-import nmd.primal.forgecraft.tiles.TileForge;
-import nmd.primal.forgecraft.tiles.TilePistonBellows;
+import nmd.primal.forgecraft.renders.blocks.*;
+import nmd.primal.forgecraft.tiles.*;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -39,6 +33,7 @@ public class ClientProxy implements CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TilePistonBellows.class, new TilePistonBellowsRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileBloomery.class, new TileBloomeryRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileAnvil.class, new TileAnvilRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileBreaker.class, new TileBreakerRender());
     }
 
     @Override
