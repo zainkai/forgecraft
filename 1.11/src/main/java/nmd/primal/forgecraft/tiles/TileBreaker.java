@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.tiles;
 
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -21,6 +22,7 @@ public class TileBreaker extends TileBaseSlot {
 
     public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(2, ItemStack.EMPTY);
 
+
     // ***************************************************************************** //
     //  NBT
     // ***************************************************************************** //
@@ -39,5 +41,6 @@ public class TileBreaker extends TileBaseSlot {
         super.writeNBT(nbt);
         return nbt;
     }
+
 
 }
