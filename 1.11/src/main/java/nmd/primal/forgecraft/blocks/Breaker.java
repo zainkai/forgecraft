@@ -122,10 +122,10 @@ public class Breaker extends CustomContainerFacing implements ITileEntityProvide
             }
 
             if(pItem.getItem() instanceof WorkMallet){
+                System.out.println(pItem);
                 tile.setSlotStack(0, pItem);
                 pItem.shrink(1);
-                tile.updateBlock();
-                System.out.println(tile.getSlotStack(0));
+                System.out.println(tile.getSlotStack(0) + " " + tile.getSlotListSize());
                 return true;
             }
 
