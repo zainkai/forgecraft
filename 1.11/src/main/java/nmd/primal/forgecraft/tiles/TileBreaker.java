@@ -25,7 +25,7 @@ public class TileBreaker extends TileBaseSlot implements ITickable {
         this.charge = charge;
     }
 
-    //public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(2, ItemStack.EMPTY);
+    public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(10, ItemStack.EMPTY);
 
     @Override
     public void update () {
@@ -33,15 +33,20 @@ public class TileBreaker extends TileBaseSlot implements ITickable {
         if (!world.isRemote) {
             IBlockState state = world.getBlockState(this.pos);
             for(int i =0; i < this.getSlotListSize(); i++) {
-                System.out.println(this.getSlotStack(i));
+                //System.out.println(this.getSlotStack(i));
             }
         }
+    }
+
+    @Override
+    public int getSlotLimit() {
+        return 1;
     }
 
     // ***************************************************************************** //
     //  NBT
     // ***************************************************************************** //
-    @Override
+    /*@Override
     public NBTTagCompound readNBT(NBTTagCompound nbt)
     {
         super.readNBT(nbt);
@@ -55,6 +60,6 @@ public class TileBreaker extends TileBaseSlot implements ITickable {
         nbt.setFloat("charge", this.charge);
         super.writeNBT(nbt);
         return nbt;
-    }
+    }*/
 
 }

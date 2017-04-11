@@ -60,9 +60,9 @@ public class Breaker extends CustomContainerFacing {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
         if(!world.isRemote){
-            System.out.println("tile: " + pos);
             TileBreaker tile = (TileBreaker) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
+            System.out.println(tile.getSlotStack(0));
             if(state.getValue(ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
                 world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, false));
                 tile.setCharge(0.0F);
@@ -123,8 +123,14 @@ public class Breaker extends CustomContainerFacing {
             }
 
             if(pItem.getItem() instanceof WorkMallet){
-                System.out.println(pItem);
-                tile.setSlotStack(0, pItem);
+                //System.out.println(pItem);
+                for(int i = 0; i < tile.getSlotListSize(); i++) {
+                    tile.setSlotStack(i, pItem);
+                    System.out.println(tile.getSlotStack(i));
+                    tile.update();
+                    tile.updateBlock();
+                    tile.updateContainingBlockInfo();
+                }
                 pItem.shrink(1);
 
                 return true;
