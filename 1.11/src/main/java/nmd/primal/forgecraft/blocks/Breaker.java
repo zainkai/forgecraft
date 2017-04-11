@@ -43,7 +43,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by mminaie on 4/9/17.
  */
-public class Breaker extends CustomContainerFacing implements ITileEntityProvider {
+public class Breaker extends CustomContainerFacing {
 
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
 
@@ -60,6 +60,7 @@ public class Breaker extends CustomContainerFacing implements ITileEntityProvide
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
         if(!world.isRemote){
+            System.out.println("tile: " + pos);
             TileBreaker tile = (TileBreaker) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             if(state.getValue(ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
@@ -125,7 +126,7 @@ public class Breaker extends CustomContainerFacing implements ITileEntityProvide
                 System.out.println(pItem);
                 tile.setSlotStack(0, pItem);
                 pItem.shrink(1);
-                System.out.println(tile.getSlotStack(0) + " " + tile.getSlotListSize());
+
                 return true;
             }
 
