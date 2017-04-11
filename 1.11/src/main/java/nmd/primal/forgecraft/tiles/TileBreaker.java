@@ -13,30 +13,20 @@ import java.util.List;
 /**
  * Created by mminaie on 4/9/17.
  */
-public class TileBreaker extends TileBaseSlot implements ITickable {
+public class TileBreaker extends TileBaseSlot {
 
-    private float charge;
+    public float charge = 0.0f;
 
-    public float getCharge() {
+    /*public float getCharge() {
         return charge;
     }
 
-    public void setCharge(float charge) {
-        this.charge = charge;
-    }
+    public void setCharge(float a) {
+        this.charge = a;
+        this.updateBlock();
+    }*/
 
-    public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(10, ItemStack.EMPTY);
-
-    @Override
-    public void update () {
-        World world = this.getWorld();
-        if (!world.isRemote) {
-            IBlockState state = world.getBlockState(this.pos);
-            for(int i =0; i < this.getSlotListSize(); i++) {
-                //System.out.println(this.getSlotStack(i));
-            }
-        }
-    }
+    public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
 
     @Override
     public int getSlotLimit() {
@@ -46,7 +36,7 @@ public class TileBreaker extends TileBaseSlot implements ITickable {
     // ***************************************************************************** //
     //  NBT
     // ***************************************************************************** //
-    /*@Override
+    @Override
     public NBTTagCompound readNBT(NBTTagCompound nbt)
     {
         super.readNBT(nbt);
@@ -60,6 +50,6 @@ public class TileBreaker extends TileBaseSlot implements ITickable {
         nbt.setFloat("charge", this.charge);
         super.writeNBT(nbt);
         return nbt;
-    }*/
+    }
 
 }
