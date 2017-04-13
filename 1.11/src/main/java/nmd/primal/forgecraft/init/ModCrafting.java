@@ -40,7 +40,7 @@ public class ModCrafting {
         /***Bloomery***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.bloomery),
                 "X X", "X X", "XXX", 'X', Items.BRICK);
-
+/***Block Breaker***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.blockbreaker),
                 "L  ", "BSB", "BBB", 'L', Blocks.LEVER, 'B', new ItemStack(Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE), 'S', PrimalItems.SILK_CORDAGE_COILED);
 
@@ -77,6 +77,7 @@ public class ModCrafting {
         /***Iron Crucible***/
 
         ItemStack iron0 = new ItemStack(ModBlocks.rawironcrucible, 1);
+        //ItemStack cleanIron = new ItemStack(ModBlocks.cleanironcrucible, 1);
 
         //Regular Iron Ore
         GameRegistry.addShapedRecipe(iron0,

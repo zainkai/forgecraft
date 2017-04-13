@@ -56,6 +56,52 @@ public class Breaker extends CustomContainerFacing {
         setHardness(hardness);
     }
 
+    private void doWork (World world, IBlockState state, BlockPos pos, TileBreaker tile){
+        if (state.getValue(FACING) == EnumFacing.EAST) {
+            if(tile.getCharge() > world.getBlockState(pos.east()).getBlockHardness(world, pos.east())) {
+                if (world.getBlockState(pos.east()).getBlock() == Blocks.IRON_ORE) {
+                    world.setBlockToAir(pos.east());
+                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
+                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-1);
+                }
+            } else {
+                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
+            }
+        }
+        if (state.getValue(FACING) == EnumFacing.WEST) {
+            if(tile.getCharge() > world.getBlockState(pos.west()).getBlockHardness(world, pos.west())) {
+                if (world.getBlockState(pos.west()).getBlock() == Blocks.IRON_ORE) {
+                    world.setBlockToAir(pos.west());
+                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
+                }
+            } else {
+                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
+            }
+        }
+        if (state.getValue(FACING) == EnumFacing.SOUTH) {
+            if(tile.getCharge() > world.getBlockState(pos.south()).getBlockHardness(world, pos.south())) {
+                if (world.getBlockState(pos.south()).getBlock() == Blocks.IRON_ORE) {
+                    world.setBlockToAir(pos.south());
+                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
+                }
+            } else {
+                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
+            }
+        }
+        if (state.getValue(FACING) == EnumFacing.NORTH) {
+            if(tile.getCharge() > world.getBlockState(pos.north()).getBlockHardness(world, pos.north())) {
+                if (world.getBlockState(pos.north()).getBlock() == Blocks.IRON_ORE) {
+                    world.setBlockToAir(pos.north());
+                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
+                }
+            } else {
+                //tile.getSlotStack(0).damageItem(10, (EntityPlayer) null);
+                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
+            }
+        }
+        tile.setCharge(0.0f);
+    }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
@@ -65,66 +111,16 @@ public class Breaker extends CustomContainerFacing {
 
             if(state.getValue(ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
                 world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, false));
-                tile.charge = 0.0f;
-                if (state.getValue(FACING) == EnumFacing.EAST) {
-                    if(tile.charge > world.getBlockState(pos.east()).getBlockHardness(world, pos.east())) {
-                        if (world.getBlockState(pos.east()).getBlock() == Blocks.IRON_ORE) {
-                            world.setBlockToAir(pos.east());
-                            CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                            return true;
-                        }
-                    } else {
-                        tile.getSlotStack(0).damageItem(10, null);
-                        return true;
-                    }
-                }
-                if (state.getValue(FACING) == EnumFacing.WEST) {
-                    if(tile.charge > world.getBlockState(pos.west()).getBlockHardness(world, pos.west())) {
-                        if (world.getBlockState(pos.west()).getBlock() == Blocks.IRON_ORE) {
-                            world.setBlockToAir(pos.west());
-                            CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                            return true;
-                        }
-                    } else {
-                        tile.getSlotStack(0).damageItem(10, null);
-                        return true;
-                    }
-                }
-                if (state.getValue(FACING) == EnumFacing.SOUTH) {
-                    if(tile.charge > world.getBlockState(pos.south()).getBlockHardness(world, pos.south())) {
-                        if (world.getBlockState(pos.south()).getBlock() == Blocks.IRON_ORE) {
-                            world.setBlockToAir(pos.south());
-                            CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                            return true;
-                        }
-                    } else {
-                        tile.getSlotStack(0).damageItem(10, null);
-                        return true;
-                    }
 
-                }
-                if (state.getValue(FACING) == EnumFacing.NORTH) {
-                    System.out.println(tile.charge + ":" + world.getBlockState(pos.north()).getBlockHardness(world, pos.north()));
-                    if(tile.charge > world.getBlockState(pos.north()).getBlockHardness(world, pos.north())) {
-                        if (world.getBlockState(pos.north()).getBlock() == Blocks.IRON_ORE) {
-                            world.setBlockToAir(pos.north());
-                            CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                            return true;
-                        }
-                    } else {
-                        //tile.getSlotStack(0).damageItem(10, (EntityPlayer) null);
-                        tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
-                        return true;
-                    }
-                }
+                doWork(world, state, pos, tile);
             }
             if(!player.isSneaking() && pItem.isEmpty()) {
                 if (!state.getValue(ACTIVE)) {
                     world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, true), 2);
                 }
-                tile.charge = tile.charge + 2.0f;
+                tile.setCharge(tile.getCharge() + 2.0f);
                 tile.updateBlock();
-                System.out.println(tile.charge);
+                //System.out.println(tile.charge);
                 return true;
             }
             /*if(state.getValue(ACTIVE) == true && !player.isSneaking() && pItem.isEmpty()){

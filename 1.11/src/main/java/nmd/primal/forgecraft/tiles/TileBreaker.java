@@ -15,16 +15,16 @@ import java.util.List;
  */
 public class TileBreaker extends TileBaseSlot {
 
-    public float charge = 0.0f;
+    private float charge = 0.0f;
 
-    /*public float getCharge() {
+    public float getCharge() {
         return charge;
     }
 
     public void setCharge(float a) {
         this.charge = a;
         this.updateBlock();
-    }*/
+    }
 
     public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
 

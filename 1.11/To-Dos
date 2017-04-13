@@ -6,13 +6,13 @@ To-Dos
 *** Priority ***
 - [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [x] Make an Iron Anvil
-  - [ ] Check Iron Anvil creation logic
-- [ ] Make New Ore Tool, Tool Part, Ingot, and Chunk Assets
+  - [x] Check Iron Anvil creation logic
+- [x] Make New Ore Tool, Tool Part, Ingot, and Chunk Assets
 - [ ] Make New Ore Recipes
-- [ ] Make Steel Recipes and Tools
-- [ ] Make Wootz Recipes and Tools
+- [x] Make Steel Recipes and Tools
+- [x] Make Wootz Recipes and Tools
 - [ ] Add Yew
-- [ ] Update tool parts and tool textures
+- [x] Update tool parts and tool textures
 
 *** Feature Musket ***
 - [ ] Create powder charge item (copper, charcoal, gunpowder)

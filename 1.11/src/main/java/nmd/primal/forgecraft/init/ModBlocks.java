@@ -56,6 +56,13 @@ public class ModBlocks {
     public static Block failedironcrucible;
     public static Block failedironcruciblehot;
 
+    public static Block rawcleanironcrucible;
+    public static Block hotcleanironcrucible;
+    public static Block hotcookedcleanironcrucible;
+    public static Block coolcleanironcrucible;
+    public static Block failedcleanironcrucible;
+    public static Block failedcleanironcruciblehot;
+
     public static Block ironball;
     public static Block ironchunk;
     public static Block ironcleanball;
@@ -91,6 +98,9 @@ public class ModBlocks {
         hotironcrucible = new CrucibleHot(Material.ROCK, "hotironcrucible");
         hotcookedironcrucible = new CrucibleHot(Material.ROCK, "hotcookedironcrucible");
         coolironcrucible = new Crucible(Material.ROCK, "coolironcrucible");
+
+        rawcleanironcrucible;
+
         failedironcrucible = new Crucible(Material.ROCK, "failedironcrucible");
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
 
