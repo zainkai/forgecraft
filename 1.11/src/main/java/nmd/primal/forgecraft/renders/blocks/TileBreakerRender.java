@@ -45,7 +45,7 @@ public class TileBreakerRender extends TileEntitySpecialRenderer<TileBreaker>
         if(state.getValue(Breaker.FACING) == EnumFacing.NORTH) {
             GL11.glPushMatrix();
             GL11.glRotated(90, 0.0f, 1.0f, 0.0f);
-            GL11.glRotatef(tile.charge, 0.0f, 0.0f, 1.0f);
+            GL11.glRotatef(tile.getCharge(), 0.0f, 0.0f, 1.0f);
             renderItem.renderItem(tile.getSlotStack(0), ItemCameraTransforms.TransformType.FIXED);
             GL11.glPopMatrix();
         }

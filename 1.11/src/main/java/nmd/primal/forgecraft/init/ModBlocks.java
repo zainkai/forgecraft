@@ -63,6 +63,20 @@ public class ModBlocks {
     public static Block failedcleanironcrucible;
     public static Block failedcleanironcruciblehot;
 
+    public static Block rawsteelcrucible;
+    public static Block hotsteelcrucible;
+    public static Block hotcookedsteelcrucible;
+    public static Block coolsteelcrucible;
+    public static Block failedsteelcrucible;
+    public static Block failedsteelcruciblehot;
+
+    public static Block rawwootzcrucible;
+    public static Block hotwootzcrucible;
+    public static Block hotcookedwootzcrucible;
+    public static Block coolwootzcrucible;
+    public static Block failedwootzcrucible;
+    public static Block failedwootzcruciblehot;
+
     public static Block ironball;
     public static Block ironchunk;
     public static Block ironcleanball;
@@ -98,11 +112,29 @@ public class ModBlocks {
         hotironcrucible = new CrucibleHot(Material.ROCK, "hotironcrucible");
         hotcookedironcrucible = new CrucibleHot(Material.ROCK, "hotcookedironcrucible");
         coolironcrucible = new Crucible(Material.ROCK, "coolironcrucible");
-
-        rawcleanironcrucible;
-
         failedironcrucible = new Crucible(Material.ROCK, "failedironcrucible");
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
+
+        rawcleanironcrucible = new Crucible(Material.ROCK, "rawcleanironcrucible");
+        hotcleanironcrucible = new Crucible(Material.ROCK, "hotcleanironcrucible");
+        hotcookedcleanironcrucible = new Crucible(Material.ROCK, "hotcookedcleanironcrucible");
+        coolcleanironcrucible = new Crucible(Material.ROCK, "coolcleanironcrucible");
+        failedcleanironcrucible = new Crucible(Material.ROCK, "failedcleanironcrucible");
+        failedcleanironcruciblehot = new Crucible(Material.ROCK, "failedcleanironcruciblehot");
+
+        rawsteelcrucible = new Crucible(Material.ROCK, "rawsteelcrucible");
+        hotsteelcrucible = new Crucible(Material.ROCK, "hotsteelcrucible");
+        hotcookedsteelcrucible = new Crucible(Material.ROCK, "hotcookedsteelcrucible");
+        coolsteelcrucible = new Crucible(Material.ROCK, "coolsteelcrucible");
+        failedsteelcrucible = new Crucible(Material.ROCK, "failedsteelcrucible");
+        failedsteelcruciblehot = new Crucible(Material.ROCK, "failedsteelcruciblehot");
+
+        rawwootzcrucible = new Crucible(Material.ROCK, "rawwootzcrucible");
+        hotwootzcrucible = new Crucible(Material.ROCK, "hotwootzcrucible");
+        hotcookedwootzcrucible = new Crucible(Material.ROCK, "hotcookedwootzcrucible");
+        coolwootzcrucible = new Crucible(Material.ROCK, "coolwootzcrucible");
+        failedwootzcrucible = new Crucible(Material.ROCK, "failedwootzcrucible");
+        failedwootzcruciblehot = new Crucible(Material.ROCK, "failedwootzcruciblehot");
 
         ironball = new IngotBall(Material.IRON, "ironball", 5.0F, "ingot") {
             @Override
@@ -358,6 +390,27 @@ public class ModBlocks {
         registerBlock(failedironcrucible);
         registerBlock(failedironcruciblehot);
 
+        registerBlock(rawcleanironcrucible);
+        registerBlock(hotcleanironcrucible);
+        registerBlock(hotcookedcleanironcrucible);
+        registerBlock(coolcleanironcrucible);
+        registerBlock(failedcleanironcrucible);
+        registerBlock(failedcleanironcruciblehot);
+
+        registerBlock(rawsteelcrucible);
+        registerBlock(hotsteelcrucible);
+        registerBlock(hotcookedsteelcrucible);
+        registerBlock(coolsteelcrucible);
+        registerBlock(failedsteelcrucible);
+        registerBlock(failedsteelcruciblehot);
+
+        registerBlock(rawwootzcrucible);
+        registerBlock(hotwootzcrucible);
+        registerBlock(hotcookedwootzcrucible);
+        registerBlock(coolwootzcrucible);
+        registerBlock(failedwootzcrucible);
+        registerBlock(failedwootzcruciblehot);
+
         registerBlock(ironball);
         registerBlock(ironchunk);
 
@@ -398,6 +451,27 @@ public class ModBlocks {
         registerRender(coolironcrucible);
         registerRender(failedironcrucible);
         registerRender(failedironcruciblehot);
+
+        registerRender(rawcleanironcrucible);
+        registerRender(hotcleanironcrucible);
+        registerRender(hotcookedcleanironcrucible);
+        registerRender(coolcleanironcrucible);
+        registerRender(failedcleanironcrucible);
+        registerRender(failedcleanironcruciblehot);
+
+        registerRender(rawsteelcrucible);
+        registerRender(hotsteelcrucible);
+        registerRender(hotcookedsteelcrucible);
+        registerRender(coolsteelcrucible);
+        registerRender(failedsteelcrucible);
+        registerRender(failedsteelcruciblehot);
+
+        registerRender(rawwootzcrucible);
+        registerRender(hotwootzcrucible);
+        registerRender(hotcookedwootzcrucible);
+        registerRender(coolwootzcrucible);
+        registerRender(failedwootzcrucible);
+        registerRender(failedwootzcruciblehot);
 
         registerRender(ironball);
         registerRender(ironchunk);

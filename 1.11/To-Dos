@@ -4,11 +4,18 @@ To-Dos
 - [ ] Duplication Bug for Tool Repair
 
 *** Priority ***
+- [ ] Change how bloomery does recipe cookTime
+- [x] Update blockstates with:
+  - [x] cleanIron
+  - [x] steel
+  - [x] wootz
+- [ ] Fix Breaker Render to rotate correctly
+
 - [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [x] Make an Iron Anvil
   - [x] Check Iron Anvil creation logic
 - [x] Make New Ore Tool, Tool Part, Ingot, and Chunk Assets
-- [ ] Make New Ore Recipes
+- [ ] Make All Accompanying Recipes
 - [x] Make Steel Recipes and Tools
 - [x] Make Wootz Recipes and Tools
 - [ ] Add Yew

@@ -6,7 +6,7 @@
     "texture1": "forgecraft:items/clean_iron_ingot"
   },
   "overrides": [
-    {"predicate": {"type": 0.0},"model": "forgecraft:item/hoehead/cleaniron/cleanironhoehead_0"},
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/hoehead/cleaniron/ironhoehead_0"},
     {"predicate": {"type": 0.0001},"model": "forgecraft:item/hoehead/cleaniron/ironhoehead_13"},
     {"predicate": {"type": 0.0002},"model": "forgecraft:item/hoehead/cleaniron/ironhoehead_14"},
     {"predicate": {"type": 0.0003},"model": "forgecraft:item/hoehead/cleaniron/ironhoehead_15"},

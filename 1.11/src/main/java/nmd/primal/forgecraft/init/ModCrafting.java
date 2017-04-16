@@ -76,12 +76,24 @@ public class ModCrafting {
 
         /***Iron Crucible***/
 
-        ItemStack iron0 = new ItemStack(ModBlocks.rawironcrucible, 1);
-        //ItemStack cleanIron = new ItemStack(ModBlocks.cleanironcrucible, 1);
 
         //Regular Iron Ore
-        GameRegistry.addShapedRecipe(iron0,
-                " X ", " Y ", 'X', Blocks.IRON_ORE, 'Y', ModBlocks.emptycrucible);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible),
+                "X","Y",
+                ('X'), "oreIron",
+                ('Y'), ModBlocks.emptycrucible));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
+                "X","Y",
+                ('X'), "dustIron",
+                ('Y'), ModBlocks.emptycrucible));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
+                "XC","Y ",
+                ('X'), "dustIron",
+                ('C'), new ItemStack(Items.COAL, 1, 1),
+                ('Y'), ModBlocks.emptycrucible));
+
 
         /***Pickaxe Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironpickaxe), "T", "C", "S",
@@ -89,23 +101,63 @@ public class ModCrafting {
                 ('S'), "stickWood",
                 ('C'), "cordageGeneral"));
 
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe), "T", "C", "S",
+                ('T'), ModItems.cleanironpickaxehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelpickaxe), "T", "C", "S",
+                ('T'), ModItems.steelpickaxehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+
+        //placeholder wootz
+
         /***Axe Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe), "T", "C", "S",
                 ('T'), ModItems.ironaxehead,
                 ('S'), "stickWood",
                 ('C'), "cordageGeneral"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironaxe), "T", "C", "S",
+                ('T'), ModItems.cleanironaxehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelaxe), "T", "C", "S",
+                ('T'), ModItems.steelaxehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+        //wootz placeholder
 
         /***Shovel Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovel), "T", "C", "S",
                 ('T'), ModItems.ironshovelhead,
                 ('S'), "stickWood",
                 ('C'), "cordageGeneral"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironshovel), "T", "C", "S",
+                ('T'), ModItems.cleanironshovelhead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelshovel), "T", "C", "S",
+                ('T'), ModItems.steelshovelhead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+        //placed holder for wootz
 
         /***Hoe Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoe), "T", "C", "S",
                 ('T'), ModItems.ironhoehead,
                 ('S'), "stickWood",
                 ('C'), "cordageGeneral"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironhoe), "T", "C", "S",
+                ('T'), ModItems.cleanironhoehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelhoe), "T", "C", "S",
+                ('T'), ModItems.steelhoehead,
+                ('S'), "stickWood",
+                ('C'), "cordageGeneral"));
+
+        //PLACE HOLDER FOR WOOTZ STEEL
 
 
         /***************************************************************
@@ -126,9 +178,31 @@ public class ModCrafting {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 true, "X", ('X'), new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE)));
 
-        /*GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(PrimalBlocks.SOULSTONE_CHISELED, 1), true, new Object[]{"S", "S",
-                ('S'), PrimalBlocks.SLAB_SOULSTONE
-        }));*/
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE)));
+
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE)));
 
         /***************************************************************/
 
@@ -184,19 +258,61 @@ public class ModCrafting {
                 0.5f
         );
 
-//Makes the Finished Hot Iron Crucible
-/*        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotcookedironcrucible, 1),
-                new ItemStack(ModBlocks.failedironcruciblehot, 1),
-                new ItemStack(ModBlocks.failedironcruciblehot, 1),
-                new ItemStack(ModBlocks.failedironcrucible, 1),
+//Makes the Hot Clean Iron Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawcleanironcrucible, 1),
+                new ItemStack(ModBlocks.hotcleanironcrucible, 1),
+                new ItemStack(ModBlocks.hotcleanironcrucible, 1),
+                new ItemStack(ModBlocks.rawcleanironcrucible, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+        );
+
+//Makes the Finished Hot Clean Iron Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotcleanironcrucible, 1),
+                new ItemStack(ModBlocks.hotcookedcleanironcrucible, 1),
+                new ItemStack(ModBlocks.failedcleanironcrucible, 1),
+                new ItemStack(ModBlocks.coolcleanironcrucible, 1),
                 1550,
                 1200,
                 800,
                 0.33f,
                 0.5f
         );
-*/
+
+        //Makes the Hot Steel Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawsteelcrucible, 1),
+                new ItemStack(ModBlocks.hotsteelcrucible, 1),
+                new ItemStack(ModBlocks.hotsteelcrucible, 1),
+                new ItemStack(ModBlocks.rawsteelcrucible, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+        );
+
+//Makes the Finished Hot Steel Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotsteelcrucible, 1),
+                new ItemStack(ModBlocks.hotcookedsteelcrucible, 1),
+                new ItemStack(ModBlocks.failedsteelcrucible, 1),
+                new ItemStack(ModBlocks.coolsteelcrucible, 1),
+                1550,
+                1500,
+                1000,
+                0.2f,
+                0.25f
+        );
+
+        //PLACE HOLDER FOR WOOTZ
+
+
         /******************************************************************************
           FORGING
          ******************************************************************************/
@@ -211,8 +327,28 @@ public class ModCrafting {
                 1.0f,
                 1.0f
         );
+//Makes a Hot Clean Iron Ingot
+        ForgeCrafting.addRecipe(
+                Item.getItemFromBlock(ModBlocks.ironcleanball),
+                new ItemStack(ModItems.ironcleaningotballhot, 1),
+                900,
+                250,
+                500,
+                1.0f,
+                1.0f
+        );
+//Makes a Hot Steel Ingot
+        ForgeCrafting.addRecipe(
+                Item.getItemFromBlock(ModBlocks.steelball),
+                new ItemStack(ModItems.steelingotballhot, 1),
+                1000,
+                300,
+                500,
+                1.0f,
+                1.0f
+        );
 
-        // Converts a Vanilla Ingot into ForgeCraft Ingot Ball
+// Converts a Vanilla Ingot into ForgeCraft Ingot Ball
         ForgeCrafting.addRecipe(
                 Items.IRON_INGOT,
                 new ItemStack(ModItems.ironingotballhot, 1),
@@ -230,6 +366,26 @@ public class ModCrafting {
                 800,
                 160,
                 400,
+                1.0f,
+                1.0f
+        );
+//Makes a Hot Clean Iron Chunk
+        ForgeCrafting.addRecipe(
+                Item.getItemFromBlock(ModBlocks.ironcleanchunk),
+                new ItemStack(ModItems.ironcleanchunkhot,1),
+                900,
+                250,
+                500,
+                1.0f,
+                1.0f
+        );
+//Makes a Hot Steel Chunk
+        ForgeCrafting.addRecipe(
+                Item.getItemFromBlock(ModBlocks.steelchunk),
+                new ItemStack(ModItems.steelchunkhot,1),
+                1000,
+                300,
+                500,
                 1.0f,
                 1.0f
         );
