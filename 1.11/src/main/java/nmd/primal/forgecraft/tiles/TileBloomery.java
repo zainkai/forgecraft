@@ -40,6 +40,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             this.iteration ++;
             if(this.iteration == 300 ) {
                 this.iteration = 0;
+
                 //IBlockState state = world.getBlockState(this.pos);
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
                 if (world.getBlockState(this.getPos()).getValue(Bloomery.ACTIVE)) {
@@ -68,14 +69,14 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             if(cookCounter >= recipe.getIdealTime() ){
                 if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
                     this.setSlotStack(1, recipe.getOutput());
-                    this.cookCounter = 0;
+                    //this.cookCounter = 0;
                     //System.out.print(" :Success: " + this.getSlotStack(1));
                     this.updateBlock();
                     this.markDirty();
                 }
             }
             if(cookCounter > recipe.getIdealTime() + (recipe.getIdealTime() * recipe.getTimeVariance())){
-                if(this.getSlotStack(1).getItem() == recipe.getInput().getItem()) {
+                if(this.getSlotStack(1).getItem() == recipe.getOutput().getItem()) {
                     this.setSlotStack(1, recipe.getOutputFailed());
                     this.cookCounter = 0;
                     //System.out.print(" :Failure Time: " + this.getSlotStack(1));

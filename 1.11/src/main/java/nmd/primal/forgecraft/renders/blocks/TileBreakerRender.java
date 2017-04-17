@@ -30,7 +30,7 @@ public class TileBreakerRender extends TileEntitySpecialRenderer<TileBreaker>
     public void renderTileEntityAt(TileBreaker tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
         GL11.glPushMatrix();
-        GL11.glTranslated(x + 0.5D, y + 0.95D, z + 0.5D);
+        GL11.glTranslated(x , y, z);
         GL11.glScalef(1.0f,1.0f,1.0f);
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         float prevLGTX = OpenGlHelper.lastBrightnessX;
@@ -44,11 +44,64 @@ public class TileBreakerRender extends TileEntitySpecialRenderer<TileBreaker>
 
         if(state.getValue(Breaker.FACING) == EnumFacing.NORTH) {
             GL11.glPushMatrix();
+            GL11.glTranslated(0.5D, 0.450D, 0.7);
             GL11.glRotated(90, 0.0f, 1.0f, 0.0f);
+            GL11.glRotatef(-135, 0.0f, 0.0f, 1.0f);
+
             GL11.glRotatef(tile.getCharge(), 0.0f, 0.0f, 1.0f);
+
+            GL11.glTranslatef(0.0f, 0.40f, 0.0f);
+            GL11.glTranslated(-0.45D, 0.0D, 0.0D);
+
             renderItem.renderItem(tile.getSlotStack(0), ItemCameraTransforms.TransformType.FIXED);
             GL11.glPopMatrix();
         }
+
+        if(state.getValue(Breaker.FACING) == EnumFacing.EAST) {
+            GL11.glPushMatrix();
+            GL11.glTranslated(0.3D, 0.450D, 0.5);
+            //GL11.glRotated(90, 0.0f, 1.0f, 0.0f);
+            GL11.glRotatef(-135, 0.0f, 0.0f, 1.0f);
+
+            GL11.glRotatef(tile.getCharge(), 0.0f, 0.0f, 1.0f);
+
+            GL11.glTranslatef(0.0f, 0.40f, 0.0f);
+            GL11.glTranslated(-0.45D, 0.0D, 0.0D);
+
+            renderItem.renderItem(tile.getSlotStack(0), ItemCameraTransforms.TransformType.FIXED);
+            GL11.glPopMatrix();
+        }
+
+        if(state.getValue(Breaker.FACING) == EnumFacing.SOUTH) {
+            GL11.glPushMatrix();
+            GL11.glTranslated(0.5D, 0.450D, 0.3);
+            GL11.glRotated(90, 0.0f, 1.0f, 0.0f);
+            GL11.glRotatef(45, 0.0f, 0.0f, 1.0f);
+
+            GL11.glRotatef(tile.getCharge(), 0.0f, 0.0f, -1.0f);
+
+            GL11.glTranslatef(0.0f, 0.40f, 0.0f);
+            GL11.glTranslated(-0.45D, 0.0D, 0.0D);
+
+            renderItem.renderItem(tile.getSlotStack(0), ItemCameraTransforms.TransformType.FIXED);
+            GL11.glPopMatrix();
+        }
+
+        if(state.getValue(Breaker.FACING) == EnumFacing.WEST) {
+            GL11.glPushMatrix();
+            GL11.glTranslated(0.7D, 0.450D, 0.5);
+            //GL11.glRotated(90, 0.0f, 1.0f, 0.0f);
+            GL11.glRotatef(45, 0.0f, 0.0f, 1.0f);
+
+            GL11.glRotatef(tile.getCharge(), 0.0f, 0.0f, -1.0f);
+
+            GL11.glTranslatef(0.0f, 0.40f, 0.0f);
+            GL11.glTranslated(-0.45D, 0.0D, 0.0D);
+
+            renderItem.renderItem(tile.getSlotStack(0), ItemCameraTransforms.TransformType.FIXED);
+            GL11.glPopMatrix();
+        }
+
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
         GL11.glPopMatrix();
     }

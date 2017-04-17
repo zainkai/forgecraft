@@ -1,25 +1,12 @@
 To-Dos
 
 *** Bugs ***
-- [ ] Duplication Bug for Tool Repair
+
 
 *** Priority ***
-- [ ] Change how bloomery does recipe cookTime
-- [x] Update blockstates with:
-  - [x] cleanIron
-  - [x] steel
-  - [x] wootz
-- [ ] Fix Breaker Render to rotate correctly
-
+- [ ] StoneTongs for all tool heads
 - [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
-- [x] Make an Iron Anvil
-  - [x] Check Iron Anvil creation logic
-- [x] Make New Ore Tool, Tool Part, Ingot, and Chunk Assets
-- [ ] Make All Accompanying Recipes
-- [x] Make Steel Recipes and Tools
-- [x] Make Wootz Recipes and Tools
 - [ ] Add Yew
-- [x] Update tool parts and tool textures
 
 *** Feature Musket ***
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -51,6 +38,20 @@ rm *.json--
 rename s/iron/steel/ iron*
 
 *** Completed ***
+- [x] Change how bloomery does recipe cookTime
+- [x] Duplication Bug for Tool Repair
+- [x] Fix Breaker Render to rotate correctly
+- [x] Make All Accompanying Recipes
+- [x] Update blockstates with:
+  - [x] cleanIron
+  - [x] steel
+  - [x] wootz
+- [x] Make an Iron Anvil
+  - [x] Check Iron Anvil creation logic
+- [x] Make New Ore Tool, Tool Part, Ingot, and Chunk Assets
+- [x] Make Steel Recipes and Tools
+- [x] Make Wootz Recipes and Tools
+- [x] Update tool parts and tool textures
 - [x] Light Forge and Firebox with Firebow or Torch
 - [x] Any gallagher can be used to make a stone anvil
 - [x] Update Crafting for tools to include leatherStrap

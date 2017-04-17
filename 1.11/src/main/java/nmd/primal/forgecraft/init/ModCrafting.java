@@ -84,13 +84,14 @@ public class ModCrafting {
                 ('Y'), ModBlocks.emptycrucible));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
-                "X","Y",
+                "XL","Y ",
                 ('X'), "dustIron",
+                ('L'), PrimalItems.CARBONATE_SLACK,
                 ('Y'), ModBlocks.emptycrucible));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
                 "XC","Y ",
-                ('X'), "dustIron",
+                ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
                 ('C'), new ItemStack(Items.COAL, 1, 1),
                 ('Y'), ModBlocks.emptycrucible));
 
@@ -390,7 +391,7 @@ public class ModCrafting {
                 1.0f
         );
 
-//Makes a Hot PickaxeHead
+        /***Makes a Hot Iron PickaxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.pickaxehead,
                 new ItemStack(ModItems.pickaxehead, 1 ),
@@ -401,7 +402,31 @@ public class ModCrafting {
                 1.0f
         );
 
-        //Makes a Hot AxeHead
+        /***Makes a Hot Clean Iron PickaxeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.cleanironpickaxehead,
+                new ItemStack(ModItems.cleanironpickaxehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+
+        /***Makes a Hot Steel PickaxeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.steelpickaxehead,
+                new ItemStack(ModItems.steelpickaxehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+
+        //TODO Wootz Pickaxe
+
+        /***Makes a Hot Iron AxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironaxehead,
                 new ItemStack(ModItems.ironaxehead, 1 ),
@@ -411,7 +436,29 @@ public class ModCrafting {
                 1.0f,
                 1.0f
         );
-        //Makes a Hot ShovelHead
+        /***Makes a Hot Clean Iron AxeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.cleanironaxehead,
+                new ItemStack(ModItems.cleanironaxehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+        /***Makes a Hot Steel AxeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.steelaxehead,
+                new ItemStack(ModItems.steelaxehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+        //TODO Wootz
+
+        /***Makes a Hot Iron ShovelHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironshovelhead,
                 new ItemStack(ModItems.ironshovelhead, 1 ),
@@ -421,7 +468,29 @@ public class ModCrafting {
                 1.0f,
                 1.0f
         );
-        //Makes a Hot HoeHead
+        /***Makes a Hot Clean Iron ShovelHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.cleanironshovelhead,
+                new ItemStack(ModItems.cleanironshovelhead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+        /***Makes a Hot Steel ShovelHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.steelshovelhead,
+                new ItemStack(ModItems.steelshovelhead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+    //TODO Wootz
+
+        /***Makes a Hot Iron HoeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironhoehead,
                 new ItemStack(ModItems.ironhoehead, 1 ),
@@ -431,7 +500,27 @@ public class ModCrafting {
                 1.0f,
                 1.0f
         );
-
+        /***Makes a Hot Clean Iron HoeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.cleanironhoehead,
+                new ItemStack(ModItems.cleanironhoehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+        /***Makes a Hot Steel HoeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.steelhoehead,
+                new ItemStack(ModItems.steelhoehead, 1 ),
+                800,
+                160,
+                400,
+                1.0f,
+                1.0f
+        );
+    //TODO Wootz
 
         /******************************************************************************
                ANVILING
@@ -439,6 +528,9 @@ public class ModCrafting {
 
         String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
         String hotChunk = ModItems.ironchunkhot.getRegistryName().toString();
+        String hotCleanChunk = ModItems.ironcleanchunkhot.getRegistryName().toString();
+        String hotSteelChunk = ModItems.steelchunkhot.getRegistryName().toString();
+
         String diamond = Items.DIAMOND.getRegistryName().toString();
         String emerald = Items.EMERALD.getRegistryName().toString();
 
@@ -451,6 +543,21 @@ public class ModCrafting {
         String ironaxehead = ModItems.ironaxehead.getRegistryName().toString();
         String ironshovelhead = ModItems.ironshovelhead.getRegistryName().toString();
         String ironhoehead = ModItems.ironhoehead.getRegistryName().toString();
+
+        String cleanpickaxehead = ModItems.cleanironpickaxehead.getRegistryName().toString();
+        String cleanaxehead = ModItems.cleanironaxehead.getRegistryName().toString();
+        String cleanshovelhead = ModItems.cleanironshovelhead.getRegistryName().toString();
+        String cleanhoehead = ModItems.cleanironhoehead.getRegistryName().toString();
+
+        String steelpickaxehead = ModItems.steelpickaxehead.getRegistryName().toString();
+        String steelaxehead = ModItems.steelaxehead.getRegistryName().toString();
+        String steelshovelhead = ModItems.steelshovelhead.getRegistryName().toString();
+        String steelhoehead = ModItems.steelhoehead.getRegistryName().toString();
+
+        String wootzpickaxehead = ModItems.wootzpickaxehead.getRegistryName().toString();
+        String wootzaxehead = ModItems.wootzaxehead.getRegistryName().toString();
+        String wootzshovelhead = ModItems.wootzshovelhead.getRegistryName().toString();
+        String wootzhoehead =  ModItems.wootzhoehead.getRegistryName().toString();
 
         /*
         Empty = 0
@@ -517,6 +624,28 @@ public class ModCrafting {
                 new ItemStack(ModItems.ironsword, 1),
                 "null"
         );
+        /*** Temp Clean Iron Sword ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
+                        empty,empty,hotCleanChunk,empty,empty },
+                new ItemStack(ModItems.cleanironsword, 1),
+                "null"
+        );
+        /*** Temp Steel Sword ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
+                        empty,empty,hotSteelChunk,empty,empty },
+                new ItemStack(ModItems.steelsword, 1),
+                "null"
+        );
 
         /*** Flaked emerald ***/
         AnvilCrafting.addRecipe(
@@ -530,7 +659,10 @@ public class ModCrafting {
                 "null"
         );
 
-        /***Pickaxe Head***/
+        /*******************************************************
+         *                       Pickaxes                      *
+         *******************************************************/
+        /***Iron Pickaxe Head***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -541,8 +673,31 @@ public class ModCrafting {
                 new ItemStack(ModItems.pickaxehead, 1),
                 "null"
         );
+        /***Clean Iron Pickaxe Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
+                        hotCleanChunk,empty,empty,empty,hotCleanChunk,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironpickaxehead, 1),
+                "null"
+        );
+        /***Steel Pickaxe Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
+                        hotSteelChunk,empty,empty,empty,hotSteelChunk,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelpickaxehead, 1),
+                "null"
+        );
+        //TODO wootz
 
-        /*** REPAIR Pickaxe Head***/
+        /*** REPAIR Iron Pickaxe Head***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -553,8 +708,31 @@ public class ModCrafting {
                 new ItemStack(ModItems.pickaxehead, 1),
                 "repair"
         );
+        /*** REPAIR Clean Iron Pickaxe Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,empty,cleanpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironpickaxehead, 1),
+                "repair"
+        );
+        /*** REPAIR Steel Pickaxe Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,empty,steelpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelpickaxehead, 1),
+                "repair"
+        );
+        //TODO Wootz
 
-        /*** Emerald Upgrade to Pickaxe Head ***/
+        /*** Emerald Upgrade to Iron Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -566,7 +744,7 @@ public class ModCrafting {
                 "emerald"
         );
 
-        /*** Diamond Upgrade to Pickaxe Head ***/
+        /*** Diamond Upgrade to Iron Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -578,7 +756,7 @@ public class ModCrafting {
                 "diamond"
         );
 
-        /*** Redstone Upgrade to Pickaxe Head ***/
+        /*** Redstone Upgrade to Iron Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -590,7 +768,7 @@ public class ModCrafting {
                 "redstone"
         );
 
-        /*** Lapis Upgrade to Pickaxe Head ***/
+        /*** Lapis Upgrade to Iron Pickaxe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -602,7 +780,105 @@ public class ModCrafting {
                 "lapis"
         );
 
-        /*** Axe Head ***/
+        /*** Emerald Upgrade to Clean Iron Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,cleanpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironpickaxehead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Clean Iron Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,cleanpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironpickaxehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Clean Iron Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,cleanpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironpickaxehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Clean Iron Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,cleanpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironpickaxehead, 1),
+                "lapis"
+        );
+
+        /*** Emerald Upgrade to Steel Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,steelpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelpickaxehead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Steel Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,steelpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelpickaxehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Steel Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,steelpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelpickaxehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Steel Pickaxe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,steelpickaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelpickaxehead, 1),
+                "lapis"
+        );
+
+        /*******************************************************
+         *                        Axes                         *
+         *******************************************************/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,hotChunk,hotChunk,empty,empty,
@@ -613,7 +889,6 @@ public class ModCrafting {
                 new ItemStack(ModItems.ironaxehead, 1),
                 "null"
         );
-
         /*** REPAIR AXE Head***/
         AnvilCrafting.addRecipe(
                 new String[] {
@@ -625,6 +900,51 @@ public class ModCrafting {
                 new ItemStack(ModItems.ironaxehead, 1),
                 "repair"
         );
+        /*** Clean Iron Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,hotCleanChunk,hotCleanChunk,empty,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
+                        empty,hotCleanChunk,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironaxehead, 1),
+                "null"
+        );
+        /*** REPAIR Clean Iron AXE Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotChunk,empty,empty,
+                        empty,empty,cleanaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironaxehead, 1),
+                "repair"
+        );
+        /*** Steel Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,hotSteelChunk,hotSteelChunk,empty,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
+                        empty,hotSteelChunk,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelaxehead, 1),
+                "null"
+        );
+        /*** REPAIR steel AXE Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,empty,steelaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelaxehead, 1),
+                "repair"
+        );
+
 
         /*** Emerald Upgrade to Axe Head ***/
         AnvilCrafting.addRecipe(
@@ -674,7 +994,106 @@ public class ModCrafting {
                 "lapis"
         );
 
-        /*** Shovel Head ***/
+        /*** Emerald Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,cleanaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironaxehead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,cleanaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironaxehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,cleanaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironaxehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,cleanaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironaxehead, 1),
+                "lapis"
+        );
+
+        /*** Emerald Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,steelaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelaxehead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,steelaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelaxehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,steelaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelaxehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Axe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,steelaxehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelaxehead, 1),
+                "lapis"
+        );
+
+        /*******************************************************
+         *                       Shovel                        *
+         *******************************************************/
+        /*** Iron Shovel Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -686,7 +1105,7 @@ public class ModCrafting {
                 "null"
         );
 
-        /*** REPAIR SHOVEL Head***/
+        /*** REPAIR iron SHOVEL Head***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -695,6 +1114,52 @@ public class ModCrafting {
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
                 new ItemStack(ModItems.ironshovelhead, 1),
+                "repair"
+        );
+        /*** Clean Iron Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
+                        empty,hotCleanChunk,empty,hotCleanChunk,empty },
+                new ItemStack(ModItems.cleanironshovelhead, 1),
+                "null"
+        );
+
+        /*** REPAIR clean iron SHOVEL Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,empty,cleanshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironshovelhead, 1),
+                "repair"
+        );
+        /*** Steel Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
+                        empty,hotSteelChunk,empty,hotSteelChunk,empty },
+                new ItemStack(ModItems.steelshovelhead, 1),
+                "null"
+        );
+
+        /*** REPAIR steel SHOVEL Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,empty,steelshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelshovelhead, 1),
                 "repair"
         );
 
@@ -745,8 +1210,105 @@ public class ModCrafting {
                 new ItemStack(ModItems.ironshovelhead, 1),
                 "lapis"
         );
+        /*** Emerald Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,cleanshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironshovelhead, 1),
+                "emerald"
+        );
 
-        /*** Hoe Head ***/
+        /*** Diamond Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,cleanshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironshovelhead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,cleanshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironshovelhead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,cleanshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironshovelhead, 1),
+                "lapis"
+        );
+        /*** Emerald Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,steelshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelshovelhead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,steelshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelshovelhead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,steelshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelshovelhead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Shovel Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,steelshovelhead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelshovelhead, 1),
+                "lapis"
+        );
+
+        /*******************************************************
+         *                         Hoe                         *
+         *******************************************************/
+        /*** Iron Hoe Head ***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,hotChunk,hotChunk,
@@ -758,7 +1320,7 @@ public class ModCrafting {
                 "null"
         );
 
-        /*** REPAIR HOE Head***/
+        /*** REPAIR Iron HOE Head***/
         AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
@@ -767,6 +1329,52 @@ public class ModCrafting {
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
                 new ItemStack(ModItems.ironhoehead, 1),
+                "repair"
+        );
+        /*** Clean Iron Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,hotCleanChunk,hotCleanChunk,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,hotCleanChunk,empty,empty,empty,
+                        hotCleanChunk,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironhoehead, 1),
+                "null"
+        );
+
+        /*** REPAIR Clean Iron HOE Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,empty,cleanhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironhoehead, 1),
+                "repair"
+        );
+        /*** Steel Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,hotSteelChunk,hotSteelChunk,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,hotSteelChunk,empty,empty,empty,
+                        hotSteelChunk,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelhoehead, 1),
+                "null"
+        );
+
+        /*** REPAIR Steel HOE Head***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,empty,steelhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelhoehead, 1),
                 "repair"
         );
 
@@ -817,7 +1425,100 @@ public class ModCrafting {
                 new ItemStack(ModItems.ironhoehead, 1),
                 "lapis"
         );
+        /*** Emerald Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,cleanhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironhoehead, 1),
+                "emerald"
+        );
 
+        /*** Diamond Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,cleanhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironhoehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,cleanhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironhoehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,cleanhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.cleanironhoehead, 1),
+                "lapis"
+        );
+        /*** Emerald Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,emeraldShard,empty,empty,
+                        empty,empty,steelhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelhoehead, 1),
+                "emerald"
+        );
+
+        /*** Diamond Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,diamondShard,empty,empty,
+                        empty,empty,steelhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelhoehead, 1),
+                "diamond"
+        );
+
+        /*** Redstone Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,redstone,empty,empty,
+                        empty,empty,steelhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelhoehead, 1),
+                "redstone"
+        );
+
+        /*** Lapis Upgrade to Hoe Head ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,empty,empty,empty,
+                        empty,empty,lapis,empty,empty,
+                        empty,empty,steelhoehead,empty,empty,
+                        empty,empty,empty,empty,empty,
+                        empty,empty,empty,empty,empty },
+                new ItemStack(ModItems.steelhoehead, 1),
+                "lapis"
+        );
 
     }
 }

@@ -188,6 +188,7 @@ public class Anvil extends CustomContainerFacing {
                                                             (outputStack.getSubCompound("tags").getInteger("emerald") + 1));
                                                     outputStack.getSubCompound("tags").setInteger("modifiers",
                                                             (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                                    CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                                                 }
                                             }
                                         }
@@ -199,6 +200,7 @@ public class Anvil extends CustomContainerFacing {
                                                     (outputStack.getSubCompound("tags").getInteger("diamond") + 1));
                                             outputStack.getSubCompound("tags").setInteger("modifiers",
                                                     (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                            CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                                         }
 
                                         //Upgrade redstone
@@ -208,6 +210,7 @@ public class Anvil extends CustomContainerFacing {
                                                     (outputStack.getSubCompound("tags").getInteger("redstone") + 1));
                                             outputStack.getSubCompound("tags").setInteger("modifiers",
                                                     (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                            CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                                         }
 
                                         //Upgrade lapis
@@ -218,13 +221,11 @@ public class Anvil extends CustomContainerFacing {
                                                         (outputStack.getSubCompound("tags").getInteger("lapis") + 1));
                                                 outputStack.getSubCompound("tags").setInteger("modifiers",
                                                         (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
+                                                CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                                             }
                                         }
-
                                     }
-                                    CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                                 }
-
                             } else {
                                 CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
                             }

@@ -118,16 +118,13 @@ public class Breaker extends CustomContainerFacing {
                 if (!state.getValue(ACTIVE)) {
                     world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, true), 2);
                 }
-                tile.setCharge(tile.getCharge() + 2.0f);
-                tile.updateBlock();
-                //System.out.println(tile.charge);
-                return true;
+                if(tile.getCharge() < 181) {
+                    tile.setCharge(tile.getCharge() + 2.0f);
+                    tile.updateBlock();
+                    //System.out.println(tile.charge);
+                    return true;
+                }
             }
-            /*if(state.getValue(ACTIVE) == true && !player.isSneaking() && pItem.isEmpty()){
-                //world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, true), 2);
-                tile.setCharge(tile.getCharge() + 2.0f);
-                return true;
-            }*/
 
             if(pItem.getItem() instanceof WorkMallet){
 
