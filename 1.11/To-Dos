@@ -5,6 +5,9 @@ To-Dos
 
 *** Priority ***
 - [ ] StoneTongs for all tool heads
+  - [x] ItemNBT
+  - [ ] ItemRender
+  - [ ] JSON
 - [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Yew
 

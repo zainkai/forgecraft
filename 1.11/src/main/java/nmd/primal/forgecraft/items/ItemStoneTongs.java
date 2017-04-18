@@ -59,8 +59,6 @@ public class ItemStoneTongs extends Item {
             item.getSubCompound("tags").setInteger("modifiers", 0);
 
         }
-
-
     }
 
 
@@ -72,15 +70,45 @@ public class ItemStoneTongs extends Item {
          0 | Default StoneTongs
          1 | Empty Crucible Hot
          2 | Empty Crucible Cracked Hot
+
+        ================================
+
          3 | Hot Iron Crucible
          4 | Hot Cooked Iron Crucible
          5 | Hot Failed Iron Crucible
          6 | Hot Iron Ingot
          7 | Hot Iron Chunk
-         8 | Hot Pickaxe Head
-         9 | Hot Axe Head
-        10 | Hot Shovel Head
-        11 | Hot Hoe Head
+         --------------------------------
+         8 | Hot Iron Pickaxe Head
+         9 | Hot Iron Axe Head
+        10 | Hot Iron Shovel Head
+        11 | Hot Iron Hoe Head
+
+        ================================
+
+        12 | Hot Clean Iron Crucible
+        13 | Hot Cooked Clean Iron Crucible
+        14 | Hot Failed Clean Iron Crucible
+        15 | Hot Clean Iron Ball
+        16 | Hot Clean Iron Chunk
+        --------------------------------
+        17 | Hot Clean Iron Pickaxe Head
+        18 | Hot Clean Iron Axe Head
+        19 | Hot Clean Iron Shovel Head
+        20 | Hot Clean Iron Hoe Head
+
+        ================================
+
+        21 | Hot Steel Crucible
+        22 | Hot Cooked Steel Crucible
+        23 | Hot Failed Steel Crucible
+        24 | Hot Steel Ingot
+        25 | Hot Steel Chunk
+        --------------------------------
+        26 | Hot Steel Pickaxe Head
+        27 | Hot Steel Axe Head
+        28 | Hot Steel Shovel Head
+        29 | Hot Steel Hoe Head
          */
 
         if(!world.isRemote) {
@@ -93,24 +121,38 @@ public class ItemStoneTongs extends Item {
              *****/
             if (world.getBlockState(pos).getBlock() != ModBlocks.bloomery) {
                 if (world.getBlockState(pos).getBlock() instanceof IngotBall) {
-                    //TileBaseCrucible tileCrucible = (TileBaseCrucible) world.getTileEntity(pos);
-                    if (world.getBlockState(pos).getBlock() == ModBlocks.ironball) {
-                        if(world.getBlockState(pos).getValue(IngotBall.ACTIVE) == true) {
+                    if(world.getBlockState(pos).getValue(IngotBall.ACTIVE) == true) {
+                        if (world.getBlockState(pos).getBlock() == ModBlocks.ironball) {
                             itemstack.getTagCompound().setInteger("type", 6);
-                            //itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
                             world.setBlockToAir(pos);
-                            //System.out.println(itemstack.getTagCompound().getInteger("type"));
                             return EnumActionResult.SUCCESS;
                         }
-                    }
-                    if (world.getBlockState(pos).getBlock() == ModBlocks.ironchunk) {
-                        if(world.getBlockState(pos).getValue(IngotBall.ACTIVE) == true) {
+                        if (world.getBlockState(pos).getBlock() == ModBlocks.ironchunk) {
                             itemstack.getTagCompound().setInteger("type", 7);
-                            //itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
                             world.setBlockToAir(pos);
-                            //System.out.println(itemstack.getTagCompound().getInteger("type"));
                             return EnumActionResult.SUCCESS;
                         }
+                        if (world.getBlockState(pos).getBlock() == ModBlocks.ironcleanball) {
+                            itemstack.getTagCompound().setInteger("type", 15);
+                            world.setBlockToAir(pos);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (world.getBlockState(pos).getBlock() == ModBlocks.ironcleanchunk) {
+                            itemstack.getTagCompound().setInteger("type", 16);
+                            world.setBlockToAir(pos);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (world.getBlockState(pos).getBlock() == ModBlocks.steelball) {
+                            itemstack.getTagCompound().setInteger("type", 24);
+                            world.setBlockToAir(pos);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (world.getBlockState(pos).getBlock() == ModBlocks.steelchunk) {
+                            itemstack.getTagCompound().setInteger("type", 25);
+                            world.setBlockToAir(pos);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        /* TODO Wootz */
                     }
                 }
             }
@@ -122,6 +164,9 @@ public class ItemStoneTongs extends Item {
             if (world.getBlockState(pos).getBlock() != ModBlocks.bloomery) {
                 if(world.getBlockState(pos).getBlock() instanceof CrucibleHot) {
                     TileBaseCrucible tileCrucible = (TileBaseCrucible) world.getTileEntity(pos);
+                    /***************************
+                     *       Crucibles         *
+                     ***************************/
                     if (world.getBlockState(pos).getBlock() == ModBlocks.emptycruciblehot) {
                         itemstack.getTagCompound().setInteger("type", 1);
                         itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
@@ -134,6 +179,9 @@ public class ItemStoneTongs extends Item {
                         world.setBlockToAir(pos);
                         return EnumActionResult.SUCCESS;
                     }
+                    /***************************
+                     *           Iron          *
+                     ***************************/
                     if (world.getBlockState(pos).getBlock() == ModBlocks.hotironcrucible) {
                         itemstack.getTagCompound().setInteger("type", 3);
                         itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
@@ -152,6 +200,49 @@ public class ItemStoneTongs extends Item {
                         world.setBlockToAir(pos);
                         return EnumActionResult.SUCCESS;
                     }
+                    /***************************
+                     *         Clean Iron      *
+                     ***************************/
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.hotcleanironcrucible) {
+                        itemstack.getTagCompound().setInteger("type", 12);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.hotcookedcleanironcrucible) {
+                        itemstack.getTagCompound().setInteger("type", 13);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.failedcleanironcruciblehot) {
+                        itemstack.getTagCompound().setInteger("type", 14);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+                    /***************************
+                     *          Steel          *
+                     ***************************/
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.hotsteelcrucible) {
+                        itemstack.getTagCompound().setInteger("type", 21);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.hotcookedsteelcrucible) {
+                        itemstack.getTagCompound().setInteger("type", 22);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.failedsteelcruciblehot) {
+                        itemstack.getTagCompound().setInteger("type", 23);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+                    /* TODO Wootz */
                 }
 /*****
  Places the content from the Tongs to the World
@@ -208,8 +299,80 @@ public class ItemStoneTongs extends Item {
                                 world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
+                            case 8:
+                                return EnumActionResult.FAIL;
                             case 9:
                                 return EnumActionResult.FAIL;
+                            case 10:
+                                return EnumActionResult.FAIL;
+                            case 11:
+                                return EnumActionResult.FAIL;
+                            case 12:
+                                world.setBlockState(tempPos, ModBlocks.hotcleanironcrucible.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible12 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible12.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 13:
+                                world.setBlockState(tempPos, ModBlocks.hotcookedcleanironcrucible.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible13 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible13.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 14:
+                                world.setBlockState(tempPos, ModBlocks.failedcleanironcruciblehot.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible14 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible14.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 15:
+                                world.setBlockState(tempPos, ModBlocks.ironcleanball.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 16:
+                                world.setBlockState(tempPos, ModBlocks.ironcleanchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 17:
+                                return EnumActionResult.FAIL;
+                            case 18:
+                                return EnumActionResult.FAIL;
+                            case 19:
+                                return EnumActionResult.FAIL;
+                            case 20:
+                                return EnumActionResult.FAIL;
+                            case 21:
+                                world.setBlockState(tempPos, ModBlocks.hotsteelcrucible.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible21 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible21.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 22:
+                                world.setBlockState(tempPos, ModBlocks.hotcookedsteelcrucible.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible22 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible22.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 23:
+                                world.setBlockState(tempPos, ModBlocks.failedsteelcruciblehot.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible23 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible23.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 24:
+                                world.setBlockState(tempPos, ModBlocks.steelball.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 25:
+                                world.setBlockState(tempPos, ModBlocks.steelchunk.getDefaultState().withProperty(IngotBall.ACTIVE, true), 3);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
                         }
                     }
                 }
@@ -238,6 +401,30 @@ public class ItemStoneTongs extends Item {
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.failedironcruciblehot))) {
                         itemstack.getTagCompound().setInteger("type", 5);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcleanironcrucible))) {
+                        itemstack.getTagCompound().setInteger("type", 12);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcookedcleanironcrucible))) {
+                        itemstack.getTagCompound().setInteger("type", 13);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.failedcleanironcrucible))) {
+                        itemstack.getTagCompound().setInteger("type", 14);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotsteelcrucible))) {
+                        itemstack.getTagCompound().setInteger("type", 21);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcookedsteelcrucible))) {
+                        itemstack.getTagCompound().setInteger("type", 22);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.failedsteelcrucible))) {
+                        itemstack.getTagCompound().setInteger("type", 23);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     }
@@ -296,6 +483,116 @@ public class ItemStoneTongs extends Item {
                             }
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.ironhoehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 11);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.ironcleanchunkhot)) {
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            itemstack.getTagCompound().setInteger("type", 7);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.ironcleaningotballhot)) {
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            itemstack.getTagCompound().setInteger("type", 6);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironpickaxehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 8);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironaxehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 9);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironshovelhead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 10);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironhoehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 11);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.steelchunkhot)) {
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            itemstack.getTagCompound().setInteger("type", 7);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.steelingotballhot)) {
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            itemstack.getTagCompound().setInteger("type", 6);
+                            return EnumActionResult.SUCCESS;
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.steelpickaxehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 8);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.steelaxehead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 9);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.steelshovelhead)) {
+                            if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
+                                itemstack.getTagCompound().setInteger("type", 10);
+                                NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
+                                itemstack.getTagCompound().setTag("tags", tags);
+                                itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
+                                //itemstack.getSubCompound("tags").setBoolean("hot", true);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                        if (tile.getSlotStack(i).getItem().equals(ModItems.steelhoehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
                                 itemstack.getTagCompound().setInteger("type", 11);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
