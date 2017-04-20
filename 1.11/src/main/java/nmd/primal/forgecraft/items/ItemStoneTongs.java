@@ -249,7 +249,10 @@ public class ItemStoneTongs extends Item {
  *****/
                 if ((world.getBlockState(pos).getBlock() instanceof Crucible) || (world.getBlockState(pos).getBlock() instanceof CrucibleHot)) {
                     return EnumActionResult.FAIL;
-                } else if (world.getBlockState(pos).getMaterial() == Material.ROCK || world.getBlockState(pos).getMaterial() == Material.SAND)
+                } else if (world.getBlockState(pos).getMaterial() == Material.ROCK ||
+                        world.getBlockState(pos).getMaterial() == Material.SAND ||
+                        world.getBlockState(pos).getMaterial() == Material.IRON ||
+                        world.getBlockState(pos).getMaterial() == Material.ANVIL )
                 {
                     BlockPos tempPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
                     if (world.getBlockState(tempPos).getBlock() == Blocks.AIR) {
@@ -496,17 +499,17 @@ public class ItemStoneTongs extends Item {
 
                         if (tile.getSlotStack(i).getItem().equals(ModItems.ironcleanchunkhot)) {
                             tile.setSlotStack(i, ItemStack.EMPTY);
-                            itemstack.getTagCompound().setInteger("type", 7);
+                            itemstack.getTagCompound().setInteger("type", 16);
                             return EnumActionResult.SUCCESS;
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.ironcleaningotballhot)) {
                             tile.setSlotStack(i, ItemStack.EMPTY);
-                            itemstack.getTagCompound().setInteger("type", 6);
+                            itemstack.getTagCompound().setInteger("type", 15);
                             return EnumActionResult.SUCCESS;
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironpickaxehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 8);
+                                itemstack.getTagCompound().setInteger("type", 17);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
@@ -517,7 +520,7 @@ public class ItemStoneTongs extends Item {
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironaxehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 9);
+                                itemstack.getTagCompound().setInteger("type", 18);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
@@ -528,7 +531,7 @@ public class ItemStoneTongs extends Item {
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironshovelhead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 10);
+                                itemstack.getTagCompound().setInteger("type", 19);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
@@ -539,7 +542,7 @@ public class ItemStoneTongs extends Item {
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.cleanironhoehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 11);
+                                itemstack.getTagCompound().setInteger("type", 20);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
@@ -551,17 +554,17 @@ public class ItemStoneTongs extends Item {
 
                         if (tile.getSlotStack(i).getItem().equals(ModItems.steelchunkhot)) {
                             tile.setSlotStack(i, ItemStack.EMPTY);
-                            itemstack.getTagCompound().setInteger("type", 7);
+                            itemstack.getTagCompound().setInteger("type", 25);
                             return EnumActionResult.SUCCESS;
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.steelingotballhot)) {
                             tile.setSlotStack(i, ItemStack.EMPTY);
-                            itemstack.getTagCompound().setInteger("type", 6);
+                            itemstack.getTagCompound().setInteger("type", 24);
                             return EnumActionResult.SUCCESS;
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.steelpickaxehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 8);
+                                itemstack.getTagCompound().setInteger("type", 26);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
@@ -572,7 +575,7 @@ public class ItemStoneTongs extends Item {
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.steelaxehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 9);
+                                itemstack.getTagCompound().setInteger("type", 27);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
@@ -583,7 +586,7 @@ public class ItemStoneTongs extends Item {
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.steelshovelhead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 10);
+                                itemstack.getTagCompound().setInteger("type", 28);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());
@@ -594,7 +597,7 @@ public class ItemStoneTongs extends Item {
                         }
                         if (tile.getSlotStack(i).getItem().equals(ModItems.steelhoehead)) {
                             if(tile.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == true) {
-                                itemstack.getTagCompound().setInteger("type", 11);
+                                itemstack.getTagCompound().setInteger("type", 29);
                                 NBTTagCompound tags = tile.getSlotStack(i).getSubCompound("tags").copy();
                                 itemstack.getTagCompound().setTag("tags", tags);
                                 itemstack.getTagCompound().setInteger("tempDamage", tile.getSlotStack(i).getItemDamage());

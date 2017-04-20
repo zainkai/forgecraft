@@ -200,16 +200,17 @@ public class ModBlocks {
             @Override
             public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
             {
+                //System.out.println("Level 0");
                 if(!world.isRemote){
                     Item pItem = player.getHeldItem(hand).getItem();
                     BlockPos belowPos = pos.down();
-                    //System.out.println("Activating");
+                    //System.out.println("Activating1");
                     if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                         world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
                         world.playEvent(1031, pos, 0);
-                        //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
+                        //System.out.println("Activating");
                         return true;
                     }
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
