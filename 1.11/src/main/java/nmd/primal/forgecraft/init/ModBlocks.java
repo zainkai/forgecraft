@@ -230,15 +230,15 @@ public class ModBlocks {
                                     ) {
                                 player.swingArm(hand);
                                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                                tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(6, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(7, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(8, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(11, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(12, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(13, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(16, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(17, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(18, new ItemStack(ModItems.ironcleanchunkhot, 1));
                                 world.playEvent(1031, pos, 0);
                                 return true;
                             }
@@ -282,15 +282,15 @@ public class ModBlocks {
                                     ) {
                                 player.swingArm(hand);
                                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                                tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(6, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(7, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(8, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(11, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(12, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(13, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(16, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(17, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(18, new ItemStack(ModItems.steelchunkhot, 1));
                                 world.playEvent(1031, pos, 0);
                                 return true;
                             }
