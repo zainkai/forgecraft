@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.tiles;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -10,6 +11,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.blocks.Bloomery;
+import nmd.primal.forgecraft.blocks.Crucible;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
@@ -177,7 +179,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             if (stack.getItem() == ModItems.softcrucible) {
                 return true;
             }
-            if(stack.getItem() == Item.getItemFromBlock(ModBlocks.rawironcrucible)){
+            if(Block.getBlockFromItem(stack.getItem()) instanceof Crucible ){
                 return true;
             }
         }

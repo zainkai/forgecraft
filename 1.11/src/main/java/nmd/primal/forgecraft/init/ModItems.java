@@ -187,6 +187,12 @@ public class ModItems {
         GameRegistry.register(forgehammer);
         GameRegistry.register(ironingotballhot);
         GameRegistry.register(ironchunkhot);
+        GameRegistry.register(ironcleaningotballhot);
+        GameRegistry.register(ironcleanchunkhot);
+        GameRegistry.register(steelingotballhot);
+        GameRegistry.register(steelchunkhot);
+        GameRegistry.register(wootzingotballhot);
+        GameRegistry.register(wootzchunkhot);
         //GameRegistry.register(test);
 
         /**********

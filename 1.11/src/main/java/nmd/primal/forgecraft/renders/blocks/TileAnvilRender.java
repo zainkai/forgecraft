@@ -21,6 +21,7 @@ import nmd.primal.forgecraft.blocks.Anvil;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import org.lwjgl.opengl.GL11;
@@ -151,7 +152,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                             GL11.glPopMatrix();
                         }
-                        if(tile.getSlotStack(counter).getItem() == ModItems.ironchunkhot || tile.getSlotStack(counter).getItem() == ModItems.ironingotballhot){
+                        if(tile.getSlotStack(counter).getItem() instanceof BaseMultiItem){
                             GL11.glPushMatrix();
                             double scale = 1.0D;
                             GL11.glScaled(scale, scale, scale);
@@ -228,7 +229,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                             GL11.glPopMatrix();
                         }
-                        if(tile.getSlotStack(counter).getItem() == ModItems.ironchunkhot || tile.getSlotStack(counter).getItem() == ModItems.ironingotballhot){
+                        if(tile.getSlotStack(counter).getItem() instanceof BaseMultiItem){
                             GL11.glPushMatrix();
                             double scale = 1.0D;
                             GL11.glScaled(scale, scale, scale);
@@ -307,7 +308,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                             GL11.glPopMatrix();
                         }
-                        if(tile.getSlotStack(counter).getItem() == ModItems.ironchunkhot || tile.getSlotStack(counter).getItem() == ModItems.ironingotballhot){
+                        if(tile.getSlotStack(counter).getItem() instanceof BaseMultiItem){
                             GL11.glPushMatrix();
                             double scale = 1.0D;
                             GL11.glScaled(scale, scale, scale);
@@ -387,7 +388,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                             GL11.glPopMatrix();
                         }
-                        if(tile.getSlotStack(counter).getItem() == ModItems.ironchunkhot || tile.getSlotStack(counter).getItem() == ModItems.ironingotballhot){
+                        if(tile.getSlotStack(counter).getItem() instanceof BaseMultiItem){
                             GL11.glPushMatrix();
                             double scale = 1.0D;
                             GL11.glScaled(scale, scale, scale);
