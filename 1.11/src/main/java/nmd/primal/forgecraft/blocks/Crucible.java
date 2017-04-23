@@ -106,6 +106,18 @@ public class Crucible extends Block {
         if(name.equals("tile.rawcleanironcrucible")){
             string = this.getUnlocalizedName();
         }
+        if(name.equals("tile.coolsteelcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.rawsteelcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.coolwootzcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.rawwootzcrucible")){
+            string = this.getUnlocalizedName();
+        }
 
         return string;
     }
@@ -119,6 +131,14 @@ public class Crucible extends Block {
             return Item.getItemFromBlock(ModBlocks.ironcleanball);
         } else if (name.equals("tile.rawcleanironcrucible")){
             return PrimalItems.IRON_DUST;
+        } else if (name.equals("tile.coolsteelcrucible")){
+            return Item.getItemFromBlock(ModBlocks.steelball);
+        } else if (name.equals("tile.rawsteelcrucible")){
+            return Item.getItemFromBlock(ModBlocks.ironcleanball);
+        } else if (name.equals("tile.coolwootzcrucible")){
+            return Item.getItemFromBlock(ModBlocks.wootzball);
+        } else if (name.equals("tile.rawcleanironcrucible")){
+            return PrimalItems.GOLDEN_STICK;
         }
         else return Items.AIR;
     }

@@ -12,20 +12,15 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalItems;
-import nmd.primal.core.common.blocks.PrimalBlock;
 import nmd.primal.core.common.items.tools.WorkMallet;
-import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.items.ForgeHammer;
-import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
 /**
@@ -116,22 +111,22 @@ public class ModBlocks {
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
 
         rawcleanironcrucible = new Crucible(Material.ROCK, "rawcleanironcrucible");
-        hotcleanironcrucible = new Crucible(Material.ROCK, "hotcleanironcrucible");
-        hotcookedcleanironcrucible = new Crucible(Material.ROCK, "hotcookedcleanironcrucible");
+        hotcleanironcrucible = new CrucibleHot(Material.ROCK, "hotcleanironcrucible");
+        hotcookedcleanironcrucible = new CrucibleHot(Material.ROCK, "hotcookedcleanironcrucible");
         coolcleanironcrucible = new Crucible(Material.ROCK, "coolcleanironcrucible");
         failedcleanironcrucible = new Crucible(Material.ROCK, "failedcleanironcrucible");
         failedcleanironcruciblehot = new Crucible(Material.ROCK, "failedcleanironcruciblehot");
 
         rawsteelcrucible = new Crucible(Material.ROCK, "rawsteelcrucible");
-        hotsteelcrucible = new Crucible(Material.ROCK, "hotsteelcrucible");
-        hotcookedsteelcrucible = new Crucible(Material.ROCK, "hotcookedsteelcrucible");
+        hotsteelcrucible = new CrucibleHot(Material.ROCK, "hotsteelcrucible");
+        hotcookedsteelcrucible = new CrucibleHot(Material.ROCK, "hotcookedsteelcrucible");
         coolsteelcrucible = new Crucible(Material.ROCK, "coolsteelcrucible");
         failedsteelcrucible = new Crucible(Material.ROCK, "failedsteelcrucible");
         failedsteelcruciblehot = new Crucible(Material.ROCK, "failedsteelcruciblehot");
 
         rawwootzcrucible = new Crucible(Material.ROCK, "rawwootzcrucible");
-        hotwootzcrucible = new Crucible(Material.ROCK, "hotwootzcrucible");
-        hotcookedwootzcrucible = new Crucible(Material.ROCK, "hotcookedwootzcrucible");
+        hotwootzcrucible = new CrucibleHot(Material.ROCK, "hotwootzcrucible");
+        hotcookedwootzcrucible = new CrucibleHot(Material.ROCK, "hotcookedwootzcrucible");
         coolwootzcrucible = new Crucible(Material.ROCK, "coolwootzcrucible");
         failedwootzcrucible = new Crucible(Material.ROCK, "failedwootzcrucible");
         failedwootzcruciblehot = new Crucible(Material.ROCK, "failedwootzcruciblehot");

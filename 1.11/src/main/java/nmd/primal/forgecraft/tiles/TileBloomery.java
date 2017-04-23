@@ -3,18 +3,18 @@ package nmd.primal.forgecraft.tiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nmd.primal.core.common.helper.CommonUtils;
+import nmd.primal.core.common.helper.ParticleHelper;
 import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.Crucible;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
-import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
@@ -117,6 +117,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 this.markDirty();
                 this.updateBlock();
             }
+            CommonUtils.makeSmoke(world, pos);
         }
     }
 

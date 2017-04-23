@@ -1,15 +1,9 @@
 package nmd.primal.forgecraft.crafting;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
-
-import static javax.swing.UIManager.put;
 
 /**
  * Created by mminaie on 3/5/17.

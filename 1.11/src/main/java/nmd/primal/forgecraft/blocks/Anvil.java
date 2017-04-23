@@ -11,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -24,13 +23,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.api.PrimalMaterials;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.init.ModMaterials;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.items.parts.ToolPart;
@@ -110,7 +109,7 @@ public class Anvil extends CustomContainerFacing {
                     if(this.getRegistryName().toString().equals("stoneanvil")){
                         for (int i = 0; i < 25; i++) {
                             if (tile.getSlotStack(i).getItem() instanceof BaseMultiItem) {
-                                if(((BaseMultiItem) tile.getSlotStack(i).getItem()).getMaterial(tile.getSlotStack(i).getItem()) != ModMaterials.TOOL_WROUGHT_IRON ) {
+                                if(((BaseMultiItem) tile.getSlotStack(i).getItem()).getMaterial(tile.getSlotStack(i).getItem()) != PrimalMaterials.TOOL_WROUGHT_IRON ) {
                                     world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                                     CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(PrimalItems.ROCK_STONE, 3));
                                     CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.ironball, 1));

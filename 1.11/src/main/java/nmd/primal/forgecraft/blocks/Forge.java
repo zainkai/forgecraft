@@ -11,10 +11,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -26,12 +24,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-//import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
-import nmd.primal.core.common.PrimalCore;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
 
@@ -40,6 +35,8 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.core.common.helper.CommonUtils.makeSmoke;
+
+//import nmd.primal.core.api.PrimalBlocks;
 
 
 /**

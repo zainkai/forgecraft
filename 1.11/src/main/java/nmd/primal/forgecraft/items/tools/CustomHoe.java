@@ -1,7 +1,6 @@
 package nmd.primal.forgecraft.items.tools;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;

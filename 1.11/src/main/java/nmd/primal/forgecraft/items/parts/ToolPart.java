@@ -14,8 +14,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.ToolNBT;
-import nmd.primal.forgecraft.enumhandler.EnumHandler;
-import nmd.primal.forgecraft.items.tools.BaseTool;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -196,6 +194,12 @@ public class ToolPart extends Item implements ToolNBT{
                                     (getRedstoneLevel(item) == 0) &&
                                     (getLapisLevel(item) == 2) ) {
                                 return 0.0102F;
+                            }
+                            if ( (getEmerald(item) == false) &&
+                                    (getDiamondLevel(item) == 0) &&
+                                    (getRedstoneLevel(item) == 1) &&
+                                    (getLapisLevel(item) == 1) ) {
+                                return 0.0011F;
                             }
                         }
                     }

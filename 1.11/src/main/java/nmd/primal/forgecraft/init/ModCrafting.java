@@ -1,29 +1,18 @@
 package nmd.primal.forgecraft.init;
 
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
-import nmd.primal.core.api.PrimalSounds;
-import nmd.primal.core.common.crafting.ToolRecipe;
-import nmd.primal.core.common.items.tools.PrimalTool;
-import nmd.primal.forgecraft.blocks.Bloomery;
-import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by kitsu on 11/30/2016.
@@ -96,69 +85,82 @@ public class ModCrafting {
                 ('Y'), ModBlocks.emptycrucible));
 
 
+
         /***Pickaxe Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironpickaxe), "T", "C", "S",
-                ('T'), ModItems.pickaxehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe), "T", "C", "S",
-                ('T'), ModItems.cleanironpickaxehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelpickaxe), "T", "C", "S",
-                ('T'), ModItems.steelpickaxehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_PICKAXE), "T", "S",
+                ('T'), ModItems.pickaxehead,
+                ('S'), Items.STICK));
 
         //placeholder wootz
 
         /***Axe Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe), "T", "C", "S",
-                ('T'), ModItems.ironaxehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironaxe), "T", "C", "S",
-                ('T'), ModItems.cleanironaxehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelaxe), "T", "C", "S",
-                ('T'), ModItems.steelaxehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.steelaxehead,1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
-        //wootz placeholder
+        //TODO wootz placeholder
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_AXE), "T", "S",
+                ('T'), ModItems.ironaxehead,
+                ('S'), Items.STICK));
 
         /***Shovel Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovel), "T", "C", "S",
-                ('T'), ModItems.ironshovelhead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironshovel), "T", "C", "S",
-                ('T'), ModItems.cleanironshovelhead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelshovel), "T", "C", "S",
-                ('T'), ModItems.steelshovelhead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
-        //placed holder for wootz
+        //TODO placed holder for wootz
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_SHOVEL), "T", "S",
+                ('T'), ModItems.ironshovelhead,
+                ('S'), Items.STICK));
 
         /***Hoe Crafting***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoe), "T", "C", "S",
-                ('T'), ModItems.ironhoehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironhoe), "T", "C", "S",
-                ('T'), ModItems.cleanironhoehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelhoe), "T", "C", "S",
-                ('T'), ModItems.steelhoehead,
-                ('S'), "stickWood",
+                ('T'), new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
-
-        //PLACE HOLDER FOR WOOTZ STEEL
+        //TODO PLACE HOLDER FOR WOOTZ STEEL
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_HOE), "T", "S",
+                ('T'), ModItems.ironhoehead,
+                ('S'), Items.STICK));
 
 
         /***************************************************************

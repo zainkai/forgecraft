@@ -8,8 +8,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.ForgeCraft;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.gui.GuiHandler;
-import sun.applet.Main;
 
 /**
  * Created by mminaie on 2/4/17.

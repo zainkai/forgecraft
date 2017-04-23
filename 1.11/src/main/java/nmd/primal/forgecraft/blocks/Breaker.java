@@ -1,7 +1,5 @@
 package nmd.primal.forgecraft.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -11,10 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -28,14 +23,6 @@ import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.crafting.AnvilCrafting;
-import nmd.primal.forgecraft.init.ModBlocks;
-import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.init.ModMaterials;
-import nmd.primal.forgecraft.items.BaseMultiItem;
-import nmd.primal.forgecraft.items.ForgeHammer;
-import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 
 import java.util.concurrent.ThreadLocalRandom;

@@ -6,7 +6,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.ToolNBT;
 
 /**
  * Created by mminaie on 3/23/17.

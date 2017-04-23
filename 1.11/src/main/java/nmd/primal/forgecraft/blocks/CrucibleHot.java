@@ -7,7 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -19,13 +18,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.tiles.TileBaseCrucible;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
-
-import static nmd.primal.forgecraft.CommonUtils.spawnItemEntityFromWorld;
 
 /**
  * Created by mminaie on 2/4/17.

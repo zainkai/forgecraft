@@ -4,31 +4,23 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalMaterials;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.blocks.IngotBall;
-import nmd.primal.forgecraft.enumhandler.EnumHandler;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.tools.*;
+import nmd.primal.forgecraft.items.tools.CustomAxe;
+import nmd.primal.forgecraft.items.tools.CustomHoe;
+import nmd.primal.forgecraft.items.tools.CustomPickaxe;
+import nmd.primal.forgecraft.items.tools.CustomShovel;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
-import nmd.primal.forgecraft.items.weapons.Musket;
-import nmd.primal.forgecraft.util.ToolMaterials;
-import nmd.primal.forgecraft.items.tools.BaseTool.ForgeToolMaterial;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -114,67 +106,67 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
-        pickaxehead = new ToolPart("ironpickaxehead", ModMaterials.TOOL_WROUGHT_IRON);
-        ironaxehead = new ToolPart("ironaxehead", ModMaterials.TOOL_WROUGHT_IRON);
-        ironshovelhead = new ToolPart("ironshovelhead", ModMaterials.TOOL_WROUGHT_IRON);
-        ironhoehead = new ToolPart("ironhoehead", ModMaterials.TOOL_WROUGHT_IRON);
+        pickaxehead = new ToolPart("ironpickaxehead", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironaxehead = new ToolPart("ironaxehead", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironshovelhead = new ToolPart("ironshovelhead", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironhoehead = new ToolPart("ironhoehead", PrimalMaterials.TOOL_WROUGHT_IRON);
 
-        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", ModMaterials.CLEAN_IRON);
-        cleanironaxehead = new ToolPart("cleanironaxehead", ModMaterials.CLEAN_IRON);
-        cleanironshovelhead = new ToolPart("cleanironshovelhead", ModMaterials.CLEAN_IRON);
-        cleanironhoehead = new ToolPart("cleanironhoehead", ModMaterials.CLEAN_IRON);
+        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironaxehead = new ToolPart("cleanironaxehead", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironshovelhead = new ToolPart("cleanironshovelhead", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironhoehead = new ToolPart("cleanironhoehead", PrimalMaterials.TOOL_CLEAN_IRON);
 
-        steelpickaxehead = new ToolPart("steelpickaxehead", ModMaterials.BASIC_STEEL);
-        steelaxehead = new ToolPart("steelaxehead", ModMaterials.BASIC_STEEL);
-        steelshovelhead = new ToolPart("steelshovelhead", ModMaterials.BASIC_STEEL);
-        steelhoehead = new ToolPart("steelhoehead", ModMaterials.BASIC_STEEL);
+        steelpickaxehead = new ToolPart("steelpickaxehead", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelaxehead = new ToolPart("steelaxehead", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelshovelhead = new ToolPart("steelshovelhead", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelhoehead = new ToolPart("steelhoehead", PrimalMaterials.TOOL_BASIC_STEEL);
 
-        wootzpickaxehead = new ToolPart("wootzpickaxehead", ModMaterials.WOOTZ_STEEL);
-        wootzaxehead = new ToolPart("wootzaxehead", ModMaterials.WOOTZ_STEEL);
-        wootzshovelhead = new ToolPart("wootzshovelhead", ModMaterials.WOOTZ_STEEL);
-        wootzhoehead = new ToolPart("wootzhoehead", ModMaterials.WOOTZ_STEEL);
+        wootzpickaxehead = new ToolPart("wootzpickaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzaxehead = new ToolPart("wootzaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzshovelhead = new ToolPart("wootzshovelhead", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzhoehead = new ToolPart("wootzhoehead", PrimalMaterials.TOOL_WOOTZ_STEEL);
         /**********
          TOOLS
          **********/
-        ironpickaxe = new CustomPickaxe("ironpickaxe", ModMaterials.TOOL_WROUGHT_IRON);
-        ironaxe = new CustomAxe("ironaxe", ModMaterials.TOOL_WROUGHT_IRON);
-        ironshovel = new CustomShovel("ironshovel", ModMaterials.TOOL_WROUGHT_IRON);
-        ironhoe = new CustomHoe("ironhoe", ModMaterials.TOOL_WROUGHT_IRON);
+        ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironaxe = new CustomAxe("ironaxe", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironshovel = new CustomShovel("ironshovel", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironhoe = new CustomHoe("ironhoe", PrimalMaterials.TOOL_WROUGHT_IRON);
 
-        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", ModMaterials.CLEAN_IRON);
-        cleanironaxe = new CustomAxe("cleanironaxe", ModMaterials.CLEAN_IRON);
-        cleanironshovel = new CustomShovel("cleanironshovel", ModMaterials.CLEAN_IRON);
-        cleanironhoe = new CustomHoe("cleanironhoe", ModMaterials.CLEAN_IRON);
+        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironaxe = new CustomAxe("cleanironaxe", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironshovel = new CustomShovel("cleanironshovel", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironhoe = new CustomHoe("cleanironhoe", PrimalMaterials.TOOL_CLEAN_IRON);
 
-        steelpickaxe = new CustomPickaxe("steelpickaxe", ModMaterials.BASIC_STEEL);
-        steelaxe = new CustomAxe("steelaxe", ModMaterials.BASIC_STEEL);
-        steelshovel = new CustomShovel("steelshovel", ModMaterials.BASIC_STEEL);
-        steelhoe = new CustomHoe("steelhoe", ModMaterials.BASIC_STEEL);
+        steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelaxe = new CustomAxe("steelaxe", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelshovel = new CustomShovel("steelshovel", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelhoe = new CustomHoe("steelhoe", PrimalMaterials.TOOL_BASIC_STEEL);
 
-        wootzpickaxe = new CustomPickaxe("wootzpickaxe", ModMaterials.WOOTZ_STEEL);
-        wootzaxe = new CustomAxe("wootzaxe", ModMaterials.WOOTZ_STEEL);
-        wootzshovel = new CustomShovel("wootzshovel", ModMaterials.WOOTZ_STEEL);
-        wootzhoe = new CustomHoe("wootzhoe", ModMaterials.WOOTZ_STEEL);
+        wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzaxe = new CustomAxe("wootzaxe", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzshovel = new CustomShovel("wootzshovel", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzhoe = new CustomHoe("wootzhoe", PrimalMaterials.TOOL_WOOTZ_STEEL);
 
         /**********
          WEAPONS
          **********/
-        ironsword = new CustomSword("ironsword", ModMaterials.TOOL_WROUGHT_IRON);
-        cleanironsword = new CustomSword("ironsword", ModMaterials.CLEAN_IRON);
-        steelsword = new CustomSword("ironsword", ModMaterials.BASIC_STEEL);
-        wootzsword = new CustomSword("ironsword", ModMaterials.WOOTZ_STEEL);
+        ironsword = new CustomSword("ironsword", PrimalMaterials.TOOL_WROUGHT_IRON);
+        cleanironsword = new CustomSword("ironsword", PrimalMaterials.TOOL_CLEAN_IRON);
+        steelsword = new CustomSword("ironsword", PrimalMaterials.TOOL_BASIC_STEEL);
+        wootzsword = new CustomSword("ironsword", PrimalMaterials.TOOL_WOOTZ_STEEL);
 
         /**********
          INGOTS AND CHUNKS
          **********/
-        ironingotballhot = new BaseMultiItem("ironingothot", ModMaterials.TOOL_WROUGHT_IRON);
-        ironchunkhot = new BaseMultiItem("ironchunkhot", ModMaterials.TOOL_WROUGHT_IRON);
-        ironcleaningotballhot= new BaseMultiItem("ironcleaningotballhot", ModMaterials.CLEAN_IRON);
-        ironcleanchunkhot= new BaseMultiItem("ironcleanchunkhot", ModMaterials.CLEAN_IRON);
-        steelingotballhot= new BaseMultiItem("steelingotballhot", ModMaterials.BASIC_STEEL);
-        steelchunkhot= new BaseMultiItem("steelchunkhot", ModMaterials.BASIC_STEEL);
-        wootzingotballhot= new BaseMultiItem("wootzingotballhot", ModMaterials.WOOTZ_STEEL);
-        wootzchunkhot= new BaseMultiItem("wootzchunkhot", ModMaterials.WOOTZ_STEEL);
+        ironingotballhot = new BaseMultiItem("ironingothot", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironchunkhot = new BaseMultiItem("ironchunkhot", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironcleaningotballhot= new BaseMultiItem("ironcleaningotballhot", PrimalMaterials.TOOL_CLEAN_IRON);
+        ironcleanchunkhot= new BaseMultiItem("ironcleanchunkhot", PrimalMaterials.TOOL_CLEAN_IRON);
+        steelingotballhot= new BaseMultiItem("steelingotballhot", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelchunkhot= new BaseMultiItem("steelchunkhot", PrimalMaterials.TOOL_BASIC_STEEL);
+        wootzingotballhot= new BaseMultiItem("wootzingotballhot", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzchunkhot= new BaseMultiItem("wootzchunkhot", PrimalMaterials.TOOL_WOOTZ_STEEL);
 
         //forgingmanual = new ItemForgingManual();
         //test = new ItemTest("ironsword");

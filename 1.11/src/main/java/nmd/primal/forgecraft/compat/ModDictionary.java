@@ -1,8 +1,5 @@
 package nmd.primal.forgecraft.compat;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import nmd.primal.forgecraft.init.ModBlocks;
 

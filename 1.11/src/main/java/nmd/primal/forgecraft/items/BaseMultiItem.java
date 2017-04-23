@@ -1,7 +1,6 @@
 package nmd.primal.forgecraft.items;
 
 import net.minecraft.item.Item;
-import nmd.primal.forgecraft.items.BaseItem;
 
 /**
  * Created by mminaie on 2/19/17.

@@ -7,16 +7,10 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.Breaker;
-import nmd.primal.forgecraft.init.ModBlocks;
-import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileBreaker;
-import nmd.primal.forgecraft.tiles.TileForge;
 import org.lwjgl.opengl.GL11;
 
 /**

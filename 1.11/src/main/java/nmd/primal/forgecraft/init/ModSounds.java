@@ -3,9 +3,7 @@ package nmd.primal.forgecraft.init;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.api.ForgecraftSounds;
 
 /**
  * Created by mminaie on 3/24/17.

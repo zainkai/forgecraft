@@ -9,14 +9,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import nmd.primal.forgecraft.init.ModSounds;
-import nmd.primal.forgecraft.init.ModEvents;
 import nmd.primal.forgecraft.compat.ModDictionary;
 import nmd.primal.forgecraft.gui.GuiHandler;
-import nmd.primal.forgecraft.init.ModBlocks;
-import nmd.primal.forgecraft.init.ModCrafting;
-import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.init.ModTiles;
+import nmd.primal.forgecraft.init.*;
 import nmd.primal.forgecraft.proxy.CommonProxy;
 
 //import nmd.primal.forgecraft.common.init.*;

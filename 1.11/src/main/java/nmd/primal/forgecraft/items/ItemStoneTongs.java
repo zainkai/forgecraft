@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.items;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,7 +7,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -318,7 +319,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 13:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedcleanironcrucible.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedcleanironcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible13 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible13.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
@@ -388,45 +389,56 @@ public class ItemStoneTongs extends Item {
                     TileBloomery tile = (TileBloomery) world.getTileEntity(pos);
                     if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.emptycruciblehot))) {
                         itemstack.getTagCompound().setInteger("type", 1);
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.emptycruciblecrackedhot))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 2);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotironcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 3);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcookedironcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 4);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.failedironcruciblehot))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 5);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcleanironcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 12);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcookedcleanironcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 13);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.failedcleanironcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 14);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotsteelcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 21);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcookedsteelcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 22);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.failedsteelcrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 23);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
