@@ -16,9 +16,9 @@ public class ModInfo {
     public static final String MOD_NAME = "Kitsu's ForgeCraft";
     //public static final String MOD_PREFIX = MOD_ID + ":";
     public static final String MOD_CHANNEL = MOD_ID;
-    public static final String MOD_VERSION = "1.2.20";
+    public static final String MOD_VERSION = "1.2.21";
     public static final String MC_VERSIONS = "[1.11.0, 1.12.0)";
-    public static final String DEPENDENCIES = "required-after:forge@[13.20.0.2226,);" + "required-after:primal;";
+    public static final String DEPENDENCIES = "required-after:forge@[13.20.0.2226,);" + "required-after:primal@[0.3.15,);";
 
     /** Mod Structures **/
     public static final String SERVER_PROXY = "nmd.primal.forgecraft.proxy.ServerProxy";
