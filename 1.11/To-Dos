@@ -1,23 +1,20 @@
 To-Dos
 
 *** Bugs ***
-- [ ] Duplication Bug for Tool Repair
+
 
 *** Priority ***
-- [ ] Make an Iron Anvil
-- [ ] Make Clean Iron Recipes and Tools
- - [ ] Make Clean Ore Recipe
-- [ ] Make Steel Recipes and Tools
-- [ ] Make Wootz Recipes and Tools
+- [ ] Bloomery not accepting raw clean crucible
+- [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Yew
 
 *** Feature Musket ***
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
 - [ ] Create musket round item (lead or iron nugget)
 - [ ] Create wadding item (paper)
-- [ ] Create soaked wick item (cordage, bucket of water, gunpowder)
-- [ ] Create dried wick item (soaked wick on drying rack)
-- [ ] Create lit wick item (dried wick and firebow/torch/flint&steel)
+- [ ] Create soaked slow match item (cordage, bucket of water, gunpowder)
+- [ ] Create dried slow match (soaked wick on drying rack)
+- [ ] Create lit slow match (dried slow match and firebow/torch/flint&steel)
 - [ ] Create barrel item
 - [ ] Create stock item
 - [ ] Create lock assembly item
@@ -35,7 +32,30 @@ To-Dos
   - [ ] Gui
   - [ ] Crafting recipes
 
+*** Tid-Bits ***
+sed -i -- 's/iron/steel/g' *
+rm *.json--
+rename s/iron/steel/ iron*
+
 *** Completed ***
+- [x] StoneTongs for all tool heads
+  - [x] ItemNBT
+  - [x] ItemRender
+  - [x] JSON
+- [x] Change how bloomery does recipe cookTime
+- [x] Duplication Bug for Tool Repair
+- [x] Fix Breaker Render to rotate correctly
+- [x] Make All Accompanying Recipes
+- [x] Update blockstates with:
+  - [x] cleanIron
+  - [x] steel
+  - [x] wootz
+- [x] Make an Iron Anvil
+  - [x] Check Iron Anvil creation logic
+- [x] Make New Ore Tool, Tool Part, Ingot, and Chunk Assets
+- [x] Make Steel Recipes and Tools
+- [x] Make Wootz Recipes and Tools
+- [x] Update tool parts and tool textures
 - [x] Light Forge and Firebox with Firebow or Torch
 - [x] Any gallagher can be used to make a stone anvil
 - [x] Update Crafting for tools to include leatherStrap
@@ -115,3 +135,45 @@ To-Dos
 - [x] Crafting Recipes
 
 
+         0 | Default StoneTongs
+         1 | Empty Crucible Hot
+         2 | Empty Crucible Cracked Hot
+
+        ================================
+
+         3 | Hot Iron Crucible
+         4 | Hot Cooked Iron Crucible
+         5 | Hot Failed Iron Crucible
+         6 | Hot Iron Ingot
+         7 | Hot Iron Chunk
+         --------------------------------
+         8 | Hot Iron Pickaxe Head
+         9 | Hot Iron Axe Head
+        10 | Hot Iron Shovel Head
+        11 | Hot Iron Hoe Head
+
+        ================================
+
+        12 | Hot Clean Iron Crucible
+        13 | Hot Cooked Clean Iron Crucible
+        14 | Hot Failed Clean Iron Crucible
+        15 | Hot Clean Iron Ball
+        16 | Hot Clean Iron Chunk
+        --------------------------------
+        17 | Hot Clean Iron Pickaxe Head
+        18 | Hot Clean Iron Axe Head
+        19 | Hot Clean Iron Shovel Head
+        20 | Hot Clean Iron Hoe Head
+
+        ================================
+
+        21 | Hot Steel Crucible
+        22 | Hot Cooked Steel Crucible
+        23 | Hot Failed Steel Crucible
+        24 | Hot Steel Ingot
+        25 | Hot Steel Chunk
+        --------------------------------
+        26 | Hot Steel Pickaxe Head
+        27 | Hot Steel Axe Head
+        28 | Hot Steel Shovel Head
+        29 | Hot Steel Hoe Head

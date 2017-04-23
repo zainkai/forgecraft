@@ -12,20 +12,15 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalItems;
-import nmd.primal.core.common.blocks.PrimalBlock;
 import nmd.primal.core.common.items.tools.WorkMallet;
-import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.items.ForgeHammer;
-import nmd.primal.forgecraft.items.blocks.ItemBlockIngotBall;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
 /**
@@ -35,12 +30,15 @@ public class ModBlocks {
 
     public static Block firebox;
     public static Block bloomery;
+    public static Block blockbreaker;
+
     public static Block pistonbellowsoak;
     public static Block pistonbellowsjungle;
     public static Block pistonbellowsbirch;
     public static Block pistonbellowsspruce;
     public static Block pistonbellowsdarkoak;
     public static Block pistonbellowsacacia;
+
     public static Block emptycrucible;
     public static Block emptycruciblehot;
     public static Block emptycruciblecracked;
@@ -52,6 +50,27 @@ public class ModBlocks {
     public static Block coolironcrucible;
     public static Block failedironcrucible;
     public static Block failedironcruciblehot;
+
+    public static Block rawcleanironcrucible;
+    public static Block hotcleanironcrucible;
+    public static Block hotcookedcleanironcrucible;
+    public static Block coolcleanironcrucible;
+    public static Block failedcleanironcrucible;
+    public static Block failedcleanironcruciblehot;
+
+    public static Block rawsteelcrucible;
+    public static Block hotsteelcrucible;
+    public static Block hotcookedsteelcrucible;
+    public static Block coolsteelcrucible;
+    public static Block failedsteelcrucible;
+    public static Block failedsteelcruciblehot;
+
+    public static Block rawwootzcrucible;
+    public static Block hotwootzcrucible;
+    public static Block hotcookedwootzcrucible;
+    public static Block coolwootzcrucible;
+    public static Block failedwootzcrucible;
+    public static Block failedwootzcruciblehot;
 
     public static Block ironball;
     public static Block ironchunk;
@@ -69,8 +88,8 @@ public class ModBlocks {
     public static void init() {
 
         firebox = new Forge(Material.ROCK);
-
         bloomery = new Bloomery(Material.ROCK, "bloomery");
+        blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
         pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");
@@ -90,6 +109,27 @@ public class ModBlocks {
         coolironcrucible = new Crucible(Material.ROCK, "coolironcrucible");
         failedironcrucible = new Crucible(Material.ROCK, "failedironcrucible");
         failedironcruciblehot = new CrucibleHot(Material.ROCK, "failedironcruciblehot");
+
+        rawcleanironcrucible = new Crucible(Material.ROCK, "rawcleanironcrucible");
+        hotcleanironcrucible = new CrucibleHot(Material.ROCK, "hotcleanironcrucible");
+        hotcookedcleanironcrucible = new CrucibleHot(Material.ROCK, "hotcookedcleanironcrucible");
+        coolcleanironcrucible = new Crucible(Material.ROCK, "coolcleanironcrucible");
+        failedcleanironcrucible = new Crucible(Material.ROCK, "failedcleanironcrucible");
+        failedcleanironcruciblehot = new Crucible(Material.ROCK, "failedcleanironcruciblehot");
+
+        rawsteelcrucible = new Crucible(Material.ROCK, "rawsteelcrucible");
+        hotsteelcrucible = new CrucibleHot(Material.ROCK, "hotsteelcrucible");
+        hotcookedsteelcrucible = new CrucibleHot(Material.ROCK, "hotcookedsteelcrucible");
+        coolsteelcrucible = new Crucible(Material.ROCK, "coolsteelcrucible");
+        failedsteelcrucible = new Crucible(Material.ROCK, "failedsteelcrucible");
+        failedsteelcruciblehot = new Crucible(Material.ROCK, "failedsteelcruciblehot");
+
+        rawwootzcrucible = new Crucible(Material.ROCK, "rawwootzcrucible");
+        hotwootzcrucible = new CrucibleHot(Material.ROCK, "hotwootzcrucible");
+        hotcookedwootzcrucible = new CrucibleHot(Material.ROCK, "hotcookedwootzcrucible");
+        coolwootzcrucible = new Crucible(Material.ROCK, "coolwootzcrucible");
+        failedwootzcrucible = new Crucible(Material.ROCK, "failedwootzcrucible");
+        failedwootzcruciblehot = new Crucible(Material.ROCK, "failedwootzcruciblehot");
 
         ironball = new IngotBall(Material.IRON, "ironball", 5.0F, "ingot") {
             @Override
@@ -155,16 +195,17 @@ public class ModBlocks {
             @Override
             public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
             {
+                //System.out.println("Level 0");
                 if(!world.isRemote){
                     Item pItem = player.getHeldItem(hand).getItem();
                     BlockPos belowPos = pos.down();
-                    //System.out.println("Activating");
+                    //System.out.println("Activating1");
                     if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                         world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
                         world.playEvent(1031, pos, 0);
-                        //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
+                        //System.out.println("Activating");
                         return true;
                     }
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
@@ -184,15 +225,15 @@ public class ModBlocks {
                                     ) {
                                 player.swingArm(hand);
                                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                                tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(6, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(7, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(8, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(11, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(12, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(13, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(16, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(17, new ItemStack(ModItems.ironcleanchunkhot, 1));
+                                tile.setSlotStack(18, new ItemStack(ModItems.ironcleanchunkhot, 1));
                                 world.playEvent(1031, pos, 0);
                                 return true;
                             }
@@ -202,7 +243,7 @@ public class ModBlocks {
                 }
                 return false;
             }
-        };
+        }; // clean_iron_ingot ironcleanball.json ironcleanballhot.json - done
         steelball = new IngotBall(Material.IRON, "steelball", 6.0f, "ingot"){
             @Override
             public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
@@ -236,15 +277,15 @@ public class ModBlocks {
                                     ) {
                                 player.swingArm(hand);
                                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                                tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
-                                tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                                tile.setSlotStack(6, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(7, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(8, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(11, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(12, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(13, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(16, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(17, new ItemStack(ModItems.steelchunkhot, 1));
+                                tile.setSlotStack(18, new ItemStack(ModItems.steelchunkhot, 1));
                                 world.playEvent(1031, pos, 0);
                                 return true;
                             }
@@ -254,7 +295,7 @@ public class ModBlocks {
                 }
                 return false;
             }
-        };
+        }; // steel_ingot steelball.json steelballhot.json
         wootzball = new IngotBall(Material.IRON, "wootzball", 6.0f, "ingot") {
         @Override
         public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz)
@@ -288,15 +329,15 @@ public class ModBlocks {
                                 ) {
                             player.swingArm(hand);
                             world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                            tile.setSlotStack(6, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(7, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(8, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(11, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(12, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(13, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(16, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(17, new ItemStack(ModItems.ironchunkhot, 1));
-                            tile.setSlotStack(18, new ItemStack(ModItems.ironchunkhot, 1));
+                            tile.setSlotStack(6, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(7, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(8, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(11, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(12, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(13, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(16, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(17, new ItemStack(ModItems.wootzchunkhot, 1));
+                            tile.setSlotStack(18, new ItemStack(ModItems.wootzchunkhot, 1));
                             world.playEvent(1031, pos, 0);
                             return true;
                         }
@@ -306,12 +347,12 @@ public class ModBlocks {
             }
             return false;
         }
-    };
+    }; //wootz_ingot wootzball.json wootzballhot.json
 
         ironchunk = new IngotBall(Material.IRON, "ironchunk", 5.0F, "chunk");
-        ironcleanchunk = new IngotBall(Material.IRON, "ironcleanchunk", 5.0F, "chunk");
-        steelchunk = new IngotBall(Material.IRON, "steelchunk", 6.0f, "chunk");
-        wootzchunk = new IngotBall(Material.IRON, "wootzchunk", 6.0f, "chunk");
+        ironcleanchunk = new IngotBall(Material.IRON, "ironcleanchunk", 5.0F, "chunk"); //Lyle to make assets clean_iron_ingot, blockstate\ironcleanchunk.json, item\ironcleanchunk.json, item\ironcleanchunkhot.json - done
+        steelchunk = new IngotBall(Material.IRON, "steelchunk", 6.0f, "chunk"); //steel_ingot steelchunk.json steelchunkhot.json - done
+        wootzchunk = new IngotBall(Material.IRON, "wootzchunk", 6.0f, "chunk"); //wootz_ingot wootzchunk.json wootzchunkhot.json - done
 
         stoneanvil = new Anvil(Material.ANVIL, "stoneanvil", 5.0f);
         ironanvil = new Anvil(Material.ANVIL, "ironanvil", 6.0f);
@@ -324,6 +365,7 @@ public class ModBlocks {
     public static void register() {
         registerBlock(firebox);
         registerBlock(bloomery);
+        registerBlock(blockbreaker);
 
         registerBlock(pistonbellowsoak);
         registerBlock(pistonbellowsjungle);
@@ -343,6 +385,27 @@ public class ModBlocks {
         registerBlock(coolironcrucible);
         registerBlock(failedironcrucible);
         registerBlock(failedironcruciblehot);
+
+        registerBlock(rawcleanironcrucible);
+        registerBlock(hotcleanironcrucible);
+        registerBlock(hotcookedcleanironcrucible);
+        registerBlock(coolcleanironcrucible);
+        registerBlock(failedcleanironcrucible);
+        registerBlock(failedcleanironcruciblehot);
+
+        registerBlock(rawsteelcrucible);
+        registerBlock(hotsteelcrucible);
+        registerBlock(hotcookedsteelcrucible);
+        registerBlock(coolsteelcrucible);
+        registerBlock(failedsteelcrucible);
+        registerBlock(failedsteelcruciblehot);
+
+        registerBlock(rawwootzcrucible);
+        registerBlock(hotwootzcrucible);
+        registerBlock(hotcookedwootzcrucible);
+        registerBlock(coolwootzcrucible);
+        registerBlock(failedwootzcrucible);
+        registerBlock(failedwootzcruciblehot);
 
         registerBlock(ironball);
         registerBlock(ironchunk);
@@ -365,6 +428,7 @@ public class ModBlocks {
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(firebox);
+        registerRender(blockbreaker);
         registerRender(pistonbellowsoak);
         registerRender(pistonbellowsjungle);
         registerRender(pistonbellowsbirch);
@@ -383,6 +447,27 @@ public class ModBlocks {
         registerRender(coolironcrucible);
         registerRender(failedironcrucible);
         registerRender(failedironcruciblehot);
+
+        registerRender(rawcleanironcrucible);
+        registerRender(hotcleanironcrucible);
+        registerRender(hotcookedcleanironcrucible);
+        registerRender(coolcleanironcrucible);
+        registerRender(failedcleanironcrucible);
+        registerRender(failedcleanironcruciblehot);
+
+        registerRender(rawsteelcrucible);
+        registerRender(hotsteelcrucible);
+        registerRender(hotcookedsteelcrucible);
+        registerRender(coolsteelcrucible);
+        registerRender(failedsteelcrucible);
+        registerRender(failedsteelcruciblehot);
+
+        registerRender(rawwootzcrucible);
+        registerRender(hotwootzcrucible);
+        registerRender(hotcookedwootzcrucible);
+        registerRender(coolwootzcrucible);
+        registerRender(failedwootzcrucible);
+        registerRender(failedwootzcruciblehot);
 
         registerRender(ironball);
         registerRender(ironchunk);

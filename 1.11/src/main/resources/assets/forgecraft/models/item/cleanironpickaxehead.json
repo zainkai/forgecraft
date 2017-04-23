@@ -1,0 +1,37 @@
+{
+  "parent": "forgecraft:item/pickaxehead",
+  "textures": {
+    "particle": "forgecraft:items/clean_cleaniron_ingot",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/clean_cleaniron_ingot"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_0"},
+    {"predicate": {"type": 0.0001},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_13"},
+    {"predicate": {"type": 0.0002},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_14"},
+    {"predicate": {"type": 0.0003},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_15"},
+    {"predicate": {"type": 0.001},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_10"},
+    {"predicate": {"type": 0.0012},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_19"},
+    {"predicate": {"type": 0.002},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_11"},
+    {"predicate": {"type": 0.0021},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_20"},
+    {"predicate": {"type": 0.003},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_12"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_7"},
+    {"predicate": {"type": 0.0102},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_21"},
+    {"predicate": {"type": 0.0111},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_16"},
+    {"predicate": {"type": 0.012},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_18"},
+    {"predicate": {"type": 0.02},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_8"},
+    {"predicate": {"type": 0.021},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_17"},
+    {"predicate": {"type": 0.03},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_9"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_2"},
+    {"predicate": {"type": 0.102},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_6"},
+    {"predicate": {"type": 0.11},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_3"},
+    {"predicate": {"type": 0.111},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_5"},
+    {"predicate": {"type": 0.12},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_4"},
+    {"predicate": {"type": 1.0},"model": "forgecraft:item/pickaxehead/cleaniron/cleanironpickaxehead_1"}
+
+  ]
+}
+
+
+
+

@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -10,10 +11,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -25,12 +24,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-//import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
-import nmd.primal.core.common.PrimalCore;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
 
@@ -39,6 +35,8 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.core.common.helper.CommonUtils.makeSmoke;
+
+//import nmd.primal.core.api.PrimalBlocks;
 
 
 /**
@@ -156,16 +154,11 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                  ***********************/
                 //REMOVE COOL INGOT
                 if(facing == EnumFacing.UP ) {
-                    if (pItem.isEmpty()) {
+                    /*if (pItem.isEmpty()) {
                         for (int i = 2; i < tile.getSlotListSize(); i++) {
                             //System.out.println(i);
                             if (!tile.getSlotStack(i).isEmpty()) {
-                                if (tile.getSlotStack(i).getItem().equals(new ItemStack(ModBlocks.ironchunk).getItem())) {
-                                    CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
-                                    tile.setSlotStack(i, ItemStack.EMPTY);
-                                    return true;
-                                }
-                                if (tile.getSlotStack(i).getItem().equals(new ItemStack(ModBlocks.ironball).getItem())) {
+                                if (Block.getBlockFromItem(tile.getSlotStack(i).getItem()) instanceof IngotBall) {
                                     CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
                                     tile.setSlotStack(i, ItemStack.EMPTY);
                                     return true;
@@ -177,24 +170,14 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                                         return true;
                                     }
                                 }
-
                             }
                         }
-                    }
+                    }*/
 
 
-                    if (pItem.getItem().equals(new ItemStack(ModBlocks.ironchunk).getItem())) {
+                    if (Block.getBlockFromItem(pItem.getItem()) instanceof IngotBall) {
                         //System.out.println("Activating");
                         for (int i = 2; i <= tile.getSlotListSize(); i++) {
-                            if (tile.getSlotStack(i).isEmpty()) {
-                                tile.setSlotStack(i, new ItemStack(pItem.getItem(), 1));
-                                pItem.shrink(1);
-                                return true;
-                            }
-                        }
-                    }
-                    if (pItem.getItem().equals(new ItemStack(ModBlocks.ironball).getItem())) {
-                        for (int i = 2; i < tile.getSlotListSize(); i++) {
                             if (tile.getSlotStack(i).isEmpty()) {
                                 tile.setSlotStack(i, new ItemStack(pItem.getItem(), 1));
                                 pItem.shrink(1);

@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
@@ -99,6 +100,24 @@ public class Crucible extends Block {
         if(name.equals("tile.rawironcrucible")){
             string = this.getUnlocalizedName();
         }
+        if(name.equals("tile.coolcleanironcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.rawcleanironcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.coolsteelcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.rawsteelcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.coolwootzcrucible")){
+            string = this.getUnlocalizedName();
+        }
+        if(name.equals("tile.rawwootzcrucible")){
+            string = this.getUnlocalizedName();
+        }
 
         return string;
     }
@@ -108,6 +127,18 @@ public class Crucible extends Block {
             return Item.getItemFromBlock(ModBlocks.ironball);
         } else if (name.equals("tile.rawironcrucible")){
             return Item.getItemFromBlock(Blocks.IRON_ORE);
+        } else if (name.equals("tile.coolcleanironcrucible")){
+            return Item.getItemFromBlock(ModBlocks.ironcleanball);
+        } else if (name.equals("tile.rawcleanironcrucible")){
+            return PrimalItems.IRON_DUST;
+        } else if (name.equals("tile.coolsteelcrucible")){
+            return Item.getItemFromBlock(ModBlocks.steelball);
+        } else if (name.equals("tile.rawsteelcrucible")){
+            return Item.getItemFromBlock(ModBlocks.ironcleanball);
+        } else if (name.equals("tile.coolwootzcrucible")){
+            return Item.getItemFromBlock(ModBlocks.wootzball);
+        } else if (name.equals("tile.rawcleanironcrucible")){
+            return PrimalItems.GOLDEN_STICK;
         }
         else return Items.AIR;
     }

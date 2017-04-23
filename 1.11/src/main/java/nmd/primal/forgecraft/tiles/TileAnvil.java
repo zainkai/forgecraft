@@ -52,21 +52,21 @@ public class TileAnvil extends TileBaseSlot implements ITickable {
             if ( ThreadLocalRandom.current().nextInt(0,10000) == 0 ) {
                 for(int i=0; i<this.getSlotListSize(); i++){
                     if(this.getSlotStack(i).getItem() == ModItems.ironchunkhot){
-                        if(ThreadLocalRandom.current().nextInt(0,100) == 1){
+                        if(ThreadLocalRandom.current().nextInt(0,1000) == 1){
                             this.setSlotStack(i, new ItemStack(ModBlocks.ironchunk, 1));
                             this.updateBlock();
                             this.markDirty();
                         }
                     }
                     if(this.getSlotStack(i).getItem() == ModItems.ironingotballhot){
-                        if(ThreadLocalRandom.current().nextInt(0,100) == 2){
+                        if(ThreadLocalRandom.current().nextInt(0,1000) == 2){
                             this.setSlotStack(i, new ItemStack(ModBlocks.ironball, 1));
                             this.updateBlock();
                             this.markDirty();
                         }
                     }
                     if(this.getSlotStack(i).getItem() instanceof ToolPart){
-                        if(ThreadLocalRandom.current().nextInt(0,100) == 0){
+                        if(ThreadLocalRandom.current().nextInt(0,1000) == 3){
                             ((ToolPart) this.getSlotStack(i).getItem()).setHot(this.getSlotStack(i), false);
                             this.updateBlock();
                             this.markDirty();

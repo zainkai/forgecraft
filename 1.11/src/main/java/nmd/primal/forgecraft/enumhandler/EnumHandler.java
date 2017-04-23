@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.enumhandler;
 
-import net.minecraft.util.IStringSerializable;
 import nmd.primal.forgecraft.util.IMetaLookup;
 
 /**

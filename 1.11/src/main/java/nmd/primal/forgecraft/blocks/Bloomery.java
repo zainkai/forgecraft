@@ -10,10 +10,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -121,7 +119,10 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
                     }
                 }
                 if(tile.getSlotStack(0) != ItemStack.EMPTY) {
-                    if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == PrimalItems.TORCH_WOOD_LIT || pItem.getItem() == PrimalItems.TORCH_NETHER_LIT  ) {
+                    if((pItem.getItem() == Items.FLINT_AND_STEEL) ||
+                            (pItem.getItem() == PrimalItems.FIRE_BOW) ||
+                            pItem.getItem() == PrimalItems.TORCH_WOOD_LIT ||
+                            pItem.getItem() == PrimalItems.TORCH_NETHER_LIT  ) {
                         world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                         tile.setHeat(100);
                         tile.markDirty();
