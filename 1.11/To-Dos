@@ -4,9 +4,7 @@ To-Dos
 
 
 *** Priority ***
-- [ ] Bloomery not accepting raw clean crucible
-- [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
-- [ ] Add Yew
+
 
 *** Feature Musket ***
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -20,6 +18,8 @@ To-Dos
 - [ ] Create lock assembly item
 
 *** Backlog ***
+- [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
+- [ ] Add Yew
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield

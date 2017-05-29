@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.forgecraft.blocks.Anvil;
 import nmd.primal.forgecraft.blocks.IngotBall;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.tiles.TileAnvil;
@@ -36,18 +37,18 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
     ;
 
     @Override
-    public void renderTileEntityAt(TileAnvil tile, double x, double y, double z, float partialTicks, int destroyStage)
-    {
+    public void renderTileEntityAt(TileAnvil tile, double x, double y, double z, float partialTicks, int destroyStage) {
+
+        BlockPos pos = tile.getPos();
+        IBlockState state = this.getWorld().getBlockState(pos);
+        if (state.getBlock() instanceof Anvil) {
+
         GL11.glPushMatrix();
         GL11.glTranslated(x, y + 1.5D, z);
         //GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         float prevLGTX = OpenGlHelper.lastBrightnessX;
         float prevLGTY = OpenGlHelper.lastBrightnessY;
-
-        BlockPos pos = tile.getPos();
-        IBlockState state = this.getWorld().getBlockState(pos);
-
 
         int bright = tile.getWorld().getCombinedLight(pos.up(), 0);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, bright % 65536, bright / 65536);
@@ -86,373 +87,375 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
         24   | 14/16 | 14/16
          */
 
-        if(state.getValue(Anvil.FACING) == EnumFacing.NORTH){
-            int counter = 0;
-            for(int i=0; i < 5; i++){
-                for(int a=0; a<5; a++){
-                    if(!tile.getSlotStack(counter).isEmpty()){
-                        Item item = tile.getSlotStack(counter).getItem();
-                        if(item.equals(Items.REDSTONE) ||
-                                (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                item.equals(PrimalItems.DIAMOND_KNAPP) ||
-                                item.equals(Items.DIAMOND) ||
-                                item.equals(Items.EMERALD)
-                                ){
-                            GL11.glPushMatrix();
 
-                            GL11.glTranslated( tile.getNormalX(a), -0.49D, tile.getNormalZ(i) );
-                            GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
-                            GL11.glScaled(0.25D, 0.25D, 0.25D);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.pickaxehead) ||
-                                item.equals(ModItems.cleanironpickaxehead) ||
-                                item.equals(ModItems.steelpickaxehead) ||
-                                item.equals(ModItems.wootzpickaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironaxehead) ||
-                                item.equals(ModItems.cleanironaxehead) ||
-                                item.equals(ModItems.steelaxehead) ||
-                                item.equals(ModItems.wootzaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironshovelhead) ||
-                                item.equals(ModItems.cleanironshovelhead) ||
-                                item.equals(ModItems.steelshovelhead) ||
-                                item.equals(ModItems.steelshovelhead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironhoehead)){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
-                            GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(Block.getBlockFromItem(item) instanceof IngotBall){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getNormalZ(i));
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item instanceof BaseMultiItem){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getNormalZ(i));
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
+            if (state.getValue(Anvil.FACING) == EnumFacing.NORTH) {
+                int counter = 0;
+                for (int i = 0; i < 5; i++) {
+                    for (int a = 0; a < 5; a++) {
+                        if (!tile.getSlotStack(counter).isEmpty()) {
+                            Item item = tile.getSlotStack(counter).getItem();
+                            if (item.equals(Items.REDSTONE) ||
+                                    (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
+                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(Items.DIAMOND) ||
+                                    item.equals(Items.EMERALD)
+                                    ) {
+                                GL11.glPushMatrix();
 
+                                GL11.glTranslated(tile.getNormalX(a), -0.49D, tile.getNormalZ(i));
+                                GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
+                                GL11.glScaled(0.25D, 0.25D, 0.25D);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.pickaxehead) ||
+                                    item.equals(ModItems.cleanironpickaxehead) ||
+                                    item.equals(ModItems.steelpickaxehead) ||
+                                    item.equals(ModItems.wootzpickaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironaxehead) ||
+                                    item.equals(ModItems.cleanironaxehead) ||
+                                    item.equals(ModItems.steelaxehead) ||
+                                    item.equals(ModItems.wootzaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironshovelhead) ||
+                                    item.equals(ModItems.cleanironshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironhoehead)) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (Block.getBlockFromItem(item) instanceof IngotBall) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item instanceof BaseMultiItem) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+
+                        }
+                        counter++;
                     }
-                    counter++;
                 }
             }
-        }
-        if(state.getValue(Anvil.FACING) == EnumFacing.SOUTH){
-            int counter = 0;
-            for(int i=0; i < 5; i++){
-                for(int a=0; a<5; a++){
-                    if(!tile.getSlotStack(counter).isEmpty()){
-                        Item item = tile.getSlotStack(counter).getItem();
-                        if(item.equals(Items.REDSTONE) ||
-                                (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                item.equals(PrimalItems.DIAMOND_KNAPP) ||
-                                item.equals(Items.DIAMOND) ||
-                                item.equals(Items.EMERALD)
-                                ){
-                            GL11.glPushMatrix();
-                            GL11.glTranslated( tile.getReverseX(a), -0.49D, tile.getReverseZ(i) );
-                            GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
-                            GL11.glScaled(0.25D, 0.25D, 0.25D);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.pickaxehead) ||
-                                item.equals(ModItems.cleanironpickaxehead) ||
-                                item.equals(ModItems.steelpickaxehead) ||
-                                item.equals(ModItems.wootzpickaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getReverseZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironaxehead) ||
-                                item.equals(ModItems.cleanironaxehead) ||
-                                item.equals(ModItems.steelaxehead) ||
-                                item.equals(ModItems.wootzaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getReverseZ(i) );
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironshovelhead) ||
-                                item.equals(ModItems.cleanironshovelhead) ||
-                                item.equals(ModItems.steelshovelhead) ||
-                                item.equals(ModItems.steelshovelhead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getReverseZ(i) );
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironhoehead) ||
-                                item.equals(ModItems.cleanironhoehead) ||
-                                item.equals(ModItems.steelhoehead) ||
-                                item.equals(ModItems.wootzhoehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getReverseZ(i) );
-                            GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(Block.getBlockFromItem(item) instanceof IngotBall){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.44D, tile.getReverseZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item instanceof BaseMultiItem){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.44D, tile.getReverseZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
+            if (state.getValue(Anvil.FACING) == EnumFacing.SOUTH) {
+                int counter = 0;
+                for (int i = 0; i < 5; i++) {
+                    for (int a = 0; a < 5; a++) {
+                        if (!tile.getSlotStack(counter).isEmpty()) {
+                            Item item = tile.getSlotStack(counter).getItem();
+                            if (item.equals(Items.REDSTONE) ||
+                                    (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
+                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(Items.DIAMOND) ||
+                                    item.equals(Items.EMERALD)
+                                    ) {
+                                GL11.glPushMatrix();
+                                GL11.glTranslated(tile.getReverseX(a), -0.49D, tile.getReverseZ(i));
+                                GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
+                                GL11.glScaled(0.25D, 0.25D, 0.25D);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.pickaxehead) ||
+                                    item.equals(ModItems.cleanironpickaxehead) ||
+                                    item.equals(ModItems.steelpickaxehead) ||
+                                    item.equals(ModItems.wootzpickaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironaxehead) ||
+                                    item.equals(ModItems.cleanironaxehead) ||
+                                    item.equals(ModItems.steelaxehead) ||
+                                    item.equals(ModItems.wootzaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getReverseZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironshovelhead) ||
+                                    item.equals(ModItems.cleanironshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getReverseZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironhoehead) ||
+                                    item.equals(ModItems.cleanironhoehead) ||
+                                    item.equals(ModItems.steelhoehead) ||
+                                    item.equals(ModItems.wootzhoehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getReverseZ(i));
+                                GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (Block.getBlockFromItem(item) instanceof IngotBall) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.44D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item instanceof BaseMultiItem) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.44D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
 
+                        }
+                        counter++;
                     }
-                    counter++;
                 }
             }
-        }
-        if(state.getValue(Anvil.FACING) == EnumFacing.WEST){
-            int counter = 0;
-            for(int a=0; a < 5; a++){
-                for(int i=0; i<5; i++){
-                    if(!tile.getSlotStack(counter).isEmpty()){
-                        Item item = tile.getSlotStack(counter).getItem();
-                        if(item.equals(Items.REDSTONE) ||
-                                (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                item.equals(PrimalItems.DIAMOND_KNAPP) ||
-                                item.equals(Items.DIAMOND) ||
-                                item.equals(Items.EMERALD)
-                                ){
-                            GL11.glPushMatrix();
-                            GL11.glTranslated( tile.getNormalX(a), -0.49D, tile.getReverseZ(i) );
-                            GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
-                            GL11.glScaled(0.25D, 0.25D, 0.25D);
-                            GL11.glRotated(-90.0F, 0.0F, 0.0F, 1.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
+            if (state.getValue(Anvil.FACING) == EnumFacing.WEST) {
+                int counter = 0;
+                for (int a = 0; a < 5; a++) {
+                    for (int i = 0; i < 5; i++) {
+                        if (!tile.getSlotStack(counter).isEmpty()) {
+                            Item item = tile.getSlotStack(counter).getItem();
+                            if (item.equals(Items.REDSTONE) ||
+                                    (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
+                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(Items.DIAMOND) ||
+                                    item.equals(Items.EMERALD)
+                                    ) {
+                                GL11.glPushMatrix();
+                                GL11.glTranslated(tile.getNormalX(a), -0.49D, tile.getReverseZ(i));
+                                GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
+                                GL11.glScaled(0.25D, 0.25D, 0.25D);
+                                GL11.glRotated(-90.0F, 0.0F, 0.0F, 1.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.pickaxehead) ||
+                                    item.equals(ModItems.cleanironpickaxehead) ||
+                                    item.equals(ModItems.steelpickaxehead) ||
+                                    item.equals(ModItems.wootzpickaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getReverseZ(i));
+                                GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironaxehead) ||
+                                    item.equals(ModItems.cleanironaxehead) ||
+                                    item.equals(ModItems.steelaxehead) ||
+                                    item.equals(ModItems.wootzaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getReverseZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironshovelhead) ||
+                                    item.equals(ModItems.cleanironshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getReverseZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironhoehead)) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getReverseZ(i));
+                                GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (Block.getBlockFromItem(item) instanceof IngotBall) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item instanceof BaseMultiItem) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
                         }
-                        if(item.equals(ModItems.pickaxehead) ||
-                                item.equals(ModItems.cleanironpickaxehead) ||
-                                item.equals(ModItems.steelpickaxehead) ||
-                                item.equals(ModItems.wootzpickaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getNormalX(a), -0.435D, tile.getReverseZ(i) );
-                            GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironaxehead) ||
-                                item.equals(ModItems.cleanironaxehead) ||
-                                item.equals(ModItems.steelaxehead) ||
-                                item.equals(ModItems.wootzaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getNormalX(a), -0.435D, tile.getReverseZ(i) );
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironshovelhead) ||
-                                item.equals(ModItems.cleanironshovelhead) ||
-                                item.equals(ModItems.steelshovelhead) ||
-                                item.equals(ModItems.steelshovelhead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getNormalX(a), -0.435D, tile.getReverseZ(i) );
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironhoehead)){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getNormalX(a), -0.435D, tile.getReverseZ(i) );
-                            GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(Block.getBlockFromItem(item) instanceof IngotBall){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getNormalX(a), -0.44D, tile.getReverseZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item instanceof BaseMultiItem){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getNormalX(a), -0.44D, tile.getReverseZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
+                        counter++;
                     }
-                    counter++;
                 }
             }
-        }
-        if(state.getValue(Anvil.FACING) == EnumFacing.EAST){
-            int counter = 0;
-            for(int a=0; a < 5; a++){
-                for(int i=0; i<5; i++){
-                    if(!tile.getSlotStack(counter).isEmpty()){
-                        Item item = tile.getSlotStack(counter).getItem();
-                        if(item.equals(Items.REDSTONE) ||
-                                (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                item.equals(PrimalItems.DIAMOND_KNAPP) ||
-                                item.equals(Items.DIAMOND) ||
-                                item.equals(Items.EMERALD)
-                                ){
-                            GL11.glPushMatrix();
-                            GL11.glTranslated( tile.getReverseX(a), -0.49D, tile.getNormalZ(i) );
-                            GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScaled(0.25D, 0.25D, 0.25D);
-                            GL11.glRotated(-90.0F, 0.0F, 0.0F, 1.0F);
-                            //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
+            if (state.getValue(Anvil.FACING) == EnumFacing.EAST) {
+                int counter = 0;
+                for (int a = 0; a < 5; a++) {
+                    for (int i = 0; i < 5; i++) {
+                        if (!tile.getSlotStack(counter).isEmpty()) {
+                            Item item = tile.getSlotStack(counter).getItem();
+                            if (item.equals(Items.REDSTONE) ||
+                                    (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
+                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
+                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(Items.DIAMOND) ||
+                                    item.equals(Items.EMERALD)
+                                    ) {
+                                GL11.glPushMatrix();
+                                GL11.glTranslated(tile.getReverseX(a), -0.49D, tile.getNormalZ(i));
+                                GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
+                                GL11.glScaled(0.25D, 0.25D, 0.25D);
+                                GL11.glRotated(-90.0F, 0.0F, 0.0F, 1.0F);
+                                //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.pickaxehead) ||
+                                    item.equals(ModItems.cleanironpickaxehead) ||
+                                    item.equals(ModItems.steelpickaxehead) ||
+                                    item.equals(ModItems.wootzpickaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironaxehead) ||
+                                    item.equals(ModItems.cleanironaxehead) ||
+                                    item.equals(ModItems.steelaxehead) ||
+                                    item.equals(ModItems.wootzaxehead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironshovelhead) ||
+                                    item.equals(ModItems.cleanironshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead) ||
+                                    item.equals(ModItems.steelshovelhead)
+                                    ) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item.equals(ModItems.ironhoehead)) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (Block.getBlockFromItem(item) instanceof IngotBall) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.44D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item instanceof BaseMultiItem) {
+                                GL11.glPushMatrix();
+                                double scale = 1.0D;
+                                GL11.glScaled(scale, scale, scale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.455D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
                         }
-                        if(item.equals(ModItems.pickaxehead) ||
-                                item.equals(ModItems.cleanironpickaxehead) ||
-                                item.equals(ModItems.steelpickaxehead) ||
-                                item.equals(ModItems.wootzpickaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getNormalZ(i) );
-                            GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironaxehead) ||
-                                item.equals(ModItems.cleanironaxehead) ||
-                                item.equals(ModItems.steelaxehead) ||
-                                item.equals(ModItems.wootzaxehead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getNormalZ(i) );
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironshovelhead) ||
-                                item.equals(ModItems.cleanironshovelhead) ||
-                                item.equals(ModItems.steelshovelhead) ||
-                                item.equals(ModItems.steelshovelhead)
-                                ){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getNormalZ(i) );
-                            GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item.equals(ModItems.ironhoehead)){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.435D, tile.getNormalZ(i) );
-                            GL11.glRotated(180.0F, 1.0F, 0.0F, 0.0F);
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(Block.getBlockFromItem(item) instanceof IngotBall){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.44D, tile.getNormalZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
-                        if(item instanceof BaseMultiItem){
-                            GL11.glPushMatrix();
-                            double scale = 1.0D;
-                            GL11.glScaled(scale, scale, scale);
-                            GL11.glTranslated( tile.getReverseX(a), -0.455D, tile.getNormalZ(i) );
-                            renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
-                            GL11.glPopMatrix();
-                        }
+                        counter++;
                     }
-                    counter++;
                 }
             }
-        }
 
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
-        GL11.glPopMatrix();
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
+            GL11.glPopMatrix();
+        }
     }
 
     private void doRendering(TileAnvil tile, Integer counter, Integer i, Integer a){
